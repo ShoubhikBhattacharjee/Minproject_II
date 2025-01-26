@@ -7,6 +7,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,8 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class PasswordActivity extends AppCompatActivity {
 
     private EditText passwordInput;
-    private TextView entropyResult, feedbackMessage, bestEntropyText;
+    private TextView entropyResult, feedbackMessage, bestEntropyText, resultText;
     private ImageView toggleVisibility, infoButton;
+    private Button checkButton;
     private boolean isPasswordVisible = false;
     private SharedPreferences sharedPreferences;
 
@@ -32,7 +35,10 @@ public class PasswordActivity extends AppCompatActivity {
         entropyResult = findViewById(R.id.entropyResult);
         feedbackMessage = findViewById(R.id.feedbackMessage);
         bestEntropyText = findViewById(R.id.bestEntropyText);
+        resultText = findViewById(R.id.resultText);
+        resultText.setVisibility(View.INVISIBLE);
         toggleVisibility = findViewById(R.id.toggleVisibility);
+        checkButton = findViewById(R.id.checkButton);
 
         sharedPreferences = getSharedPreferences("PasswordStrengthPrefs", MODE_PRIVATE);
         float bestEntropy = sharedPreferences.getFloat("bestEntropy", 0);
@@ -41,17 +47,12 @@ public class PasswordActivity extends AppCompatActivity {
         // Password visibility toggle
         toggleVisibility.setOnClickListener(view -> togglePasswordVisibility());
 
-        // Navigate to InfoActivity
-        infoButton.setOnClickListener(view -> {
-            Intent intent = new Intent(PasswordActivity.this, InfoActivity.class);
-            startActivity(intent);
-        });
-
-        // Real-time password evaluation
+        // Real-time password evaluation on text change
         passwordInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 evaluatePassword(s.toString());
+                resultText.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -59,6 +60,27 @@ public class PasswordActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {}
+        });
+
+        // Button click listener to show password strength in steps
+        checkButton.setOnClickListener(view -> {
+            String password = passwordInput.getText().toString();
+            if (password.isEmpty()) {
+                resultText.setText("Please enter a password!");
+                return;
+            }
+            else {
+                resultText.setVisibility(View.VISIBLE);
+            }
+
+            long n = 1, i;
+            for (i = 1; i <= password.length(); i++) {
+                n = Math.abs(n * 94);
+            }
+
+            String stepsMessage = "A hacker could crack your password in approximately " + n + " steps.";
+            String result = stepsMessage;
+            resultText.setText(result);
         });
     }
 
@@ -89,7 +111,7 @@ public class PasswordActivity extends AppCompatActivity {
         // Calculate entropy
         double entropy = 0;
         if (poolSize > 0) {
-            entropy =  Math.log(Math.pow(poolSize, length)) / Math.log(2); // Convert log base to 2
+            entropy = Math.log(Math.pow(poolSize, length)) / Math.log(2); // Convert log base to 2
         }
 
         // Update UI with entropy and feedback
@@ -103,25 +125,29 @@ public class PasswordActivity extends AppCompatActivity {
             editor.putFloat("bestEntropy", (float) entropy);
             editor.apply();
             updateBestEntropyText((float) entropy);
-            Toast.makeText(this, "New Best Entropy Achieved!", Toast.LENGTH_SHORT).show();
         }
     }
 
     private String getFeedbackMessage(double entropy) {
         if (entropy < 28) {
             feedbackMessage.setTextColor(getResources().getColor(R.color.red));
+            resultText.setBackgroundColor(getResources().getColor(R.color.red));
             return "Very Weak: Can be cracked instantly.";
         } else if (entropy < 36) {
             feedbackMessage.setTextColor(getResources().getColor(R.color.orange));
+            resultText.setBackgroundColor(getResources().getColor(R.color.orange));
             return "Weak: Can be cracked in minutes.";
         } else if (entropy < 60) {
             feedbackMessage.setTextColor(getResources().getColor(R.color.yellow));
+            resultText.setBackgroundColor(getResources().getColor(R.color.yellow));
             return "Reasonable: Can be cracked in days.";
         } else if (entropy < 128) {
             feedbackMessage.setTextColor(getResources().getColor(R.color.light_green));
+            resultText.setBackgroundColor(getResources().getColor(R.color.light_green));
             return "Strong: Takes years to crack.";
         } else {
             feedbackMessage.setTextColor(getResources().getColor(R.color.green));
+            resultText.setBackgroundColor(getResources().getColor(R.color.green));
             return "Very Strong: Practically uncrackable.";
         }
     }
