@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Switch Case Visualization</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        height: 100vh;
+      }
+
+      #code-section {
+        flex: 1;
+        background-color: #1e1e1e;
+        color: #dcdcdc;
+        padding: 20px;
+        overflow: auto;
+      }
+
+      #visualization-section {
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .day-box {
+        width: 100px;
+        height: 50px;
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid black;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+      }
+
+      .day-box.highlight {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      #days-output {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      #result {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .line {
+        background-color: transparent;
+      }
+
+      .line.highlight {
+        background-color: #444444;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="code-section">
+      <pre id="code-block">
+<span class="line" id="line-1">#include &lt;stdio.h&gt;</span>
+<span class="line" id="line-2">int main() {</span>
+<span class="line" id="line-3">    int day;</span>
+<span class="line" id="line-4">    printf("Enter a day (1 for Monday, ..., 7 for Sunday): ");</span>
+<span class="line" id="line-5">    scanf("%d", &day);</span>
+
+<span class="line" id="line-6">    switch (day) {</span>
+<span class="line" id="line-7">        case 1:</span>
+<span class="line" id="line-8">            printf("Monday\n");</span>
+<span class="line" id="line-9">            break;</span>
+<span class="line" id="line-10">        case 2:</span>
+<span class="line" id="line-11">            printf("Tuesday\n");</span>
+<span class="line" id="line-12">            break;</span>
+<span class="line" id="line-13">        case 3:</span>
+<span class="line" id="line-14">            printf("Wednesday\n");</span>
+<span class="line" id="line-15">            break;</span>
+<span class="line" id="line-16">        case 4:</span>
+<span class="line" id="line-17">            printf("Thursday\n");</span>
+<span class="line" id="line-18">            break;</span>
+<span class="line" id="line-19">        case 5:</span>
+<span class="line" id="line-20">            printf("Friday\n");</span>
+<span class="line" id="line-21">            break;</span>
+<span class="line" id="line-22">        case 6:</span>
+<span class="line" id="line-23">            printf("Saturday\n");</span>
+<span class="line" id="line-24">            break;</span>
+<span class="line" id="line-25">        case 7:</span>
+<span class="line" id="line-26">            printf("Sunday\n");</span>
+<span class="line" id="line-27">            break;</span>
+<span class="line" id="line-28">        default:</span>
+<span class="line" id="line-29">            printf("Invalid day\n");</span>
+<span class="line" id="line-30">    }</span>
+
+<span class="line" id="line-31">    return 0;</span>
+<span class="line" id="line-32">}</span>
+</pre>
+    </div>
+    <div id="visualization-section">
+      <h1>Switch Case Visualization</h1>
+      <div>
+        <label for="day-input">Enter a day (1-7): </label>
+        <input type="number" id="day-input" min="1" max="7" />
+        <button onclick="visualizeSwitchCase()">Submit</button>
+      </div>
+      <div id="days-output">
+        <div class="day-box" id="day-1">Monday</div>
+        <div class="day-box" id="day-2">Tuesday</div>
+        <div class="day-box" id="day-3">Wednesday</div>
+        <div class="day-box" id="day-4">Thursday</div>
+        <div class="day-box" id="day-5">Friday</div>
+        <div class="day-box" id="day-6">Saturday</div>
+        <div class="day-box" id="day-7">Sunday</div>
+      </div>
+      <div id="result"></div>
+    </div>
+    <script>
+      function highlightLine(lineNumber) {
+        document.querySelectorAll(".line").forEach((line) => {
+          line.classList.remove("highlight");
+        });
+        const line = document.getElementById(`line-${lineNumber}`);
+        if (line) {
+          line.classList.add("highlight");
+        }
+      }
+
+      async function visualizeSwitchCase() {
+        const dayInput = parseInt(document.getElementById("day-input").value);
+        const days = [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ];
+        const resultDiv = document.getElementById("result");
+
+        // Clear previous highlights
+        document.querySelectorAll(".day-box").forEach((box) => {
+          box.classList.remove("highlight");
+        });
+
+        highlightLine(2);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        highlightLine(4);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        highlightLine(5);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        highlightLine(6);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        if (dayInput >= 1 && dayInput <= 7) {
+          highlightLine(7 + (dayInput - 1) * 3);
+          await new Promise((resolve) => setTimeout(resolve, 500));
+          const dayBox = document.getElementById(`day-${dayInput}`);
+          dayBox.classList.add("highlight");
+          resultDiv.textContent = `It's ${days[dayInput - 1]}!`;
+          highlightLine(9 + (dayInput - 1) * 3);
+        } else {
+          highlightLine(28);
+          await new Promise((resolve) => setTimeout(resolve, 500));
+          resultDiv.textContent =
+            "Invalid day entered. Please enter a number between 1 and 7.";
+          highlightLine(29);
+        }
+
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        highlightLine(31);
+      }
+    </script>
+  </body>
+</html>
