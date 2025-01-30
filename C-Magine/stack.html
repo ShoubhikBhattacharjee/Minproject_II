@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Stack Visualization</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #2e3b4e;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin: 0;
+      padding: 20px;
+      height: 100vh;
+    }
+    .code-container {
+      width: 45%;
+      background-color: #1e1e1e;
+      padding: 20px;
+      overflow-y: auto;
+      height: 100%;
+      max-height: 100%;
+    }
+    pre {
+      margin: 0;
+      font-size: 14px;
+      color: #dcdcdc;
+    }
+    .highlight {
+      background-color: rgba(255, 235, 59, 0.6);
+    }
+    .visualization-container {
+      width: 45%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      border: 1px solid #fff;
+      height: 100%;
+      overflow-y: auto;
+    }
+    .stack {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 10px;
+    }
+    .stack-item {
+      padding: 10px;
+      background-color: #03a9f4;
+      border-radius: 5px;
+      color: #fff;
+      width: 50px;
+      text-align: center;
+    }
+    .operation-info {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #00c853;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #03a9f4;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #0288d1;
+    }
+    .input-section {
+      margin-top: 20px;
+      text-align: center;
+    }
+    input {
+      padding: 5px;
+      margin: 5px;
+      font-size: 16px;
+    }
+    .stack-input {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="code-container">
+    <pre id="code">
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 5
+
+struct Stack {
+    int arr[MAX];
+    int top;
+};
+
+void initialize(struct Stack* stack) {
+    stack->top = -1;
+}
+
+int isFull(struct Stack* stack) {
+    return stack->top == MAX - 1;
+}
+
+int isEmpty(struct Stack* stack) {
+    return stack->top == -1;
+}
+
+void push(struct Stack* stack, int value) {
+    if (isFull(stack)) {
+        printf("Stack overflow!\n");
+    } else {
+        stack->arr[++stack->top] = value;
+    }
+}
+
+int pop(struct Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Stack underflow!\n");
+        return -1;
+    } else {
+        return stack->arr[stack->top--];
+    }
+}
+
+int peek(struct Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Stack is empty!\n");
+        return -1;
+    } else {
+        return stack->arr[stack->top];
+    }
+}
+
+void visualizeStack(struct Stack* stack) {
+    for (int i = 0; i <= stack->top; i++) {
+        printf("[%d] ", stack->arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    struct Stack stack;
+    initialize(&stack);
+
+    push(&stack, 10);
+    visualizeStack(&stack);
+    
+    push(&stack, 20);
+    visualizeStack(&stack);
+    
+    pop(&stack);
+    visualizeStack(&stack);
+    
+    push(&stack, 30);
+    visualizeStack(&stack);
+
+    printf("Top element: %d\n", peek(&stack));
+
+    return 0;
+}
+    </pre>
+  </div>
+
+  <div class="visualization-container">
+    <h1>Stack Visualization</h1>
+    <div class="stack" id="stackVisualization"></div>
+    <div class="operation-info" id="operationInfo">Enter Stack Size and Elements to Visualize Stack Operations!</div>
+
+    <div class="input-section">
+      <div class="stack-input">
+        <label for="stackSize">Enter Stack Size:</label>
+        <input type="number" id="stackSize" min="1" placeholder="Size of Stack">
+      </div>
+      <div class="stack-input">
+        <label for="stackElements">Enter Stack Elements (comma separated):</label>
+        <input type="text" id="stackElements" placeholder="Elements: e.g., 10, 20, 30">
+      </div>
+      <button onclick="initializeStack()">Initialize Stack</button>
+    </div>
+
+    <button onclick="startVisualization()">Start Visualization</button>
+  </div>
+
+  <script>
+    const codeLines = document.getElementById("code").innerText.split("\n");
+    const stackElement = document.getElementById("stackVisualization");
+    const operationInfo = document.getElementById("operationInfo");
+    let currentHighlight = -1;
+    let stack = [];
+    let maxStackSize = 5;
+
+    function highlightCodeLine(lineNumber) {
+      const codeContainer = document.getElementById("code");
+      codeContainer.innerHTML = codeLines
+        .map((line, index) =>
+          index === lineNumber
+            ? `<span class="highlight">${line}</span>`
+            : line
+        )
+        .join("\n");
+    }
+
+    function visualizeStackState() {
+      stackElement.innerHTML = "";
+      stack.forEach(item => {
+        const stackItem = document.createElement("div");
+        stackItem.className = "stack-item";
+        stackItem.textContent = item;
+        stackElement.appendChild(stackItem);
+      });
+    }
+
+    function initializeStack() {
+      const stackSizeInput = document.getElementById("stackSize");
+      const stackElementsInput = document.getElementById("stackElements");
+
+      maxStackSize = parseInt(stackSizeInput.value) || 5;
+      const elements = stackElementsInput.value.split(',').map(e => parseInt(e.trim()));
+
+      if (elements.length !== maxStackSize) {
+        operationInfo.textContent = `Please enter exactly ${maxStackSize} elements!`;
+        return;
+      }
+
+      stack = elements;
+      visualizeStackState();
+      operationInfo.textContent = `Stack initialized with ${maxStackSize} elements.`;
+    }
+
+    async function startVisualization() {
+      operationInfo.textContent = "Visualizing Stack Operations...";
+      
+      highlightCodeLine(14); // Highlight push operation line
+      push(10); 
+      visualizeStackState();
+      await delay(1000);
+
+      highlightCodeLine(18); // Highlight push operation line
+      push(20);
+      visualizeStackState();
+      await delay(1000);
+
+      highlightCodeLine(22); // Highlight pop operation line
+      pop();
+      visualizeStackState();
+      await delay(1000);
+
+      highlightCodeLine(18); // Highlight push operation line
+      push(30);
+      visualizeStackState();
+      await delay(1000);
+
+      operationInfo.textContent = "Top element is: " + peek();
+    }
+
+    function push(value) {
+      if (stack.length < maxStackSize) {
+        stack.push(value);
+      }
+    }
+
+    function pop() {
+      if (stack.length > 0) {
+        stack.pop();
+      }
+    }
+
+    function peek() {
+      return stack[stack.length - 1];
+    }
+
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+  </script>
+</body>
+</html>

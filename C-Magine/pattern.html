@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pattern Printing Visualization</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #2e3b4e;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    .code-container {
+      width: 100%;
+      background-color: #1e1e1e;
+      padding: 20px;
+      overflow-y: auto;
+      max-height: 40%;
+    }
+    pre {
+      margin: 0;
+      font-size: 14px;
+      color: #dcdcdc;
+    }
+    .highlight {
+      background-color: rgba(255, 235, 59, 0.6);
+    }
+    .visualization-container {
+      width: 100%;
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
+    .output-box {
+      font-family: monospace;
+      font-size: 18px;
+      margin: 5px;
+      color: #00c853;
+      line-height: 1.5;
+    }
+    .loop-tracker {
+      margin: 20px 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .pattern-row {
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .pattern-row.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #03a9f4;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #0288d1;
+    }
+  </style>
+</head>
+<body>
+  <div class="code-container">
+    <pre id="code">
+#include <stdio.h>
+int main() {
+    int n = 5; // Number of rows
+    for (int i = 1; i <= n; i++) {  // Outer loop
+        for (int j = 1; j <= i; j++) {  // Inner loop
+            printf("* ");
+        }
+        printf("\n");
+    }
+    return 0;
+}
+    </pre>
+  </div>
+  <div class="visualization-container">
+    <h1>Pattern Printing Visualization</h1>
+    <div class="loop-tracker" id="tracker">Press "Start" to begin!</div>
+    <div id="output"></div>
+    <button onclick="startVisualization()">Start</button>
+  </div>
+
+  <script>
+    const codeLines = document.getElementById("code").innerText.split("\n");
+    const outputElement = document.getElementById("output");
+    const trackerElement = document.getElementById("tracker");
+    let currentHighlight = -1;
+
+    function highlightCodeLine(lineNumber) {
+      const codeContainer = document.getElementById("code");
+      codeContainer.innerHTML = codeLines
+        .map((line, index) =>
+          index === lineNumber
+            ? `<span class="highlight">${line}</span>`
+            : line
+        )
+        .join("\n");
+    }
+
+    async function animateRow(row) {
+      const rowElement = document.createElement("div");
+      rowElement.className = "pattern-row";
+      rowElement.textContent = row;
+      outputElement.appendChild(rowElement);
+      // Wait for animation
+      setTimeout(() => {
+        rowElement.classList.add("visible");
+      }, 10);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+
+    async function startVisualization() {
+      const n = 5; // Number of rows
+      outputElement.innerHTML = "";
+      trackerElement.textContent = "Starting pattern printing...";
+      for (let i = 1; i <= n; i++) {
+        highlightCodeLine(4); // Highlight outer loop
+        trackerElement.textContent = `Outer loop (i = ${i})`;
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        let row = "";
+        for (let j = 1; j <= i; j++) {
+          highlightCodeLine(5); // Highlight inner loop
+          trackerElement.textContent = `Inner loop (i = ${i}, j = ${j})`;
+          await new Promise((resolve) => setTimeout(resolve, 500));
+          row += "* ";
+        }
+        highlightCodeLine(7); // Highlight printf("\n");
+        await animateRow(row.trim());
+      }
+      highlightCodeLine(9); // Highlight return statement
+      trackerElement.textContent = "Pattern printing complete!";
+    }
+  </script>
+</body>
+</html>

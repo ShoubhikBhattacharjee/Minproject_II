@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swap Two Numbers Visualization</title>
+  <style>
+    body {
+      background-color: #2e3b4e;
+      color: #fff;
+      font-family: "Courier New", Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+    .code-container {
+      background-color: #1e1e1e;
+      padding: 20px;
+      width: 90%;
+      max-width: 700px;
+      overflow-y: auto;
+    }
+    pre {
+      margin: 0;
+      font-size: 16px;
+      color: #dcdcdc;
+    }
+    .highlight {
+      background-color: rgba(255, 235, 59, 0.6);
+    }
+    .visualization-container {
+      margin-top: 20px;
+      text-align: center;
+      width: 100%;
+    }
+    .variables {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px;
+    }
+    .variable {
+      background-color: #03a9f4;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 20px;
+      width: 100px;
+      text-align: center;
+      transition: all 0.5s ease;
+    }
+    .tracker {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #e64a19;
+    }
+  </style>
+</head>
+<body>
+  <div class="code-container">
+    <pre id="code">
+#include <stdio.h>
+int main() {
+    int a = 5, b = 10, temp;
+
+    // Before swapping
+    printf("Before Swap: a = %d, b = %d\\n", a, b);
+
+    // Swap logic
+    temp = a;       // Step 1
+    a = b;          // Step 2
+    b = temp;       // Step 3
+
+    // After swapping
+    printf("After Swap: a = %d, b = %d\\n", a, b);
+
+    return 0;
+}
+    </pre>
+  </div>
+
+  <div class="visualization-container">
+    <h1>Swapping Two Numbers Visualization</h1>
+    <div class="tracker" id="tracker">Press "Start Visualization" to see the swap process!</div>
+    <div class="variables">
+      <div class="variable" id="varA">a = 5</div>
+      <div class="variable" id="varB">b = 10</div>
+    </div>
+    <button onclick="startVisualization()">Start Visualization</button>
+  </div>
+
+  <script>
+    const codeLines = document.getElementById("code").innerText.split("\n");
+    const trackerElement = document.getElementById("tracker");
+    let varA = document.getElementById("varA");
+    let varB = document.getElementById("varB");
+
+    function highlightCodeLine(lineNumber) {
+      const codeContainer = document.getElementById("code");
+      codeContainer.innerHTML = codeLines
+        .map((line, index) =>
+          index === lineNumber
+            ? `<span class="highlight">${line}</span>`
+            : line
+        )
+        .join("\n");
+    }
+
+    async function startVisualization() {
+      varA.textContent = "a = 5";
+      varB.textContent = "b = 10";
+      trackerElement.textContent = "Initial values: a = 5, b = 10";
+
+      await step(3, "Assign temp = a; temp now holds the value 5.");
+      let temp = 5;
+
+      await step(4, "Assign a = b; a now holds the value of b (10).");
+      varA.textContent = "a = 10";
+      varA.style.transform = "translateX(20px)";
+      await delay(1000);
+
+      await step(5, "Assign b = temp; b now holds the original value of a (5).");
+      varB.textContent = "b = 5";
+      varB.style.transform = "translateX(-20px)";
+      await delay(1000);
+
+      trackerElement.textContent = "Swapping complete! Final values: a = 10, b = 5";
+      highlightCodeLine(7);
+    }
+
+    function step(lineNumber, message) {
+      highlightCodeLine(lineNumber);
+      trackerElement.textContent = message;
+      return delay(1500);
+    }
+
+    function delay(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+  </script>
+</body>
+</html>

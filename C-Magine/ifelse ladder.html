@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>If-Else Ladder Visualization</title>
+  <style>
+    body {
+      background-color: #2e3b4e;
+      color: white;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    .code-section {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 8px;
+      width: 45%;
+      height: 90vh;
+      overflow-y: auto;
+    }
+
+    pre {
+      color: #dcdcdc;
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .highlight {
+      background-color: rgba(255, 235, 59, 0.6);
+    }
+
+    .visualization-section {
+      width: 50%;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tracker {
+      font-size: 18px;
+      background-color: #4caf50;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: black;
+      margin: 10px 0;
+      transition: all 0.5s;
+    }
+
+    .input-section {
+      margin: 20px;
+    }
+
+    input[type='number'] {
+      padding: 10px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #e64a19;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="code-section">
+    <pre id="code">
+#include <stdio.h>
+
+int main() {
+    int number;
+    printf("Enter a number: ");
+    scanf("%d", &number);
+
+    if (number > 0) {
+        printf("Positive number\n");
+    } else if (number < 0) {
+        printf("Negative number\n");
+    } else {
+        printf("Zero\n");
+    }
+    return 0;
+}
+    </pre>
+  </div>
+
+  <div class="visualization-section">
+    <h1>If-Else Ladder Visualization</h1>
+
+    <div class="tracker" id="tracker">Enter a number and start the program!</div>
+
+    <div class="input-section">
+      <input id="inputNumber" type="number" placeholder="Enter a number" />
+      <button onclick="startProgram()">Start Program</button>
+    </div>
+  </div>
+
+  <script>
+    const codeLines = document.getElementById("code").innerText.split("\n");
+    const tracker = document.getElementById("tracker");
+
+    function highlightCodeLine(lineNumber) {
+      const codeContainer = document.getElementById("code");
+      codeContainer.innerHTML = codeLines
+        .map((line, index) =>
+          index === lineNumber
+            ? `<span class="highlight">${line}</span>`
+            : line
+        )
+        .join("\n");
+    }
+
+    async function startProgram() {
+      const inputNumber = parseInt(document.getElementById("inputNumber").value);
+      if (isNaN(inputNumber)) {
+        tracker.textContent = "Please enter a valid number!";
+        return;
+      }
+
+      tracker.textContent = "Input received: " + inputNumber;
+
+      await step(3, "Reading user input...");
+      await step(6, `Checking if ${inputNumber} > 0`);
+
+      if (inputNumber > 0) {
+        await step(7, `Condition met: ${inputNumber} is positive.`);
+        tracker.textContent = "Result: Positive number";
+      } else if (inputNumber < 0) {
+        await step(9, `Condition met: ${inputNumber} is negative.`);
+        tracker.textContent = "Result: Negative number";
+      } else {
+        await step(11, `Condition met: ${inputNumber} is zero.`);
+        tracker.textContent = "Result: Zero";
+      }
+
+      await step(13, "Program execution complete!");
+    }
+
+    function step(lineNumber, message) {
+      highlightCodeLine(lineNumber);
+      tracker.textContent = message;
+      return delay(1500);
+    }
+
+    function delay(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+  </script>
+</body>
+</html>

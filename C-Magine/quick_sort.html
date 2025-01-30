@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Sort Visualization with Code Highlighting</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    .code-container {
+      flex: 1;
+      background: #1e1e1e;
+      color: #dcdcdc;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    pre {
+      margin: 0;
+      font-size: 14px;
+    }
+    .highlight {
+      background-color: rgba(255, 235, 59, 0.6);
+      display: inline-block;
+      width: 100%;
+    }
+    .visualization-container {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
+    h1 {
+      color: #333;
+    }
+    .input-section {
+      margin: 20px 0;
+    }
+    .input-section input,
+    .input-section button {
+      margin: 5px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .array-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      position: relative;
+      width: 100%;
+      height: 300px;
+    }
+    .array-box {
+      width: 60px;
+      height: 60px;
+      margin: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+      border: 2px solid #ccc;
+      background-color: #e0e0e0;
+      position: absolute;
+      transition: transform 0.6s ease, background-color 0.6s ease;
+    }
+    .array-box.active {
+      background-color: #ffe082;
+      border-color: #fbc02d;
+    }
+    .array-box.pivot {
+      background-color: #ff7043;
+      border-color: #d32f2f;
+    }
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <!-- Code Section -->
+  <div class="code-container">
+    <pre id="code">
+#include &lt;stdio.h>
+
+int partition(int array[], int low, int high) {
+    int pivot = array[high];
+    int i = low - 1;
+
+    for (int j = low; j <= high - 1; j++) {
+        if (array[j] < pivot) {
+            i++;
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    }
+    int temp = array[i + 1];
+    array[i + 1] = array[high];
+    array[high] = temp;
+    return (i + 1);
+}
+
+void quickSort(int array[], int low, int high) {
+    if (low < high) {
+        int pi = partition(array, low, high);
+
+        quickSort(array, low, pi - 1);
+        quickSort(array, pi + 1, high);
+    }
+}
+
+int main() {
+    int array[100];
+    int size;
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &size);
+
+    printf("Enter %d elements:\n", size);
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &array[i]);
+    }
+
+    quickSort(array, 0, size - 1);
+
+    printf("Sorted array:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", array[i]);
+    }
+
+    return 0;
+}
+    </pre>
+  </div>
+
+  <!-- Visualization Section -->
+  <div class="visualization-container">
+    <h1>Quick Sort Visualization</h1>
+
+    <!-- Input Section -->
+    <div class="input-section">
+      <input type="number" id="arraySizeInput" placeholder="Enter array size" />
+      <button onclick="initializeArray()">Create Array</button>
+      <br />
+      <input type="number" id="arrayElementInput" placeholder="Enter element" />
+      <button onclick="addElement()">Add Element</button>
+      <br />
+      <button onclick="startSort()">Start Sorting</button>
+    </div>
+
+    <!-- Array Visualization -->
+    <div class="array-container" id="arrayContainer"></div>
+
+    <!-- Result Section -->
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    let array = [];
+    let arraySize = 0;
+
+    function initializeArray() {
+      const sizeInput = document.getElementById("arraySizeInput");
+      arraySize = parseInt(sizeInput.value);
+      if (isNaN(arraySize) || arraySize <= 0) return;
+      array = [];
+      renderArray();
+      document.getElementById("message").textContent = "Array created. Add elements.";
+      sizeInput.value = "";
+    }
+
+    function addElement() {
+      if (array.length >= arraySize) return;
+      const elementInput = document.getElementById("arrayElementInput");
+      const value = parseInt(elementInput.value);
+      if (!isNaN(value)) {
+        array.push(value);
+        renderArray();
+        elementInput.value = "";
+      }
+    }
+
+    function renderArray() {
+      const container = document.getElementById("arrayContainer");
+      container.innerHTML = "";
+      array.forEach((num, index) => {
+        const box = document.createElement("div");
+        box.className = "array-box";
+        box.textContent = num;
+        box.id = `box-${index}`;
+        box.style.left = `${index * 70}px`;
+        container.appendChild(box);
+      });
+    }
+
+    function highlightCodeLine(lineNumber) {
+      const codeBlock = document.getElementById("code");
+      const lines = codeBlock.innerText.split("\n");
+      codeBlock.innerHTML = lines
+        .map((line, index) =>
+          index === lineNumber ? `<span class='highlight'>${line}</span>` : line
+        )
+        .join("\n");
+    }
+
+    async function quickSortAnimation(low, high) {
+      if (low < high) {
+        const pi = await partitionAnimation(low, high);
+        await quickSortAnimation(low, pi - 1);
+        await quickSortAnimation(pi + 1, high);
+      }
+    }
+
+    async function partitionAnimation(low, high) {
+      const pivot = array[high];
+      const pivotBox = document.getElementById(`box-${high}`);
+      pivotBox.classList.add("pivot");
+
+      let i = low - 1;
+      const boxes = [];
+
+      for (let j = low; j <= high - 1; j++) {
+        boxes.push(j);
+        const box = document.getElementById(`box-${j}`);
+        box.classList.add("active");
+
+        highlightCodeLine(6); // Highlight partitioning part
+
+        await new Promise(resolve => setTimeout(resolve, 600));
+
+        if (array[j] < pivot) {
+          i++;
+          const temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+
+          renderArray();
+        }
+
+        box.classList.remove("active");
+      }
+
+      const temp = array[i + 1];
+      array[i + 1] = array[high];
+      array[high] = temp;
+
+      renderArray();
+
+      pivotBox.classList.remove("pivot");
+      return i + 1;
+    }
+
+    async function startSort() {
+      if (array.length === 0) return;
+
+      const message = document.getElementById("message");
+      message.textContent = "Sorting...";
+
+      await quickSortAnimation(0, array.length - 1);
+
+      message.textContent = "Array sorted!";
+    }
+  </script>
+</body>
+</html>
