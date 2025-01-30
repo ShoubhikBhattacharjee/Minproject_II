@@ -51,23 +51,21 @@
       transition: 0.3s;
     }
 
-    .btn-primary { background-color: #a2d2ff; border: none; color: #02475e; }
-    .btn-primary:hover { background-color: #74c0fc; }
+    .gradient-button {
+      background: linear-gradient(to right, #f93402, #965342);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease; /* Combined transition */
+    }
 
-    .btn-success { background-color: #bde0fe; border: none; color: #035397; }
-    .btn-success:hover { background-color: #89c2d9; }
-
-    .btn-warning { background-color: #ffe5d9; border: none; color: #d1495b; }
-    .btn-warning:hover { background-color: #f4a261; }
-
-    .btn-danger { background-color: #ffc8dd; border: none; color: #6a0572; }
-    .btn-danger:hover { background-color: #f28482; }
-
-    .btn-info { background-color: #d0f4de; border: none; color: #05668d; }
-    .btn-info:hover { background-color: #7ed6df; }
-
-    .btn-light { background-color: #d8e2dc; border: none; color: #333; }
-    .btn-light:hover { background-color: #cfdac8; }
+    .gradient-button:hover {
+      background: linear-gradient(to right, #965342, #f93402);
+      transform: scale(1.1); /* Added hover effect */
+    }
   </style>
 </head>
 <body>
@@ -84,13 +82,24 @@
     </p>
 
     <div>
-      <button class="btn btn-primary" onclick="window.location.href='linear_search.html'">Linear Search</button>
-      <button class="btn btn-success" onclick="window.location.href='binary_search.html'">Binary Search</button>
-      <button class="btn btn-warning" onclick="window.location.href='bubble_sort.html'">Bubble Sort</button>
-      <button class="btn btn-danger" onclick="window.location.href='insertion_sort.html'">Insertion Sort</button>
-      <button class="btn btn-info" onclick="window.location.href='selection_sort.html'">Selection Sort</button>
-      <button class="btn btn-light" onclick="window.location.href='merge_sort.html'">Merge Sort</button>
-      <button class="btn btn-primary" onclick="window.location.href='quick_sort.html'">Quick Sort</button>
+      <button class="btn gradient-button" onclick="window.location.href='linear_search.html'">Linear Search</button>
+      <button class="btn gradient-button" onclick="window.location.href='binary_search.html'">Binary Search</button>
+      <button class="btn gradient-button" onclick="window.location.href='bubble_sort.html'">Bubble Sort</button>
+      <button class="btn gradient-button" onclick="window.location.href='insertion_sort.html'">Insertion Sort</button>
+      <button class="btn gradient-button" onclick="window.location.href='selection_sort.html'">Selection Sort</button>
+      <button class="btn gradient-button" onclick="window.location.href='merge_sort.html'">Merge Sort</button>
+      <button class="btn gradient-button" onclick="window.location.href='quick_sort.html'">Quick Sort</button>
+      <button class="btn gradient-button" onclick="window.location.href='recursion.html'">Recursion</button>
+      <button class="btn gradient-button" onclick="window.location.href='switch_case.html'">Switch Case</button>
+      <button class="btn gradient-button" onclick="window.location.href='stack.html'">Stack</button>
+      <button class="btn gradient-button" onclick="window.location.href='struct.html'">Structure</button>
+      <button class="btn gradient-button" onclick="window.location.href='swap_numbers.html'">Swap Numbers</button>
+      <button class="btn gradient-button" onclick="window.location.href='forloop.html'">For Loop</button>
+      <button class="btn gradient-button" onclick="window.location.href='ifelse ladder.html'">If-Else Ladder</button>
+      <button class="btn gradient-button" onclick="window.location.href='pyramid.html'">Pyramid Pattern</button>
+      <button class="btn gradient-button" onclick="window.location.href='inverted_pyramid.html'">Inverted Pyramid Pattern</button>
+      <button class="btn gradient-button" onclick="window.location.href='diamond_pattern.html'">Diamond Pattern</button>
+      <button class="btn gradient-button" onclick="window.location.href='butterfly.html'">Butterfly Pattern</button>
     </div>
   </div>
 

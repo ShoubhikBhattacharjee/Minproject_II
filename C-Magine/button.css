@@ -1,0 +1,34 @@
+/* Flexbox to center content */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+}
+
+/* Gradient heading */
+h1 {
+    font-size: 3em;
+    background: linear-gradient(to right, #f93402, #965342);
+    background-clip: text; /* Standard property */
+    -webkit-background-clip: text; /* Webkit-based browsers like Safari */
+    color: transparent; /* Make the text transparent */
+}
+
+.gradient-button {
+    background: linear-gradient(to right, #f93402, #965342);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Combined transition */
+}
+
+.gradient-button:hover {
+    background: linear-gradient(to right, #965342, #f93402);
+    transform: scale(1.1); /* Added hover effect */
+}
