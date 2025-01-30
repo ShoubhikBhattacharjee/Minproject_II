@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Butterfly Pattern Visualization</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .code-container {
+      flex: 1;
+      background: #1e1e1e;
+      color: #dcdcdc;
+      padding: 20px;
+      overflow-y: auto;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    pre {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .highlight-orange {
+      background-color: rgba(255, 165, 0, 0.6);
+    }
+
+    .highlight-green {
+      background-color: rgba(76, 175, 80, 0.6);
+    }
+
+    .highlight-red {
+      background-color: rgba(244, 67, 54, 0.6);
+    }
+
+    .highlight-yellow {
+      background-color: rgba(255, 235, 59, 0.8);
+    }
+
+    .visualization-container {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .pattern-container {
+      margin-top: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      white-space: pre-wrap;
+      font-size: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .input-section button {
+      margin-top: 10px;
+    }
+
+    .input-section input {
+      margin-bottom: 10px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="code-container">
+    <pre id="code">
+      #include &lt;stdio.h&gt;
+
+      void butterflyPattern(int n) {
+          // Upper half of the butterfly
+          for (int i = 1; i &lt;= n; i++) {
+              // Left side of the butterfly
+              for (int j = 1; j &lt;= i; j++) {
+                  printf("*");
+              }
+              // Space between two halves
+              for (int j = 1; j &lt;= (2 * n - 2 * i); j++) {
+                  printf(" ");
+              }
+              // Right side of the butterfly
+              for (int j = 1; j &lt;= i; j++) {
+                  printf("*");
+              }
+              printf("\\n");
+          }
+
+          // Lower half of the butterfly
+          for (int i = n; i &gt;= 1; i--) {
+              // Left side of the butterfly
+              for (int j = 1; j &lt;= i; j++) {
+                  printf("*");
+              }
+              // Space between two halves
+              for (int j = 1; j &lt;= (2 * n - 2 * i); j++) {
+                  printf(" ");
+              }
+              // Right side of the butterfly
+              for (int j = 1; j &lt;= i; j++) {
+                  printf("*");
+              }
+              printf("\\n");
+          }
+      }
+
+      int main() {
+          int n;
+          printf("Enter the number of rows: ");
+          scanf("%d", &n);
+          butterflyPattern(n);
+          return 0;
+      }
+    </pre>
+  </div>
+
+  <div class="visualization-container">
+    <h1>Butterfly Pattern Visualization</h1>
+    <div class="input-section">
+      <input type="number" id="numRowsInput" placeholder="Enter number of rows" class="form-control mb-2" min="1" />
+      <button onclick="generateButterflyPattern()" class="btn btn-primary">Generate Pattern</button>
+    </div>
+
+    <div class="pattern-container" id="patternContainer"></div>
+  </div>
+
+  <script>
+    let codeLines = [
+      '      #include &lt;stdio.h&gt;',
+      '',
+      '      void butterflyPattern(int n) {',
+      '          // Upper half of the butterfly',
+      '          for (int i = 1; i &lt;= n; i++) {',
+      '              // Left side of the butterfly',
+      '              for (int j = 1; j &lt;= i; j++) {',
+      '                  printf("*");',
+      '              }',
+      '              // Space between two halves',
+      '              for (int j = 1; j &lt;= (2 * n - 2 * i); j++) {',
+      '                  printf(" ");',
+      '              }',
+      '              // Right side of the butterfly',
+      '              for (int j = 1; j &lt;= i; j++) {',
+      '                  printf("*");',
+      '              }',
+      '              printf("\\n");',
+      '          }',
+      '',
+      '          // Lower half of the butterfly',
+      '          for (int i = n; i &gt;= 1; i--) {',
+      '              // Left side of the butterfly',
+      '              for (int j = 1; j &lt;= i; j++) {',
+      '                  printf("*");',
+      '              }',
+      '              // Space between two halves',
+      '              for (int j = 1; j &lt;= (2 * n - 2 * i); j++) {',
+      '                  printf(" ");',
+      '              }',
+      '              // Right side of the butterfly',
+      '              for (int j = 1; j &lt;= i; j++) {',
+      '                  printf("*");',
+      '              }',
+      '              printf("\\n");',
+      '          }',
+      '',
+      '      }',
+      '',
+      '      int main() {',
+      '          int n;',
+      '          printf("Enter the number of rows: ");',
+      '          scanf("%d", &n);',
+      '          butterflyPattern(n);',
+      '          return 0;',
+      '      }',
+    ];
+
+    let pattern = '';
+
+    function highlightCodeLine(lineNumber, colorClass) {
+      const codeBlock = document.getElementById("code");
+      const lines = codeLines;
+      const highlightedLines = lines.map((line, index) => {
+        return index === lineNumber 
+          ? `<span class="${colorClass}">${line}</span>` 
+          : line;
+      });
+      codeBlock.innerHTML = highlightedLines.join('\n');
+    }
+
+    async function generateButterflyPattern() {
+      const n = parseInt(document.getElementById("numRowsInput").value);
+      if (isNaN(n) || n <= 0) return;
+
+      let pattern = '';
+      
+      // Upper half of the butterfly (Highlight the entire loop)
+      highlightCodeLine(3, 'highlight-yellow'); // Highlight the upper half loop start
+      for (let i = 1; i <= n; i++) {
+        let line = '';
+        
+        // Left side of the butterfly
+        for (let j = 1; j <= i; j++) {
+          line += '*';
+        }
+
+        // Space between two halves
+        for (let j = 1; j <= (2 * n - 2 * i); j++) {
+          line += ' ';
+        }
+
+        // Right side of the butterfly
+        for (let j = 1; j <= i; j++) {
+          line += '*';
+        }
+
+        pattern += line + '\n';
+
+        document.getElementById("patternContainer").textContent = pattern;
+        await new Promise(resolve => setTimeout(resolve, 500)); // Animation delay
+      }
+      highlightCodeLine(10, 'highlight-yellow'); // Highlight the lower half loop start
+
+      // Lower half of the butterfly (Highlight the entire loop)
+      highlightCodeLine(20, 'highlight-yellow'); // Highlight the lower half loop start
+      for (let i = n; i >= 1; i--) {
+        let line = '';
+        
+        // Left side of the butterfly
+        for (let j = 1; j <= i; j++) {
+          line += '*';
+        }
+
+        // Space between two halves
+        for (let j = 1; j <= (2 * n - 2 * i); j++) {
+          line += ' ';
+        }
+
+        // Right side of the butterfly
+        for (let j = 1; j <= i; j++) {
+          line += '*';
+        }
+
+        pattern += line + '\n';
+
+        document.getElementById("patternContainer").textContent = pattern;
+        await new Promise(resolve => setTimeout(resolve, 500)); // Animation delay
+      }
+      highlightCodeLine(44, 'highlight-green'); // Highlight the lower half loop end
+    }
+  </script>
+
+</body>
+</html>
