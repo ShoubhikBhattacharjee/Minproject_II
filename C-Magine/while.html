@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>While Loop Progress Visualization</title>
+  <style>
+    body {
+      display: flex;
+      font-family: Arial, sans-serif;
+      background-color: #34495e;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+    }
+
+    /* Code Section */
+    .code-container {
+      width: 50%;
+      background-color: #2f3640;
+      padding: 20px;
+      overflow-y: auto;
+      border-right: 4px solid #44bd32;
+      color: #dcdde1;
+    }
+
+    pre {
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .highlight {
+      background-color: #44bd32;
+      color: black;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    /* Visualization Section */
+    .visual-container {
+      width: 50%;
+      background-color: #273c75;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      height: 100vh;
+    }
+
+    .progress-bar-container {
+      width: 80%;
+      height: 40px;
+      background-color: #7f8c8d;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background-color: #44bd32;
+      width: 0%;
+      border-radius: 10px;
+      transition: width 1s ease;
+    }
+
+    .message {
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #44bd32;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #2ecc71;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Left: Code Section -->
+  <div class="code-container">
+    <pre id="code">
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int progress = 0; // Starting point
+
+    while (progress <= 100) {
+        printf("Progress: %d%%\n", progress); // Display progress
+        progress += 10; // Increment progress by 10
+        sleep(1); // Simulate task delay (1 second)
+    }
+
+    printf("Task Complete!\n");
+    return 0;
+}
+    </pre>
+  </div>
+
+  <!-- Right: Visualization Section -->
+  <div class="visual-container">
+    <h2>While Loop Progress Visualization</h2>
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <div class="message" id="message">Task Complete!</div>
+    <button onclick="startLoop()">Start Task</button>
+    <button onclick="resetProgress()">Reset</button>
+  </div>
+</div>
+
+<script>
+  let progress = 0;
+  let progressBar = document.getElementById("progress-bar");
+  let message = document.getElementById("message");
+
+  function highlightCodeLine(lineNumber) {
+    const codeContainer = document.getElementById("code");
+    const codeLines = codeContainer.innerText.split("\n");
+    codeContainer.innerHTML = codeLines
+      .map((line, index) => 
+        index === lineNumber ? `<span class="highlight">${line}</span>` : line
+      )
+      .join("\n");
+  }
+
+  function startLoop() {
+    progress = 0;
+    let interval = setInterval(() => {
+      if (progress <= 100) {
+        // Update progress
+        progressBar.style.width = progress + "%";
+        highlightCodeLine(7); // Highlight the while condition line
+
+        // Print progress in the console
+        console.log("Progress: " + progress + "%");
+        
+        // Update progress value
+        progress += 10;
+
+        // Simulate task delay (like in sleep())
+        highlightCodeLine(10); // Highlight the sleep function line
+      } else {
+        clearInterval(interval);
+        message.style.opacity = 1; // Show completion message
+        highlightCodeLine(13); // Highlight the completion line in code
+      }
+    }, 1000); // Update progress every second
+  }
+
+  function resetProgress() {
+    progress = 0;
+    progressBar.style.width = "0%";
+    message.style.opacity = 0;
+    const codeContainer = document.getElementById("code");
+    codeContainer.innerHTML = codeContainer.innerHTML.replace(/<span class="highlight">/g, "").replace(/<\/span>/g, ""); // Reset highlights
+  }
+</script>
+
+</body>
+</html>

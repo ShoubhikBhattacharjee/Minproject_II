@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traffic Light Simulation with C Code</title>
+  <style>
+    body {
+      display: flex;
+      font-family: Arial, sans-serif;
+      background-color: #1e272e;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+    }
+
+    /* Code Section */
+    .code-container {
+      width: 50%;
+      background-color: #2f3640;
+      padding: 20px;
+      overflow-y: auto;
+      border-right: 4px solid #44bd32;
+    }
+
+    pre {
+      color: #dcdde1;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .highlight {
+      background-color: #44bd32;
+      color: black;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    /* Visualization Section */
+    .visual-container {
+      width: 50%;
+      background-color: #273c75;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      height: 100vh;
+    }
+
+    .traffic-light {
+      width: 150px;
+      height: 350px;
+      background-color: #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    .light {
+      width: 100%;
+      height: 30%;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      opacity: 0.3;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .yellow {
+      background-color: yellow;
+    }
+
+    .green {
+      background-color: green;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #44bd32;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #2ecc71;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Left: Code Section -->
+  <div class="code-container">
+    <pre id="code">
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main() {
+    int light = 0;
+
+    while(1) {
+        if (light == 0) {
+            printf("Red Light\n");
+            light = 1; // Switch to yellow
+        } 
+        else if (light == 1) {
+            printf("Yellow Light\n");
+            light = 2; // Switch to green
+        } 
+        else if (light == 2) {
+            printf("Green Light\n");
+            light = 0; // Switch to red
+        }
+        sleep(5); // Wait for 5 seconds before changing lights (slower)
+    }
+    return 0;
+}
+    </pre>
+  </div>
+
+  <!-- Right: Visualization Section -->
+  <div class="visual-container">
+    <h2>Traffic Light Simulation</h2>
+    <div class="traffic-light">
+      <div class="light red" id="red-light"></div>
+      <div class="light yellow" id="yellow-light"></div>
+      <div class="light green" id="green-light"></div>
+    </div>
+    <button onclick="startTrafficLight()">Start Simulation</button>
+  </div>
+</div>
+
+<script>
+  let lightState = 0; // 0 = Red, 1 = Yellow, 2 = Green
+  let redLight = document.getElementById("red-light");
+  let yellowLight = document.getElementById("yellow-light");
+  let greenLight = document.getElementById("green-light");
+
+  function highlightCodeLine(lineNumber) {
+    const codeContainer = document.getElementById("code");
+    const codeLines = codeContainer.innerText.split("\n");
+    codeContainer.innerHTML = codeLines
+      .map((line, index) => 
+        index === lineNumber ? `<span class="highlight">${line}</span>` : line
+      )
+      .join("\n");
+  }
+
+  function startTrafficLight() {
+    setInterval(() => {
+      // Turn off all lights
+      redLight.style.opacity = 0.3;
+      yellowLight.style.opacity = 0.3;
+      greenLight.style.opacity = 0.3;
+
+      // Check the light state and turn on the corresponding light
+      if (lightState === 0) {
+        highlightCodeLine(8); // Red Light condition
+        redLight.style.opacity = 1;
+        lightState = 1;
+      } else if (lightState === 1) {
+        highlightCodeLine(11); // Yellow Light condition
+        yellowLight.style.opacity = 1;
+        lightState = 2;
+      } else if (lightState === 2) {
+        highlightCodeLine(14); // Green Light condition
+        greenLight.style.opacity = 1;
+        lightState = 0;
+      }
+    }, 5000); // Change light every 5 seconds (slower)
+  }
+</script>
+
+</body>
+</html>

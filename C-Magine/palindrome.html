@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palindrome Check with Animation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+      background-color: #1e272e;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Code Section */
+    .code-container {
+      flex: 1;
+      background-color: #2f3640;
+      padding: 20px;
+      border-right: 2px solid #444;
+      overflow-y: auto;
+      color: #dcdde1;
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+    }
+
+    .highlight {
+      background-color: #44bd32;
+      color: black;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* Visualization Section */
+    .visual-container {
+      flex: 1;
+      background-color: #273c75;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-y: auto;
+      text-align: center;
+    }
+
+    input {
+      margin-top: 20px;
+      padding: 12px 25px;
+      border-radius: 5px;
+      border: none;
+      font-size: 18px;
+      width: 60%;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: #44bd32;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2ecc71;
+    }
+
+    #visualization {
+      font-size: 30px;
+      font-weight: bold;
+      color: #44bd32;
+    }
+
+    /* Keyframe for string swap animation */
+    @keyframes swapAnimation {
+      0% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateX(20px);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Code Section -->
+  <div class="code-container">
+    <pre id="code">
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100], reversed[100];
+    printf("Enter a string: ");
+    scanf("%s", str);
+    int len = strlen(str);
+    for(int i = 0; i < len; i++) {
+        reversed[i] = str[len - i - 1];
+    }
+    reversed[len] = '\\0';
+    
+    if (strcmp(str, reversed) == 0) {
+        printf("%s is a palindrome!\n", str);
+    } else {
+        printf("%s is not a palindrome.\n", str);
+    }
+
+    return 0;
+}
+    </pre>
+  </div>
+
+  <!-- Visualization Section -->
+  <div class="visual-container">
+    <div id="visualization">Enter a string to check!</div>
+    <input type="text" id="input-field" placeholder="Enter string or number" />
+    <button onclick="checkPalindrome()">Check Palindrome</button>
+  </div>
+</div>
+
+<script>
+  let codeLines = document.getElementById("code").innerText.split("\n");
+  const visualization = document.getElementById("visualization");
+
+  function highlightCodeLine(lineNumber) {
+    const codeContainer = document.getElementById("code");
+    codeContainer.innerHTML = codeLines
+      .map((line, index) => index === lineNumber ? `<span class="highlight">${line}</span>` : line)
+      .join("\n");
+  }
+
+  function checkPalindrome() {
+    const input = document.getElementById("input-field").value.trim();
+    if (!input) {
+      alert("Please enter a string or number.");
+      return;
+    }
+
+    visualization.innerHTML = `You entered: ${input}`;
+
+    // Step 1: Highlight the #include <stdio.h> line
+    highlightCodeLine(0); 
+    setTimeout(() => {
+      highlightCodeLine(1);  // Highlight input section code
+      setTimeout(() => {
+        let str = input;
+        let reversed = str.split("").reverse().join("");  // Reverse string
+        let isPalindrome = (str === reversed);
+
+        // Visualize the reversal of the string with animations
+        visualizeStringSwap(str, reversed, isPalindrome);
+
+        // Step 2: Check if it's a palindrome
+        setTimeout(() => {
+          if (isPalindrome) {
+            visualization.innerHTML = `${input} is a palindrome! 🎉`;
+            highlightCodeLine(9);  // Highlight palindrome condition
+          } else {
+            visualization.innerHTML = `${input} is not a palindrome.`;
+            highlightCodeLine(11);  // Highlight non-palindrome condition
+          }
+        }, 1000);
+      }, 2000);
+    }, 1000);
+  }
+
+  function visualizeStringSwap(str, reversed, isPalindrome) {
+    let strArray = str.split("");
+    let reversedArray = reversed.split("");
+    let visualStr = document.createElement("div");
+    visualStr.style.fontSize = "25px";
+    visualStr.style.fontWeight = "bold";
+    visualStr.innerHTML = `Original: ${strArray.join(" ")}<br>Reversed: ${reversedArray.join(" ")}`;
+    visualStr.style.animation = "swapAnimation 1s forwards";
+    visualization.appendChild(visualStr);
+  }
+
+</script>
+
+</body>
+</html>

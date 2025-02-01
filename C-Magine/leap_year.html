@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leap Year Visualization</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: row;
+      font-family: Arial, sans-serif;
+      background-color: #1e272e;
+      color: #fff;
+      margin: 0;
+      height: 100vh;
+    }
+
+    .code-section {
+      width: 50%;
+      background-color: #2f3640;
+      padding: 20px;
+      border-right: 4px solid #44bd32;
+      overflow-y: auto;
+      height: 100vh;
+    }
+
+    pre {
+      color: #dcdde1;
+      line-height: 1.5;
+    }
+
+    .highlight {
+      background-color: #44bd32;
+      color: #000;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    .visualization-section {
+      width: 50%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #273c75;
+    }
+
+    .visual-container {
+      margin-top: 20px;
+      background-color: #00a8ff;
+      color: #000;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      font-size: 18px;
+      animation: floatUp 2s forwards;
+      min-width: 300px;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #44bd32;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #2ecc71;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(50px);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="code-section">
+    <pre id="code">
+#include &lt;stdio.h&gt;
+int main() {
+    int year;
+    printf("Enter a year: ");
+    scanf("%d", &year);
+
+    if (year % 4 == 0) {
+        // Line 5 - Check divisibility by 4
+        if (year % 100 != 0 || year % 400 == 0) {
+            // Line 6 - Check second condition for leap year
+            printf("%d is a Leap Year.\\n", year); // Line 7 - Output leap year
+        } else {
+            // Line 8 - Not a leap year
+            printf("%d is not a Leap Year.\\n", year); // Line 9 - Output non-leap year
+        }
+    } else {
+        // Line 10 - Not divisible by 4 (fails first condition)
+        printf("%d is not a Leap Year.\\n", year); // Line 11 - Output non-leap year
+    }
+    return 0;
+}
+    </pre>
+  </div>
+
+  <div class="visualization-section">
+    <h2>Leap Year Visualization</h2>
+    <div class="visual-container" id="visual-container">Enter a year to check!</div>
+    <input type="number" id="year-input" placeholder="Enter Year" style="padding: 10px; font-size: 16px; margin-top: 20px;">
+    <button onclick="startVisualization()">Check Leap Year</button>
+  </div>
+
+  <script>
+    const codeLines = document.getElementById("code").innerText.split("\n");
+    const visualContainer = document.getElementById("visual-container");
+
+    // Helper function to highlight a specific line of code
+    function highlightCodeLine(lineNumber) {
+      const codeContainer = document.getElementById("code");
+      codeContainer.innerHTML = codeLines
+        .map((line, index) =>
+          // Adjust for comments and map real code lines to line numbers
+          index === lineNumber - 1
+            ? `<span class="highlight">${line}</span>`
+            : line
+        )
+        .join("\n");
+    }
+
+    // Main function to start the leap year check and visualization
+    async function startVisualization() {
+      const yearInput = document.getElementById("year-input").value;
+      if (!yearInput) {
+        alert("Please enter a valid year.");
+        return;
+      }
+
+      const year = parseInt(yearInput);
+      visualContainer.textContent = `Year entered: ${year}`;
+
+      // Step 1: Check if year is divisible by 4 (Line 5)
+      highlightCodeLine(5); // Highlight line 5 - check divisibility by 4
+      await delay(1000);
+
+      if (year % 4 === 0) {
+        // Step 2: Year is divisible by 4, check second condition (Line 6)
+        visualContainer.textContent = `${year} is divisible by 4. Checking second condition.`;
+        highlightCodeLine(6); // Highlight line 6 - second condition check
+        await delay(1000);
+
+        if (year % 100 !== 0 || year % 400 === 0) {
+          // Step 3: Leap year (passes both conditions)
+          highlightCodeLine(7); // Highlight line 7 - Output Leap Year
+          visualContainer.textContent = `${year} is a Leap Year! 🎉`;
+        } else {
+          // Step 4: Not a leap year (fails second condition)
+          highlightCodeLine(9); // Highlight line 9 - Output Not Leap Year
+          visualContainer.textContent = `${year} is not a Leap Year.`;
+        }
+      } else {
+        // Step 5: Not divisible by 4 (fails first condition)
+        highlightCodeLine(10); // Highlight line 10 - Not divisible by 4
+        visualContainer.textContent = `${year} is not divisible by 4, hence not a Leap Year.`;
+      }
+
+      // Wait for a bit before alerting completion
+      await delay(1000);
+      alert("Visualization completed!");
+    }
+
+    // Helper delay function
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+  </script>
+</body>
+</html>

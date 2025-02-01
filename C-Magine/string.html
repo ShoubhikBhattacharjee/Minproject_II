@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C String Operations Animation</title>
+  <style>
+    /* Global Reset & Layout */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Courier New', monospace;
+      background-color: #1e272e;
+      color: #dcdde1;
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
+    }
+    .container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+    /* Left Panel: Code Section */
+    .code-container {
+      flex: 1;
+      background-color: #2f3640;
+      padding: 20px;
+      border-right: 4px solid #44bd32;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .highlight {
+      background-color: #44bd32;
+      color: #000;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    /* Right Panel: Visualization Section */
+    .visual-container {
+      flex: 1;
+      background-color: #273c75;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+      text-align: center;
+      width: 90%;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .input-group input {
+      width: 80%;
+      padding: 8px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+    }
+    button {
+      margin-top: 10px;
+      padding: 12px 25px;
+      background-color: #44bd32;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2ecc71;
+    }
+    /* Animation Area for Steps */
+    #animation-area {
+      margin-top: 20px;
+      width: 100%;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    /* Data Box Style */
+    .data-box {
+      background-color: #44bd32;
+      color: #000;
+      padding: 20px;
+      border-radius: 10px;
+      min-width: 220px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      opacity: 0;
+    }
+    .fade-in {
+      animation: fadeIn 1s forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    /* Slide in animations */
+    .slide-in-left {
+      animation: slideInLeft 1s forwards;
+    }
+    .slide-in-right {
+      animation: slideInRight 1s forwards;
+    }
+    @keyframes slideInLeft {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    /* Counting animation */
+    .count-up {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fffa65;
+    }
+    /* Merging animation for concatenation */
+    .merge-animation {
+      animation: merge 1s forwards;
+    }
+    @keyframes merge {
+      from { letter-spacing: 20px; opacity: 0.5; }
+      to { letter-spacing: normal; opacity: 1; }
+    }
+    /* Comparison indicator */
+    .indicator {
+      font-size: 30px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .check { color: #2ecc71; }
+    .cross { color: #e74c3c; }
+    /* Scanning animation for search */
+    .scan {
+      animation: scan 2s infinite;
+    }
+    @keyframes scan {
+      0% { background-color: transparent; }
+      50% { background-color: yellow; }
+      100% { background-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Left Panel: C Code Section -->
+    <div class="code-container" id="code-container">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main() {
+    char str1[100], str2[100], result[200];
+    printf("Enter first string: ");
+    gets(str1);
+    printf("Enter second string: ");
+    gets(str2);
+    
+    printf("Length of str1: %lu\n", strlen(str1));
+    printf("Length of str2: %lu\n", strlen(str2));
+    
+    strcpy(result, str1);
+    printf("Copied result: %s\n", result);
+    
+    strcat(result, str2);
+    printf("Concatenated result: %s\n", result);
+    
+    int cmp = strcmp(str1, str2);
+    if(cmp == 0) {
+        printf("str1 and str2 are equal\n");
+    } else {
+        printf("str1 and str2 are not equal\n");
+    }
+    
+    char *pos = strchr(result, 'a');
+    if(pos != NULL) {
+       printf("First occurrence of 'a' in result: %s\n", pos);
+    } else {
+       printf("'a' not found in result\n");
+    }
+    
+    return 0;
+}
+    </div>
+    
+    <!-- Right Panel: Visualization Section -->
+    <div class="visual-container">
+      <h2>C String Operations Animation</h2>
+      <div class="input-group">
+        <label for="str1-input">Enter first string:</label>
+        <input type="text" id="str1-input" placeholder="e.g., Hello" />
+      </div>
+      <div class="input-group">
+        <label for="str2-input">Enter second string:</label>
+        <input type="text" id="str2-input" placeholder="e.g., World" />
+      </div>
+      <button onclick="runStringOps()">Run String Operations</button>
+      <div id="animation-area"></div>
+    </div>
+  </div>
+  
+  <script>
+    // Get the original code lines for dynamic highlighting.
+    let codeLines = document.getElementById("code-container").innerText.split("\n");
+    
+    // Function to highlight a specific line (1-indexed)
+    function highlightCodeLine(lineNumber) {
+      const codeContainer = document.getElementById("code-container");
+      codeContainer.innerHTML = codeLines
+        .map((line, index) =>
+          index === lineNumber - 1 ? `<span class="highlight">${line}</span>` : line
+        )
+        .join("\n");
+    }
+    
+    // Utility delay function
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    // Main function that performs the string operations with animations
+    async function runStringOps() {
+      // Get user inputs
+      const str1 = document.getElementById("str1-input").value.trim();
+      const str2 = document.getElementById("str2-input").value.trim();
+      if (!str1 || !str2) {
+        alert("Please enter both strings.");
+        return;
+      }
+      
+      // Update dynamic code snippet with user values (for display only)
+      updateCodeSnippet(str1, str2);
+      
+      // Clear the animation area
+      const animArea = document.getElementById("animation-area");
+      animArea.innerHTML = "";
+      
+      // Step 1: Display Original Strings with Slide In
+      highlightCodeLine(4); // "gets(str1);"
+      let box1 = document.createElement("div");
+      box1.className = "data-box slide-in-left";
+      box1.innerText = `str1: ${str1} (Length: ${str1.length})`;
+      animArea.appendChild(box1);
+      await delay(1500);
+      
+      highlightCodeLine(5); // "gets(str2);"
+      let box2 = document.createElement("div");
+      box2.className = "data-box slide-in-right";
+      box2.innerText = `str2: ${str2} (Length: ${str2.length})`;
+      animArea.appendChild(box2);
+      await delay(1500);
+      
+      // Step 2: Copy Operation (simulate strcpy)
+      highlightCodeLine(7); // "strcpy(result, str1);"
+      let copyStr = str1; // simulated copy
+      let box3 = document.createElement("div");
+      box3.className = "data-box fade-in";
+      box3.innerText = `Copied: ${copyStr}`;
+      animArea.appendChild(box3);
+      await delay(1500);
+      
+      // Step 3: Concatenation (simulate strcat) with letter-by-letter animation
+      highlightCodeLine(10); // "strcat(result, str2);"
+      let concatStr = str1 + str2;
+      let box4 = document.createElement("div");
+      box4.className = "data-box";
+      box4.innerText = `Concatenated: `;
+      animArea.appendChild(box4);
+      // Animate concatenation letter by letter:
+      for (let i = 0; i <= concatStr.length; i++) {
+        box4.innerText = `Concatenated: ${concatStr.substring(0, i)}`;
+        await delay(50);
+      }
+      box4.classList.add("merge-animation");
+      await delay(1000);
+      
+      // Step 4: Comparison (simulate strcmp)
+      highlightCodeLine(13); // "strcmp(str1, str2);"
+      let cmp = (str1 === str2) ? 0 : 1;
+      let cmpResult = (cmp === 0) ? "equal" : "not equal";
+      let box5 = document.createElement("div");
+      box5.className = "data-box fade-in";
+      box5.innerText = `Comparison: ${cmpResult}`;
+      // Add an indicator icon:
+      let indicator = document.createElement("span");
+      indicator.className = "indicator " + (cmp === 0 ? "check" : "cross");
+      indicator.innerText = cmp === 0 ? " ✔" : " ✘";
+      box5.appendChild(indicator);
+      animArea.appendChild(box5);
+      await delay(1500);
+      
+      // Step 5: Searching using strchr (simulate finding 'a' in concatenated string)
+      highlightCodeLine(17); // "strchr(result, 'a');"
+      let pos = concatStr.indexOf('a');
+      let box6 = document.createElement("div");
+      box6.className = "data-box fade-in";
+      if (pos !== -1) {
+        // Create a string with the first occurrence of 'a' highlighted using a scanning effect.
+        let before = concatStr.substring(0, pos);
+        let after = concatStr.substring(pos + 1);
+        box6.innerHTML = `Search: ${before}<span class="highlight-char scan">a</span>${after}`;
+      } else {
+        box6.innerText = `Search: 'a' not found`;
+      }
+      animArea.appendChild(box6);
+      await delay(1500);
+      
+      // Reset code highlighting (optional)
+      setTimeout(() => {
+        document.getElementById("code-container").innerText = codeLines.join("\n");
+      }, 2000);
+    }
+    
+    // Function to update the code snippet with the user strings for display only
+    function updateCodeSnippet(str1, str2) {
+      const codeStr =
+`#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str1[100], str2[100], result[200];
+    printf("Enter first string: ");
+    gets(str1); // User enters: ${str1}
+    printf("Enter second string: ");
+    gets(str2); // User enters: ${str2}
+    
+    printf("Length of str1: %lu\\n", strlen(str1));
+    printf("Length of str2: %lu\\n", strlen(str2));
+    
+    strcpy(result, str1);
+    printf("Copied result: %s\\n", result);
+    
+    strcat(result, str2);
+    printf("Concatenated result: %s\\n", result);
+    
+    int cmp = strcmp(str1, str2);
+    if(cmp == 0) {
+        printf("str1 and str2 are equal\\n");
+    } else {
+        printf("str1 and str2 are not equal\\n");
+    }
+    
+    char *pos = strchr(result, 'a');
+    if(pos != NULL) {
+       printf("First occurrence of 'a' in result: %s\\n", pos);
+    } else {
+       printf("'a' not found in result\\n");
+    }
+    
+    return 0;
+}`;
+      document.getElementById("code-container").innerText = codeStr;
+      codeLines = document.getElementById("code-container").innerText.split("\n");
+    }
+  </script>
+</body>
+</html>
