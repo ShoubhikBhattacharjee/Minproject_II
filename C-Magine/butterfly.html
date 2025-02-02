@@ -238,7 +238,7 @@
         pattern += line + '\n';
 
         document.getElementById("patternContainer").textContent = pattern;
-        await new Promise(resolve => setTimeout(resolve, 500)); // Animation delay
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Animation delay
       }
       highlightCodeLine(10, 'highlight-yellow'); // Highlight the lower half loop start
 
@@ -265,7 +265,7 @@
         pattern += line + '\n';
 
         document.getElementById("patternContainer").textContent = pattern;
-        await new Promise(resolve => setTimeout(resolve, 500)); // Animation delay
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Animation delay
       }
       highlightCodeLine(44, 'highlight-green'); // Highlight the lower half loop end
     }

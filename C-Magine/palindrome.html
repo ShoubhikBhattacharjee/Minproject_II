@@ -102,7 +102,6 @@
         opacity: 1;
       }
     }
-
   </style>
 </head>
 <body>
@@ -110,29 +109,7 @@
 <div class="container">
   <!-- Code Section -->
   <div class="code-container">
-    <pre id="code">
-#include <stdio.h>
-#include <string.h>
-
-int main() {
-    char str[100], reversed[100];
-    printf("Enter a string: ");
-    scanf("%s", str);
-    int len = strlen(str);
-    for(int i = 0; i < len; i++) {
-        reversed[i] = str[len - i - 1];
-    }
-    reversed[len] = '\\0';
-    
-    if (strcmp(str, reversed) == 0) {
-        printf("%s is a palindrome!\n", str);
-    } else {
-        printf("%s is not a palindrome.\n", str);
-    }
-
-    return 0;
-}
-    </pre>
+    <pre id="code"></pre>
   </div>
 
   <!-- Visualization Section -->
@@ -144,62 +121,95 @@ int main() {
 </div>
 
 <script>
-  let codeLines = document.getElementById("code").innerText.split("\n");
-  const visualization = document.getElementById("visualization");
+  let codeLines = [
+`#include &lt;stdio.h&gt;`,
+`#include &lt;string.h&gt;`,
+``,
+`int main() {`,
+`    char str[100], reversed[100];`,
+`    printf("Enter a string: ");`,
+`    scanf("%s", str);`,
+`    int len = strlen(str);`,
+`    for(int i = 0; i < len; i++) {`,
+`        reversed[i] = str[len - i - 1];`,
+`    }`,
+`    reversed[len] = '\\0';`,
+`    `,
+`    if (strcmp(str, reversed) == 0) {`,
+`        printf("%s is a palindrome!\\n", str);`,
+`    } else {`,
+`        printf("%s is not a palindrome.\\n", str);`,
+`    }`,
+`    `,
+`    return 0;`,
+`}`
+];
 
-  function highlightCodeLine(lineNumber) {
-    const codeContainer = document.getElementById("code");
-    codeContainer.innerHTML = codeLines
-      .map((line, index) => index === lineNumber ? `<span class="highlight">${line}</span>` : line)
-      .join("\n");
-  }
+function renderCode(lines) {
+  const codeContainer = document.getElementById("code");
+  codeContainer.innerHTML = lines
+    .map((line, index) => `<div class="code-line" data-line="${index}">${line}</div>`)
+    .join("\n");
+}
 
-  function checkPalindrome() {
-    const input = document.getElementById("input-field").value.trim();
-    if (!input) {
-      alert("Please enter a string or number.");
-      return;
+function highlightCodeLine(lineNumber) {
+  const codeLinesDivs = document.querySelectorAll(".code-line");
+  codeLinesDivs.forEach((lineDiv, index) => {
+    if (index === lineNumber) {
+      lineDiv.classList.add("highlight");
+    } else {
+      lineDiv.classList.remove("highlight");
     }
+  });
+}
 
-    visualization.innerHTML = `You entered: ${input}`;
+function checkPalindrome() {
+  const input = document.getElementById("input-field").value.trim();
+  if (!input) {
+    alert("Please enter a string or number.");
+    return;
+  }
 
-    // Step 1: Highlight the #include <stdio.h> line
-    highlightCodeLine(0); 
+  visualization.innerHTML = `You entered: ${input}`;
+  
+  renderCode(codeLines);  // Ensure the code stays rendered
+  highlightCodeLine(6);   // Highlight the input
+
+  setTimeout(() => {
+    highlightCodeLine(9);  // Highlight the reversing section
     setTimeout(() => {
-      highlightCodeLine(1);  // Highlight input section code
+      let str = input;
+      let reversed = str.split("").reverse().join("");
+      let isPalindrome = (str === reversed);
+
+      visualizeStringSwap(str, reversed, isPalindrome);
+
       setTimeout(() => {
-        let str = input;
-        let reversed = str.split("").reverse().join("");  // Reverse string
-        let isPalindrome = (str === reversed);
+        if (isPalindrome) {
+          visualization.innerHTML = `${input} is a palindrome! 🎉`;
+          highlightCodeLine(14);  // Highlight palindrome condition
+        } else {
+          visualization.innerHTML = `${input} is not a palindrome.`;
+          highlightCodeLine(16);  // Highlight non-palindrome condition
+        }
+      }, 1000);
+    }, 2000);
+  }, 1000);
+}
 
-        // Visualize the reversal of the string with animations
-        visualizeStringSwap(str, reversed, isPalindrome);
+function visualizeStringSwap(str, reversed, isPalindrome) {
+  let strArray = str.split("");
+  let reversedArray = reversed.split("");
+  let visualStr = document.createElement("div");
+  visualStr.style.fontSize = "25px";
+  visualStr.style.fontWeight = "bold";
+  visualStr.innerHTML = `Original: ${strArray.join(" ")}<br>Reversed: ${reversedArray.join(" ")}`;
+  visualStr.style.animation = "swapAnimation 1s forwards";
+  visualization.appendChild(visualStr);
+}
 
-        // Step 2: Check if it's a palindrome
-        setTimeout(() => {
-          if (isPalindrome) {
-            visualization.innerHTML = `${input} is a palindrome! 🎉`;
-            highlightCodeLine(9);  // Highlight palindrome condition
-          } else {
-            visualization.innerHTML = `${input} is not a palindrome.`;
-            highlightCodeLine(11);  // Highlight non-palindrome condition
-          }
-        }, 1000);
-      }, 2000);
-    }, 1000);
-  }
-
-  function visualizeStringSwap(str, reversed, isPalindrome) {
-    let strArray = str.split("");
-    let reversedArray = reversed.split("");
-    let visualStr = document.createElement("div");
-    visualStr.style.fontSize = "25px";
-    visualStr.style.fontWeight = "bold";
-    visualStr.innerHTML = `Original: ${strArray.join(" ")}<br>Reversed: ${reversedArray.join(" ")}`;
-    visualStr.style.animation = "swapAnimation 1s forwards";
-    visualization.appendChild(visualStr);
-  }
-
+// Render the code snippet initially
+renderCode(codeLines);
 </script>
 
 </body>

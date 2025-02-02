@@ -142,40 +142,46 @@
 
   // Function to update the code snippet dynamically based on user input
   function updateCodeSnippet(startValue) {
-    const codeStr =
-`#include <stdio.h>
-#include <stdlib.h>
+  const codeStr = [
+    `#include &lt;stdio.h&gt;`,
+    `#include &lt;stdlib.h&gt;`,
+    ``,
+    `int main() {`,
+    `    int count;`,
+    `    printf("Enter a number: ");`,
+    `    scanf("%d", &count);  // count = ${startValue}`,
+    ``,
+    `    do {`,
+    `        printf("Count: %d\\n", count);  // Print current count`,
+    `        count--;                        // Decrement count`,
+    `    } while(count > 0);`,
+    ``,
+    `    printf("Countdown Complete!\\n");`,
+    `    return 0;`,
+    `}`
+  ];
 
-int main() {
-    int count;
-    printf("Enter a number: ");
-    scanf("%d", &count);  // count = ${startValue}
+  const formattedCode = codeStr.map((line, index) =>
+    `<div class="code-line" data-line="${index + 1}">${line}</div>`
+  ).join('');
 
-    do {
-        printf("Count: %d\\n", count);  // Print current count
-        count--;                        // Decrement count
-    } while(count > 0);
+  document.getElementById("code-container").innerHTML = formattedCode;
+}
 
-    printf("Countdown Complete!\\n");
-    return 0;
-}`;
-    document.getElementById("code-container").innerText = codeStr;
-  }
+  // Helper function to highlight multiple lines
+  function highlightCodeLines(lines) {
+    // Clear existing highlights
+    document.querySelectorAll(".code-line").forEach((line) => {
+      line.classList.remove("highlight");
+    });
 
-  // Helper function to highlight a specific line (1-indexed)
-  function highlightCodeLine(lineNumber) {
-    const codeContainer = document.getElementById("code-container");
-    const codeLines = codeContainer.innerText.split("\n");
-    codeContainer.innerHTML = codeLines
-      .map((line, index) =>
-        index === lineNumber - 1 ? `<span class="highlight">${line}</span>` : line
-      )
-      .join("\n");
-  }
-
-  // Helper delay function
-  function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    // Highlight specified lines
+    lines.forEach((lineNumber) => {
+      const lineElement = document.querySelector(`.code-line[data-line="${lineNumber}"]`);
+      if (lineElement) {
+        lineElement.classList.add("highlight");
+      }
+    });
   }
 
   // Main simulation function for the do-while countdown
@@ -187,51 +193,48 @@ int main() {
     }
     const startValue = parseInt(startValueInput);
     currentCount = startValue;
-    
+
     // Update the dynamic code snippet with the input value
     updateCodeSnippet(startValue);
+
     // Reset countdown visualization
     document.getElementById("count-number").innerText = currentCount;
     document.getElementById("countdown-container").style.transform = "scale(1)";
     document.getElementById("countdown-container").style.opacity = 1;
     document.getElementById("complete-message").style.opacity = 0;
 
-    // Start the simulation using a do-while loop style (simulated with setInterval)
-    // We simulate the "do" block first:
-    highlightCodeLine(7); // Highlight the printf line inside do-while
+    // Start the simulation using a do-while loop style
+    highlightCodeLines([7]); // Highlight scanning values
     await delay(1000);
-    
-    simulationInterval = setInterval(async () => {
-      // Visual update: update the countdown display and animate the circle shrinking slightly
+
+    simulationInterval = setInterval(() => {
+      // Visual update: update the countdown display
       document.getElementById("count-number").innerText = currentCount;
+
       // Animate the circle: scale proportional to currentCount/startValue
       let scaleValue = currentCount / startValue;
       document.getElementById("countdown-container").style.transform = "scale(" + (0.5 + 0.5 * scaleValue) + ")";
-      
-      // Simulate the loop iteration: print the current count (highlight code line)
-      highlightCodeLine(7); // (Inside do-while loop's print)
+
+      // Highlight the print and decrement lines simultaneously
+      highlightCodeLines([10, 11]);
       console.log("Count: " + currentCount);
-      
+
       currentCount--;  // Decrement count
-      
-      // After the iteration, highlight the decrement line (assume line 8)
-      highlightCodeLine(8);
-      
+
       // Check if condition is still true (simulate do-while check)
       if (currentCount <= 0) {
         clearInterval(simulationInterval);
-        // Highlight the final print line (assume line 10)
-        highlightCodeLine(10);
-        // Animate fading out the countdown circle
+        highlightCodeLines([14]); // Highlight the final print line
         document.getElementById("countdown-container").style.opacity = 0;
-        // Show completion message
         document.getElementById("complete-message").style.opacity = 1;
       }
-      
-      await delay(1000);
     }, 1000);
   }
-</script>
 
+  // Helper delay function
+  function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+</script>
 </body>
 </html>

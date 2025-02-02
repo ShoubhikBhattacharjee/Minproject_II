@@ -27,6 +27,10 @@
     pre {
       color: #dcdde1;
       line-height: 1.5;
+      font-family: "Courier New", Courier, monospace;
+      white-space: pre-wrap;
+      margin: 0;
+      padding: 0;
     }
 
     .highlight {
@@ -86,24 +90,20 @@
 <body>
   <div class="code-section">
     <pre id="code">
-#include &lt;stdio.h&gt;
+#include <stdio.h>
 int main() {
     int year;
     printf("Enter a year: ");
     scanf("%d", &year);
 
     if (year % 4 == 0) {
-        // Line 5 - Check divisibility by 4
         if (year % 100 != 0 || year % 400 == 0) {
-            // Line 6 - Check second condition for leap year
-            printf("%d is a Leap Year.\\n", year); // Line 7 - Output leap year
+            printf("%d is a Leap Year.\\n", year);
         } else {
-            // Line 8 - Not a leap year
-            printf("%d is not a Leap Year.\\n", year); // Line 9 - Output non-leap year
+            printf("%d is not a Leap Year.\\n", year);
         }
     } else {
-        // Line 10 - Not divisible by 4 (fails first condition)
-        printf("%d is not a Leap Year.\\n", year); // Line 11 - Output non-leap year
+        printf("%d is not a Leap Year.\\n", year);
     }
     return 0;
 }
@@ -121,15 +121,24 @@ int main() {
     const codeLines = document.getElementById("code").innerText.split("\n");
     const visualContainer = document.getElementById("visual-container");
 
-    // Helper function to highlight a specific line of code
+    // Function to render the code snippet properly, ensuring < and > are displayed correctly
+    function renderCode() {
+      const codeContainer = document.getElementById("code");
+      codeContainer.innerHTML = codeLines
+        .map(line => line.replace(/&lt;/g, "<").replace(/&gt;/g, ">")) // Replace &lt; and &gt; with < and >
+        .map((line, index) =>
+          `<span>${line}</span>`) // No initial highlighting
+        .join("\n");
+    }
+
+    // Function to highlight a specific line of code
     function highlightCodeLine(lineNumber) {
       const codeContainer = document.getElementById("code");
       codeContainer.innerHTML = codeLines
         .map((line, index) =>
-          // Adjust for comments and map real code lines to line numbers
           index === lineNumber - 1
-            ? `<span class="highlight">${line}</span>`
-            : line
+            ? `<span class="highlight">${line.replace(/&lt;/g, "<").replace(/&gt;/g, ">")}</span>` // Highlight line with correct < and >
+            : `<span>${line.replace(/&lt;/g, "<stdio.h>").replace(/&gt;/g, ">")}</span>`
         )
         .join("\n");
     }
@@ -146,27 +155,27 @@ int main() {
       visualContainer.textContent = `Year entered: ${year}`;
 
       // Step 1: Check if year is divisible by 4 (Line 5)
-      highlightCodeLine(5); // Highlight line 5 - check divisibility by 4
+      highlightCodeLine(7); // Highlight line 7 - check divisibility by 4
       await delay(1000);
 
       if (year % 4 === 0) {
         // Step 2: Year is divisible by 4, check second condition (Line 6)
         visualContainer.textContent = `${year} is divisible by 4. Checking second condition.`;
-        highlightCodeLine(6); // Highlight line 6 - second condition check
+        highlightCodeLine(8); // Highlight line 9 - second condition check
         await delay(1000);
 
         if (year % 100 !== 0 || year % 400 === 0) {
           // Step 3: Leap year (passes both conditions)
-          highlightCodeLine(7); // Highlight line 7 - Output Leap Year
+          highlightCodeLine(9); // Highlight line 11 - Output Leap Year
           visualContainer.textContent = `${year} is a Leap Year! 🎉`;
         } else {
           // Step 4: Not a leap year (fails second condition)
-          highlightCodeLine(9); // Highlight line 9 - Output Not Leap Year
+          highlightCodeLine(11); // Highlight line 14 - Output Not Leap Year
           visualContainer.textContent = `${year} is not a Leap Year.`;
         }
       } else {
         // Step 5: Not divisible by 4 (fails first condition)
-        highlightCodeLine(10); // Highlight line 10 - Not divisible by 4
+        highlightCodeLine(14); // Highlight line 14 - Not divisible by 4
         visualContainer.textContent = `${year} is not divisible by 4, hence not a Leap Year.`;
       }
 
@@ -179,6 +188,9 @@ int main() {
     function delay(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
+
+    // Initialize the code rendering
+    renderCode();
   </script>
 </body>
 </html>

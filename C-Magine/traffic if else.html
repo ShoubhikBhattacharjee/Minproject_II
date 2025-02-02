@@ -82,7 +82,7 @@
     }
 
     .green {
-      background-color: green;
+      background-color: rgb(1, 254, 1);
     }
 
     button {
@@ -107,9 +107,9 @@
   <!-- Left: Code Section -->
   <div class="code-container">
     <pre id="code">
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+#include &lt;unistd.h>
 
 int main() {
     int light = 0;
@@ -175,15 +175,15 @@ int main() {
         redLight.style.opacity = 1;
         lightState = 1;
       } else if (lightState === 1) {
-        highlightCodeLine(11); // Yellow Light condition
+        highlightCodeLine(12); // Yellow Light condition
         yellowLight.style.opacity = 1;
         lightState = 2;
       } else if (lightState === 2) {
-        highlightCodeLine(14); // Green Light condition
+        highlightCodeLine(16); // Green Light condition
         greenLight.style.opacity = 1;
         lightState = 0;
       }
-    }, 5000); // Change light every 5 seconds (slower)
+    }, 3000); // Change light every 3 seconds (slower)
   }
 </script>
 
