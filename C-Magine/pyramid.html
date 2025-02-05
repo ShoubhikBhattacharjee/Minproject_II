@@ -84,7 +84,7 @@
 <body>
   <div class="code-container">
     <pre id="code">
-#include <stdio.h>
+#include &lt;stdio.h&gt;
 int main() {
     int n = 5; // Number of rows
     for (int i = 1; i <= n; i++) {  // Outer loop
@@ -110,16 +110,28 @@ int main() {
     const trackerElement = document.getElementById("tracker");
     let currentHighlight = -1;
 
+    function escapeHTML(text) {
+      return text.replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/"/g, "&quot;")
+             .replace(/'/g, "&#039;");
+    }
+
+    // Highlight specific lines in the code
     function highlightCodeLine(lineNumber) {
       const codeContainer = document.getElementById("code");
+      const codeLines = codeContainer.textContent.split("\n");
+  
       codeContainer.innerHTML = codeLines
-        .map((line, index) =>
-          index === lineNumber
-            ? `<span class="highlight">${line}</span>`
-            : line
-        )
-        .join("\n");
-    }
+        .map((line, index) => {
+            let escapedLine = escapeHTML(line); // Escape HTML entities
+            return index === lineNumber 
+              ? `<span class="highlight">${escapedLine}</span>` 
+              : escapedLine;
+          })
+          .join("\n");
+      }
 
     async function animateRow(row) {
       const rowElement = document.createElement("div");

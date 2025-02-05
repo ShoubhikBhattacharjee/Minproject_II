@@ -1,124 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>C-Magine - Visualizations</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-GBYfO66g6BMbToxIRkGiCwL2nt7v+jgt5F0pNi7Wb+9Blzphw/TeJny3LhpjF0et"
-      crossorigin="anonymous"
-    />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C Visualization Lab Categories</title>
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #e7eff6, #f8f9fa);
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-y: scroll;
+    }
 
-    <style>
-      body {
-        font-family: "Arial", sans-serif;
-        background: linear-gradient(135deg, #e7eff6, #f8f9fa);
-        /*height: 100%;*/
-        height: 100%;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow-y: scroll;
-      }
+    .container {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      text-align: center;
+      width: 90%;
+      max-width: 800px;
+    }
 
-      .container {
-        background-color: #ffffff;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 40px;
-        text-align: center;
-        width: 90%;
-        max-width: 800px;
-      }
+    h1 {
+      color: #4caf50;
+      font-size: 3rem;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
 
-      h1 {
-        color: #4caf50;
-        font-size: 3rem;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-      }
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
 
-      p {
-        font-size: 1.1rem;
-        color: #555;
-        margin-bottom: 30px;
-        line-height: 1.6;
-      }
+    /* Button Styling */
+    .gradient-button {
+      background: linear-gradient(to right, #f93402, #965342);
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin: 12px 0;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      justify-content: flex-start;
+    }
 
-      .btn {
-        width: 100%;
-        font-size: 1.1rem;
-        padding: 12px;
-        margin: 8px 0;
-        border-radius: 8px;
-        transition: 0.3s;
-      }
+    .gradient-button:hover {
+      background: linear-gradient(to right, #965342, #f93402);
+      transform: scale(1.05);
+    }
 
-      .gradient-button {
-        background: linear-gradient(to right, #f93402, #965342);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease; /* Combined transition */
-      }
+    /* Icon Box Styling */
+    .icon-box {
+      background-color: white;
+      color: #f93402;
+      font-size: 22px;
+      border: 2px solid #f93402;
+      border-radius: 5px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-      .gradient-button:hover {
-        background: linear-gradient(to right, #965342, #f93402);
-        transform: scale(1.1); /* Added hover effect */
-      }
-    </style>
-  </head>
-  <body>
-
+    /* Category Label Styling */
+    .category-label {
+      font-weight: bold;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
   <div class="container">
     <h1>C-Magine</h1>
     <p>
       Welcome to C-Magine!
 
-C-Magine is your interactive visualization lab where C programming concepts come to life. Whether you're a beginner or an experienced developer, this tool helps you visualize, understand, and master C programming in a fun and engaging way.
+      C-Magine is your interactive visualization lab where C programming concepts come to life. Whether you're a beginner or an experienced developer, this tool helps you visualize, understand, and master C programming in a fun and engaging way.
 
-From data structures to control flow, functions to pointers, and everything in between, C-Magine lets you see the theory in action. Explore step-by-step animations, dynamic code highlighting, and real-time visualizations that make learning C an immersive experience.
+      From data structures to control flow, functions to pointers, and everything in between, C-Magine lets you see the theory in action. Explore step-by-step animations, dynamic code highlighting, and real-time visualizations that make learning C an immersive experience.
 
-Step into C-Magine – the world of C programming, visualized.
+      Step into C-Magine – the world of C programming, visualized.
     </p>
 
     <div>
-      <button class="btn gradient-button" onclick="window.location.href='linear_search.html'">Linear Search</button>
-      <button class="btn gradient-button" onclick="window.location.href='binary_search.html'">Binary Search</button>
-      <button class="btn gradient-button" onclick="window.location.href='bubble_sort.html'">Bubble Sort</button>
-      <button class="btn gradient-button" onclick="window.location.href='insertion_sort.html'">Insertion Sort</button>
-      <button class="btn gradient-button" onclick="window.location.href='selection_sort.html'">Selection Sort</button>
-      <button class="btn gradient-button" onclick="window.location.href='merge_sort.html'">Merge Sort</button>
-      <button class="btn gradient-button" onclick="window.location.href='quick_sort.html'">Quick Sort</button>
-      <button class="btn gradient-button" onclick="window.location.href='datatypes.html'">Datatypes in C</button>
-      <button class="btn gradient-button" onclick="window.location.href='func.html'">Functions</button>
-      <button class="btn gradient-button" onclick="window.location.href='recursion.html'">Recursion</button>
-      <button class="btn gradient-button" onclick="window.location.href='switch_case.html'">Switch Case</button>
-      <button class="btn gradient-button" onclick="window.location.href='stack.html'">Stack</button>
-      <button class="btn gradient-button" onclick="window.location.href='struct.html'">Structure</button>
-      <button class="btn gradient-button" onclick="window.location.href='string.html'">String Operations</button>
-      <button class="btn gradient-button" onclick="window.location.href='palindrome.html'">Palindrome</button>
-      <button class="btn gradient-button" onclick="window.location.href='swap_numbers.html'">Swap Numbers</button>
-      <button class="btn gradient-button" onclick="window.location.href='leap_year.html'">Leap Year Program</button>
-      <button class="btn gradient-button" onclick="window.location.href='forloop.html'">For Loop</button>
-      <button class="btn gradient-button" onclick="window.location.href='while.html'">While Loop</button>
-      <button class="btn gradient-button" onclick="window.location.href='dowhile.html'">Do-While Loop</button>
-      <button class="btn gradient-button" onclick="window.location.href='ifelse ladder.html'">If-Else Ladder</button>
-      <button class="btn gradient-button" onclick="window.location.href='traffic if else.html'">Traffic If-Else</button>
-      <button class="btn gradient-button" onclick="window.location.href='pyramid.html'">Pyramid Pattern</button>
-      <button class="btn gradient-button" onclick="window.location.href='inverted_pyramid.html'">Inverted Pyramid Pattern</button>
-      <button class="btn gradient-button" onclick="window.location.href='diamond_pattern.html'">Diamond Pattern</button>
-      <button class="btn gradient-button" onclick="window.location.href='butterfly.html'">Butterfly Pattern</button>
-      <button class="btn gradient-button" onclick="window.location.href='callbyvalref.html'">Call By Value/Reference</button>
-    </div>
+      <button class="gradient-button" onclick="window.location.href='variables.html'">
+        <div class="icon-box">x</div>
+        <span class="category-label">Variables</span>
+      </button>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+      <button class="gradient-button" onclick="window.location.href='functions.html'">
+        <div class="icon-box"><i class="fas fa-cogs"></i></div>
+        <span class="category-label">Functions</span>
+      </button>
+
+      <button class="gradient-button" onclick="window.location.href='search_algorithms.html'">
+        <div class="icon-box"><i class="fas fa-search"></i></div>
+        <span class="category-label">Search Algorithms</span>
+      </button>
+
+      <button class="gradient-button" onclick="window.location.href='sorting_algorithms.html'">
+        <div class="icon-box"><i class="fas fa-sort-amount-up"></i></div>
+        <span class="category-label">Sorting Algorithms</span>
+      </button>
+
+      <button class="gradient-button" onclick="window.location.href='control_flow.html'">
+        <div class="icon-box"><i class="fas fa-project-diagram"></i></div>
+        <span class="category-label">Control Flow</span>
+      </button>
+
+      <button class="gradient-button" onclick="window.location.href='patterns.html'">
+        <div class="icon-box"><i class="fas fa-th"></i></div>
+        <span class="category-label">Patterns</span>
+      </button>
+
+      <button class="gradient-button" onclick="window.location.href='data_structures.html'">
+        <div class="icon-box"><i class="fas fa-sitemap"></i></div>
+        <span class="category-label">Data Structures</span>
+      </button>
+    </div>
+  </div>
+</body>
 </html>

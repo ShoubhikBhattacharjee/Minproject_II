@@ -126,7 +126,7 @@
 <body>
   <div class="code-container">
     <pre id="code">
-      #include &lt;stdio.h>
+      #include &lt;stdio.h&gt;
 
       int factorial(int n) {
           if (n == 1) {
@@ -163,16 +163,28 @@
     let factorialResult;
     let multiplicationSteps = []; // To store multiplication steps
 
+    function escapeHTML(text) {
+      return text.replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/"/g, "&quot;")
+             .replace(/'/g, "&#039;");
+    }
+
     // Highlight specific lines in the code
     function highlightCodeLine(lineNumber) {
-      const codeBlock = document.getElementById("code");
-      const lines = codeBlock.innerText.split("\n");
-      codeBlock.innerHTML = lines.map((line, index) =>
-        index === lineNumber
-          ? `<span class="highlight">${line}</span>`
-          : line
-      ).join("\n");
-    }
+      const codeContainer = document.getElementById("code");
+      const codeLines = codeContainer.textContent.split("\n");
+  
+      codeContainer.innerHTML = codeLines
+        .map((line, index) => {
+            let escapedLine = escapeHTML(line); // Escape HTML entities
+            return index === lineNumber 
+              ? `<span class="highlight">${escapedLine}</span>` 
+              : escapedLine;
+          })
+          .join("\n");
+      }
 
     // Recursive factorial visualization
     async function factorial(n, parent) {
@@ -192,10 +204,10 @@
 
       parent.appendChild(stepContainer);
 
-      // Highlight corresponding code
-      highlightCodeLine(n === 3 ? 4 : 6);
-
       await sleep(1000); // Pause to visualize the step
+
+      // Highlight corresponding code
+      highlightCodeLine(n === 1 ? 4 : 6);
 
       if (n === 1) {
         arrow.textContent = " → 1 (Base Case)";
@@ -209,7 +221,7 @@
 
       box.textContent += ` → ${result}`;
       multiplicationSteps.push(n); // Track the current multiplication
-      highlightCodeLine(16);
+      highlightCodeLine(15);
 
       return result;
     }

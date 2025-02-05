@@ -107,31 +107,31 @@
   <!-- Left: Code Section -->
   <div class="code-container">
     <pre id="code">
-#include &lt;stdio.h>
-#include &lt;stdlib.h>
-#include &lt;unistd.h>
-
-int main() {
-    int light = 0;
-
-    while(1) {
-        if (light == 0) {
-            printf("Red Light\n");
-            light = 1; // Switch to yellow
-        } 
-        else if (light == 1) {
-            printf("Yellow Light\n");
-            light = 2; // Switch to green
-        } 
-        else if (light == 2) {
-            printf("Green Light\n");
-            light = 0; // Switch to red
-        }
-        sleep(5); // Wait for 5 seconds before changing lights (slower)
-    }
-    return 0;
-}
-    </pre>
+      #include &lt;stdio.h&gt;
+      #include &lt;stdlib.h&gt;
+      #include &lt;unistd.h&gt;
+      
+      int main() {
+          int light = 0;
+      
+          while(1) {
+              if (light == 0) {
+                  printf("Red Light\n");
+                  light = 1; // Switch to yellow
+              } 
+              else if (light == 1) {
+                  printf("Yellow Light\n");
+                  light = 2; // Switch to green
+              } 
+              else if (light == 2) {
+                  printf("Green Light\n");
+                  light = 0; // Switch to red
+              }
+              sleep(5); // Wait for 5 seconds before changing lights (slower)
+          }
+          return 0;
+      }
+      </pre>      
   </div>
 
   <!-- Right: Visualization Section -->
@@ -152,15 +152,28 @@ int main() {
   let yellowLight = document.getElementById("yellow-light");
   let greenLight = document.getElementById("green-light");
 
-  function highlightCodeLine(lineNumber) {
-    const codeContainer = document.getElementById("code");
-    const codeLines = codeContainer.innerText.split("\n");
-    codeContainer.innerHTML = codeLines
-      .map((line, index) => 
-        index === lineNumber ? `<span class="highlight">${line}</span>` : line
-      )
+  function escapeHTML(text) {
+  return text.replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/"/g, "&quot;")
+             .replace(/'/g, "&#039;");
+  }
+
+function highlightCodeLine(lineNumber) {
+  const codeContainer = document.getElementById("code");
+  const codeLines = codeContainer.textContent.split("\n");
+  
+  codeContainer.innerHTML = codeLines
+    .map((line, index) => {
+        let escapedLine = escapeHTML(line); // Escape HTML entities
+        return index === lineNumber 
+          ? `<span class="highlight">${escapedLine}</span>` 
+          : escapedLine;
+      })
       .join("\n");
   }
+
 
   function startTrafficLight() {
     setInterval(() => {

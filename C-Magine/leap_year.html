@@ -90,7 +90,8 @@
 <body>
   <div class="code-section">
     <pre id="code">
-#include <stdio.h>
+#include &lt;stdio.h&gt;
+
 int main() {
     int year;
     printf("Enter a year: ");
@@ -120,28 +121,29 @@ int main() {
   <script>
     const codeLines = document.getElementById("code").innerText.split("\n");
     const visualContainer = document.getElementById("visual-container");
+    
+    function escapeHTML(text) {
+  return text.replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/"/g, "&quot;")
+             .replace(/'/g, "&#039;");
+  }
 
-    // Function to render the code snippet properly, ensuring < and > are displayed correctly
-    function renderCode() {
-      const codeContainer = document.getElementById("code");
-      codeContainer.innerHTML = codeLines
-        .map(line => line.replace(/&lt;/g, "<").replace(/&gt;/g, ">")) // Replace &lt; and &gt; with < and >
-        .map((line, index) =>
-          `<span>${line}</span>`) // No initial highlighting
-        .join("\n");
-    }
-
-    // Function to highlight a specific line of code
-    function highlightCodeLine(lineNumber) {
-      const codeContainer = document.getElementById("code");
-      codeContainer.innerHTML = codeLines
-        .map((line, index) =>
-          index === lineNumber - 1
-            ? `<span class="highlight">${line.replace(/&lt;/g, "<").replace(/&gt;/g, ">")}</span>` // Highlight line with correct < and >
-            : `<span>${line.replace(/&lt;/g, "<stdio.h>").replace(/&gt;/g, ">")}</span>`
-        )
-        .join("\n");
-    }
+// Function to highlight a specific line of code
+function highlightCodeLine(lineNumber) {
+  const codeContainer = document.getElementById("code");
+  const codeLines = codeContainer.textContent.split("\n");
+  
+  codeContainer.innerHTML = codeLines
+    .map((line, index) => {
+        let escapedLine = escapeHTML(line); // Escape HTML entities
+        return index === lineNumber 
+          ? `<span class="highlight">${escapedLine}</span>` 
+          : escapedLine;
+      })
+      .join("\n");
+  }
 
     // Main function to start the leap year check and visualization
     async function startVisualization() {
@@ -189,8 +191,6 @@ int main() {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    // Initialize the code rendering
-    renderCode();
   </script>
 </body>
 </html>
