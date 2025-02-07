@@ -1,242 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>C-Magine</title>
-  
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    /* General Styles */
-    body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #e7eff6, #f8f9fa);
-      min-height: 100vh;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C-Magine</title>
 
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* General Styles */
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #e7eff6, #f8f9fa);
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
 
-    .container {
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      padding: 40px;
-      max-width: 1000px;
-      margin-top: 50px;
-      margin-bottom: 50px;
-    }
+      #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }   
 
-    h1 {
-      color: #4caf50;
-      font-size: 3rem;
-      margin-bottom: 20px;
-      text-align: center;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      background-image: linear-gradient(to right, #f93402, #965342);
-      -webkit-background-clip: text;
-      color: transparent;
-      transition: 0.3s ease-in-out;
-    }
-
-    h1:hover {
-      transform: scale(1.1);
-    }
-
-    p {
-      font-size: 1.2rem;
-      color: #555;
-      margin-bottom: 40px;
-      line-height: 1.8;
-      text-align: center;
-    }
-
-    /* Category Card Styling */
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 30px;
-    }
-
-    .category-card {
-      background: linear-gradient(to right, #f93402, #965342);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      padding: 30px;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      cursor: pointer;
-      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .category-card:hover {
-      transform: translateY(-10px);
-      background: linear-gradient(to right, #965342, #f93402);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .icon-box {
-      background-color: white;
-      color: #f93402;
-      font-size: 30px;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .category-label {
-      font-weight: bold;
-      font-size: 22px;
-    }
-
-    /* Small screen responsiveness */
-    @media (max-width: 768px) {
-      .category-card {
-        padding: 20px;
+      .container {
+        background-color: rgb(255, 255, 255, 0.3);
+        backdrop-filter: blur(1.5px);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        max-width: 1000px;
+        margin-top: 50px;
+        margin-bottom: 50px;
       }
 
       h1 {
-        font-size: 2rem;
+        color: #4caf50;
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        background-image: linear-gradient(to right, #f93402, #965342);
+        -webkit-background-clip: text;
+        color: transparent;
+        transition: 0.3s ease-in-out;
+      }
+
+      h1:hover {
+        transform: scale(1.1);
+      }
+
+      p {
+        font-size: 1.2rem;
+        color: #555;
+        margin-bottom: 40px;
+        line-height: 1.8;
+        text-align: center;
+      }
+
+      /* Category Card Styling */
+      .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .category-card {
+        background: linear-gradient(to right, #f93402, #965342);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 30px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        cursor: pointer;
+        transition: transform 0.3s ease, background 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .category-card:hover {
+        transform: translateY(-10px);
+        background: linear-gradient(to right, #965342, #f93402);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .icon-box {
+        background-color: white;
+        color: #f93402;
+        font-size: 30px;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .category-label {
-        font-size: 18px;
+        font-weight: bold;
+        font-size: 22px;
       }
-    }
-  </style>
-</head>
-<body>
-  <div id="particles-js"></div>
-  <div class="container">
-    <h1>C-Magine</h1>
-    <p>
-      Welcome to C-Magine! This interactive platform makes learning C programming fun and engaging. By visualizing key concepts like variables, functions, algorithms, and data structures, you'll gain a deeper understanding of how your code works. Whether you're just starting out or looking to sharpen your skills, C-Magine offers a dynamic and hands-on approach to mastering C. Dive in and watch your programming skills grow with each interactive category!
-    </p>
 
-    <div class="card-container">
-      <div class="category-card" onclick="window.open('variables.html', '_blank')">
-        <div class="icon-box"><i class="fas fa-code"></i></div>
-        <span class="category-label">Variables</span>
-      </div>
+      /* Small screen responsiveness */
+      @media (max-width: 768px) {
+        .category-card {
+          padding: 20px;
+        }
 
-      <div class="category-card" onclick="window.open('functions.html', '_blank')">
-        <div class="icon-box"><i class="fas fa-cogs"></i></div>
-        <span class="category-label">Functions</span>
-      </div>
+        h1 {
+          font-size: 2rem;
+        }
 
-      <div class="category-card" onclick="window.open('search_algorithms.html', '_blank')">
-        <div class="icon-box"><i class="fas fa-search"></i></div>
-        <span class="category-label">Search Algorithms</span>
-      </div>
+        .category-label {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <div class="container">
+      <h1>C-Magine</h1>
+      <p>
+        Welcome to C-Magine! This interactive platform makes learning C
+        programming fun and engaging. By visualizing key concepts like
+        variables, functions, algorithms, and data structures, you'll gain a
+        deeper understanding of how your code works. Whether you're just
+        starting out or looking to sharpen your skills, C-Magine offers a
+        dynamic and hands-on approach to mastering C. Dive in and watch your
+        programming skills grow with each interactive category!
+      </p>
 
-      <div class="category-card" onclick="window.open('sorting_algorithms.html', '_blank')">
-        <div class="icon-box"><i class="fas fa-sort-amount-up"></i></div>
-        <span class="category-label">Sorting Algorithms</span>
-      </div>
+      <div class="card-container">
+        <div
+          class="category-card"
+          onclick="window.open('variables.html', '_blank')"
+        >
+          <div class="icon-box"><i class="fas fa-code"></i></div>
+          <span class="category-label">Variables</span>
+        </div>
 
-      <div class="category-card" onclick="window.open('control_flow.html', '_blank')">
-        <div class="icon-box"><i class="fas fa-project-diagram"></i></div>
-        <span class="category-label">Control Flow</span>
-      </div>
+        <div
+          class="category-card"
+          onclick="window.open('functions.html', '_blank')"
+        >
+          <div class="icon-box"><i class="fas fa-cogs"></i></div>
+          <span class="category-label">Functions</span>
+        </div>
 
-      <div class="category-card" onclick="window.open('patterns.html', '_blank')">
-        <div class="icon-box"><i class="fas fa-th"></i></div>
-        <span class="category-label">Patterns</span>
-      </div>
+        <div
+          class="category-card"
+          onclick="window.open('search_algorithms.html', '_blank')"
+        >
+          <div class="icon-box"><i class="fas fa-search"></i></div>
+          <span class="category-label">Search Algorithms</span>
+        </div>
 
-      <div class="category-card" onclick="window.open('data_structures.html', '_blank')">
-        <div class="icon-box"><i class="fas fa-sitemap"></i></div>
-        <span class="category-label">Data Structures</span>
+        <div
+          class="category-card"
+          onclick="window.open('sorting_algorithms.html', '_blank')"
+        >
+          <div class="icon-box"><i class="fas fa-sort-amount-up"></i></div>
+          <span class="category-label">Sorting Algorithms</span>
+        </div>
+
+        <div
+          class="category-card"
+          onclick="window.open('control_flow.html', '_blank')"
+        >
+          <div class="icon-box"><i class="fas fa-project-diagram"></i></div>
+          <span class="category-label">Control Flow</span>
+        </div>
+
+        <div
+          class="category-card"
+          onclick="window.open('patterns.html', '_blank')"
+        >
+          <div class="icon-box"><i class="fas fa-th"></i></div>
+          <span class="category-label">Patterns</span>
+        </div>
+
+        <div
+          class="category-card"
+          onclick="window.open('data_structures.html', '_blank')"
+        >
+          <div class="icon-box"><i class="fas fa-sitemap"></i></div>
+          <span class="category-label">Data Structures</span>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-  <script>
-    particlesJS('particles-js', {
-      "particles": {
-        "number": {
-          "value": 100,
-          "density": {
-            "enable": true,
-            "value_area": 800
-          }
-        },
-        "color": {
-          "value": "#f93402"
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          }
-        },
-        "opacity": {
-          "value": 0.5,
-          "random": false
-        },
-        "size": {
-          "value": 3,
-          "random": true
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#f93402",
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 2,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out"
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "repulse"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      particlesJS("particles-js", {
+        particles: {
+          number: {
+            value: 100,
+            density: {
+              enable: true,
+              value_area: 800,
+            },
           },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
-          }
+          color: {
+            value: "#f93402",
+          },
+          shape: {
+            type: "circle",
+            stroke: {
+              width: 0,
+              color: "#000000",
+            },
+          },
+          opacity: {
+            value: 0.5,
+            random: false,
+          },
+          size: {
+            value: 3,
+            random: true,
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#f93402",
+            opacity: 0.4,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+          },
         },
-        "modes": {
-          "repulse": {
-            "distance": 100,
-            "duration": 0.4
-          }
-        }
-      },
-      "retina_detect": true
-    });
-  </script>
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "repulse",
+            },
+            onclick: {
+              enable: true,
+              mode: "push",
+            },
+          },
+          modes: {
+            repulse: {
+              distance: 100,
+              duration: 0.4,
+            },
+          },
+        },
+        retina_detect: true,
+      });
+    </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
