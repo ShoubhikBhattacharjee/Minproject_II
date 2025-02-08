@@ -42,7 +42,7 @@
       .content {
         padding: 2rem 1rem;
       }
-      .content img {
+      .content img.heading-img {
         max-height: 200px;
       }
       .content p {
@@ -51,28 +51,47 @@
         margin-bottom: 2rem;
       }
 
-      /* Card styles */
+      /* Card (button) styles */
       .card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(110, 0, 0, 0.8);
+        font-family: "Times New Roman", Times, serif;
+        color: rgb(110, 0, 0);
         cursor: pointer;
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
       .card:hover {
         transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+      .card .card-body {
+        text-align: center;
+      }
+      .card .card-title {
+        font-family: "Times New Roman", Times, serif;
+        color: rgb(110, 0, 0);
       }
       .card i {
-        color: #0d6efd; /* Bootstrap primary blue */
+        font-size: 3rem;
+        color: rgb(110, 0, 0);
       }
     </style>
   </head>
-
   <body>
     <!-- Vanta Animated Background Container -->
     <div id="vanta-bg"></div>
 
-    <!-- Top Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Top Navbar with Logo -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">C-Magine</a>
+        <!-- Replace the src below with the correct path to the Somaiya Vidyavihar logo -->
+        <a class="navbar-brand" href="#">
+          <img
+            src="Images/somaiya_logo.jpg"
+            alt="Somaiya Vidyavihar Logo"
+            style="height: 40px"
+          />
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -85,7 +104,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <!-- Add additional nav links as needed -->
+          <!-- Additional nav links as needed -->
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <a class="nav-link active" href="#">Home</a>
@@ -97,6 +116,11 @@
               <a class="nav-link" href="#">Contact</a>
             </li>
           </ul>
+          <img
+            src="Images/Somaiya Trust Logo.jpg"
+            alt="Somaiya Vidyavihar Logo"
+            style="height: 40px"
+          />
         </div>
       </div>
     </nav>
@@ -105,19 +129,42 @@
     <div class="container content">
       <div class="text-center mb-4">
         <!-- Heading image -->
+        <!--<div
+          style="
+            width: 575px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 100px;
+            color: #000000;
+            background-color: rgb(255, 255, 255, 0.5);
+          "
+          class="Heading"
+        >
+          <img
+            src="Images/Backgroundless C.png"
+            alt="C-Magine Heading"
+            class="img-fluid heading-img"
+          />
+          <b>Magine</b>
+        </div>-->
         <img
-          src="Images/heading.jpg"
-          alt="C-Magine Heading"
-          class="img-fluid"
+          src="Images/Backgroundless.png"
+          alt="C-Magine"
+          class="img-fluid heading-img"
+          style="background-color: rgb(255, 255, 255, 0)"
         />
       </div>
-      <p>
+      <p style="font-family: 'Times New Roman', Times, serif; color: rgb(110, 0, 0);">
         Welcome to C-Magine! This interactive platform makes learning C
-        programming fun and engaging. Dive in and explore various topics to
-        visualize how your code works.
+        programming fun and engaging. By visualizing key concepts like
+        variables, functions, algorithms, and data structures, you'll gain a
+        deeper understanding of how your code works. Whether you're just
+        starting out or looking to sharpen your skills, C-Magine offers a
+        dynamic and hands-on approach to mastering C. Dive in and watch your
+        programming skills grow with each interactive category!
       </p>
 
-      <!-- Cards Grid -->
+      <!-- Cards Grid Organized into Rows -->
+      <!-- Row 1 -->
       <div class="row g-4">
         <!-- Card: Variables -->
         <div class="col-md-4">
@@ -125,8 +172,8 @@
             class="card h-100 shadow-sm"
             onclick="window.open('Variables/variables.html', '_blank')"
           >
-            <div class="card-body text-center">
-              <i class="fas fa-code fa-3x mb-3"></i>
+            <div class="card-body">
+              <i class="fas fa-code mb-3"></i>
               <h5 class="card-title">Variables</h5>
             </div>
           </div>
@@ -137,8 +184,8 @@
             class="card h-100 shadow-sm"
             onclick="window.open('Functions/functions.html', '_blank')"
           >
-            <div class="card-body text-center">
-              <i class="fas fa-cogs fa-3x mb-3"></i>
+            <div class="card-body">
+              <i class="fas fa-cogs mb-3"></i>
               <h5 class="card-title">Functions</h5>
             </div>
           </div>
@@ -149,20 +196,24 @@
             class="card h-100 shadow-sm"
             onclick="window.open('Search Algorithms/search_algorithms.html', '_blank')"
           >
-            <div class="card-body text-center">
-              <i class="fas fa-search fa-3x mb-3"></i>
+            <div class="card-body">
+              <i class="fas fa-search mb-3"></i>
               <h5 class="card-title">Search Algorithms</h5>
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="row g-4 mt-4">
         <!-- Card: Sorting Algorithms -->
         <div class="col-md-4">
           <div
             class="card h-100 shadow-sm"
             onclick="window.open('Sorting Algorithms/sorting_algorithms.html', '_blank')"
           >
-            <div class="card-body text-center">
-              <i class="fas fa-sort-amount-up fa-3x mb-3"></i>
+            <div class="card-body">
+              <i class="fas fa-sort-amount-up mb-3"></i>
               <h5 class="card-title">Sorting Algorithms</h5>
             </div>
           </div>
@@ -173,8 +224,8 @@
             class="card h-100 shadow-sm"
             onclick="window.open('Control Flow/control_flow.html', '_blank')"
           >
-            <div class="card-body text-center">
-              <i class="fas fa-project-diagram fa-3x mb-3"></i>
+            <div class="card-body">
+              <i class="fas fa-project-diagram mb-3"></i>
               <h5 class="card-title">Control Flow</h5>
             </div>
           </div>
@@ -185,20 +236,24 @@
             class="card h-100 shadow-sm"
             onclick="window.open('Patterns/patterns.html', '_blank')"
           >
-            <div class="card-body text-center">
-              <i class="fas fa-th fa-3x mb-3"></i>
+            <div class="card-body">
+              <i class="fas fa-th mb-3"></i>
               <h5 class="card-title">Patterns</h5>
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="row g-4 mt-4">
         <!-- Card: Data Structures -->
         <div class="col-md-4">
           <div
             class="card h-100 shadow-sm"
             onclick="window.open('Data Structures/data_structures.html', '_blank')"
           >
-            <div class="card-body text-center">
-              <i class="fas fa-sitemap fa-3x mb-3"></i>
+            <div class="card-body">
+              <i class="fas fa-sitemap mb-3"></i>
               <h5 class="card-title">Data Structures</h5>
             </div>
           </div>
@@ -209,8 +264,8 @@
             class="card h-100 shadow-sm"
             onclick="window.open('Data Types/datatype.html', '_blank')"
           >
-            <div class="card-body text-center">
-              <i class="fas fa-database fa-3x mb-3"></i>
+            <div class="card-body">
+              <i class="fas fa-database mb-3"></i>
               <h5 class="card-title">Datatypes</h5>
             </div>
           </div>
@@ -221,21 +276,24 @@
             class="card h-100 shadow-sm"
             onclick="window.open('Matrices/matrices.html', '_blank')"
           >
-            <div class="card-body text-center">
-              <!-- You can replace the icon with your SVG if preferred -->
-              <i class="fas fa-th-large fa-3x mb-3"></i>
+            <div class="card-body">
+              <i class="fas fa-th-large mb-3"></i>
               <h5 class="card-title">Matrices</h5>
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Row 4: Centered File I/O Button -->
+      <div class="row g-4 mt-4 justify-content-center">
         <!-- Card: File I/O -->
         <div class="col-md-4">
           <div
             class="card h-100 shadow-sm"
             onclick="window.open('File IO/files.html', '_blank')"
           >
-            <div class="card-body text-center">
-              <i class="fas fa-file-alt fa-3x mb-3"></i>
+            <div class="card-body">
+              <i class="fas fa-file-alt mb-3"></i>
               <h5 class="card-title">File I/O</h5>
             </div>
           </div>
@@ -250,13 +308,12 @@
     <script>
       VANTA.WAVES({
         el: "#vanta-bg",
-        // Use 0x6e0000 for rgb(110,0,0) as the wave color.
-        color: 0x8e1322,
-        backgroundColor: 0x111111,
-        shininess: 50, // Increase this if you want a more reflective, defined wave.
-        waveHeight: 15, // Adjust as needed for prominence.
-        waveSpeed: 0.5,
-        zoom: 1.0,
+        color: 0xdda6554, // rgb(110, 0, 0)
+        backgroundColor: 0x000000,
+        shininess: 100,
+        waveHeight: 25,
+        waveSpeed: 1,
+        zoom: 0.75,
       });
     </script>
 
