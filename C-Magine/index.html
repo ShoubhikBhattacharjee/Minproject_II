@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>C-Magine</title>
 
+    <!-- Font Awesome & Bootstrap CSS -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
@@ -13,377 +14,254 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
       rel="stylesheet"
     />
+
     <style>
-      /* General Styles */
+      /* General body and font styles */
       body {
-        font-family: "Arial", sans-serif;
-        background: linear-gradient(135deg, #e7eff6, #f8f9fa);
-        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
         margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
       }
 
-      #particles-js {
+      /* Vanta animated background container */
+      #vanta-bg {
         position: fixed;
         width: 100%;
         height: 100%;
+        top: 0;
+        left: 0;
         z-index: -1;
       }
 
-      .container {
-        background-color: rgb(255, 255, 255, 0.3);
-        backdrop-filter: blur(1.5px);
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 40px;
-        max-width: 1000px;
-        margin-top: 50px;
-        margin-bottom: 50px;
+      /* Navbar styling */
+      .navbar {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
 
-      h1 {
-        color: #4caf50;
-        font-size: 3rem;
-        margin-bottom: 20px;
+      /* Main content area */
+      .content {
+        padding: 2rem 1rem;
+      }
+      .content img {
+        max-height: 200px;
+      }
+      .content p {
+        font-size: 1.1rem;
         text-align: center;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        background-image: linear-gradient(to right, #f93402, #965342);
-        background-clip: border-box;
-        -webkit-background-clip: text;
-        color: transparent;
-        transition: 0.3s ease-in-out;
+        margin-bottom: 2rem;
       }
 
-      h1:hover {
-        transform: scale(1.1);
-      }
-
-      p {
-        font-size: 1.2rem;
-        color: #555;
-        margin-bottom: 40px;
-        line-height: 1.8;
-        text-align: center;
-      }
-
-      /* Category Card Styling */
-      .card-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-        margin-top: 30px;
-      }
-
-      .category-card {
-        background: linear-gradient(to right, #f93402, #965342);
-        color: white;
-        border: none;
-        border-radius: 12px;
-        padding: 30px;
-        text-align: left;
-        display: flex;
-        align-items: center;
-        gap: 20px;
+      /* Card styles */
+      .card {
         cursor: pointer;
-        transition: transform 0.3s ease background 0.3s ease,
-          box-shadow 0.3s ease;
+        transition: transform 0.3s ease;
       }
-
-      .category-card:hover {
-        transform: translateY(-10px);
-        background: linear-gradient(to right, #965342, #f93402);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      .card:hover {
+        transform: translateY(-5px);
       }
-
-      .icon-box {
-        background-color: white;
-        color: #f93402;
-        font-size: 30px;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .category-label {
-        font-weight: bold;
-        font-size: 22px;
-      }
-
-      /* Small screen responsiveness */
-      @media (max-width: 768px) {
-        .category-card {
-          padding: 20px;
-        }
-
-        h1 {
-          font-size: 2rem;
-        }
-
-        .category-label {
-          font-size: 18px;
-        }
+      .card i {
+        color: #0d6efd; /* Bootstrap primary blue */
       }
     </style>
   </head>
+
   <body>
-    <div id="particles-js"></div>
-    <div class="container">
-      <h1><img src="Images\heading.jpg" style="height: 212px; opacity: 0.75;"></img></h1>
+    <!-- Vanta Animated Background Container -->
+    <div id="vanta-bg"></div>
+
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">C-Magine</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Add additional nav links as needed -->
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="container content">
+      <div class="text-center mb-4">
+        <!-- Heading image -->
+        <img
+          src="Images/heading.jpg"
+          alt="C-Magine Heading"
+          class="img-fluid"
+        />
+      </div>
       <p>
         Welcome to C-Magine! This interactive platform makes learning C
-        programming fun and engaging. By visualizing key concepts like
-        variables, functions, algorithms, and data structures, you'll gain a
-        deeper understanding of how your code works. Whether you're just
-        starting out or looking to sharpen your skills, C-Magine offers a
-        dynamic and hands-on approach to mastering C. Dive in and watch your
-        programming skills grow with each interactive category!
+        programming fun and engaging. Dive in and explore various topics to
+        visualize how your code works.
       </p>
 
-      <div class="card-container">
-        <!-- Existing Categories -->
-        <div
-          class="category-card"
-          onclick="window.open('Variables\\variables.html', '_blank')"
-        >
-          <div class="icon-box"><i class="fas fa-code"></i></div>
-          <span class="category-label">Variables</span>
-        </div>
-
-        <div
-          class="category-card"
-          onclick="window.open('Functions\\functions.html', '_blank')"
-        >
-          <div class="icon-box"><i class="fas fa-cogs"></i></div>
-          <span class="category-label">Functions</span>
-        </div>
-
-        <div
-          class="category-card"
-          onclick="window.open('Search Algorithms\\search_algorithms.html', '_blank')"
-        >
-          <div class="icon-box"><i class="fas fa-search"></i></div>
-          <span class="category-label">Search Algorithms</span>
-        </div>
-
-        <div
-          class="category-card"
-          onclick="window.open('Sorting Algorithms/sorting_algorithms.html', '_blank')"
-        >
-          <div class="icon-box"><i class="fas fa-sort-amount-up"></i></div>
-          <span class="category-label">Sorting Algorithms</span>
-        </div>
-
-        <div
-          class="category-card"
-          onclick="window.open('Control Flow\\control_flow.html', '_blank')"
-        >
-          <div class="icon-box"><i class="fas fa-project-diagram"></i></div>
-          <span class="category-label">Control Flow</span>
-        </div>
-
-        <div
-          class="category-card"
-          onclick="window.open('Patterns\\patterns.html', '_blank')"
-        >
-          <div class="icon-box"><i class="fas fa-th"></i></div>
-          <span class="category-label">Patterns</span>
-        </div>
-
-        <div
-          class="category-card"
-          onclick="window.open('Data Structures\\data_structures.html', '_blank')"
-        >
-          <div class="icon-box"><i class="fas fa-sitemap"></i></div>
-          <span class="category-label">Data Structures</span>
-        </div>
-
-        <!-- Datatypes with Database Icon -->
-        <div
-          class="category-card"
-          onclick="window.open('Data Types/datatype.html', '_blank')"
-        >
-          <div class="icon-box">
-            <i class="fas fa-database"></i>
+      <!-- Cards Grid -->
+      <div class="row g-4">
+        <!-- Card: Variables -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 shadow-sm"
+            onclick="window.open('Variables/variables.html', '_blank')"
+          >
+            <div class="card-body text-center">
+              <i class="fas fa-code fa-3x mb-3"></i>
+              <h5 class="card-title">Variables</h5>
+            </div>
           </div>
-          <span class="category-label">Datatypes</span>
         </div>
-
-        <!-- Matrix with a Proper 2x2 Identity Matrix -->
-        <div
-          class="category-card"
-          onclick="window.open('Matrices/matrices.html', '_blank')"
-        >
-          <div class="icon-box">
-            <svg width="60" height="50" xmlns="http://www.w3.org/2000/svg">
-              <!-- Left bracket -->
-              <path
-                d="M15,5 v40"
-                stroke="#f93402"
-                stroke-width="2"
-                fill="none"
-              />
-              <path
-                d="M15,5 h5"
-                stroke="#f93402"
-                stroke-width="2"
-                fill="none"
-              />
-              <path
-                d="M15,45 h5"
-                stroke="#f93402"
-                stroke-width="2"
-                fill="none"
-              />
-
-              <!-- Right bracket -->
-              <path
-                d="M45,5 v40"
-                stroke="#f93402"
-                stroke-width="2"
-                fill="none"
-              />
-              <path
-                d="M40,5 h5"
-                stroke="#f93402"
-                stroke-width="2"
-                fill="none"
-              />
-              <path
-                d="M40,45 h5"
-                stroke="#f93402"
-                stroke-width="2"
-                fill="none"
-              />
-
-              <!-- Matrix elements -->
-              <text
-                x="20"
-                y="18"
-                font-family="Arial"
-                font-size="10"
-                fill="#f93402"
-              >
-                1
-              </text>
-              <text
-                x="35"
-                y="18"
-                font-family="Arial"
-                font-size="10"
-                fill="#f93402"
-              >
-                0
-              </text>
-              <text
-                x="20"
-                y="38"
-                font-family="Arial"
-                font-size="10"
-                fill="#f93402"
-              >
-                0
-              </text>
-              <text
-                x="35"
-                y="38"
-                font-family="Arial"
-                font-size="10"
-                fill="#f93402"
-              >
-                1
-              </text>
-            </svg>
+        <!-- Card: Functions -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 shadow-sm"
+            onclick="window.open('Functions/functions.html', '_blank')"
+          >
+            <div class="card-body text-center">
+              <i class="fas fa-cogs fa-3x mb-3"></i>
+              <h5 class="card-title">Functions</h5>
+            </div>
           </div>
-          <span class="category-label">Matrices</span>
         </div>
-        <!-- File I/O -->
-        <div
-          class="category-card"
-          onclick="window.open('File IO/files.html', '_blank')"
-        >
-          <div class="icon-box">
-            <i class="fas fa-file-alt"></i>
+        <!-- Card: Search Algorithms -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 shadow-sm"
+            onclick="window.open('Search Algorithms/search_algorithms.html', '_blank')"
+          >
+            <div class="card-body text-center">
+              <i class="fas fa-search fa-3x mb-3"></i>
+              <h5 class="card-title">Search Algorithms</h5>
+            </div>
           </div>
-          <span class="category-label">File I/O</span>
+        </div>
+        <!-- Card: Sorting Algorithms -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 shadow-sm"
+            onclick="window.open('Sorting Algorithms/sorting_algorithms.html', '_blank')"
+          >
+            <div class="card-body text-center">
+              <i class="fas fa-sort-amount-up fa-3x mb-3"></i>
+              <h5 class="card-title">Sorting Algorithms</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Card: Control Flow -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 shadow-sm"
+            onclick="window.open('Control Flow/control_flow.html', '_blank')"
+          >
+            <div class="card-body text-center">
+              <i class="fas fa-project-diagram fa-3x mb-3"></i>
+              <h5 class="card-title">Control Flow</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Card: Patterns -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 shadow-sm"
+            onclick="window.open('Patterns/patterns.html', '_blank')"
+          >
+            <div class="card-body text-center">
+              <i class="fas fa-th fa-3x mb-3"></i>
+              <h5 class="card-title">Patterns</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Card: Data Structures -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 shadow-sm"
+            onclick="window.open('Data Structures/data_structures.html', '_blank')"
+          >
+            <div class="card-body text-center">
+              <i class="fas fa-sitemap fa-3x mb-3"></i>
+              <h5 class="card-title">Data Structures</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Card: Datatypes -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 shadow-sm"
+            onclick="window.open('Data Types/datatype.html', '_blank')"
+          >
+            <div class="card-body text-center">
+              <i class="fas fa-database fa-3x mb-3"></i>
+              <h5 class="card-title">Datatypes</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Card: Matrices -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 shadow-sm"
+            onclick="window.open('Matrices/matrices.html', '_blank')"
+          >
+            <div class="card-body text-center">
+              <!-- You can replace the icon with your SVG if preferred -->
+              <i class="fas fa-th-large fa-3x mb-3"></i>
+              <h5 class="card-title">Matrices</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Card: File I/O -->
+        <div class="col-md-4">
+          <div
+            class="card h-100 shadow-sm"
+            onclick="window.open('File IO/files.html', '_blank')"
+          >
+            <div class="card-body text-center">
+              <i class="fas fa-file-alt fa-3x mb-3"></i>
+              <h5 class="card-title">File I/O</h5>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Include three.js (required by Vanta) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <!-- Include Vanta.js WAVES effect -->
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
     <script>
-      particlesJS("particles-js", {
-        particles: {
-          number: {
-            value: 100,
-            density: {
-              enable: true,
-              value_area: 800,
-            },
-          },
-          color: {
-            value: "#f93402",
-          },
-          shape: {
-            type: "circle",
-            stroke: {
-              width: 0,
-              color: "#000000",
-            },
-          },
-          opacity: {
-            value: 0.5,
-            random: false,
-          },
-          size: {
-            value: 3,
-            random: true,
-          },
-          line_linked: {
-            enable: true,
-            distance: 150,
-            color: "#f93402",
-            opacity: 0.4,
-            width: 1,
-          },
-          move: {
-            enable: true,
-            speed: 2,
-            direction: "none",
-            random: false,
-            straight: false,
-            out_mode: "out",
-          },
-        },
-        interactivity: {
-          detect_on: "canvas",
-          events: {
-            onhover: {
-              enable: true,
-              mode: "repulse",
-            },
-            onclick: {
-              enable: true,
-              mode: "push",
-            },
-          },
-          modes: {
-            repulse: {
-              distance: 100,
-              duration: 0.4,
-            },
-          },
-        },
-        retina_detect: true,
+      VANTA.WAVES({
+        el: "#vanta-bg",
+        // Use 0x6e0000 for rgb(110,0,0) as the wave color.
+        color: 0x8e1322,
+        backgroundColor: 0x111111,
+        shininess: 50, // Increase this if you want a more reflective, defined wave.
+        waveHeight: 15, // Adjust as needed for prominence.
+        waveSpeed: 0.5,
+        zoom: 1.0,
       });
     </script>
 
+    <!-- Bootstrap & Font Awesome Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
   </body>
 </html>
