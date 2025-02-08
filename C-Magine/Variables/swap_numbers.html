@@ -5,57 +5,123 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Swap Two Numbers Visualization</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .sidebar1 {
+      width: 250px;
+      background-color: #1e293b;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar1 h2 {
+      color: #facc15;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .menu {
+      list-style: none;
+    }
+
+    .menu-item {
+      background-color: #334155;
+      padding: 15px;
+      margin: 10px 0;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #facc15;
+      color: black;
+    }
+
     body {
       background-color: #2e3b4e;
       color: #fff;
       font-family: "Courier New", Courier, monospace;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
       height: 100vh;
-      overflow: hidden;
       margin: 0;
+      overflow: hidden;
     }
+
+    .container {
+      display: flex;
+      width: 100%;
+    }
+
+    .sidebar {
+      width: 50%;
+      background-color: #2f3640;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
     .code-container {
       background-color: #1e1e1e;
       padding: 20px;
-      width: 90%;
-      max-width: 700px;
+      max-height: 100%;
       overflow-y: auto;
     }
+
     pre {
       margin: 0;
       font-size: 16px;
       color: #dcdcdc;
     }
+
     .highlight {
       background-color: rgba(255, 235, 59, 0.6);
     }
-    .visualization-container {
-      margin-top: 20px;
-      text-align: center;
-      width: 100%;
+
+    .visualization-section {
+      width: 50%;
+      padding: 20px;
+      background-color: #273c75;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
     }
+
+    h1 {
+      margin-top: 0;
+    }
+
     .variables {
       display: flex;
       justify-content: space-around;
       margin: 20px;
+      width: 100%;
     }
+
     .variable {
       background-color: #03a9f4;
       color: #000;
       padding: 10px 20px;
       border-radius: 8px;
       font-size: 20px;
-      width: 100px;
+      width: 120px;
       text-align: center;
       transition: all 0.5s ease;
     }
+
     .tracker {
       font-size: 20px;
       margin: 10px 0;
+      color: #ffcc00;
+      text-align: center;
     }
+
     button {
       padding: 10px 20px;
       font-size: 16px;
@@ -66,15 +132,28 @@
       border-radius: 5px;
       margin-top: 10px;
     }
+
     button:hover {
       background-color: #e64a19;
     }
   </style>
 </head>
 <body>
-  <div class="code-container">
-    <pre id="code">
-#include <stdio.h>
+  <div class="sidebar1">
+    <h2>Swap Numbers Basic</h2>
+    <ul class="menu">
+      <li class="menu-item" onclick="location.href='../recur_theory.html'">Theory</li>
+      <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">Algorithm</li>
+      <li class="menu-item" onclick="location.href='../Flowcharts/recur_flow.html'">Flowchart</li>
+      <li class="menu-item" onclick="location.href='../Quiz/recur_quiz.html'">Quiz</li>
+    </ul>
+  </div>
+  <div class="container">
+    <!-- Left Section: Code Display -->
+    <div class="sidebar">
+      <div class="code-container">
+        <pre id="code">
+#include &lt;stdio.h&gt;
 int main() {
     int a = 5, b = 10, temp;
 
@@ -91,17 +170,20 @@ int main() {
 
     return 0;
 }
-    </pre>
-  </div>
-
-  <div class="visualization-container">
-    <h1>Swapping Two Numbers Visualization</h1>
-    <div class="tracker" id="tracker">Press "Start Visualization" to see the swap process!</div>
-    <div class="variables">
-      <div class="variable" id="varA">a = 5</div>
-      <div class="variable" id="varB">b = 10</div>
+        </pre>
+      </div>
     </div>
-    <button onclick="startVisualization()">Start Visualization</button>
+
+    <!-- Right Section: Visualization -->
+    <div class="visualization-section">
+      <h1>Swapping Two Numbers Visualization</h1>
+      <div class="tracker" id="tracker">Press "Start Visualization" to see the swap process!</div>
+      <div class="variables">
+        <div class="variable" id="varA">a = 5</div>
+        <div class="variable" id="varB">b = 10</div>
+      </div>
+      <button onclick="startVisualization()">Start Visualization</button>
+    </div>
   </div>
 
   <script>

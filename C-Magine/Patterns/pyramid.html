@@ -3,69 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pattern Printing Visualization</title>
+  <title>Pyramid Pattern Printing Visualization</title>
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #2e3b4e;
-      color: #fff;
+
+    .sidebar {
+      width: 250px;
+      background-color: #1e293b;
+      color: white;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     }
-    .code-container {
-      width: 100%;
-      background-color: #1e1e1e;
+
+    .sidebar h2 {
+      color: #facc15;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .menu {
+      list-style: none;
+    }
+
+    .menu-item {
+      background-color: #334155;
+      padding: 15px;
+      margin: 10px 0;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #facc15;
+      color: black;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #2e3b4e;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    .code-section, .visualization-section {
+      width: 50%;
       padding: 20px;
       overflow-y: auto;
-      max-height: 40%;
     }
-    pre {
-      margin: 0;
-      font-size: 14px;
+
+    .code-section {
+      background-color: #1e1e1e;
       color: #dcdcdc;
     }
+
+    pre {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
     .highlight {
       background-color: rgba(255, 235, 59, 0.6);
     }
-    .visualization-container {
-      width: 100%;
-      padding: 20px;
-      flex-grow: 1;
+
+    .visualization-section {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      overflow-y: auto;
+      background-color: #2e3b4e;
     }
+
     .output-box {
       font-family: monospace;
       font-size: 18px;
-      margin: 5px;
       color: #00c853;
       line-height: 1.5;
+      margin: 10px 0;
     }
-    .loop-tracker {
-      margin: 20px 0;
-      font-size: 20px;
-      font-weight: bold;
-    }
+
     .pattern-row {
       opacity: 0;
       transform: translateY(-20px);
       transition: opacity 0.5s, transform 0.5s;
     }
+
     .pattern-row.visible {
       opacity: 1;
       transform: translateY(0);
     }
+
     button {
       padding: 10px 20px;
       font-size: 16px;
@@ -73,20 +108,50 @@
       color: white;
       border: none;
       cursor: pointer;
-      margin-top: 20px;
+      margin-top: 10px;
       border-radius: 4px;
     }
+
     button:hover {
       background-color: #0288d1;
     }
+
+    .tracker {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      width: 100px;
+      text-align: center;
+      border-radius: 4px;
+      border: none;
+    }
   </style>
 </head>
+
 <body>
-  <div class="code-container">
+  <div class="sidebar">
+    <h2>Pyramid Pattern</h2>
+    <ul class="menu">
+      <li class="menu-item" onclick="location.href='../recur_theory.html'">Theory</li>
+      <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">Algorithm</li>
+      <li class="menu-item" onclick="location.href='../Flowcharts/recur_flow.html'">Flowchart</li>
+      <li class="menu-item" onclick="location.href='../Quiz/recur_quiz.html'">Quiz</li>
+    </ul>
+  </div>
+  <!-- Code Section -->
+  <div class="code-section">
     <pre id="code">
 #include &lt;stdio.h&gt;
 int main() {
-    int n = 5; // Number of rows
+    int n;
+    printf("Enter number of rows: ");
+    scanf("%d", &n);  // User input for rows
     for (int i = 1; i <= n; i++) {  // Outer loop
         for (int j = 1; j <= i; j++) {  // Inner loop
             printf("* ");
@@ -97,73 +162,82 @@ int main() {
 }
     </pre>
   </div>
-  <div class="visualization-container">
+
+  <!-- Visualization Section -->
+  <div class="visualization-section">
     <h1>Pattern Printing Visualization</h1>
-    <div class="loop-tracker" id="tracker">Press "Start" to begin!</div>
-    <div id="output"></div>
+    <label for="rowInput">Enter the number of rows:</label>
+    <input id="rowInput" type="number" min="1" max="50" placeholder="5" />
     <button onclick="startVisualization()">Start</button>
+    <div class="tracker" id="tracker">Press "Start" to begin!</div>
+    <div id="output" class="output-box"></div>
   </div>
 
   <script>
-    const codeLines = document.getElementById("code").innerText.split("\n");
     const outputElement = document.getElementById("output");
     const trackerElement = document.getElementById("tracker");
-    let currentHighlight = -1;
+    const rowInput = document.getElementById("rowInput");
 
     function escapeHTML(text) {
       return text.replace(/&/g, "&amp;")
-             .replace(/</g, "&lt;")
-             .replace(/>/g, "&gt;")
-             .replace(/"/g, "&quot;")
-             .replace(/'/g, "&#039;");
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
     }
 
-    // Highlight specific lines in the code
     function highlightCodeLine(lineNumber) {
       const codeContainer = document.getElementById("code");
       const codeLines = codeContainer.textContent.split("\n");
-  
+
       codeContainer.innerHTML = codeLines
         .map((line, index) => {
-            let escapedLine = escapeHTML(line); // Escape HTML entities
-            return index === lineNumber 
-              ? `<span class="highlight">${escapedLine}</span>` 
-              : escapedLine;
-          })
-          .join("\n");
-      }
+          let escapedLine = escapeHTML(line);
+          return index === lineNumber 
+            ? `<span class="highlight">${escapedLine}</span>` 
+            : escapedLine;
+        })
+        .join("\n");
+    }
 
     async function animateRow(row) {
       const rowElement = document.createElement("div");
       rowElement.className = "pattern-row";
       rowElement.textContent = row;
       outputElement.appendChild(rowElement);
-      // Wait for animation
-      setTimeout(() => {
-        rowElement.classList.add("visible");
-      }, 10);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      setTimeout(() => rowElement.classList.add("visible"), 10);
+      await new Promise(resolve => setTimeout(resolve, 1000));
     }
 
     async function startVisualization() {
-      const n = 5; // Number of rows
+      const n = parseInt(rowInput.value) || 5;
+      if (n < 1 || n > 50) {
+        trackerElement.textContent = "Please enter a valid number between 1 and 50.";
+        return;
+      }
+
       outputElement.innerHTML = "";
       trackerElement.textContent = "Starting pattern printing...";
+
       for (let i = 1; i <= n; i++) {
-        highlightCodeLine(4); // Highlight outer loop
+        highlightCodeLine(4);
         trackerElement.textContent = `Outer loop (i = ${i})`;
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
         let row = "";
         for (let j = 1; j <= i; j++) {
-          highlightCodeLine(5); // Highlight inner loop
+          highlightCodeLine(5);
           trackerElement.textContent = `Inner loop (i = ${i}, j = ${j})`;
-          await new Promise((resolve) => setTimeout(resolve, 500));
+          await new Promise(resolve => setTimeout(resolve, 500));
           row += "* ";
         }
-        highlightCodeLine(7); // Highlight printf("\n");
+
+        highlightCodeLine(7);
         await animateRow(row.trim());
       }
-      highlightCodeLine(9); // Highlight return statement
+
+      highlightCodeLine(9);
       trackerElement.textContent = "Pattern printing complete!";
     }
   </script>

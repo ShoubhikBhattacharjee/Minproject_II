@@ -15,6 +15,41 @@
       height: 100vh;
     }
 
+    .sidebar {
+      width: 250px;
+      background-color: #1e293b;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar h2 {
+      color: #facc15;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .menu {
+      list-style: none;
+    }
+
+    .menu-item {
+      background-color: #334155;
+      padding: 15px;
+      margin: 10px 0;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #facc15;
+      color: black;
+    }
+
     .code-section {
       width: 50%;
       background-color: #2f3640;
@@ -88,6 +123,15 @@
   </style>
 </head>
 <body>
+  <div class="sidebar">
+    <h2>Leap Year Program</h2>
+    <ul class="menu">
+      <li class="menu-item" onclick="location.href='../recur_theory.html'">Theory</li>
+      <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">Algorithm</li>
+      <li class="menu-item" onclick="location.href='../Flowcharts/recur_flow.html'">Flowchart</li>
+      <li class="menu-item" onclick="location.href='../Quiz/recur_quiz.html'">Quiz</li>
+    </ul>
+  </div>
   <div class="code-section">
     <pre id="code">
 #include &lt;stdio.h&gt;
