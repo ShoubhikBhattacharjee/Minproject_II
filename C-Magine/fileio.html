@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Management Simulation in C</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    #left-section, #right-section {
+      width: 48%;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    pre {
+      background-color: black;
+      color: #00FF00;
+      padding: 10px;
+      overflow-x: auto;
+      font-size: 16px;
+    }
+
+    .highlight {
+      background-color: #ffeb3b;
+    }
+
+    #file-content {
+      background-color: #fff;
+      border: 1px solid #999;
+      padding: 10px;
+      height: 200px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    #result-display {
+      margin-top: 10px;
+    }
+
+    .code-explanation {
+      color: darkgreen;
+      font-style: italic;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="left-section">
+    <h2>C Program for File Operations</h2>
+    <pre id="c-code">
+1: #include <stdio.h>
+2: int main() {
+3:     FILE *fp;
+4:     char filename[50], data[100];
+5:
+6:     // Step 1: Create a file
+7:     printf("Enter file name to create: ");
+8:     scanf("%s", filename);
+9:     fp = fopen(filename, "a");  // Open file in append mode to write at the end
+10:    if (fp == NULL) {
+11:        printf("File creation failed!\n");
+12:        return 1;
+13:    }
+14:
+15:    // Step 2: Write to file
+16:    printf("Enter data to write: ");
+17:    scanf(" %[^\n]", data);
+18:    fprintf(fp, "%s\n", data);  // Write data with newline
+19:    fclose(fp);       // fclose() closes the file safely
+20:
+21:    // Step 3: Read from file
+22:    fp = fopen(filename, "r");
+23:    if (fp == NULL) {
+24:        printf("File read failed!\n");
+25:        return 1;
+26:    }
+27:    printf("Reading file contents:\n");
+28:    while (fgets(data, sizeof(data), fp) != NULL) {
+29:        printf("%s", data);
+30:    }
+31:    fclose(fp);  // fclose() closes the file
+32:    return 0;
+33: }
+    </pre>
+  </div>
+
+  <div id="right-section">
+    <h2>Simulation and Visualization</h2>
+    <div>
+      <label>Enter file name to create: </label>
+      <input type="text" id="filename" placeholder="example.txt">
+    </div>
+    <button onclick="createFile()">Create File</button>
+
+    <div id="file-content" contenteditable="false">
+      <!-- Simulated file content -->
+    </div>
+
+    <div id="result-display"></div>
+
+    <div id="write-section" style="display: none;">
+      <label>Enter data to write: </label>
+      <input type="text" id="filedata" placeholder="Write your content here">
+      <button onclick="writeToFile()">Write Data</button>
+    </div>
+
+    <div id="read-section" style="display: none;">
+      <button onclick="readFromFile()">Read File Contents</button>
+    </div>
+  </div>
+
+  <script>
+    let fileData = ""; // Emulates content inside the file
+    const codeLines = document.querySelectorAll("#c-code");
+
+    // Clear code highlight
+    function clearCodeHighlights() {
+      const codeBlock = document.querySelector("#c-code");
+      codeBlock.innerHTML = codeBlock.innerHTML.replace(/<mark>/g, "").replace(/<\/mark>/g, "");
+    }
+
+    // Highlight specific C code lines
+    function highlightLines(lines) {
+      clearCodeHighlights();
+      const codeContent = codeLines[0].innerHTML.split("\n");
+      const highlighted = codeContent.map((line, index) =>
+        lines.includes(index + 1) ? `<mark>${line}</mark>` : line
+      );
+      codeLines[0].innerHTML = highlighted.join("\n");
+    }
+
+    // Show function explanation
+    function showExplanation(text) {
+      const display = document.getElementById("result-display");
+      display.innerHTML = `<p class="code-explanation">${text}</p>`;
+    }
+
+    // Create File simulation
+    function createFile() {
+      const filename = document.getElementById("filename").value;
+      const display = document.getElementById("result-display");
+      display.innerHTML = `<p>Creating file named "${filename}"... Done!</p>`;
+      fileData = ""; // Reset file content
+      document.getElementById("file-content").textContent = fileData;
+      document.getElementById("write-section").style.display = "block";
+      highlightLines([9]);
+      showExplanation('fopen(filename, "a") opens the file for appending (writing at the end).');
+    }
+
+    // Write simulation (animated character-by-character)
+    function writeToFile() {
+      const userInput = document.getElementById("filedata").value + '\n'; // Add newline after data
+      const fileDisplay = document.getElementById("file-content");
+      const display = document.getElementById("result-display");
+
+      display.innerHTML = `<p>Writing data character by character...</p>`;
+      fileDisplay.textContent = fileData; // Show existing file content
+
+      let index = 0;
+
+      highlightLines([18]);
+      showExplanation("fprintf(fp, \"%s\\n\", data) writes user input with a newline.");
+
+      // Character-by-character writing animation
+      function typeWriting() {
+        if (index < userInput.length) {
+          fileData += userInput[index]; // Append character to file data
+          fileDisplay.textContent = fileData; // Show updated file content
+          index++;
+          setTimeout(typeWriting, 150); // Delay between characters
+        } else {
+          display.innerHTML = `<p>Data written successfully!</p>`;
+          document.getElementById("read-section").style.display = "block";
+        }
+      }
+      typeWriting();
+    }
+
+    // Read simulation
+    function readFromFile() {
+      const display = document.getElementById("result-display");
+      display.innerHTML = `<p>Reading file contents:</p>`;
+      const fileDisplay = document.getElementById("file-content");
+
+      highlightLines([28]);
+      showExplanation('fgets(data, sizeof(data), fp) reads a line from the file.');
+
+      let index = 0;
+      fileDisplay.innerHTML = ""; // Clear display for reading highlight
+
+      // Highlight reading for 3 seconds before closing highlight
+      setTimeout(() => {
+        function typeReading() {
+          if (index < fileData.length) {
+            fileDisplay.innerHTML += fileData[index];
+            index++;
+            setTimeout(typeReading, 100);
+          } else {
+            setTimeout(() => {
+              highlightLines([31]);
+              showExplanation('fclose(fp) safely closes the file after reading.');
+              display.innerHTML += `<p>Read complete!</p>`;
+            }, 1000); // Highlight fclose after read completes
+          }
+        }
+        typeReading();
+      }, 1000); // Delay highlight before read begins
+    }
+  </script>
+</body>
+</html>
