@@ -6,6 +6,12 @@
   <title>Factorial Recursion Visualization</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       display: flex;
       font-family: 'Arial', sans-serif;
@@ -13,6 +19,63 @@
       margin: 0;
       height: 100vh;
       overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background-color: #1e293b;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar h2 {
+      color: #facc15;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .menu {
+      list-style: none;
+    }
+
+    .menu-item {
+      background-color: #334155;
+      padding: 15px;
+      margin: 10px 0;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #facc15;
+      color: black;
+    }
+
+    /* Page Content */
+    .content-container {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+    }
+
+    .header {
+      background-color: #10b981;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 1.5rem;
+    }
+
+    /* Code Section and Visualization */
+    .main-content {
+      display: flex;
+      flex: 1;
     }
 
     /* Code Section on the Left */
@@ -35,7 +98,7 @@
       background-color: rgba(76, 175, 80, 0.6);
     }
 
-    /* Visualization Section on the Right */
+    /* Visualization Section */
     .visualization-container {
       flex: 1;
       padding: 20px;
@@ -111,7 +174,7 @@
 
     .result-message {
       font-size: 1.5rem;
-      color: #16a34a;
+      color: #4caf50;
       margin-top: 10px;
       text-align: center;
     }
@@ -124,42 +187,62 @@
   </style>
 </head>
 <body>
-  <div class="code-container">
-    <pre id="code">
-      #include &lt;stdio.h&gt;
-
-      int factorial(int n) {
-          if (n == 1) {
-              return 1;
-          } else {
-              return n * factorial(n - 1);
-          }
-      }
-
-      int main() {
-          int num;
-          printf("Enter a number: ");
-          scanf("%d", &num);
-          int result = factorial(num);
-          printf("Factorial of %d is %d", num, result);
-          return 0;
-      }
-    </pre>
+  <div class="sidebar">
+    <h2>Recursion Concepts</h2>
+    <ul class="menu">
+      <li class="menu-item" onclick="location.href='../recur_theory.html'">Theory</li>
+      <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">Algorithm</li>
+      <li class="menu-item" onclick="location.href='../Flowcharts/recur_flow.html'">Flowchart</li>
+      <li class="menu-item" onclick="location.href='../Quiz/recur_quiz.html'">Quiz</li>
+    </ul>
   </div>
 
-  <div class="visualization-container">
-    <h1>Factorial Recursion Visualization</h1>
-    <div class="input-section">
-      <input type="number" id="userInput" placeholder="Enter a number" min="1" max="10" />
-      <button onclick="startVisualization()">Visualize Factorial</button>
-    </div>
+  <div class="content-container">
+    <div class="header">Factorial Recursion Visualization</div>
+    <div class="main-content">
+      <div class="code-container">
+        <pre id="code">
+#include &lt;stdio.h&gt;
 
-    <div id="visualizationSteps"></div>
-    <div class="result-message" id="multiplicationMessage"></div>
-    <div class="result-message" id="resultMessage"></div>
+int factorial(int n) {
+    if (n == 1) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+
+int main() {
+    int num;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+    int result = factorial(num);
+    printf("Factorial of %d is %d", num, result);
+    return 0;
+}
+        </pre>
+      </div>
+
+      <div class="visualization-container">
+        <h1>Factorial Recursion Visualization</h1>
+        <div class="input-section">
+          <input type="number" id="userInput" placeholder="Enter a number" min="1" max="10" />
+          <button onclick="startVisualization()">Visualize Factorial</button>
+        </div>
+
+        <div id="visualizationSteps"></div>
+        <div class="result-message" id="multiplicationMessage"></div>
+        <div class="result-message" id="resultMessage"></div>
+      </div>
+    </div>
   </div>
 
   <script>
+    function showContent(section) {
+      alert(`Displaying content for: ${section}`);
+      // Replace this with actual dynamic content updates in the future.
+    }
+
     let factorialResult;
     let multiplicationSteps = []; // To store multiplication steps
 
@@ -175,7 +258,7 @@
     function highlightCodeLine(lineNumber) {
       const codeContainer = document.getElementById("code");
       const codeLines = codeContainer.textContent.split("\n");
-  
+
       codeContainer.innerHTML = codeLines
         .map((line, index) => {
             let escapedLine = escapeHTML(line); // Escape HTML entities
@@ -184,15 +267,12 @@
               : escapedLine;
           })
           .join("\n");
-      }
+    }
 
-    // Recursive factorial visualization
     async function factorial(n, parent) {
-      // Create box and arrow container
       const stepContainer = document.createElement("div");
       stepContainer.className = "step-container";
 
-      // Render the current step as a box
       const box = document.createElement("div");
       box.className = "recursion-box";
       box.textContent = `f(${n})`;
@@ -204,14 +284,13 @@
 
       parent.appendChild(stepContainer);
 
-      await sleep(1000); // Pause to visualize the step
+      await sleep(1000);
 
-      // Highlight corresponding code
       highlightCodeLine(n === 1 ? 4 : 6);
 
       if (n === 1) {
         arrow.textContent = " → 1 (Base Case)";
-        multiplicationSteps.push(1);  // Add 1 when the base case is reached
+        multiplicationSteps.push(1);
         await sleep(1000);
         return 1;
       }
@@ -220,7 +299,7 @@
       const result = n * (await factorial(n - 1, parent));
 
       box.textContent += ` → ${result}`;
-      multiplicationSteps.push(n); // Track the current multiplication
+      multiplicationSteps.push(n);
       highlightCodeLine(15);
 
       return result;
@@ -238,14 +317,13 @@
         return;
       }
 
-      visualizationSteps.innerHTML = ""; // Reset visualization
-      multiplicationMessage.textContent = ""; // Reset multiplication message
-      resultMessage.textContent = ""; // Clear previous result
-      multiplicationSteps = []; // Reset multiplication steps
+      visualizationSteps.innerHTML = "";
+      multiplicationMessage.textContent = "";
+      resultMessage.textContent = "";
+      multiplicationSteps = [];
 
       factorialResult = await factorial(n, visualizationSteps);
 
-      // Display multiplication breakdown and result
       multiplicationMessage.textContent = `${multiplicationSteps.join(" * ")}`;
       resultMessage.textContent = `Factorial of ${n} is ${factorialResult}`;
     }
