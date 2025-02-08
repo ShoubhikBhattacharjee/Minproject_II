@@ -1,0 +1,18 @@
+
+C - Magine Directory Structure:
+
+C - Magine Main Directory
+	Categories Directories
+		Algorithms Directory
+		Flowcharts Directory
+		Quiz Directory
+		Simulations Directory
+		Theory Files (Control moves to these files when a program is chosen from the list of programs in the category)
+	Image Directory
+		Image Files
+	CSS Directory
+		CSS Files
+
+
+Program Flow:
+Home Page --> Categories (New Tab) --> Theory Page (New Tab) --> Algorithms / Flowcharts / Quiz / Simulations (Same Tab)
