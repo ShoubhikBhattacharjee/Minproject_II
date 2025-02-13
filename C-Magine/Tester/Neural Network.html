@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neural Network Background Demo</title>
+  <style>
+    /* Remove any default spacing and hide scrollbars */
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #111; /* dark background for contrast */
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="network"></canvas>
+  <script>
+    // Get canvas and context
+    const canvas = document.getElementById("network");
+    const ctx = canvas.getContext("2d");
+
+    // Set canvas size to full window size
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    // Update canvas dimensions on window resize
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    // Define the Particle (node) class
+    class Particle {
+      constructor(x, y, vx, vy) {
+        this.x = x;
+        this.y = y;
+        this.vx = vx;
+        this.vy = vy;
+        this.radius = 3;
+      }
+      
+      // Update particle position and bounce off edges
+      update() {
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+        this.x += this.vx;
+        this.y += this.vy;
+      }
+      
+      // Draw the particle as a glowing circle
+      draw() {
+        ctx.beginPath();
+        let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+        gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
+        gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+        ctx.fillStyle = gradient;
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Create an array of particles
+    const particles = [];
+    const particleCount = 100; // Adjust for more or fewer nodes
+    for (let i = 0; i < particleCount; i++) {
+      const x = Math.random() * width;
+      const y = Math.random() * height;
+      // Random velocity between -0.5 and 0.5
+      const vx = (Math.random() - 0.5) * 1;
+      const vy = (Math.random() - 0.5) * 1;
+      particles.push(new Particle(x, y, vx, vy));
+    }
+
+    // Function to connect particles that are close enough
+    function connectParticles() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          // Draw a line if the particles are within 100 pixels of each other
+          if (distance < 100) {
+            ctx.beginPath();
+            // Line opacity fades with distance
+            ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 100})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    // Animation loop
+    function animate() {
+      // Clear canvas with a semi-transparent fill for a slight motion blur effect
+      ctx.fillStyle = "#111";
+      ctx.fillRect(0, 0, width, height);
+      
+      // Update and draw each particle
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      
+      // Draw connecting lines between particles
+      connectParticles();
+
+      // Loop the animation
+      requestAnimationFrame(animate);
+    }
+
+    // Start the animation
+    animate();
+  </script>
+</body>
+</html>

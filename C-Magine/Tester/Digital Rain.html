@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Matrix Digital Rain</title>
+  <style>
+    /* Remove default margins and hide scrollbars */
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+  <script>
+    // Get the canvas element and set its dimensions
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    // Set canvas to full window size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Characters for the rain effect
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
+    const lettersArray = letters.split('');
+
+    // Set the font size and calculate the number of columns
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+
+    // An array of drop positions for each column
+    const drops = Array.from({ length: columns }, () => 1);
+
+    // The draw function, called at an interval to animate the effect
+    function draw() {
+      // Create a semi-transparent black background to fade previous frames
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Set the text color and font
+      ctx.fillStyle = '#0F0'; // Matrix green
+      ctx.font = `${fontSize}px monospace`;
+
+      // Loop over the columns
+      for (let i = 0; i < drops.length; i++) {
+        // Pick a random character
+        const text = lettersArray[Math.floor(Math.random() * lettersArray.length)];
+        // Draw the character at the appropriate position
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        // Reset drop to the top randomly after it reaches the bottom
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        // Move drop downwards
+        drops[i]++;
+      }
+    }
+
+    // Update the canvas every 33 milliseconds (~30fps)
+    setInterval(draw, 33);
+
+    // Optional: Adjust canvas size on window resize
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>

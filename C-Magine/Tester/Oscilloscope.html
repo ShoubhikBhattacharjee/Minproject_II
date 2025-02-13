@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Oscilloscope Effect Background</title>
+  <style>
+    /* Ensure the canvas covers the entire viewport */
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="oscilloscope"></canvas>
+  <script>
+    const canvas = document.getElementById('oscilloscope');
+    const ctx = canvas.getContext('2d');
+
+    // Resize canvas to fill the screen
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    let time = 0;
+
+    function animate() {
+      // Create a fading trail effect by drawing a semi-transparent overlay.
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Settings for the oscilloscope wave
+      const midY = canvas.height / 2;
+      const amplitude = canvas.height / 4;  // Adjust amplitude relative to the viewport
+      const frequency = 0.005;              // Adjust frequency for wave density
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#6e0000';          // Classic green for an oscilloscope look
+
+      // Begin drawing the sine wave
+      ctx.beginPath();
+      for (let x = 0; x < canvas.width; x++) {
+        const y = midY + amplitude * Math.sin(frequency * (x + time));
+        if (x === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+      ctx.stroke();
+
+      // Increase the time variable to animate the wave
+      time += 5;
+      requestAnimationFrame(animate);
+    }
+
+    // Start the animation loop
+    animate();
+  </script>
+</body>
+</html>

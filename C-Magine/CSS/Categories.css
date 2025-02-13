@@ -1,7 +1,28 @@
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Basic Styles */
 body {
   font-family: "Arial", sans-serif;
-  background: linear-gradient(135deg, #e7eff6, #f8f9fa);
+  /*background: linear-gradient(135deg, #e7eff6, #f8f9fa);*/
   height: 100%;
   margin: 0;
   display: flex;
@@ -9,6 +30,9 @@ body {
   align-items: flex-start;
   overflow-y: scroll;
   padding: 40px 0;
+  background: linear-gradient(45deg, #f93402, #965342, #e7eff6, #f8f9fa);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
 }
 
 .container {
