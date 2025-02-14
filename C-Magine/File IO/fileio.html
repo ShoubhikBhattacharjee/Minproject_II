@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>File Management Simulation in C</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Courier New', monospace;
+      display: flex;
+      height: 100vh;
+      background-color: #f5f5f5;
+    }
+
     .sidebar {
       width: 250px;
       background-color: #1e293b;
@@ -13,6 +26,8 @@
       flex-direction: column;
       padding: 20px;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      height: 100%;
     }
 
     .sidebar h2 {
@@ -23,6 +38,7 @@
 
     .menu {
       list-style: none;
+      padding: 0;
     }
 
     .menu-item {
@@ -33,27 +49,27 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s;
+      color: white;
     }
 
     .menu-item:hover {
-      background-color: #facc15;
-      color: black;
+      filter: brightness(1.2);
     }
 
-    body {
-      font-family: 'Courier New', monospace;
+    .content {
+      margin-left: 270px;
+      padding: 20px;
+      width: calc(100% - 270px);
       display: flex;
       justify-content: space-between;
-      padding: 20px;
-      background-color: #f5f5f5;
     }
 
-    #left-section, #right-section {
+    .section {
       width: 48%;
-    }
-
-    h2 {
-      color: #333;
+      background-color: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     pre {
@@ -62,6 +78,7 @@
       padding: 10px;
       overflow-x: auto;
       font-size: 16px;
+      white-space: pre-wrap;
     }
 
     .highlight {
@@ -85,6 +102,7 @@
       padding: 10px;
       margin-top: 10px;
       cursor: pointer;
+      width: 100%;
     }
 
     button:hover {
@@ -93,16 +111,8 @@
 
     label {
       font-weight: bold;
-    }
-
-    #result-display {
+      display: block;
       margin-top: 10px;
-    }
-
-    .code-explanation {
-      color: darkgreen;
-      font-style: italic;
-      margin-top: 5px;
     }
   </style>
 </head>
@@ -116,166 +126,139 @@
       <li class="menu-item" onclick="location.href='../Quiz/recur_quiz.html'">Quiz</li>
     </ul>
   </div>
-  <div id="left-section">
-    <h2>C Program for File Operations</h2>
-    <pre id="c-code">
-1: #include <stdio.h>
-2: int main() {
-3:     FILE *fp;
-4:     char filename[50], data[100];
-5:
-6:     // Step 1: Create a file
-7:     printf("Enter file name to create: ");
-8:     scanf("%s", filename);
-9:     fp = fopen(filename, "a");  // Open file in append mode to write at the end
-10:    if (fp == NULL) {
-11:        printf("File creation failed!\n");
-12:        return 1;
-13:    }
-14:
-15:    // Step 2: Write to file
-16:    printf("Enter data to write: ");
-17:    scanf(" %[^\n]", data);
-18:    fprintf(fp, "%s\n", data);  // Write data with newline
-19:    fclose(fp);       // fclose() closes the file safely
-20:
-21:    // Step 3: Read from file
-22:    fp = fopen(filename, "r");
-23:    if (fp == NULL) {
-24:        printf("File read failed!\n");
-25:        return 1;
-26:    }
-27:    printf("Reading file contents:\n");
-28:    while (fgets(data, sizeof(data), fp) != NULL) {
-29:        printf("%s", data);
-30:    }
-31:    fclose(fp);  // fclose() closes the file
-32:    return 0;
-33: }
-    </pre>
-  </div>
+  
+  <div class="content">
+    <div class="section">
+      <h2>C Program for File Operations</h2>
+      <pre id="c-code">
+#include <stdio.h>
+int main() {
+    FILE *fp;
+    char filename[50], data[100];
 
-  <div id="right-section">
-    <h2>Simulation and Visualization</h2>
-    <div>
+    printf("Enter file name to create: ");
+    scanf("%s", filename);
+    fp = fopen(filename, "a");
+    if (fp == NULL) {
+        printf("File creation failed!\n");
+        return 1;
+    }
+    
+    printf("Enter data to write: ");
+    scanf(" %[^"]", data);
+    fprintf(fp, "%s\n", data);
+    fclose(fp);
+    
+    fp = fopen(filename, "r");
+    if (fp == NULL) {
+        printf("File read failed!\n");
+        return 1;
+    }
+    
+    printf("Reading file contents:\n");
+    while (fgets(data, sizeof(data), fp) != NULL) {
+        printf("%s", data);
+    }
+    fclose(fp);
+    return 0;
+}
+      </pre>
+    </div>
+
+    <div class="section">
+      <h2>Simulation and Visualization</h2>
       <label>Enter file name to create: </label>
       <input type="text" id="filename" placeholder="example.txt">
-    </div>
-    <button onclick="createFile()">Create File</button>
+      <button onclick="createFile()">Create File</button>
 
-    <div id="file-content" contenteditable="false">
-      <!-- Simulated file content -->
-    </div>
+      <div id="file-content"></div>
+      <div id="result-display"></div>
 
-    <div id="result-display"></div>
+      <div id="write-section" style="display: none;">
+        <label>Enter data to write: </label>
+        <input type="text" id="filedata" placeholder="Write your content here">
+        <button onclick="writeToFile()">Write Data</button>
+      </div>
 
-    <div id="write-section" style="display: none;">
-      <label>Enter data to write: </label>
-      <input type="text" id="filedata" placeholder="Write your content here">
-      <button onclick="writeToFile()">Write Data</button>
-    </div>
-
-    <div id="read-section" style="display: none;">
-      <button onclick="readFromFile()">Read File Contents</button>
+      <div id="read-section" style="display: none;">
+        <button onclick="readFromFile()">Read File Contents</button>
+      </div>
     </div>
   </div>
 
   <script>
-    let fileData = ""; // Emulates content inside the file
-    const codeLines = document.querySelectorAll("#c-code");
+    let fileData = "";
 
-    // Clear code highlight
-    function clearCodeHighlights() {
-      const codeBlock = document.querySelector("#c-code");
-      codeBlock.innerHTML = codeBlock.innerHTML.replace(/<mark>/g, "").replace(/<\/mark>/g, "");
+    function highlightCode(line) {
+      const codeBlock = document.getElementById("c-code");
+      let lines = codeBlock.innerHTML.split('\n');
+      codeBlock.innerHTML = lines.map((l, i) => (i + 1 === line ? `<mark>${l}</mark>` : l)).join('\n');
     }
 
-    // Highlight specific C code lines
-    function highlightLines(lines) {
-      clearCodeHighlights();
-      const codeContent = codeLines[0].innerHTML.split("\n");
-      const highlighted = codeContent.map((line, index) =>
-        lines.includes(index + 1) ? `<mark>${line}</mark>` : line
-      );
-      codeLines[0].innerHTML = highlighted.join("\n");
-    }
-
-    // Show function explanation
-    function showExplanation(text) {
-      const display = document.getElementById("result-display");
-      display.innerHTML = `<p class="code-explanation">${text}</p>`;
-    }
-
-    // Create File simulation
     function createFile() {
       const filename = document.getElementById("filename").value;
-      const display = document.getElementById("result-display");
-      display.innerHTML = `<p>Creating file named "${filename}"... Done!</p>`;
-      fileData = ""; // Reset file content
+      document.getElementById("result-display").innerHTML = `<p>Creating file named "${filename}"... Done!</p>`;
+      fileData = "";
       document.getElementById("file-content").textContent = fileData;
       document.getElementById("write-section").style.display = "block";
-      highlightLines([9]);
-      showExplanation('fopen(filename, "a") opens the file for appending (writing at the end).');
+      document.getElementById("read-section").style.display = "block"; // Show the Read File button
+      highlightCode(14);
     }
 
-    // Write simulation (animated character-by-character)
     function writeToFile() {
-      const userInput = document.getElementById("filedata").value + '\n'; // Add newline after data
-      const fileDisplay = document.getElementById("file-content");
-      const display = document.getElementById("result-display");
-
-      display.innerHTML = `<p>Writing data character by character...</p>`;
-      fileDisplay.textContent = fileData; // Show existing file content
-
-      let index = 0;
-
-      highlightLines([18]);
-      showExplanation("fprintf(fp, \"%s\\n\", data) writes user input with a newline.");
-
-      // Character-by-character writing animation
-      function typeWriting() {
-        if (index < userInput.length) {
-          fileData += userInput[index]; // Append character to file data
-          fileDisplay.textContent = fileData; // Show updated file content
-          index++;
-          setTimeout(typeWriting, 150); // Delay between characters
-        } else {
-          display.innerHTML = `<p>Data written successfully!</p>`;
-          document.getElementById("read-section").style.display = "block";
-        }
-      }
-      typeWriting();
+      const data = document.getElementById("filedata").value;
+      document.getElementById("file-content").textContent = "Writing data...\n";
+      resetHighlight();
+      highlightCode(15);
+      highlightCode(16);
+      setTimeout(() => {
+        resetHighlight();
+      }, 1000);
+      simulateTyping(data, () => {
+        fileData += data + "\n";
+        document.getElementById("file-content").textContent = fileData;
+        highlightCode(17); // Highlight fclose(fp)
+        setTimeout(() => {
+          resetHighlight(); // Reset highlighting after 1-2 seconds delay
+        }, 1000); // Delay before reset
+      });
     }
 
-    // Read simulation
     function readFromFile() {
-      const display = document.getElementById("result-display");
-      display.innerHTML = `<p>Reading file contents:</p>`;
-      const fileDisplay = document.getElementById("file-content");
-
-      highlightLines([28]);
-      showExplanation('fgets(data, sizeof(data), fp) reads a line from the file.');
-
-      let index = 0;
-      fileDisplay.innerHTML = ""; // Clear display for reading highlight
-
-      // Highlight reading for 3 seconds before closing highlight
+      document.getElementById("file-content").textContent = "Reading file contents...\n";
+      highlightCode(19);
       setTimeout(() => {
-        function typeReading() {
-          if (index < fileData.length) {
-            fileDisplay.innerHTML += fileData[index];
-            index++;
-            setTimeout(typeReading, 100);
-          } else {
-            setTimeout(() => {
-              highlightLines([31]);
-              showExplanation('fclose(fp) safely closes the file after reading.');
-              display.innerHTML += `<p>Read complete!</p>`;
-            }, 1000); // Highlight fclose after read completes
-          }
+        resetHighlight();
+      }, 1000);
+      highlightCode(25);
+      setTimeout(() => {
+        resetHighlight();
+      }, 1000);
+      simulateTyping(fileData, () => {
+        document.getElementById("file-content").textContent = fileData;
+        highlightCode(29); // Highlight fclose(fp)
+        setTimeout(() => {
+          resetHighlight(); // Reset highlighting after 1-2 seconds delay
+        }, 1000); // Delay before reset
+      });
+    }
+
+    function simulateTyping(text, callback) {
+      let index = 0;
+      let interval = setInterval(() => {
+        document.getElementById("file-content").textContent += text.charAt(index);
+        index++;
+        if (index === text.length) {
+          clearInterval(interval);
+          if (callback) callback();
         }
-        typeReading();
-      }, 1000); // Delay highlight before read begins
+      }, 100); // Adjust the speed of typing here
+    }
+
+    function resetHighlight() {
+      const codeBlock = document.getElementById("c-code");
+      let lines = codeBlock.innerHTML.split('\n');
+      codeBlock.innerHTML = lines.map(l => l.replace('<mark>', '').replace('</mark>', '')).join('\n');
     }
   </script>
 </body>

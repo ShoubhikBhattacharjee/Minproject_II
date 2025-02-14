@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Copy Program Visualization</title>
+
+    <!-- Font Awesome & Bootstrap CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Reset and basic styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Courier New', monospace;
+        display: flex;
+        height: 100vh;
+        background-color: #f5f5f5;
+      }
+
+      /* Sidebar styles */
+      .sidebar {
+        width: 250px;
+        background-color: #1e293b;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        height: 100%;
+      }
+
+      .sidebar h2 {
+        color: #facc15;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .menu {
+        list-style: none;
+        padding: 0;
+      }
+
+      .menu-item {
+        background-color: #334155;
+        padding: 15px;
+        margin: 10px 0;
+        text-align: center;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        color: white;
+      }
+
+      .menu-item:hover {
+        filter: brightness(1.2);
+      }
+
+      /* Main content container */
+      .content {
+        margin-left: 270px;
+        padding: 20px;
+        width: calc(100% - 270px);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* Left Panel (Code) */
+      .code-panel {
+        height: 100%;
+        background-color: #1e1e1e;
+        color: #dcdcdc;
+        padding: 20px;
+        overflow-y: auto;
+        width: 50%;
+      }
+
+      pre {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .highlight {
+        background-color: rgba(255, 235, 59, 0.6);
+      }
+
+      /* Right Panel (Visualization) */
+      .visual-panel {
+        height: 100%;
+        background-color: #1e293b;
+        color: #fff;
+        padding: 20px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 45%;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 4px;
+        border: none;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #03a9f4;
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 15px;
+      }
+
+      button:hover {
+        background-color: #0288d1;
+      }
+
+      .tracker {
+        margin: 10px 0;
+        font-size: 18px;
+        color: #00c853;
+      }
+
+      .file-box {
+        background: #fff;
+        color: #000;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 10px;
+        min-height: 150px;
+        white-space: pre-wrap;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>File Operations</h2>
+      <ul class="menu">
+        <li class="menu-item" onclick="location.href='../recur_theory.html'">Theory</li>
+        <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">Algorithm</li>
+        <li class="menu-item" onclick="location.href='../Flowcharts/recur_flow.html'">Flowchart</li>
+        <li class="menu-item" onclick="location.href='../Quiz/recur_quiz.html'">Quiz</li>
+      </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content">
+      <!-- Left Panel: Code Display -->
+      <div class="code-panel" id="codePanel">
+        <h2>C File Copy Program Code</h2>
+        <pre id="code">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+            
+int main() {
+    char srcFile[50], destFile[50], ch;
+    FILE *fs, *fd;
+            
+    // Step 1: Get file names from user
+    printf("Enter source file name: ");
+    scanf("%s", srcFile);
+    printf("Enter destination file name: ");
+    scanf("%s", destFile);
+
+    // Step 2: Open source file for writing
+    fp = fopen(srcFile, "a");
+    printf("Type source file content here...");
+    scanf(" %[^"]", data);
+    fprintf(fp, "%s\n", data);
+    fclose(fp);
+            
+    // Step 3: Open source file for reading
+    fs = fopen(srcFile, "r");
+    if (fs == NULL) {
+        printf("Error opening source file!\n");
+        return 1;
+    }
+            
+    // Step 4: Open destination file for writing(copying)
+    fd = fopen(destFile, "w");
+    if (fd == NULL) {
+        printf("Error creating destination file!\n");
+        fclose(fs);
+        return 1;
+    }
+            
+    // Step 5: Copy contents from source to destination
+    while ((ch = fgetc(fs)) != EOF) {
+        fputc(ch, fd);
+    }
+            
+    // Step 6: Close both files
+    fclose(fs);
+    fclose(fd);
+            
+    printf("File copied successfully!\n");
+    return 0;
+}
+        </pre>
+      </div>
+
+      <!-- Right Panel: Visualization -->
+      <div class="visual-panel">
+        <h2>File Copy Visualization</h2>
+        <div class="form-group">
+          <label for="srcName">Source File Name:</label>
+          <input type="text" id="srcName" placeholder="e.g., source.txt" />
+        </div>
+        <div class="form-group">
+          <label for="destName">Destination File Name:</label>
+          <input type="text" id="destName" placeholder="e.g., dest.txt" />
+        </div>
+        <button onclick="createFiles()">Create Files</button>
+        <div id="filesStatus" class="tracker">Files not created yet.</div>
+
+        <div class="form-group">
+          <label for="srcContent">Enter content for Source File:</label>
+          <textarea id="srcContent" placeholder="Type source file content here..."></textarea>
+        </div>
+        <button onclick="writeSourceFile()">Write to Source File</button>
+        <div id="sourceBox" class="file-box"></div>
+
+        <button onclick="copyFile()">Copy to Destination File</button>
+        <div id="destBox" class="file-box"></div>
+
+        <div id="trackerDisplay" class="tracker">Tracker messages will appear here.</div>
+      </div>
+    </div>
+
+    <script>
+        // Simulated file contents
+        let sourceData = "";
+        let destData = "";
+      
+        // Code highlighting utility
+        const codeLines = document.getElementById("code").innerText.split("\n");
+      
+        // Function to highlight a line and preserve existing highlights
+        function highlightCodeLine(lineNumber) {
+          const codeContainer = document.getElementById("code");
+          const lineElements = codeContainer.children;
+      
+          // Only add the highlight if the line is not already highlighted
+          const lines = codeContainer.innerHTML.split("\n");
+          lines[lineNumber] = `<span class="highlight">${lines[lineNumber]}</span>`;
+          codeContainer.innerHTML = lines.join("\n");
+        }
+      
+        // Reset code highlighting
+        function resetHighlight() {
+          const codeContainer = document.getElementById("code");
+          codeContainer.innerHTML = codeLines.join("\n"); // Reset to original code
+        }
+      
+        // Utility delay
+        function delay(ms) {
+          return new Promise(resolve => setTimeout(resolve, ms));
+        }
+      
+        // Create files simulation (make it async)
+        async function createFiles() {
+          const srcName = document.getElementById("srcName").value;
+          const destName = document.getElementById("destName").value;
+          const tracker = document.getElementById("filesStatus");
+          if (!srcName || !destName) {
+            tracker.textContent = "Please enter both file names.";
+            return;
+          }
+          sourceData = ""; // Reset source file content
+          destData = "";   // Reset destination file content
+          document.getElementById("sourceBox").textContent = "";
+          document.getElementById("destBox").textContent = "";
+          tracker.textContent = `Source file "${srcName}" and Destination file "${destName}" created.`;
+          
+          resetHighlight();
+          // Highlight lines 9 and 11
+          highlightCodeLine(10);
+          highlightCodeLine(12);
+          await delay(1000);
+          resetHighlight();
+          highlightCodeLine(15);
+          await delay(1000);
+          resetHighlight();
+          highlightCodeLine(16);
+        }
+      
+        // Write to source file (animated)
+        async function writeSourceFile() {
+          const content = document.getElementById("srcContent").value;
+          const sourceBox = document.getElementById("sourceBox");
+          const tracker = document.getElementById("trackerDisplay");
+          if (!content) {
+            tracker.textContent = "Please enter content to write to the source file.";
+            return;
+          }
+          sourceData = "";
+          sourceBox.textContent = "";
+          tracker.textContent = "Writing to source file...";
+          resetHighlight();
+          highlightCodeLine(17); // Simulate line for writing
+          highlightCodeLine(18);
+          await delay(1000);
+          resetHighlight();
+          highlightCodeLine(19);
+          await delay(1000);
+          resetHighlight();
+          highlightCodeLine(22);
+          for (let i = 0; i < content.length; i++) {
+            sourceData += content[i];
+            sourceBox.textContent = sourceData;
+            await delay(100);
+          }
+          // Add newline after write so subsequent writes start on a new line
+          sourceData += "\n";
+          sourceBox.textContent = sourceData;
+          tracker.textContent = "Source file written successfully!";
+        }
+      
+        // Simulate file copy
+        async function copyFile() {
+          const tracker = document.getElementById("trackerDisplay");
+          tracker.textContent = "Copying file...";
+          resetHighlight();
+          highlightCodeLine(29); // Highlight while loop for copying
+          await delay(1000);
+          resetHighlight();
+          highlightCodeLine(38);
+          await delay(1000);
+          destData = "";
+          // Simulate copying character-by-character
+          for (let i = 0; i < sourceData.length; i++) {
+            destData += sourceData[i];
+            document.getElementById("destBox").textContent = destData;
+            await delay(50);
+          }
+          tracker.textContent = "File copied successfully!";
+          resetHighlight();
+          highlightCodeLine(42); // Highlight fclose line
+          highlightCodeLine(43);
+        }
+      
+        // Visualization of code highlighting steps (for demonstration)
+        async function startVisualization() {
+          const tracker = document.getElementById("trackerDisplay");
+          tracker.textContent = "Starting file copy visualization...";
+          // Reset highlights first
+          resetHighlight();
+          // Simulate highlighting steps corresponding to the C code:
+          highlightCodeLine(2);
+          await delay(1500);
+          highlightCodeLine(7);
+          tracker.textContent = "Files created.";
+          await delay(1500);
+          highlightCodeLine(16);
+          tracker.textContent = "Writing data to source file.";
+          await delay(1500);
+          highlightCodeLine(27);
+          tracker.textContent = "Copying file contents.";
+          await delay(1500);
+          highlightCodeLine(31);
+          tracker.textContent = "Closing files. Copy complete!";
+        }
+      
+        // On page load, highlight lines 9 and 11
+        window.onload = function() {
+          highlightCodeLine(9);
+          highlightCodeLine(11);
+        };
+      </script>              
+  </body>
+</html>
