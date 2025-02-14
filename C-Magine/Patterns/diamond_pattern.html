@@ -9,43 +9,8 @@
       box-sizing: border-box;
     }
 
-    .sidebar1 {
-      width: 250px;
-      background-color: #1e293b;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .sidebar1 h2 {
-      color: #facc15;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .menu {
-      list-style: none;
-    }
-
-    .menu-item {
-      background-color: #334155;
-      padding: 15px;
-      margin: 10px 0;
-      text-align: center;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .menu-item:hover {
-      background-color: #facc15;
-      color: black;
-    }
-
     body {
-      font-family: Arial, sans-serif;
+      font-family: "Courier New", Courier, monospace;
       background-color: #2e3b4e;
       color: #fff;
       display: flex;
@@ -62,12 +27,17 @@
 
     .sidebar {
       width: 50%;
-      background-color: #2f3640;
+      background-color: #1e293b;
       color: white;
       padding: 20px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
+    }
+
+    .sidebar h2 {
+      color: #facc15;
+      text-align: center;
     }
 
     .code-container {
@@ -95,6 +65,8 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      white-space: pre; /* Keep formatting intact */
+      font-family: "Courier New", Courier, monospace;
     }
 
     .pattern-row {
@@ -139,15 +111,6 @@
   </style>
 </head>
 <body>
-  <div class="sidebar1">
-    <h2>Diamond Pattern</h2>
-    <ul class="menu">
-      <li class="menu-item" onclick="location.href='../recur_theory.html'">Theory</li>
-      <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">Algorithm</li>
-      <li class="menu-item" onclick="location.href='../Flowcharts/recur_flow.html'">Flowchart</li>
-      <li class="menu-item" onclick="location.href='../Quiz/recur_quiz.html'">Quiz</li>
-    </ul>
-  </div>
   <div class="container">
     <!-- Code Section -->
     <div class="sidebar">
@@ -160,14 +123,20 @@ int main() {
     printf("Enter the number of rows: ");
     scanf("%d", &n);
     for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= i; j++) {
-            printf("* ");
+        for (int j = 1; j <= n - i; j++) {
+            printf(" ");
+        }
+        for (int j = 1; j <= (2 * i - 1); j++) {
+            printf("*");
         }
         printf("\n");
     }
     for (int i = n - 1; i >= 1; i--) {
-        for (int j = 1; j <= i; j++) {
-            printf("* ");
+        for (int j = 1; j <= n - i; j++) {
+            printf(" ");
+        }
+        for (int j = 1; j <= (2 * i - 1); j++) {
+            printf("*");
         }
         printf("\n");
     }
@@ -205,7 +174,7 @@ int main() {
     async function animateRow(row) {
       const rowElement = document.createElement("div");
       rowElement.className = "pattern-row";
-      rowElement.innerHTML = row;
+      rowElement.textContent = row;
       outputElement.appendChild(rowElement);
 
       setTimeout(() => {
@@ -225,23 +194,17 @@ int main() {
       outputElement.innerHTML = "";
       highlightCodeLine(2);
 
+      // Top half of the diamond (including the middle row)
       for (let i = 1; i <= n; i++) {
         highlightCodeLine(6);
-        let row = "";
-        for (let j = 1; j <= i; j++) {
-          highlightCodeLine(7);
-          row += "* ";
-        }
+        let row = " ".repeat(n - i) + "*".repeat(2 * i - 1);
         await animateRow(row);
       }
 
+      // Bottom half of the diamond
       for (let i = n - 1; i >= 1; i--) {
         highlightCodeLine(12);
-        let row = "";
-        for (let j = 1; j <= i; j++) {
-          highlightCodeLine(13);
-          row += "* ";
-        }
+        let row = " ".repeat(n - i) + "*".repeat(2 * i - 1);
         await animateRow(row);
       }
 
