@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>College Student Registration</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 10px 20px;
+        }
+        .register-container {
+            margin-top: 100px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 100%;
+        }
+        .form-control {
+            border-radius: 20px;
+        }
+        .toggle-password {
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+        .toggle-password:hover {
+            color: #000;
+        }
+        .login-text {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .login-text a {
+            color: #2575fc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .login-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <!-- Somaiya Logo -->
+            <a class="navbar-brand" href="https://kjsit.somaiya.edu.in/en" target="_blank">
+                <img src="../Images/somaiya_logo.jpg" alt="Somaiya Vidyavihar Logo" style="height: 40px">
+            </a>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+                <!-- Somaiya Trust Logo -->
+                <img src="../Images/Somaiya Trust Logo.jpg" alt="Somaiya Trust Logo" style="height: 40px" />
+                
+            
+            </div>
+        </div>
+    </nav>
+
+<div class="register-container">
+    <h3 class="text-center text-primary fw-bold">Student Registration</h3>
+    <form>
+        <div class="mb-3">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" placeholder="Enter your first name" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Surname</label>
+            <input type="text" class="form-control" placeholder="Enter your surname" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" placeholder="Enter your email" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Department</label>
+            <select class="form-control" required>
+                <option value="" selected disabled>Select Department</option>
+                <option>Computer Engineering</option>
+                <option>Electronics & Telecommunications</option>
+                <option>Artificial Intelligence & Data Science</option>
+                <option>Information Technology</option>
+            </select>
+        </div>
+        <div class="mb-3 position-relative">
+            <label class="form-label">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="Enter password" required>
+            <i class="fa-solid fa-eye toggle-password" onclick="togglePassword('password')"></i>
+        </div>
+        <div class="mb-3 position-relative">
+            <label class="form-label">Confirm Password</label>
+            <input type="password" id="confirm-password" class="form-control" placeholder="Confirm password" required>
+            <i class="fa-solid fa-eye toggle-password" onclick="togglePassword('confirm-password')"></i>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Register</button>
+        
+        <!-- Already have an account? Login -->
+        <div class="login-text">
+            <p>Already have an account? <a href="login.html">Login</a></p>
+        </div>
+    </form>
+</div>
+
+<script>
+    function togglePassword(fieldId) {
+        let field = document.getElementById(fieldId);
+        let icon = field.nextElementSibling;
+        if (field.type === "password") {
+            field.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            field.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
