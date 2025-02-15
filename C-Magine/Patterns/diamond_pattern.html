@@ -9,6 +9,41 @@
       box-sizing: border-box;
     }
 
+    .sidebar1 {
+      width: 250px;
+      background-color: #1e293b;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar1 h2 {
+      color: #facc15;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .menu {
+      list-style: none;
+    }
+
+    .menu-item {
+      background-color: #334155;
+      padding: 15px;
+      margin: 10px 0;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #facc15;
+      color: black;
+    }
+
     body {
       font-family: "Courier New", Courier, monospace;
       background-color: #2e3b4e;
@@ -27,7 +62,7 @@
 
     .sidebar {
       width: 50%;
-      background-color: #1e293b;
+      background-color: #2f3640;
       color: white;
       padding: 20px;
       overflow-y: auto;
@@ -61,7 +96,7 @@
       width: 50%;
       padding: 20px;
       overflow-y: auto;
-      background-color: #1e293b;
+      background-color: #2e3b4e;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -111,6 +146,15 @@
   </style>
 </head>
 <body>
+  <div class="sidebar1">
+    <h2>Diamond Pattern</h2>
+    <ul class="menu">
+      <li class="menu-item" onclick="location.href='../recur_theory.html'">Theory</li>
+      <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">Algorithm</li>
+      <li class="menu-item" onclick="location.href='../Flowcharts/recur_flow.html'">Flowchart</li>
+      <li class="menu-item" onclick="location.href='../Quiz/recur_quiz.html'">Quiz</li>
+    </ul>
+  </div>
   <div class="container">
     <!-- Code Section -->
     <div class="sidebar">
