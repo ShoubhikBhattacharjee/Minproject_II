@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Linked List Simulation</title>
+    <style>
+      /* Global Styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        height: 100vh;
+        overflow: hidden;
+      }
+      /* Sidebar: Fixed, non-scrollable */
+      .sidebar {
+        width: 250px;
+        background-color: #1e293b;
+        color: white;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        flex-shrink: 0;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .sidebar h2 {
+        color: #facc15;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .menu {
+        list-style: none;
+      }
+      .menu-item {
+        background-color: #334155;
+        padding: 15px;
+        margin: 10px 0;
+        text-align: center;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .menu-item:hover {
+        background-color: #facc15;
+        color: black;
+      }
+      /* Content Area: Scrollable */
+      .content-container {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow-y: auto;
+      }
+      .header {
+        background-color: #10b981;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      .main-content {
+        display: flex;
+        flex: 1;
+        min-height: 0; /* Enables scrolling */
+      }
+      /* Code Section (Left Panel) */
+      .code-container {
+        flex: 1;
+        background: #1e1e1e;
+        color: #dcdcdc;
+        padding: 20px;
+        overflow-y: auto;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        white-space: pre-wrap;
+      }
+      .highlight {
+        background-color: rgba(76, 175, 80, 0.6);
+      }
+      /* Visualization & Interaction Section (Right Panel) */
+      .visualization-container {
+        flex: 1;
+        padding: 20px;
+        background-color: #f1f5f9;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      .visualization-container h1 {
+        color: #333;
+        margin-bottom: 10px;
+      }
+      /* Linked List Visualization */
+      .list-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 20px 0;
+        padding: 10px;
+        border: 2px dashed #ccc;
+        min-height: 50px;
+        justify-content: center;
+      }
+      .node-box {
+        width: 60px;
+        height: 40px;
+        margin: 5px;
+        background-color: #facc15;
+        border: 1px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+      .arrow {
+        font-size: 1.2rem;
+        margin: 0 5px;
+        color: #333;
+      }
+      /* Console Output */
+      #consoleOutput p {
+        margin: 5px 0;
+        font-family: "Courier New", monospace;
+      }
+      /* Input & Button Styles */
+      .input-section {
+        margin-top: 10px;
+        text-align: center;
+      }
+      button {
+        background-color: #10b981;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background-color: #059669;
+      }
+      input[type="number"] {
+        padding: 8px;
+        font-size: 1rem;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        width: 120px;
+        text-align: center;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Linked List Concepts</h2>
+      <ul class="menu">
+        <li class="menu-item" onclick="alert('Linked List Theory')">
+          Theory
+        </li>
+        <li class="menu-item" onclick="alert('Linked List Algorithm')">
+          Algorithm
+        </li>
+        <li class="menu-item" onclick="alert('Linked List Flowchart')">
+          Flowchart
+        </li>
+        <li class="menu-item" onclick="alert('Linked List Quiz')">
+          Quiz
+        </li>
+      </ul>
+    </div>
+    <!-- Content Area -->
+    <div class="content-container">
+      <div class="header">Interactive Linked List Simulation</div>
+      <div class="main-content">
+        <!-- Code Container (Left Panel) -->
+        <div class="code-container">
+          <pre id="code">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Node* head = NULL;
+
+void insert(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = NULL;
+    if(head == NULL) {
+        head = newNode;
+    } else {
+        struct Node* temp = head;
+        while(temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+    printf("Inserted: %d\n", value);
+}
+
+void deleteNode(int value) {
+    if(head == NULL) {
+        printf("List is empty\n");
+        return;
+    }
+    if(head->data == value) {
+        struct Node* temp = head;
+        head = head->next;
+        free(temp);
+        printf("Deleted: %d\n", value);
+        return;
+    }
+    struct Node* temp = head;
+    while(temp->next != NULL && temp->next->data != value) {
+        temp = temp->next;
+    }
+    if(temp->next == NULL) {
+        printf("Value not found\n");
+    } else {
+        struct Node* toDelete = temp->next;
+        temp->next = temp->next->next;
+        free(toDelete);
+        printf("Deleted: %d\n", value);
+    }
+}
+
+void search(int value) {
+    struct Node* temp = head;
+    while(temp != NULL) {
+        if(temp->data == value) {
+            printf("Found: %d\n", value);
+            return;
+        }
+        temp = temp->next;
+    }
+    printf("Not Found: %d\n", value);
+}
+
+void display() {
+    if(head == NULL) {
+        printf("List is empty\n");
+        return;
+    }
+    printf("List: ");
+    struct Node* temp = head;
+    while(temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    int choice, value;
+    do {
+        printf("\n1. Insert\n2. Delete\n3. Search\n4. Display\n5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        switch(choice) {
+            case 1: printf("Enter value to insert: ");
+                    scanf("%d", &value);
+                    insert(value);
+                    break;
+            case 2: printf("Enter value to delete: ");
+                    scanf("%d", &value);
+                    deleteNode(value);
+                    break;
+            case 3: printf("Enter value to search: ");
+                    scanf("%d", &value);
+                    search(value);
+                    break;
+            case 4: display();
+                    break;
+            case 5: printf("Exiting...\n");
+                    break;
+            default: printf("Invalid choice\n");
+        }
+    } while(choice != 5);
+    return 0;
+}
+          </pre>
+        </div>
+        <!-- Visualization & Interaction (Right Panel) -->
+        <div class="visualization-container">
+          <h1>Interactive Operations</h1>
+          <!-- Menu Options -->
+          <div class="input-section" id="menuOptions">
+            <button onclick="simulateInsertPrompt()">Insert</button>
+            <button onclick="simulateDeletePrompt()">Delete</button>
+            <button onclick="simulateSearchPrompt()">Search</button>
+            <button onclick="simulateDisplay()">Display</button>
+          </div>
+          <!-- Insert Value Prompt -->
+          <div class="input-section" id="insertSection" style="display:none;">
+            <input type="number" id="insertValue" placeholder="Enter value" />
+            <button onclick="simulateInsert()">Submit Insert</button>
+          </div>
+          <!-- Delete Value Prompt -->
+          <div class="input-section" id="deleteSection" style="display:none;">
+            <input type="number" id="deleteValue" placeholder="Enter value" />
+            <button onclick="simulateDelete()">Submit Delete</button>
+          </div>
+          <!-- Search Value Prompt -->
+          <div class="input-section" id="searchSection" style="display:none;">
+            <input type="number" id="searchValue" placeholder="Enter value" />
+            <button onclick="simulateSearch()">Submit Search</button>
+          </div>
+          <!-- Linked List Visualization -->
+          <div id="listVisualization" class="list-container"></div>
+          <!-- Console Output -->
+          <div id="consoleOutput"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // --- Utility Functions ---
+      function escapeHTML(text) {
+        return text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      // Highlights a given code line (zero-indexed)
+      function highlightCodeLine(lineNumber) {
+        const codeContainer = document.getElementById("code");
+        const codeLines = codeContainer.textContent.split("\n");
+        codeContainer.innerHTML = codeLines
+          .map((line, index) => {
+            const escapedLine = escapeHTML(line);
+            return index === lineNumber
+              ? `<span class="highlight">${escapedLine}</span>`
+              : escapedLine;
+          })
+          .join("\n");
+      }
+
+      // Highlights a sequence of code lines one after the other.
+      async function highlightCodeSequence(lines, delay = 600) {
+        for (const line of lines) {
+          highlightCodeLine(line);
+          await sleep(delay);
+        }
+      }
+
+      // Sleep helper for simulation delays
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      // --- Simulation Variables ---
+      let simulatedList = []; // Represents the linked list
+
+      // Updates the graphical representation of the linked list
+      function updateListVisualization() {
+        const listContainer = document.getElementById("listVisualization");
+        listContainer.innerHTML = "";
+        if (simulatedList.length === 0) {
+          listContainer.textContent = "List is empty";
+          return;
+        }
+        simulatedList.forEach((value, index) => {
+          const nodeBox = document.createElement("div");
+          nodeBox.className = "node-box";
+          nodeBox.textContent = value;
+          listContainer.appendChild(nodeBox);
+          if (index < simulatedList.length - 1) {
+            const arrow = document.createElement("span");
+            arrow.className = "arrow";
+            arrow.textContent = "→";
+            listContainer.appendChild(arrow);
+          }
+        });
+      }
+
+      // Appends a message to the simulated console output
+      function logToConsole(message) {
+        const consoleOutput = document.getElementById("consoleOutput");
+        const p = document.createElement("p");
+        p.textContent = message;
+        consoleOutput.appendChild(p);
+        consoleOutput.scrollTop = consoleOutput.scrollHeight;
+      }
+
+      // --- Simulation Functions ---
+
+      // Show the insert prompt
+      function simulateInsertPrompt() {
+        document.getElementById("insertSection").style.display = "block";
+        document.getElementById("deleteSection").style.display = "none";
+        document.getElementById("searchSection").style.display = "none";
+      }
+
+      // Insert operation simulation
+      async function simulateInsert() {
+        document.getElementById("insertSection").style.display = "none";
+        const valueInput = document.getElementById("insertValue");
+        const value = parseInt(valueInput.value);
+        valueInput.value = "";
+        // Animate the insert function:
+        // If the list is empty, simulate the branch with head == NULL.
+        if (simulatedList.length === 0) {
+          await highlightCodeSequence([10, 11, 12, 13, 14, 15, 16, 24], 400);
+        } else {
+          await highlightCodeSequence([10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 24], 400);
+        }
+        simulatedList.push(value);
+        updateListVisualization();
+        logToConsole("Inserted: " + value);
+      }
+
+      // Show the delete prompt
+      function simulateDeletePrompt() {
+        document.getElementById("deleteSection").style.display = "block";
+        document.getElementById("insertSection").style.display = "none";
+        document.getElementById("searchSection").style.display = "none";
+      }
+
+      // Delete operation simulation
+      async function simulateDelete() {
+        document.getElementById("deleteSection").style.display = "none";
+        const valueInput = document.getElementById("deleteValue");
+        const value = parseInt(valueInput.value);
+        valueInput.value = "";
+        if (simulatedList.length === 0) {
+          await highlightCodeSequence([27, 28, 29, 30, 31], 400);
+          logToConsole("List is empty");
+          return;
+        }
+        // If the node to delete is at the head:
+        if (simulatedList[0] === value) {
+          await highlightCodeSequence([27, 32, 33, 34, 35, 36, 37], 400);
+          simulatedList.shift();
+          updateListVisualization();
+          logToConsole("Deleted: " + value);
+          return;
+        }
+        // For deletion in the middle (or end)
+        let index = simulatedList.indexOf(value);
+        if (index !== -1) {
+          await highlightCodeSequence([27, 39, 40, 41, 46, 47, 48, 49], 400);
+          simulatedList.splice(index, 1);
+          updateListVisualization();
+          logToConsole("Deleted: " + value);
+        } else {
+          // Value not found branch
+          await highlightCodeSequence([27, 39, 40, 43, 44], 400);
+          logToConsole("Value not found: " + value);
+        }
+      }
+
+      // Show the search prompt
+      function simulateSearchPrompt() {
+        document.getElementById("searchSection").style.display = "block";
+        document.getElementById("insertSection").style.display = "none";
+        document.getElementById("deleteSection").style.display = "none";
+      }
+
+      // Search operation simulation
+      async function simulateSearch() {
+        document.getElementById("searchSection").style.display = "none";
+        const valueInput = document.getElementById("searchValue");
+        const value = parseInt(valueInput.value);
+        valueInput.value = "";
+        if (simulatedList.length === 0) {
+          await highlightCodeSequence([53, 54, 55, 60, 61, 62], 400);
+          logToConsole("List is empty");
+          return;
+        }
+        if (simulatedList.indexOf(value) !== -1) {
+          await highlightCodeSequence([53, 54, 55, 56, 57, 58], 400);
+          logToConsole("Found: " + value);
+        } else {
+          await highlightCodeSequence([53, 54, 55, 60, 61, 62], 400);
+          logToConsole("Not Found: " + value);
+        }
+      }
+
+      // Display operation simulation
+      async function simulateDisplay() {
+        if (simulatedList.length === 0) {
+          await highlightCodeSequence([65, 66, 67, 68], 400);
+          logToConsole("List is empty");
+        } else {
+          await highlightCodeSequence([65, 70, 71, 72, 73, 74, 75, 76, 77], 400);
+          logToConsole("List: " + simulatedList.join(" "));
+        }
+      }
+    </script>
+  </body>
+</html>

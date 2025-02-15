@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Queue Simulation</title>
+    <style>
+      /* Global Styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        height: 100vh;
+        overflow: hidden;
+      }
+      /* Sidebar: Fixed, no scrolling */
+      .sidebar {
+        width: 250px;
+        background-color: #1e293b;
+        color: white;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        flex-shrink: 0;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .sidebar h2 {
+        color: #facc15;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .menu {
+        list-style: none;
+      }
+      .menu-item {
+        background-color: #334155;
+        padding: 15px;
+        margin: 10px 0;
+        text-align: center;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .menu-item:hover {
+        background-color: #facc15;
+        color: black;
+      }
+      /* Content Area: Scrollable */
+      .content-container {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow-y: auto;
+      }
+      .header {
+        background-color: #10b981;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      .main-content {
+        display: flex;
+        flex: 1;
+        min-height: 0; /* Enables scrolling in this section */
+      }
+      /* Code Section (Left Panel) */
+      .code-container {
+        flex: 1;
+        background: #1e1e1e;
+        color: #dcdcdc;
+        padding: 20px;
+        overflow-y: auto;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        white-space: pre-wrap;
+      }
+      .highlight {
+        background-color: rgba(76, 175, 80, 0.6);
+      }
+      /* Visualization Section (Right Panel) */
+      .visualization-container {
+        flex: 1;
+        padding: 20px;
+        background-color: #f1f5f9;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      .visualization-container h1 {
+        color: #333;
+        margin-bottom: 10px;
+      }
+      /* Queue Visualization */
+      .queue-container {
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+        min-height: 50px;
+        border: 2px dashed #ccc;
+        padding: 10px;
+      }
+      .queue-box {
+        width: 60px;
+        height: 40px;
+        margin: 5px;
+        background-color: #facc15;
+        border: 1px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+      /* Console Output */
+      #consoleOutput p {
+        margin: 5px 0;
+        font-family: "Courier New", monospace;
+      }
+      /* Input & Button Styles */
+      .input-section {
+        margin-top: 10px;
+        text-align: center;
+      }
+      button {
+        background-color: #10b981;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin: 5px;
+      }
+      button:hover {
+        background-color: #059669;
+      }
+      input[type="number"] {
+        padding: 8px;
+        font-size: 1rem;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        width: 120px;
+        text-align: center;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Queue Concepts</h2>
+      <ul class="menu">
+        <li class="menu-item" onclick="alert('Queue Theory')">Theory</li>
+        <li class="menu-item" onclick="alert('Queue Algorithm')">Algorithm</li>
+        <li class="menu-item" onclick="alert('Queue Flowchart')">Flowchart</li>
+        <li class="menu-item" onclick="alert('Queue Quiz')">Quiz</li>
+      </ul>
+    </div>
+    <!-- Content Area -->
+    <div class="content-container">
+      <div class="header">Interactive Queue Data Structure Simulation</div>
+      <div class="main-content">
+        <!-- Code Container (Left Panel) -->
+        <div class="code-container">
+          <pre id="code">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int *queue;
+int front = -1, rear = -1;
+int size;
+
+void initializeQueue(int n) {
+    size = n;
+    queue = (int*)malloc(n * sizeof(int));
+}
+
+void enqueue(int value) {
+    if (rear == size - 1) {
+        printf("Queue Overflow\n");
+        return;
+    }
+    if (front == -1)
+        front = 0;
+    queue[++rear] = value;
+    printf("Enqueued: %d\n", value);
+}
+
+void dequeue() {
+    if (front == -1 || front > rear) {
+        printf("Queue Underflow\n");
+        return;
+    }
+    printf("Dequeued: %d\n", queue[front]);
+    front++;
+}
+
+void peek() {
+    if (front == -1 || front > rear) {
+        printf("Queue is empty\n");
+    } else {
+        printf("Front element: %d\n", queue[front]);
+    }
+}
+
+void display() {
+    if (front == -1 || front > rear) {
+        printf("Queue is empty\n");
+        return;
+    }
+    printf("Queue: ");
+    for (int i = front; i <= rear; i++)
+        printf("%d ", queue[i]);
+    printf("\n");
+}
+
+int main() {
+    int n, choice, value;
+    printf("Enter the size of the queue: ");
+    scanf("%d", &n);
+    initializeQueue(n);
+    do {
+        printf("\n1. Enqueue\n2. Dequeue\n3. Peek\n4. Display\n5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1: printf("Enter value to enqueue: ");
+                    scanf("%d", &value);
+                    enqueue(value);
+                    break;
+            case 2: dequeue();
+                    break;
+            case 3: peek();
+                    break;
+            case 4: display();
+                    break;
+            case 5: printf("Exiting...\n");
+                    break;
+            default: printf("Invalid choice\n");
+        }
+    } while(choice != 5);
+    return 0;
+}
+          </pre>
+        </div>
+        <!-- Visualization & Interaction (Right Panel) -->
+        <div class="visualization-container">
+          <h1>Interactive Operations</h1>
+          <!-- Initialization Section -->
+          <div class="input-section">
+            <label for="queueSize">Queue Size: </label>
+            <input
+              type="number"
+              id="queueSize"
+              placeholder="Enter size"
+              min="1"
+              max="20"
+            />
+            <button onclick="initializeQueueSim()">Initialize Queue</button>
+          </div>
+          <!-- Menu Options (Shown after initialization) -->
+          <div class="input-section" id="menuOptions" style="display:none;">
+            <button onclick="simulateEnqueuePrompt()">Enqueue</button>
+            <button onclick="simulateDequeue()">Dequeue</button>
+            <button onclick="simulatePeek()">Peek</button>
+            <button onclick="simulateDisplay()">Display</button>
+          </div>
+          <!-- Enqueue Value Prompt -->
+          <div class="input-section" id="enqueueSection" style="display:none;">
+            <input type="number" id="enqueueValue" placeholder="Enter value" />
+            <button onclick="simulateEnqueue()">Submit Enqueue</button>
+          </div>
+          <!-- Visual Queue Representation -->
+          <div id="queueVisualization" class="queue-container"></div>
+          <!-- Console Output -->
+          <div id="consoleOutput"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // --- Utility Functions ---
+      function escapeHTML(text) {
+        return text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      // Highlights a given code line (zero-indexed)
+      function highlightCodeLine(lineNumber) {
+        const codeContainer = document.getElementById("code");
+        const codeLines = codeContainer.textContent.split("\n");
+        codeContainer.innerHTML = codeLines
+          .map((line, index) => {
+            const escapedLine = escapeHTML(line);
+            return index === lineNumber
+              ? `<span class="highlight">${escapedLine}</span>`
+              : escapedLine;
+          })
+          .join("\n");
+      }
+
+      // Highlights a sequence of code lines one after the other.
+      async function highlightCodeSequence(lines, delay = 500) {
+        for (const line of lines) {
+          highlightCodeLine(line);
+          await sleep(delay);
+        }
+      }
+
+      // Sleep helper for simulation delays
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      // --- Simulation Variables ---
+      let simulatedQueue = [];
+      let queueSize = 0;
+
+      // Updates the graphical representation of the queue
+      function updateQueueVisualization() {
+        const queueContainer = document.getElementById("queueVisualization");
+        queueContainer.innerHTML = "";
+        simulatedQueue.forEach((value) => {
+          const box = document.createElement("div");
+          box.className = "queue-box";
+          box.textContent = value;
+          queueContainer.appendChild(box);
+        });
+      }
+
+      // Appends a message to the simulated console output
+      function logToConsole(message) {
+        const consoleOutput = document.getElementById("consoleOutput");
+        const p = document.createElement("p");
+        p.textContent = message;
+        consoleOutput.appendChild(p);
+        // Auto-scroll the console output to the bottom
+        consoleOutput.scrollTop = consoleOutput.scrollHeight;
+      }
+
+      // --- Simulation Functions ---
+
+      // Initialize the simulated queue with user-defined size
+      function initializeQueueSim() {
+        const sizeInput = document.getElementById("queueSize");
+        queueSize = parseInt(sizeInput.value);
+        if (isNaN(queueSize) || queueSize < 1) {
+          alert("Please enter a valid queue size.");
+          return;
+        }
+        simulatedQueue = [];
+        document.getElementById("menuOptions").style.display = "block";
+        logToConsole("Queue initialized with size " + queueSize);
+        updateQueueVisualization();
+        // Highlight the initializeQueue function (lines 7-10)
+        highlightCodeSequence([7, 8, 9, 10], 400);
+      }
+
+      // Show the enqueue prompt (to enter a value)
+      function simulateEnqueuePrompt() {
+        document.getElementById("enqueueSection").style.display = "block";
+      }
+
+      // Enqueue operation simulation
+      async function simulateEnqueue() {
+        document.getElementById("enqueueSection").style.display = "none";
+        const valueInput = document.getElementById("enqueueValue");
+        const value = parseInt(valueInput.value);
+        valueInput.value = "";
+
+        // Animate the enqueue function step-by-step.
+        // Lines 12-15: function header and overflow check.
+        await highlightCodeSequence([12, 13, 14, 15], 600);
+        if (simulatedQueue.length >= queueSize) {
+          logToConsole("Queue Overflow");
+          await sleep(500);
+          return;
+        }
+        // Lines 17-21: actual enqueue operations.
+        await highlightCodeSequence([17, 18, 19, 20, 21], 600);
+        simulatedQueue.push(value);
+        updateQueueVisualization();
+        logToConsole("Enqueued: " + value);
+      }
+
+      // Dequeue operation simulation
+      async function simulateDequeue() {
+        // Lines 23-26: function header and underflow check.
+        await highlightCodeSequence([23, 24, 25, 26], 600);
+        if (simulatedQueue.length === 0) {
+          logToConsole("Queue Underflow");
+          await sleep(500);
+          return;
+        }
+        // Lines 28-30: actual dequeue operations.
+        await highlightCodeSequence([28, 29, 30], 600);
+        const value = simulatedQueue.shift();
+        updateQueueVisualization();
+        logToConsole("Dequeued: " + value);
+      }
+
+      // Peek operation simulation
+      async function simulatePeek() {
+        // Lines 32-38: simulate the peek function execution.
+        await highlightCodeSequence([32, 33, 34, 35, 36, 37, 38], 600);
+        if (simulatedQueue.length === 0) {
+          logToConsole("Queue is empty");
+        } else {
+          logToConsole("Front element: " + simulatedQueue[0]);
+        }
+      }
+
+      // Display operation simulation
+      async function simulateDisplay() {
+        // Lines 40-43: simulate display function header and empty-check.
+        await highlightCodeSequence([40, 41, 42, 43], 600);
+        if (simulatedQueue.length === 0) {
+          logToConsole("Queue is empty");
+          await sleep(500);
+          return;
+        }
+        // Lines 45-49: simulate printing each element.
+        await highlightCodeSequence([45, 46, 47, 48, 49], 600);
+        logToConsole("Queue: " + simulatedQueue.join(" "));
+      }
+    </script>
+  </body>
+</html>
