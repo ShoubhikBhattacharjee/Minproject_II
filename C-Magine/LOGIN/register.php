@@ -30,7 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-    // ✅ Check if email already exists
+    /*
+    // ✅ Check if email exists before inserting
     $stmt = $conn->prepare("SELECT email FROM user_details WHERE email = ?");
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
@@ -43,9 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("<script>alert('User already exists! Please login.'); window.location.href='login.html';</script>");
     }
     $stmt->close();
+*/
 
-    // ✅ Insert new user (Fixed deptno type)
-    $stmt = $conn->prepare("INSERT INTO user_details (first_name, surname, email, deptno, password) VALUES (?, ?, ?, ?, ?)");
+    // ✅ Insert new user (Updated deptno column)
+    $stmt = $conn->prepare("INSERT INTO user_details (srno, first_name, surname, email, department, password) VALUES (?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
@@ -61,4 +63,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     $conn->close();
 }
-?>
