@@ -102,16 +102,17 @@
     <div
       class="container d-flex align-items-center justify-content-center"
       style="min-height: calc(100vh - 56px)">
-      <!-- Adjust 56px if needed -->
+
       <div class="register-container">
         <h3 class="text-center text-primary fw-bold">Student Registration</h3>
-        <form>
+        <form action="register.php" method="POST">
           <div class="mb-3">
             <label class="form-label">First Name</label>
             <input
               type="text"
               class="form-control"
               placeholder="Enter your first name"
+              name="first_name"
               required
             />
           </div>
@@ -121,6 +122,7 @@
               type="text"
               class="form-control"
               placeholder="Enter your surname"
+              name="surname"
               required
             />
           </div>
@@ -130,17 +132,18 @@
               type="email"
               class="form-control"
               placeholder="Enter your email"
+              name="email"
               required
             />
           </div>
           <div class="mb-3">
             <label class="form-label">Department</label>
-            <select class="form-control" required>
+            <select class="form-control" name="department" required>
               <option value="" selected disabled>Select Department</option>
-              <option>Computer Engineering</option>
-              <option>Electronics & Telecommunications</option>
-              <option>Information Technology</option>
-              <option>Artificial Intelligence & Data Science</option>
+              <option value="1">Computer Engineering</option>
+              <option value="2">Electronics & Telecommunications</option>
+              <option value="3">Information Technology</option>
+              <option value="4">Artificial Intelligence & Data Science</option>
             </select>
           </div>
           <div class="mb-3">
@@ -150,6 +153,7 @@
               id="password"
               class="form-control"
               placeholder="Enter password"
+              name="password"
               required
             />
           </div>
@@ -160,6 +164,7 @@
               id="confirm-password"
               class="form-control"
               placeholder="Confirm password"
+              name="confirm_password"
               required
             />
           </div>
