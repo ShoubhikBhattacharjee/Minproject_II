@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subtraction of Matrices in C Quiz</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #e7eff6, #f8f9fa);
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+      }
+
+      .container {
+        background-color: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(1.5px);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        max-width: 1000px;
+        margin: 50px auto;
+        flex: 1;
+      }
+
+      h1 {
+        color: #4caf50;
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        transition: 0.3s ease-in-out;
+      }
+
+      .quiz-option {
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 8px;
+        padding: 15px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .quiz-option:hover {
+        background-color: #d4d4d4;
+      }
+
+      .quiz-option.correct {
+        background-color: #4caf50 !important;
+        color: white;
+        position: relative;
+      }
+
+      .quiz-option.incorrect {
+        background-color: #f44336 !important;
+        color: white;
+        position: relative;
+      }
+
+      .icon {
+        font-size: 1.5rem;
+      }
+
+      .correct .icon {
+        color: white;
+      }
+
+      .incorrect .icon {
+        color: white;
+      }
+
+      /* Sidebar Styling */
+      .sidebar {
+        width: 220px;
+        background-color: #334155;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+
+      h2 {
+        color: #facc15;
+        text-align: center;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+
+      .menu {
+        list-style: none;
+        padding: 0;
+      }
+
+      .menu-item {
+        background-color: #4b5563;
+        padding: 15px;
+        margin: 10px 0;
+        text-align: center;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .menu-item:hover {
+        background-color: #facc15;
+        color: black;
+      }
+
+      /* Container alignment */
+      .content-section {
+        margin-left: 240px;
+        flex-grow: 1;
+      }
+
+      /* Small screen responsiveness */
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+        .content-section {
+          margin-left: 0;
+        }
+      }
+
+      .feedback {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Subtraction of Matrices in C Concepts</h2>
+      <ul class="menu">
+        <li class="menu-item" onclick="location.href='../leap_theory.html'">
+          Theory
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Algorithms/leap_algo.html'"
+        >
+          Algorithm
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Flowcharts/leap_flow.html'"
+        >
+          Flowchart
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../matrix_subtractor.html'"
+        >
+          Simulation
+        </li>
+      </ul>
+    </div>
+    <div class="content-section">
+      <div class="container">
+        <h1>Subtraction of Matrices in C Quiz</h1>
+        <div id="quiz-container"></div>
+        <div class="feedback" id="feedback"></div>
+      </div>
+    </div>
+    <script>
+      const quizData = [
+      {
+    question: "How do you correctly declare a 2D array for storing two matrices of size NxM in C?",
+    options: [
+      "int matrix1[N][M], matrix2[N][M];",
+      "int matrix1[], matrix2[];",
+      "int matrix1[N], matrix2[M];",
+      "int matrix1[N][M][2];"
+    ],
+    correct: 0
+  },
+  {
+    question: "Which loop(s) structure is commonly used for matrix subtraction in C?",
+    options: [
+      "Single for loop",
+      "Nested for loops",
+      "While loop",
+      "Do-while loop"
+    ],
+    correct: 1
+  },
+  {
+    question: "How do you access the element in the i-th row and j-th column of a matrix?",
+    options: [
+      "matrix[i, j]",
+      "matrix(j, i)",
+      "matrix[i][j]",
+      "matrix[i][j]()"
+    ],
+    correct: 2
+  },
+  {
+    question: "Which of the following correctly performs matrix subtraction in C?",
+    options: [
+      `for (int i = 0; i < N; i++) {<br>
+       &nbsp;&nbsp;for (int j = 0; j < M; j++) {<br>
+       &nbsp;&nbsp;&nbsp;&nbsp;result[i][j] = matrix1[i][j] + matrix2[i][j];<br>
+       &nbsp;&nbsp;}<br>
+       }`,
+      `for (int i = 0; i < N; i++) {<br>
+       &nbsp;&nbsp;result[i] = matrix1[i] + matrix2[i];<br>
+       }`,
+      `for (int i = 0; i < M; i++) {<br>
+       &nbsp;&nbsp;for (int j = 0; j < N; j++) {<br>
+       &nbsp;&nbsp;&nbsp;&nbsp;result[i][j] = matrix1[j][i] - matrix2[j][i];<br>
+       &nbsp;&nbsp;}<br>
+       }`,
+      `for (int i = 0; i < N; i++) {<br>
+       &nbsp;&nbsp;for (int j = 0; j < M; j++) {<br>
+       &nbsp;&nbsp;&nbsp;&nbsp;result[i][j] = matrix1[i][j] - matrix2[i][j];<br>
+       &nbsp;&nbsp;}<br>
+       }`
+    ],
+    correct: 3
+  },
+  {
+    question: "What will be the output of the following code?<br><br>\
+      int matrix1[2][2] = { {0, 2}, {4, 6} };<br>\
+      int matrix2[2][2] = { {1, 3}, {5, 7} };<br>\
+      int result[2][2];<br><br>\
+      for (int i = 0; i < 2; i++) {<br>\
+      &nbsp;&nbsp;for (int j = 0; j < 2; j++) {<br>\
+      &nbsp;&nbsp;&nbsp;&nbsp;result[i][j] = matrix2[i][j] - matrix2[i][j];<br>\
+      &nbsp;&nbsp;}<br>\
+      }<br><br>\
+      printf(\"%d\", result[1][1]);",
+    options: ["0", "1", "2", "3"],
+    correct: 1
+  },
+  {
+    question: "Which condition must be true for matrix addition to be possible?",
+    options: [
+      "The matrices must be square",
+      "One matrix must be larger than the other",
+      "The matrices must have the same dimensions",
+      "The matrices must contain only positive numbers"
+    ],
+    correct: 2
+  },
+  {
+    question: "How do you dynamically allocate memory for a matrix using malloc()?",
+    options: [
+      "int **matrix = malloc(N * M * sizeof(int));",
+      "int *matrix = malloc(N * sizeof(int));",
+      "int **matrix = malloc(N * sizeof(int*));<br>\
+       for (int i = 0; i < N; i++) {<br>\
+       &nbsp;&nbsp;matrix[i] = malloc(M * sizeof(int));<br>\
+       }",
+      "int matrix = malloc(N, M);"
+    ],
+    correct: 2
+  },
+  {
+    question: "Which format specifier is used to print the elements of an integer matrix in C?",
+    options: [
+      "%d",
+      "%f",
+      "%c",
+      "%s"
+    ],
+    correct: 0
+  },
+  {
+    question: "What happens if you try to subtract two matrices with different dimensions?",
+    options: [
+      "The program will compile but produce incorrect results",
+      "The program will crash",
+      "Only the first N elements will be added",
+      "Compiler will give error"
+    ],
+    correct: 3
+  },
+  {
+    question: "What is the time complexity of matrix subtraction for an NxM matrix?",
+    options: [
+      "O(1)",
+      "O(N)",
+      "O(logN)",
+      "O(N*M)"
+    ],
+    correct: 3
+  }
+      ];
+
+      const selectedQuestions = quizData
+  .sort(() => Math.random() - 0.5) // Shuffle questions
+  .slice(0, 5); // Pick the first 5 after shuffling
+
+      let answeredQuestions = 0;
+      let correctAnswers = 0;
+
+      function loadQuiz() {
+        const quizContainer = document.getElementById("quiz-container");
+        quizContainer.innerHTML = "";
+
+        selectedQuestions.forEach((item, index) => {
+          const questionElem = document.createElement("div");
+          questionElem.classList.add("quiz-question");
+          questionElem.innerHTML = `<h3>${index + 1}. ${item.question}</h3>`;
+
+          item.options.forEach((option, optionIndex) => {
+            const optionElem = document.createElement("div");
+            optionElem.classList.add("quiz-option");
+            optionElem.innerHTML = `${option} <span class="icon"></span>`;
+
+            optionElem.addEventListener("click", () => {
+              handleOptionClick(optionElem, item.correct, optionIndex, item, index);
+            });
+            questionElem.appendChild(optionElem);
+          });
+          quizContainer.appendChild(questionElem);
+        });
+      }
+
+      function handleOptionClick(optionElem, correctIndex, selectedIndex, item, questionIndex) {
+        const options = optionElem.parentElement.querySelectorAll(".quiz-option");
+        options.forEach((option, index) => {
+          option.classList.remove("correct", "incorrect");
+          const icon = option.querySelector(".icon");
+          icon.innerHTML = "";
+        });
+
+        if (selectedIndex === correctIndex) {
+          optionElem.classList.add("correct");
+          optionElem.querySelector(".icon").innerHTML = "✔";
+          correctAnswers++;
+        } else {
+          optionElem.classList.add("incorrect");
+          optionElem.querySelector(".icon").innerHTML = "✘";
+          // Highlight the correct option
+          options[correctIndex].classList.add("correct");
+        }
+
+        answeredQuestions++;
+
+        // Disable further selection for the current question
+        options.forEach((option) => {
+          option.style.pointerEvents = "none";
+        });
+
+        if (answeredQuestions === selectedQuestions.length) {
+          showFeedback();
+        }
+      }
+
+      function showFeedback() {
+        const feedbackElem = document.getElementById("feedback");
+        const scorePercentage = (correctAnswers / selectedQuestions.length) * 100;
+        let feedbackMessage;
+
+        if (scorePercentage === 100) {
+          feedbackMessage = "Excellent! You got all answers correct!";
+        } else if (scorePercentage >= 75) {
+          feedbackMessage = "Great job! You have a strong understanding of Using a 2D array to subtract 2 matrices in C.";
+        } else if (scorePercentage >= 50) {
+          feedbackMessage = "Good effort! You might want to review some concepts.";
+        } else {
+          feedbackMessage = "Keep practicing! 2D arrays in C can be tricky at first.";
+        }
+
+        feedbackElem.innerHTML = `You scored ${correctAnswers} out of ${selectedQuestions.length}. ${feedbackMessage}`;
+      }
+
+      loadQuiz();
+    </script>
+  </body>
+</html>

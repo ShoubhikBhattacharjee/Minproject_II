@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['first_name'] = $first_name;
             $_SESSION['email'] = $email;
             echo "Registration Success!";
-            header("Location: ../index.html");
+            header("Location: ../index.php");
             exit();
         } else {
             echo "<script>alert('Incorrect password.'); window.location.href='login.html';</script>";

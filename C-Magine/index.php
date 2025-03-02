@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: LOGIN/login.html"); // Redirect to login if no session
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -119,7 +127,9 @@
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">          
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          
         <!-- Replace the src below with the correct path to the Somaiya Vidyavihar logo -->
         <a class="navbar-brand" href="https://kjsit.somaiya.edu.in/en" target="_blank">
           <img
@@ -139,7 +149,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="LOGIN/login.html">Login</a>
+              <a class="nav-link active" href="Login/logout.php">Logout</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>While Loop Quiz</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(135deg, #e7eff6, #f8f9fa);
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+      }
+
+      .container {
+        background-color: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(1.5px);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        max-width: 1000px;
+        margin: 50px auto;
+        flex: 1;
+      }
+
+      h1 {
+        color: #4caf50;
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        transition: 0.3s ease-in-out;
+      }
+
+      .quiz-option {
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 8px;
+        padding: 15px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .quiz-option:hover {
+        background-color: #d4d4d4;
+      }
+
+      .quiz-option.correct {
+        background-color: #4caf50 !important;
+        color: white;
+        position: relative;
+      }
+
+      .quiz-option.incorrect {
+        background-color: #f44336 !important;
+        color: white;
+        position: relative;
+      }
+
+      .icon {
+        font-size: 1.5rem;
+      }
+
+      .correct .icon {
+        color: white;
+      }
+
+      .incorrect .icon {
+        color: white;
+      }
+
+      /* Sidebar Styling */
+      .sidebar {
+        width: 220px;
+        background-color: #334155;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+
+      h2 {
+        color: #facc15;
+        text-align: center;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+
+      .menu {
+        list-style: none;
+        padding: 0;
+      }
+
+      .menu-item {
+        background-color: #4b5563;
+        padding: 15px;
+        margin: 10px 0;
+        text-align: center;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .menu-item:hover {
+        background-color: #facc15;
+        color: black;
+      }
+
+      /* Container alignment */
+      .content-section {
+        margin-left: 240px;
+        flex-grow: 1;
+      }
+
+      /* Small screen responsiveness */
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+        .content-section {
+          margin-left: 0;
+        }
+      }
+
+      .feedback {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>While Loop Concepts</h2>
+      <ul class="menu">
+        <li class="menu-item" onclick="location.href='../leap_theory.html'">
+          Theory
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Algorithms/leap_algo.html'"
+        >
+          Algorithm
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Flowcharts/leap_flow.html'"
+        >
+          Flowchart
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../while.html'"
+        >
+          Simulation
+        </li>
+      </ul>
+    </div>
+    <div class="content-section">
+      <div class="container">
+        <h1>While Loop Quiz</h1>
+        <div id="quiz-container"></div>
+        <div class="feedback" id="feedback"></div>
+      </div>
+    </div>
+    <script>
+      const quizData = [
+  {
+    question: "What is the primary purpose of a while loop?",
+    options: [
+      "To execute a block of code repeatedly as long as a condition is true",
+      "To execute a block of code a fixed number of times",
+      "To execute a block of code at least once",
+      "To execute a block of code only once"
+    ],
+    correct: 0
+  },
+  {
+    question: "What is the correct syntax of a while loop in C?",
+    options: [
+      "while (condition) { // code }",
+      "while condition { // code }",
+      "while (condition);",
+      "while condition();"
+    ],
+    correct: 0
+  },
+  {
+    question: "When does a while loop stop executing?",
+    options: [
+      "When the loop variable reaches 10",
+      "When the loop condition becomes false",
+      "When the user presses a key",
+      "When an if statement inside the loop executes"
+    ],
+    correct: 1
+  },
+  {
+    question: "What happens if the condition in a while loop is always true?",
+    options: [
+      "The loop runs only once",
+      "The program stops immediately",
+      "The loop runs infinitely",
+      "The loop does not run at all"
+    ],
+    correct: 2
+  },
+  {
+    question: "Which statement correctly implements an infinite while loop?",
+    options: [
+      "while (true) { }",
+      "while (1) { }",
+      "while (x = 1) { }",
+      "Both A and B"
+    ],
+    correct: 3
+  },
+  {
+    question: "What will happen if the loop variable is not updated inside a while loop?",
+    options: [
+      "The loop executes only once",
+      "The loop might become an infinite loop",
+      "The program will show a syntax error",
+      "The loop will run twice and then stop"
+    ],
+    correct: 1
+  },
+  {
+    question: "How many times is the condition checked in a while loop?",
+    options: [
+      "Only once at the beginning",
+      "Every time before executing the loop body",
+      "Only when the loop ends",
+      "Only when the loop starts"
+    ],
+    correct: 1
+  },
+  {
+    question: "What is the key difference between a while loop and a for loop?",
+    options: [
+      "A while loop always runs at least once, while a for loop may not",
+      "A while loop is used for infinite loops, while a for loop is not",
+      "A while loop is preferred when the number of iterations is unknown",
+      "A while loop cannot contain an increment statement"
+    ],
+    correct: 2
+  },
+  {
+    question: "Which of the following is true about a while loop?",
+    options: [
+      "It always executes at least once",
+      "The condition is checked after the first execution",
+      "It is used when the number of iterations is unknown",
+      "The loop variable must be an integer"
+    ],
+    correct: 2
+  },
+  {
+    question: "What is an essential part of a while loop to prevent infinite execution?",
+    options: [
+      "A print statement inside the loop",
+      "A decrement operator",
+      "An update statement that changes the loop condition",
+      "A continue statement"
+    ],
+    correct: 2
+  }
+];
+
+      const selectedQuestions = quizData
+  .sort(() => Math.random() - 0.5) // Shuffle questions
+  .slice(0, 5); // Pick the first 5 after shuffling
+
+      let answeredQuestions = 0;
+      let correctAnswers = 0;
+
+      function loadQuiz() {
+        const quizContainer = document.getElementById("quiz-container");
+        quizContainer.innerHTML = "";
+
+        selectedQuestions.forEach((item, index) => {
+          const questionElem = document.createElement("div");
+          questionElem.classList.add("quiz-question");
+          questionElem.innerHTML = `<h3>${index + 1}. ${item.question}</h3>`;
+
+          item.options.forEach((option, optionIndex) => {
+            const optionElem = document.createElement("div");
+            optionElem.classList.add("quiz-option");
+            optionElem.innerHTML = `${option} <span class="icon"></span>`;
+
+            optionElem.addEventListener("click", () => {
+              handleOptionClick(optionElem, item.correct, optionIndex, item, index);
+            });
+            questionElem.appendChild(optionElem);
+          });
+          quizContainer.appendChild(questionElem);
+        });
+      }
+
+      function handleOptionClick(optionElem, correctIndex, selectedIndex, item, questionIndex) {
+        const options = optionElem.parentElement.querySelectorAll(".quiz-option");
+        options.forEach((option, index) => {
+          option.classList.remove("correct", "incorrect");
+          const icon = option.querySelector(".icon");
+          icon.innerHTML = "";
+        });
+
+        if (selectedIndex === correctIndex) {
+          optionElem.classList.add("correct");
+          optionElem.querySelector(".icon").innerHTML = "✔";
+          correctAnswers++;
+        } else {
+          optionElem.classList.add("incorrect");
+          optionElem.querySelector(".icon").innerHTML = "✘";
+          // Highlight the correct option
+          options[correctIndex].classList.add("correct");
+        }
+
+        answeredQuestions++;
+
+        // Disable further selection for the current question
+        options.forEach((option) => {
+          option.style.pointerEvents = "none";
+        });
+
+        if (answeredQuestions === selectedQuestions.length) {
+          showFeedback();
+        }
+      }
+
+      function showFeedback() {
+        const feedbackElem = document.getElementById("feedback");
+        const scorePercentage = (correctAnswers / selectedQuestions.length) * 100;
+        let feedbackMessage;
+
+        if (scorePercentage === 100) {
+          feedbackMessage = "Excellent! You got all answers correct!";
+        } else if (scorePercentage >= 75) {
+          feedbackMessage = "Great job! You have a strong understanding of While Loop.";
+        } else if (scorePercentage >= 50) {
+          feedbackMessage = "Good effort! You might want to review some concepts.";
+        } else {
+          feedbackMessage = "Keep practicing! Loops can be tricky at first.";
+        }
+
+        feedbackElem.innerHTML = `You scored ${correctAnswers} out of ${selectedQuestions.length}. ${feedbackMessage}`;
+      }
+
+      loadQuiz();
+    </script>
+  </body>
+</html>

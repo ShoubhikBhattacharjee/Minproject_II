@@ -5,25 +5,12 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f8f8f8;
   text-align: center;
-  align-items: center;
-}
-
-/* Navbar Styling */
-.navbar {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Header Background */
 .header {
-  background: linear-gradient(
-    to bottom,
-    #ff1744,
-    #e91e63
-  ); /* Smooth red gradient */
+  background: linear-gradient(to bottom, #ff1744, #e91e63); /* Smooth red gradient */
   padding: 50px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* New "Functions in C" Main Heading */
@@ -36,7 +23,6 @@ body {
   padding: 10px 20px;
   background: rgba(0, 0, 0, 0.2); /* Slight dark overlay for better contrast */
   border-radius: 8px;
-  -ms-flex-align: center;
 }
 
 /* Cards Section */
@@ -95,10 +81,10 @@ a {
 /* Responsive Design */
 @media (max-width: 900px) {
   .container {
-    flex-direction: column;
-    align-items: center;
+      flex-direction: column;
+      align-items: center;
   }
   .card {
-    width: 80%;
+      width: 80%;
   }
 }
