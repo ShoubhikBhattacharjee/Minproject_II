@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Search in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Linear Search Concept</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../linear_search.html'">Simulation</li>
+            <li class="menu-item" onclick="location.href='../Algorithms/linear_search_algo.html'">Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowcharts/linear_search_flow.html'">Flowchart</li>
+            <li class="menu-item" onclick="location.href='../Quiz/linear_quiz.html'">Quiz</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Linear Search in C</h2>
+        
+        <h3>1. Introduction</h3>
+        <p>Linear search is a simple searching algorithm that sequentially checks each element of an array until the desired value is found or the list ends.</p>
+
+        <h3>2. Why Do We Need Linear Search?</h3>
+        <ul>
+            <li>✔ The dataset is small and unordered.</li>
+            <li>✔ No complex search algorithms are required.</li>
+            <li>✔ The array is unsorted or dynamically changing.</li>
+            <li>✔ Ease of implementation is more important than efficiency.</li>
+        </ul>
+
+        <h3>3. Concept of Linear Search</h3>
+        <p>Linear search works by checking each element in the array one by one until a match is found or the end of the array is reached.</p>
+        <table>
+            <tr>
+                <th>Step</th>
+                <th>Explanation</th>
+            </tr>
+            <tr>
+                <td><strong>Step 1</strong></td>
+                <td>Start from the first element of the array.</td>
+            </tr>
+            <tr>
+                <td><strong>Step 2</strong></td>
+                <td>Compare the current element with the target value.</td>
+            </tr>
+            <tr>
+                <td><strong>Step 3</strong></td>
+                <td>If a match is found, return the index of the element.</td>
+            </tr>
+            <tr>
+                <td><strong>Step 4</strong></td>
+                <td>If the end of the array is reached and no match is found, return -1.</td>
+            </tr>
+        </table>
+
+        <h3>4. Example</h3>
+        <p>Consider an array <strong>[10, 25, 30, 45, 50]</strong> and we need to search for <strong>30</strong>.</p>
+        <table>
+            <tr>
+                <th>Index</th>
+                <th>Element</th>
+                <th>Comparison with 30</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>10</td>
+                <td>Not Found</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>25</td>
+                <td>Not Found</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>30</td>
+                <td><strong>Found at Index 2</strong></td>
+            </tr>
+        </table>
+
+        <h3>5. Advantages of Linear Search</h3>
+        <ul>
+            <li>✔ Simple and easy to understand.</li>
+            <li>✔ Can be used on unsorted data.</li>
+            <li>✔ Works on any data structure (arrays, linked lists, etc.).</li>
+        </ul>
+
+        <h3>6. Conclusion</h3>
+        <p>Linear search is a basic and straightforward search algorithm that is useful for small datasets. However, for large datasets, more efficient search algorithms like binary search are preferred due to their faster performance.</p>
+    </div>
+</body>
+</html>

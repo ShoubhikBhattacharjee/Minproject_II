@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swapping Two Variables Using a Third Variable</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0px;
+            padding: 0px;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+      width: 250px;
+      background-color: #1e293b;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar h2 {
+      color: #facc15;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .menu-item {
+      background-color: #334155;
+      padding: 15px;
+      margin: 10px 0;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #facc15;
+      color: black;
+    }
+        h2, h3 {
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Variable Concepts</h2>
+        <ul class="menu">
+          <li class="menu-item" onclick="location.href='../basics_of_var.html'">Simulation</li>
+          <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">Algorithm</li>
+          <li class="menu-item" onclick="location.href='../Flowcharts/recur_flow.html'">Flowchart</li>
+          <li class="menu-item" onclick="location.href='../Quiz/basics_var_quiz.html'">Quiz</li>
+        </ul>
+      </div>
+
+<div class="container">
+    <h2>Swapping Two Variables Using a Third Variable</h2>
+    
+    <h3>1. Introduction</h3>
+    <p>Swapping refers to the process of exchanging the values of two variables. It is widely used in programming, especially in sorting algorithms, data manipulation, and problem-solving scenarios.</p>
+
+    <h3>2. Why Do We Need Swapping?</h3>
+    <p>Swapping variables is necessary in several programming tasks such as:</p>
+    <ul>
+        <li>✔ Sorting algorithms like Bubble Sort and Selection Sort.</li>
+        <li>✔ Swapping values dynamically in a program.</li>
+        <li>✔ Exchanging values in arrays or linked lists.</li>
+        <li>✔ Implementing logic where two values need to be interchanged.</li>
+    </ul>
+
+    <h3>3. Concept of Swapping Using a Third Variable</h3>
+    <p>In this method, a temporary variable is used to store one of the values while swapping. The process follows these steps:</p>
+    <table>
+        <tr>
+            <th>Step</th>
+            <th>Explanation</th>
+        </tr>
+        <tr>
+            <td><strong>Step 1</strong></td>
+            <td>Store the value of the first variable in a temporary variable.</td>
+        </tr>
+        <tr>
+            <td><strong>Step 2</strong></td>
+            <td>Assign the value of the second variable to the first variable.</td>
+        </tr>
+        <tr>
+            <td><strong>Step 3</strong></td>
+            <td>Assign the stored value from the temporary variable to the second variable.</td>
+        </tr>
+    </table>
+
+    <h3>4. Example</h3>
+    <p>Consider two variables <strong>a</strong> and <strong>b</strong> with initial values 5 and 10. After swapping, <strong>a</strong> should contain 10, and <strong>b</strong> should contain 5.</p>
+    <table>
+        <tr>
+            <th>Before Swapping</th>
+            <th>After Swapping</th>
+        </tr>
+        <tr>
+            <td>a = 5, b = 10</td>
+            <td>a = 10, b = 5</td>
+        </tr>
+    </table>
+
+    <h3>5. Advantages of Using a Third Variable</h3>
+    <ul>
+        <li>✔ Simple and easy to understand.</li>
+        <li>✔ Prevents data loss.</li>
+        <li>✔ Commonly used in many real-world applications.</li>
+    </ul>
+
+    <h3>6. Conclusion</h3>
+    <p>Swapping two variables using a temporary variable is a basic but essential operation in programming. While this method requires extra memory, it is a reliable way to exchange values without errors. In cases where memory optimization is needed, other methods like swapping without a third variable (using arithmetic operations) can be considered.</p>
+
+</div>
+
+</body>
+</html>
