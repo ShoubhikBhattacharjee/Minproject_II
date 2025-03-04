@@ -3,13 +3,13 @@ include "db_connect.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ✅ Check if all required fields are filled
-
+    
     if (
-        empty($_POST['first_name']) ||
-        empty($_POST['surname']) ||
-        empty($_POST['email']) ||
-        empty($_POST['department']) ||
-        empty($_POST['password']) ||
+        empty($_POST['first_name']) || 
+        empty($_POST['surname']) || 
+        empty($_POST['email']) || 
+        empty($_POST['department']) || 
+        empty($_POST['password']) || 
         empty($_POST['confirm_password'])
     ) {
         echo "<script>alert('Please fill all the fields'); window.location.href='register.html';</script>";
@@ -46,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // ✅ Insert new user (Fixed deptno type)
     $stmt = $conn->prepare("INSERT INTO user_details (first_name, surname, email, deptno, password) VALUES (?, ?, ?, ?, ?)");
-
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
@@ -62,3 +61,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     $conn->close();
 }
+?>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Sort in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Quick Sort in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../quick_sort.html'">Simulation</li>
+            <li class="menu-item" onclick="location.href='../Algorithms/functions_algo.html'">Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowcharts/functions_flow.html'">Flowchart</li>
+            <li class="menu-item" onclick="location.href='../Quiz/quicksort_quiz.html'">Quiz</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Quick Sort in C</h2>
+    
+        <h3>1. Introduction</h3>
+        <p>Quick Sort is a <b>divide and conquer</b> sorting algorithm that works by selecting a <b>pivot</b> element, partitioning the array around the pivot, and then recursively sorting the left and right subarrays. It is one of the fastest sorting algorithms, with an average time complexity of <code>O(n log n)</code>.</p>
+    
+        <h3>2. How Does Quick Sort Work?</h3>
+        <p>Quick Sort follows these steps:</p>
+        <ul>
+            <li>✔ Select a pivot element from the array.</li>
+            <li>✔ Partition the array so that elements smaller than the pivot are on the left, and greater elements are on the right.</li>
+            <li>✔ Recursively apply Quick Sort to the left and right subarrays.</li>
+        </ul>
+    
+        <h3>3. Visual Representation</h3>
+        <p>Consider sorting the array <code>[5, 3, 8, 4, 2, 7]</code> using Quick Sort:</p>
+        <table>
+            <tr>
+                <th>Step</th>
+                <th>Array State</th>
+                <th>Pivot</th>
+            </tr>
+            <tr>
+                <td>Initial</td>
+                <td>[5, 3, 8, 4, 2, 7]</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Partition</td>
+                <td>[3, 2, 4] 5 [8, 7]</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Sort Left</td>
+                <td>[2, 3, 4] 5 [8, 7]</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Sort Right</td>
+                <td>[2, 3, 4] 5 [7, 8]</td>
+                <td>7</td>
+            </tr>
+        </table>
+    
+        <h3>4. Quick Sort Logic</h3>
+        <p>The key operation in Quick Sort is partitioning:</p>
+        <pre>
+    int partition(int arr[], int low, int high) {
+        int pivot = arr[high]; // Selecting the pivot
+        int i = (low - 1);
+    
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) { 
+                i++;
+                swap(&arr[i], &arr[j]); // Move smaller element to left
+            }
+        }
+        swap(&arr[i + 1], &arr[high]); // Place pivot in correct position
+        return (i + 1);
+    }
+        </pre>
+        <p>The partition function places the pivot in its correct position and ensures smaller elements are to the left, larger ones to the right.</p>
+    
+        <h3>5. Characteristics of Quick Sort</h3>
+        <ul>
+            <li><b>Efficient:</b> Works faster than Merge Sort for small or medium-sized arrays.</li>
+            <li><b>In-place Sorting:</b> Requires less extra memory compared to Merge Sort.</li>
+            <li><b>Unstable:</b> Does not preserve the order of duplicate elements.</li>
+            <li><b>Time Complexity:</b> 
+                <ul>
+                    <li>✔ <b>Best/Average Case:</b> <code>O(n log n)</code></li>
+                    <li>✔ <b>Worst Case:</b> <code>O(n²)</code> (if poorly implemented with bad pivot selection)</li>
+                </ul>
+            </li>
+        </ul>
+    
+        <h3>6. Example: Sorting an Array</h3>
+        <p>The following snippet recursively sorts an array using Quick Sort:</p>
+        <pre>
+    void quickSort(int arr[], int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1); // Recursively sort left
+            quickSort(arr, pi + 1, high); // Recursively sort right
+        }
+    }
+        </pre>
+    
+        <h3>7. When to Use Quick Sort?</h3>
+        <ul>
+            <li>✔ Best suited for large datasets with random elements.</li>
+            <li>✔ Efficient for in-memory sorting.</li>
+            <li>✔ Not ideal for datasets that are already nearly sorted (may lead to worst-case performance).</li>
+        </ul>
+    
+        <h3>8. Conclusion</h3>
+        <p>Quick Sort is one of the most widely used sorting algorithms due to its <b>efficiency and in-place nature</b>. While its worst-case time complexity is <code>O(n²)</code>, careful pivot selection (such as choosing the median) helps maintain <code>O(n log n)</code> performance. Understanding Quick Sort is essential for mastering recursion and algorithm optimization, making it a crucial concept in competitive programming and real-world applications.</p>
+    </div>    
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack ADT Implementation in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Stack ADT Concept</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../stack.html'">Simulation</li>
+            <li class="menu-item" onclick="location.href='../Algorithms/stack_algo.html'">Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowcharts/stack_flow.html'">Flowchart</li>
+            <li class="menu-item" onclick="location.href='../Quiz/stack_quiz.html'">Quiz</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Stack ADT Implementation in C</h2>
+        
+        <h3>1. Introduction</h3>
+        <p>A stack is a linear data structure that follows the Last In, First Out (LIFO) principle. The element inserted last is the first one to be removed.</p>
+
+        <h3>2. Why Do We Need Stack?</h3>
+        <ul>
+            <li>✔ Used in function calls and recursion.</li>
+            <li>✔ Helps in expression evaluation and syntax parsing.</li>
+            <li>✔ Used in undo-redo operations in applications.</li>
+            <li>✔ Required for backtracking algorithms.</li>
+        </ul>
+
+        <h3>3. Concept of Stack Operations</h3>
+        <p>Stacks support the following primary operations:</p>
+        <table>
+            <tr>
+                <th>Operation</th>
+                <th>Explanation</th>
+            </tr>
+            <tr>
+                <td><strong>Push</strong></td>
+                <td>Inserts an element at the top of the stack.</td>
+            </tr>
+            <tr>
+                <td><strong>Pop</strong></td>
+                <td>Removes the top element from the stack.</td>
+            </tr>
+            <tr>
+                <td><strong>Peek</strong></td>
+                <td>Retrieves the top element without removing it.</td>
+            </tr>
+            <tr>
+                <td><strong>IsEmpty</strong></td>
+                <td>Checks if the stack is empty.</td>
+            </tr>
+            <tr>
+                <td><strong>IsFull</strong></td>
+                <td>Checks if the stack is full (in case of fixed-size implementation).</td>
+            </tr>
+        </table>
+
+        <h3>4. Example</h3>
+        <p>Consider a stack with operations performed sequentially:</p>
+        <table>
+            <tr>
+                <th>Operation</th>
+                <th>Stack State</th>
+            </tr>
+            <tr>
+                <td>Push(10)</td>
+                <td>[10]</td>
+            </tr>
+            <tr>
+                <td>Push(20)</td>
+                <td>[10, 20]</td>
+            </tr>
+            <tr>
+                <td>Push(30)</td>
+                <td>[10, 20, 30]</td>
+            </tr>
+            <tr>
+                <td>Pop()</td>
+                <td>[10, 20]</td>
+            </tr>
+            <tr>
+                <td>Peek()</td>
+                <td>Top element is 20</td>
+            </tr>
+        </table>
+
+        <h3>5. Advantages of Stack</h3>
+        <ul>
+            <li>✔ Efficient in memory management.</li>
+            <li>✔ Easy implementation using arrays or linked lists.</li>
+            <li>✔ Useful in various real-world applications like function calls, undo mechanisms, and expression evaluation.</li>
+        </ul>
+
+        <h3>6. Conclusion</h3>
+        <p>Stack is a fundamental data structure that plays a crucial role in many applications. It provides efficient ways to manage data and execute various operations in programming.</p>
+    </div>
+</body>
+</html>

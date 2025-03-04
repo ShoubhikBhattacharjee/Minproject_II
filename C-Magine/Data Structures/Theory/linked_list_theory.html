@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked List ADT in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Linked List ADT</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../linked_list.html'">Simulation</li>
+            <li class="menu-item" onclick="location.href='../Algorithms/linked_list_algo.html'">Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowcharts/linked_list_flow.html'">Flowchart</li>
+            <li class="menu-item" onclick="location.href='../Quiz/linkedlist_quiz.html'">Quiz</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Linked List ADT in C</h2>
+        
+        <h3>1. Introduction</h3>
+        <p>A linked list is a dynamic data structure where each element (node) contains a value and a pointer to the next node in the sequence.</p>
+
+        <h3>2. Why Do We Need Linked Lists?</h3>
+        <ul>
+            <li>✔ Efficient memory usage as elements are allocated dynamically.</li>
+            <li>✔ Allows easy insertion and deletion compared to arrays.</li>
+            <li>✔ No need to define a fixed size like arrays.</li>
+            <li>✔ Useful for applications requiring frequent modifications.</li>
+        </ul>
+
+        <h3>3. Concept of Linked List</h3>
+        <p>Each node in a linked list consists of two parts: the data and the pointer to the next node. The last node points to NULL, indicating the end of the list.</p>
+        <table>
+            <tr>
+                <th>Step</th>
+                <th>Explanation</th>
+            </tr>
+            <tr>
+                <td><strong>Step 1</strong></td>
+                <td>Create a node structure with data and pointer.</td>
+            </tr>
+            <tr>
+                <td><strong>Step 2</strong></td>
+                <td>Insert new nodes dynamically.</td>
+            </tr>
+            <tr>
+                <td><strong>Step 3</strong></td>
+                <td>Update pointers to maintain the list structure.</td>
+            </tr>
+            <tr>
+                <td><strong>Step 4</strong></td>
+                <td>Delete nodes by modifying links accordingly.</td>
+            </tr>
+        </table>
+
+        <h3>4. Example</h3>
+        <p>Consider a linked list with values <strong>10 → 20 → 30 → 40</strong>.</p>
+        <table>
+            <tr>
+                <th>Node</th>
+                <th>Data</th>
+                <th>Pointer</th>
+            </tr>
+            <tr>
+                <td>Node 1</td>
+                <td>10</td>
+                <td>→ Address of Node 2</td>
+            </tr>
+            <tr>
+                <td>Node 2</td>
+                <td>20</td>
+                <td>→ Address of Node 3</td>
+            </tr>
+            <tr>
+                <td>Node 3</td>
+                <td>30</td>
+                <td>→ Address of Node 4</td>
+            </tr>
+            <tr>
+                <td>Node 4</td>
+                <td>40</td>
+                <td>→ NULL</td>
+            </tr>
+        </table>
+
+        <h3>5. Advantages of Linked Lists</h3>
+        <ul>
+            <li>✔ Dynamic memory allocation avoids wastage.</li>
+            <li>✔ Easy insertion and deletion operations.</li>
+            <li>✔ Efficient for implementing stacks and queues.</li>
+        </ul>
+
+        <h3>6. Conclusion</h3>
+        <p>Linked lists are essential data structures that provide dynamic memory management and efficient insertion/deletion operations. They are widely used in various applications such as dynamic memory allocation, graph representation, and implementing abstract data types like stacks and queues.</p>
+    </div>
+</body>
+</html>

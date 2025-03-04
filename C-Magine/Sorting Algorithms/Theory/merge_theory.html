@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Sort in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Merge Sort in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../merge_sort.html'">Simulation</li>
+            <li class="menu-item" onclick="location.href='../Algorithms/functions_algo.html'">Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowcharts/functions_flow.html'">Flowchart</li>
+            <li class="menu-item" onclick="location.href='../Quiz/merge_quiz.html'">Quiz</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Merge Sort in C</h2>
+    
+        <h3>1. Introduction</h3>
+        <p>Merge Sort is a <b>divide and conquer</b> sorting algorithm that splits an array into smaller subarrays, sorts them, and then merges them back together. It is known for its efficiency, with a worst-case time complexity of <code>O(n log n)</code>, making it much faster than Bubble Sort for large datasets.</p>
+    
+        <h3>2. How Does Merge Sort Work?</h3>
+        <p>Merge Sort follows these steps:</p>
+        <ul>
+            <li>✔ Divide the array into two halves.</li>
+            <li>✔ Recursively sort each half.</li>
+            <li>✔ Merge the sorted halves back together.</li>
+        </ul>
+    
+        <h3>3. Visual Representation</h3>
+        <p>Consider sorting the array <code>[5, 3, 8, 4, 2, 7]</code> using Merge Sort:</p>
+        <table>
+            <tr>
+                <th>Step</th>
+                <th>Array State</th>
+            </tr>
+            <tr>
+                <td>Divide</td>
+                <td>[5, 3, 8] &nbsp;&nbsp;&nbsp;&nbsp; [4, 2, 7]</td>
+            </tr>
+            <tr>
+                <td>Divide Further</td>
+                <td>[5] [3, 8] &nbsp;&nbsp;&nbsp;&nbsp; [4] [2, 7]</td>
+            </tr>
+            <tr>
+                <td>Sort & Merge</td>
+                <td>[3, 5, 8] &nbsp;&nbsp;&nbsp;&nbsp; [2, 4, 7]</td>
+            </tr>
+            <tr>
+                <td>Final Merge</td>
+                <td>[2, 3, 4, 5, 7, 8]</td>
+            </tr>
+        </table>
+    
+        <h3>4. Merge Sort Logic</h3>
+        <p>Merge Sort recursively divides an array and merges sorted subarrays:</p>
+        <pre>
+    void merge(int arr[], int left, int mid, int right) {
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+        
+        // Temporary arrays
+        int L[n1], R[n2];
+        
+        // Copy data to temp arrays
+        for (int i = 0; i < n1; i++)
+            L[i] = arr[left + i];
+        for (int j = 0; j < n2; j++)
+            R[j] = arr[mid + 1 + j];
+        
+        // Merge the temp arrays back
+    }
+        </pre>
+        <p>The merging step ensures elements are combined in sorted order.</p>
+    
+        <h3>5. Characteristics of Merge Sort</h3>
+        <ul>
+            <li><b>Stable:</b> Preserves the relative order of equal elements.</li>
+            <li><b>Divide and Conquer:</b> Breaks the problem into smaller parts and solves them recursively.</li>
+            <li><b>Time Complexity:</b> <code>O(n log n)</code> in all cases.</li>
+            <li><b>Space Complexity:</b> Requires extra space for merging.</li>
+        </ul>
+    
+        <h3>6. Example: Sorting an Array</h3>
+        <p>The following snippet recursively sorts an array using Merge Sort:</p>
+        <pre>
+    void mergeSort(int arr[], int left, int right) {
+        if (left < right) {
+            int mid = left + (right - left) / 2;
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid + 1, right);
+            merge(arr, left, mid, right);
+        }
+    }
+        </pre>
+    
+        <h3>7. When to Use Merge Sort?</h3>
+        <ul>
+            <li>✔ Best for large datasets due to its <code>O(n log n)</code> efficiency.</li>
+            <li>✔ Useful when stability is required.</li>
+            <li>✔ Performs well on linked lists since merging is easy.</li>
+        </ul>
+    
+        <h3>8. Conclusion</h3>
+        <p>Merge Sort is an efficient and reliable sorting algorithm, especially for large datasets. Its <b>divide and conquer</b> approach ensures optimal performance, making it a fundamental technique in computer science. Though it requires extra memory, its predictable time complexity makes it a preferred choice for sorting linked lists and external sorting scenarios. Learning Merge Sort helps programmers understand recursion, merging, and how to optimize sorting processes.</p>
+    </div>    
+</body>
+</html>

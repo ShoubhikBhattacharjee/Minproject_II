@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue ADT in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .example-box {
+            border: 2px solid #007BFF;
+            padding: 15px;
+            margin: 20px 0;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Queue ADT</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../queue.html'">Simulation</li>
+            <li class="menu-item" onclick="location.href='../Algorithms/queue_algo.html'">Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowcharts/queue_flow.html'">Flowchart</li>
+            <li class="menu-item" onclick="location.href='../Quiz/queue_quiz.html'">Quiz</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Queue ADT in C</h2>
+        
+        <h3>1. Introduction</h3>
+        <p>A <strong>queue</strong> is a linear data structure that follows the <strong>FIFO (First In, First Out)</strong> principle, meaning the element added first will be removed first.</p>
+
+        <h3>2. Why Do We Need Queues?</h3>
+        <ul>
+            <li>✔ Used in <strong>CPU Scheduling</strong> and <strong>Process Management</strong>.</li>
+            <li>✔ Helps in managing <strong>multiple requests</strong> (e.g., printer queue, call center system).</li>
+            <li>✔ Used in <strong>data buffering</strong> (e.g., video streaming, packet transfer in networking).</li>
+            <li>✔ Maintains <strong>order of execution</strong> in real-world scenarios.</li>
+        </ul>
+
+        <h3>3. Concept of Queue</h3>
+        <p>In a queue:</p>
+        <ul>
+            <li><strong>Enqueue</strong> → Insert an element at the <strong>rear</strong>.</li>
+            <li><strong>Dequeue</strong> → Remove an element from the <strong>front</strong>.</li>
+            <li>Queue follows <strong>FIFO</strong> (First In, First Out) order.</li>
+        </ul>
+
+        <div class="example-box">
+            <h3>Example: Real-World Analogy</h3>
+            <p>Think of a queue in a supermarket where customers line up at the billing counter.</p>
+            <p>✔ The first person to stand in line will be served first.<br> 
+               ✔ A new customer joins at the <strong>rear</strong> of the queue.<br>
+               ✔ Customers leave the queue from the <strong>front</strong>.</p>
+        </div>
+
+        <h3>4. Queue Operations</h3>
+        <table>
+            <tr>
+                <th>Operation</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><strong>Enqueue</strong></td>
+                <td>Insert an element at the rear.</td>
+            </tr>
+            <tr>
+                <td><strong>Dequeue</strong></td>
+                <td>Remove an element from the front.</td>
+            </tr>
+            <tr>
+                <td><strong>Peek</strong></td>
+                <td>Get the front element without removing it.</td>
+            </tr>
+            <tr>
+                <td><strong>IsEmpty</strong></td>
+                <td>Check if the queue is empty.</td>
+            </tr>
+            <tr>
+                <td><strong>IsFull</strong></td>
+                <td>Check if the queue is full.</td>
+            </tr>
+        </table>
+
+        <h3>5. Example Execution</h3>
+        <p>Consider inserting <strong>10, 20, 30, 40</strong> into a queue:</p>
+
+        <div class="example-box">
+            <p>Initial Queue: <strong>Empty</strong></p>
+            <p><strong>Enqueue(10)</strong> → [10]</p>
+            <p><strong>Enqueue(20)</strong> → [10, 20]</p>
+            <p><strong>Enqueue(30)</strong> → [10, 20, 30]</p>
+            <p><strong>Dequeue()</strong> → Removes 10 → [20, 30]</p>
+            <p><strong>Front Element:</strong> 20</p>
+        </div>
+
+        <h3>6. Types of Queues</h3>
+        <ul>
+            <li>✔ <strong>Simple Queue</strong> – Basic FIFO structure.</li>
+            <li>✔ <strong>Circular Queue</strong> – Connects rear to front for efficient space use.</li>
+            <li>✔ <strong>Priority Queue</strong> – Elements are dequeued based on priority.</li>
+            <li>✔ <strong>Deque (Double-Ended Queue)</strong> – Insertion and deletion can happen at both ends.</li>
+        </ul>
+
+        <h3>7. Advantages of Queues</h3>
+        <ul>
+            <li>✔ Helps in managing <strong>data efficiently</strong>.</li>
+            <li>✔ Used in <strong>real-world applications</strong> like task scheduling.</li>
+            <li>✔ Supports different variations like <strong>circular and priority queues</strong>.</li>
+        </ul>
+
+        <h3>8. Conclusion</h3>
+        <p>Queues are an essential data structure used for <strong>task scheduling, buffering, and sequential processing</strong>. Their ability to maintain an ordered process makes them highly useful in many computing applications.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertion Sort in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Insertion Sort in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../insertion_sort.html'">Simulation</li>
+            <li class="menu-item" onclick="location.href='../Algorithms/functions_algo.html'">Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowcharts/functions_flow.html'">Flowchart</li>
+            <li class="menu-item" onclick="location.href='../Quiz/insert_quiz.html'">Quiz</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Insertion Sort in C</h2>
+    
+        <h3>1. Introduction</h3>
+        <p>Insertion Sort is a <b>simple and efficient</b> sorting algorithm that works similarly to sorting playing cards in your hand. It builds the sorted array one element at a time by placing each element in its correct position. It is particularly useful for small datasets and nearly sorted arrays.</p>
+    
+        <h3>2. How Does Insertion Sort Work?</h3>
+        <p>Insertion Sort follows these steps:</p>
+        <ul>
+            <li>✔ Start with the second element (first element is considered sorted).</li>
+            <li>✔ Compare it with elements in the sorted portion and shift elements to make space.</li>
+            <li>✔ Insert the element at the correct position.</li>
+            <li>✔ Repeat for all elements until the entire array is sorted.</li>
+        </ul>
+    
+        <h3>3. Visual Representation</h3>
+        <p>Consider sorting the array <code>[7, 3, 5, 2]</code> using Insertion Sort:</p>
+        <table>
+            <tr>
+                <th>Step</th>
+                <th>Array State</th>
+                <th>Inserted Element</th>
+            </tr>
+            <tr>
+                <td>Initial</td>
+                <td>[7, 3, 5, 2]</td>
+                <td> - </td>
+            </tr>
+            <tr>
+                <td>Step 1</td>
+                <td>[3, 7, 5, 2]</td>
+                <td>3 inserted before 7</td>
+            </tr>
+            <tr>
+                <td>Step 2</td>
+                <td>[3, 5, 7, 2]</td>
+                <td>5 inserted before 7</td>
+            </tr>
+            <tr>
+                <td>Step 3</td>
+                <td>[2, 3, 5, 7]</td>
+                <td>2 inserted at the beginning</td>
+            </tr>
+        </table>
+    
+        <h3>4. Insertion Sort Logic</h3>
+        <p>The key idea in Insertion Sort is shifting elements to make space for the new element:</p>
+        <pre>
+    void insertionSort(int arr[], int n) {
+        for (int i = 1; i < n; i++) {
+            int key = arr[i]; 
+            int j = i - 1;
+            
+            while (j >= 0 && arr[j] > key) { 
+                arr[j + 1] = arr[j]; // Shift larger element right
+                j--;
+            }
+            arr[j + 1] = key; // Insert element at correct position
+        }
+    }
+        </pre>
+        <p>The inner loop shifts elements that are greater than the key, ensuring the array remains sorted.</p>
+    
+        <h3>5. Characteristics of Insertion Sort</h3>
+        <ul>
+            <li><b>Simple and Easy to Implement:</b> Works well for small datasets.</li>
+            <li><b>Stable:</b> Maintains the relative order of equal elements.</li>
+            <li><b>Efficient for Nearly Sorted Arrays:</b> Performs in <code>O(n)</code> in best-case scenarios.</li>
+            <li><b>Time Complexity:</b>
+                <ul>
+                    <li>✔ <b>Best Case:</b> <code>O(n)</code> (Already sorted array)</li>
+                    <li>✔ <b>Worst/Average Case:</b> <code>O(n²)</code></li>
+                </ul>
+            </li>
+        </ul>
+    
+        <h3>6. Example: Sorting an Array</h3>
+        <p>The following snippet sorts an array using Insertion Sort:</p>
+        <pre>
+    #include &lt;stdio.h&gt;
+    
+    void insertionSort(int arr[], int n) {
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i - 1;
+    
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
+        }
+    }
+    
+    int main() {
+        int arr[] = {7, 3, 5, 2};
+        int n = sizeof(arr) / sizeof(arr[0]);
+    
+        insertionSort(arr, n);
+    
+        for (int i = 0; i < n; i++)
+            printf("%d ", arr[i]);
+        
+        return 0;
+    }
+        </pre>
+    
+        <h3>7. When to Use Insertion Sort?</h3>
+        <ul>
+            <li>✔ Best for small datasets where simplicity matters.</li>
+            <li>✔ Useful for nearly sorted arrays (adaptive sorting).</li>
+            <li>✔ Not ideal for large datasets due to <code>O(n²)</code> worst-case performance.</li>
+        </ul>
+    
+        <h3>8. Conclusion</h3>
+        <p>Insertion Sort is an <b>intuitive and effective sorting algorithm</b> for small and nearly sorted datasets. While it has <code>O(n²)</code> complexity for large inputs, its simplicity and stability make it useful in certain scenarios. It provides a strong foundation for understanding sorting principles and is often used in hybrid sorting algorithms.</p>
+    </div>        
+</body>
+</html>
