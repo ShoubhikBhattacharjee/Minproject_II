@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Pointers & Double Pointers Simulation</title>
+  <style>
+    /* Global Styles */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { display: flex; font-family: Arial, sans-serif; background-color: #f9f9f9; height: 100vh; overflow: hidden; }
+    
+    /* Sidebar (Fixed) */
+    .sidebar {
+      width: 250px;
+      background-color: #1e293b;
+      color: white;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .sidebar h2 { color: #facc15; text-align: center; margin-bottom: 20px; }
+    .menu { list-style: none; }
+    .menu-item {
+      background-color: #334155;
+      padding: 15px;
+      margin: 10px 0;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .menu-item:hover { background-color: #facc15; color: black; }
+    
+    /* Content Area (Scrollable) */
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .header {
+      background-color: #10b981;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    .main-content { display: flex; flex: 1; min-height: 0; }
+    
+    /* Code Container (Left Panel) */
+    .code-container {
+      flex: 1;
+      background: #1e1e1e;
+      color: #dcdcdc;
+      padding: 20px;
+      overflow-y: auto;
+      font-family: "Courier New", monospace;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+    .highlight { background-color: rgba(76, 175, 80, 0.6); }
+    
+    /* Visualization Container (Right Panel) */
+    .visualization-container {
+      flex: 1;
+      padding: 20px;
+      background-color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .visualization-container h1 { color: #333; margin-bottom: 10px; }
+    
+    /* Memory Grid Styles */
+    #memoryGrid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .memory-cell {
+      border: 1px solid #333;
+      padding: 5px;
+      text-align: center;
+      font-size: 0.9rem;
+      background-color: #e0e0e0;
+      position: relative;
+    }
+    /* Allocated cells */
+    .allocated-pointer { background-color: #a8e6a3; }  /* Green for pointer */
+    .allocated-variable { background-color: #f9e79f; }  /* Yellow for variable */
+    .allocated-dpointer { background-color: #ADD8E6; }  /* Light blue for double pointer */
+    .occupied { background-color: #e57373; }           /* Red for already occupied */
+    
+    /* Console/Explanation Output */
+    #consoleOutput {
+      border: 1px solid #ccc;
+      padding: 10px;
+      height: 500px;
+      overflow-y: auto;
+      background-color: #fff;
+      font-family: "Courier New", monospace;
+      color:black;
+      font-weight:bolder;
+      margin-bottom: 10px;
+    }
+    
+    /* Input Section */
+    .input-section { text-align: center; margin-top: 10px; }
+    button {
+      background-color: #10b981;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover { background-color: #059669; }
+    input[type="number"] {
+      padding: 8px;
+      font-size: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      width: 120px;
+      text-align: center;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Pointer Concepts</h2>
+    <ul class="menu">
+      <li class="menu-item" onclick="alert('Pointers let you work with memory addresses. We begin with single pointers before introducing double pointers.')">
+        Theory
+      </li>
+      <li class="menu-item" onclick="alert('Interactive Demo')">Algorithm</li>
+      <li class="menu-item" onclick="alert('Interactive Demo')">Flowchart</li>
+      <li class="menu-item" onclick="alert('Practice Quiz')">Quiz</li>
+    </ul>
+  </div>
+
+  <!-- Content Area -->
+  <div class="content-container">
+    <div class="header">Interactive Pointers & Double Pointers Simulation</div>
+    <div class="main-content">
+      <!-- Code Container (Left Panel) -->
+      <div class="code-container">
+        <pre id="code">
+#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+int main() {
+    int *ptr;      // Declare pointer variable 'ptr'
+    int var;       // Declare integer variable 'var'
+
+    // At declaration, both are uninitialized (simulated as NULL)
+    printf("Enter value for var: ");
+    scanf("%d", &var);    // User inputs value for 'var'
+
+    ptr = &var;           // Assign address of 'var' to pointer 'ptr'
+
+    printf("Before pointer-based update:\n");
+    printf("var = %d\n", var);
+    printf("*ptr = %d\n", *ptr);
+
+    *ptr = var + 10;      // Update value via pointer
+
+    printf("After pointer-based update:\n");
+    printf("var = %d\n", var);
+    printf("*ptr = %d\n", *ptr);
+
+    // ----- Double Pointer Extension -----
+    int **dptr;          // Declare double pointer variable 'dptr'
+    dptr = &ptr;         // Assign address of 'ptr' to double pointer 'dptr'
+
+    printf("Before double pointer update:\n");
+    printf("var = %d\n", var);
+    printf("*ptr = %d\n", *ptr);
+    printf("**dptr = %d\n", **dptr);
+
+    printf("Enter new value for var via double pointer: ");
+    int newVal;
+    scanf("%d", &newVal);    // User inputs new value for var via double pointer
+    **dptr = newVal;         // Update 'var' via double pointer
+
+    printf("After double pointer update:\n");
+    printf("var = %d\n", var);
+    printf("*ptr = %d\n", *ptr);
+    printf("**dptr = %d\n", **dptr);
+
+    return 0;
+}
+        </pre>
+      </div>
+
+      <!-- Visualization & Interaction (Right Panel) -->
+      <div class="visualization-container">
+        <h1>Simulation Steps</h1>
+        <!-- Memory Grid -->
+        <div id="memoryGrid"></div>
+        <!-- Explanation / Console Output -->
+        <div id="consoleOutput"></div>
+        <!-- Input Section for User-Entered Values -->
+        <div class="input-section" id="inputSection" style="display:none;">
+          <input type="number" id="userInput" placeholder="Enter value" />
+          <button onclick="submitUserInput()">Submit</button>
+        </div>
+        <!-- Simulation Control -->
+        <div class="input-section">
+          <button onclick="simulatePointerOps()">Run Pointer Simulation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ---------------- Utility Functions ---------------- */
+    function escapeHTML(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+    
+    // Code highlighting (zero-indexed lines)
+    function highlightCodeLine(lineNumber) {
+      const codeContainer = document.getElementById("code");
+      const codeLines = codeContainer.textContent.split("\n");
+      codeContainer.innerHTML = codeLines
+        .map((line, index) => {
+          const escapedLine = escapeHTML(line);
+          return index === lineNumber
+            ? `<span class="highlight">${escapedLine}</span>`
+            : escapedLine;
+        })
+        .join("\n");
+    }
+    
+    async function highlightCodeSequence(lines, delay = 2500) {
+      for (const line of lines) {
+        highlightCodeLine(line);
+        await sleep(delay);
+      }
+    }
+    
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    // Log explanation messages to the console output area.
+    function logToConsole(message) {
+      const consoleOutput = document.getElementById("consoleOutput");
+      const p = document.createElement("p");
+      p.textContent = message;
+      consoleOutput.appendChild(p);
+      consoleOutput.scrollTop = consoleOutput.scrollHeight;
+    }
+    
+    /* ---------------- Memory Grid Functions ---------------- */
+    const totalCells = 16;
+    let memoryCells = [];  // Array of cell elements
+    let pointerCell = null;   // For 'ptr'
+    let variableCell = null;  // For 'var'
+    let dptrCell = null;      // For 'dptr'
+    
+    // Generate a grid of memory cells with preset addresses.
+    function generateMemoryGrid() {
+      const gridContainer = document.getElementById("memoryGrid");
+      gridContainer.innerHTML = "";
+      memoryCells = [];
+      // For simplicity, generate addresses 0x100, 0x101, ... etc.
+      for (let i = 0; i < totalCells; i++) {
+        const cell = document.createElement("div");
+        cell.className = "memory-cell";
+        const addr = "0x" + (256 + i).toString(16).toUpperCase();
+        cell.dataset.address = addr;
+        cell.innerHTML = addr;
+        // Randomly mark some cells as occupied (simulate other data)
+        if (Math.random() < 0.2) {
+          cell.classList.add("occupied");
+          cell.innerHTML += "<br>Occupied";
+        }
+        memoryCells.push(cell);
+        gridContainer.appendChild(cell);
+      }
+    }
+    
+    // Find the first free cell (not occupied and not already allocated)
+    function allocateMemory(varName, type) {
+      for (const cell of memoryCells) {
+        if (!cell.classList.contains("occupied") && !cell.dataset.allocated) {
+          cell.dataset.allocated = varName;
+          if (type === "pointer") {
+            cell.classList.add("allocated-pointer");
+            cell.innerHTML = cell.dataset.address + "<br>ptr<br>NULL";
+          } else if (type === "variable") {
+            cell.classList.add("allocated-variable");
+            cell.innerHTML = cell.dataset.address + "<br>var<br>NULL";
+          } else if (type === "dpointer") {
+            cell.classList.add("allocated-dpointer");
+            cell.innerHTML = cell.dataset.address + "<br>dptr<br>NULL";
+          }
+          return cell;
+        }
+      }
+      return null;
+    }
+    
+    // Update a cell's content—for example, to change its stored value.
+    function updateCellValue(cell, newValue) {
+      const parts = cell.innerHTML.split("<br>");
+      if (parts.length >= 3) {
+        parts[2] = newValue;
+        cell.innerHTML = parts.join("<br>");
+      }
+    }
+    
+    // Update pointer cell to show that it now holds the address of a given cell.
+    function updatePointerCell(ptrCell, targetCell) {
+      const targetAddress = targetCell.dataset.address;
+      const parts = ptrCell.innerHTML.split("<br>");
+      if (parts.length >= 3) {
+        parts[2] = targetAddress;
+        ptrCell.innerHTML = parts.join("<br>");
+      }
+    }
+    
+    // Update double pointer cell to show that it now holds the address of 'ptr'
+    function updateDoublePointerCell(dptrCell, ptrCell) {
+      const ptrAddress = ptrCell.dataset.address;
+      const parts = dptrCell.innerHTML.split("<br>");
+      if (parts.length >= 3) {
+        parts[2] = ptrAddress;
+        dptrCell.innerHTML = parts.join("<br>");
+      }
+    }
+    
+    /* ---------------- User Input Handling ---------------- */
+    let userInputResolve = null;
+    function getUserInput(promptText) {
+      return new Promise(resolve => {
+        const inputSection = document.getElementById("inputSection");
+        inputSection.style.display = "block";
+        logToConsole(promptText);
+        userInputResolve = resolve;
+      });
+    }
+    
+    function submitUserInput() {
+      const inputField = document.getElementById("userInput");
+      const value = inputField.value;
+      inputField.value = "";
+      document.getElementById("inputSection").style.display = "none";
+      if (userInputResolve) {
+        userInputResolve(value);
+        userInputResolve = null;
+      }
+    }
+    
+    /* ---------------- Simulation Steps ---------------- */
+    async function simulatePointerOps() {
+      // Clear console and (re)generate memory grid.
+      document.getElementById("consoleOutput").innerHTML = "";
+      generateMemoryGrid();
+      logToConsole("Memory grid initialized.");
+      await sleep(1500);
+      
+      // ----- SINGLE POINTER SIMULATION -----
+      // Step 1: Declaration of pointer 'ptr'
+      await highlightCodeSequence([4], 2500);  // Highlight line: int *ptr;
+      logToConsole("Step 1: Declaring pointer 'ptr'.");
+      pointerCell = allocateMemory("ptr", "pointer");
+      if (pointerCell) {
+        logToConsole("Allocated memory for 'ptr' at address " + pointerCell.dataset.address + " (Cell colored green, initial value: NULL).");
+      } else {
+        logToConsole("No free memory available for 'ptr'.");
+      }
+      await sleep(2500);
+      
+      // Step 2: Declaration of variable 'var'
+      await highlightCodeSequence([5], 2500);  // Highlight line: int var;
+      logToConsole("Step 2: Declaring variable 'var'.");
+      variableCell = allocateMemory("var", "variable");
+      if (variableCell) {
+        logToConsole("Allocated memory for 'var' at address " + variableCell.dataset.address + " (Cell colored yellow, initial value: NULL).");
+      } else {
+        logToConsole("No free memory available for 'var'.");
+      }
+      await sleep(2500);
+      
+      // Step 3: Prompt user to enter a value for 'var'
+      await highlightCodeSequence([8,9], 2500);  // Highlight lines: printf and scanf for 'var'
+      logToConsole("Step 3: Prompting user for a value to store in 'var'.");
+      let varValue = await getUserInput("Please enter an integer value for 'var':");
+      logToConsole("User entered: " + varValue);
+      updateCellValue(variableCell, varValue);
+      await sleep(2500);
+      
+      // Step 4: Assignment: ptr = &var;
+      await highlightCodeSequence([11], 2500);  // Highlight line: ptr = &var;
+      logToConsole("Step 4: Assigning the address of 'var' to pointer 'ptr'.");
+      updatePointerCell(pointerCell, variableCell);
+      await sleep(2500);
+      
+      // Step 5: Display values before pointer-based update
+      await highlightCodeSequence([13,14,15], 2500);  // Highlight lines: printf before update
+      logToConsole("Step 5: Displaying current values:");
+      logToConsole("var = " + varValue);
+      logToConsole("*ptr = " + varValue + " (since ptr holds address of var)");
+      await sleep(3000);
+      
+      // Step 6: Pointer-based assignment: *ptr = var + 10;
+      await highlightCodeSequence([17], 2500);  // Highlight line: *ptr = var + 10;
+      logToConsole("Step 6: Executing '*ptr = var + 10;'");
+      let newVarVal = parseInt(varValue) + 10;
+      updateCellValue(variableCell, newVarVal);
+      logToConsole("Variable 'var' is now updated to " + newVarVal + " via pointer.");
+      await sleep(2500);
+      
+      // Step 7: Display values after pointer-based update
+      await highlightCodeSequence([19,20,21], 2500);  // Highlight lines: printf after update
+      logToConsole("Step 7: Displaying updated values:");
+      logToConsole("var = " + newVarVal);
+      logToConsole("*ptr = " + newVarVal);
+      await sleep(3000);
+      
+      // ----- DOUBLE POINTER EXTENSION -----
+      logToConsole("Now, let's extend the pointer concept to double pointers...");
+      await sleep(2500);
+      
+      // Step 8: Declaration of double pointer 'dptr'
+      await highlightCodeSequence([24], 2500);  // Highlight line: int **dptr;
+      logToConsole("Step 8: Declaring double pointer 'dptr'.");
+      dptrCell = allocateMemory("dptr", "dpointer");
+      if (dptrCell) {
+        logToConsole("Allocated memory for 'dptr' at address " + dptrCell.dataset.address + " (Cell colored light blue, initial value: NULL).");
+      } else {
+        logToConsole("No free memory available for 'dptr'.");
+      }
+      await sleep(2500);
+      
+      // Step 9: Assignment: dptr = &ptr;
+      await highlightCodeSequence([25], 2500);  // Highlight line: dptr = &ptr;
+      logToConsole("Step 9: Assigning the address of 'ptr' to double pointer 'dptr'.");
+      updateDoublePointerCell(dptrCell, pointerCell);
+      await sleep(2500);
+      
+      // Step 10: Display values before double pointer update
+      await highlightCodeSequence([27,28,29,30], 2500);  // Highlight lines: printf before double pointer update
+      logToConsole("Step 10: Displaying current values with double pointer:");
+      logToConsole("var = " + newVarVal);
+      logToConsole("*ptr = " + newVarVal);
+      logToConsole("**dptr = " + newVarVal + " (since dptr holds address of ptr which points to var)");
+      await sleep(3000);
+      
+      // Step 11: Prompt user for new value via double pointer
+      await highlightCodeSequence([32,33,34], 2500);  // Highlight lines: prompt and scanf for new value via double pointer
+      logToConsole("Step 11: Prompting user for a new value for 'var' via double pointer.");
+      let finalVal = await getUserInput("Please enter a new integer value for 'var' via double pointer:");
+      logToConsole("User entered: " + finalVal);
+      // Update 'var' via double pointer simulation
+      updateCellValue(variableCell, finalVal);
+      logToConsole("Variable 'var' is now updated to " + finalVal + " via double pointer.");
+      await sleep(2500);
+      
+      // Step 12: Display updated values after double pointer update
+      await highlightCodeSequence([37,38,39,40], 2500);  // Highlight lines: printf after double pointer update
+      logToConsole("Step 12: Displaying updated values:");
+      logToConsole("var = " + finalVal);
+      logToConsole("*ptr = " + finalVal);
+      logToConsole("**dptr = " + finalVal);
+      await sleep(3000);
+      
+      logToConsole("Simulation complete. Refresh the page to run again.");
+    }
+    
+    // Generate memory grid on page load.
+    window.onload = generateMemoryGrid;
+  </script>
+</body>
+</html>
