@@ -4,173 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swapping two numbers Quiz</title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Arial", sans-serif;
-        background: linear-gradient(135deg, #e7eff6, #f8f9fa);
-        min-height: 100vh;
-        margin: 0;
-        display: flex;
-      }
-
-      .container {
-        background-color: rgba(255, 255, 255, 0.3);
-        backdrop-filter: blur(1.5px);
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 40px;
-        max-width: 1000px;
-        margin: 50px auto;
-        flex: 1;
-      }
-
-      h1 {
-        color: #4caf50;
-        font-size: 3rem;
-        margin-bottom: 20px;
-        text-align: center;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        transition: 0.3s ease-in-out;
-      }
-
-      .quiz-option {
-        background-color: #f0f0f0;
-        border: none;
-        border-radius: 8px;
-        padding: 15px;
-        cursor: pointer;
-        transition: background-color 0.3s, box-shadow 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .quiz-option:hover {
-        background-color: #d4d4d4;
-      }
-
-      .quiz-option.correct {
-        background-color: #4caf50 !important;
-        color: white;
-        position: relative;
-      }
-
-      .quiz-option.incorrect {
-        background-color: #f44336 !important;
-        color: white;
-        position: relative;
-      }
-
-      .icon {
-        font-size: 1.5rem;
-      }
-
-      .correct .icon {
-        color: white;
-      }
-
-      .incorrect .icon {
-        color: white;
-      }
-
-      /* Sidebar Styling */
-      .sidebar {
-        width: 220px;
-        background-color: #334155;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        left: 0;
-      }
-
-      h2 {
-        color: #facc15;
-        text-align: center;
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-      }
-
-      .menu {
-        list-style: none;
-        padding: 0;
-      }
-
-      .menu-item {
-        background-color: #4b5563;
-        padding: 15px;
-        margin: 10px 0;
-        text-align: center;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s, color 0.3s;
-      }
-
-      .menu-item:hover {
-        background-color: #facc15;
-        color: black;
-      }
-
-      /* Container alignment */
-      .content-section {
-        margin-left: 240px;
-        flex-grow: 1;
-      }
-
-      /* Small screen responsiveness */
-      @media (max-width: 768px) {
-        .sidebar {
-          width: 100%;
-          height: auto;
-          position: relative;
-        }
-        .content-section {
-          margin-left: 0;
-        }
-      }
-
-      .feedback {
-        font-size: 1.5rem;
-        text-align: center;
-        margin-top: 20px;
-      }
-    </style>
+    <link href="../../CSS/Quiz.css" rel="stylesheet" />
+    <script src="../../JavaScript/Quiz.js" defer></script>
   </head>
   <body>
     <div class="sidebar">
       <h2>Swapping Two Numbers Concept</h2>
       <ul class="menu">
-        <li class="menu-item" onclick="location.href='../Theory/swap_num_theory.html'">
+        <li
+          class="menu-item"
+          onclick="location.href='../Theory/swap_num_theory.html'"
+        >
           Theory
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../Algorithms/leap_algo.html'"
+          onclick="location.href='../Algorithms/swap_two_numbers.html'"
         >
           Algorithm
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../Flowcharts/leap_flow.html'"
+          onclick="location.href='../Flowcharts/swap_two_numbers.html'"
         >
           Flowchart
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../swap_numbers.html'"
+          onclick="location.href='../Simulations/swap_numbers.html'"
         >
           Simulation
         </li>
@@ -184,190 +45,95 @@
       </div>
     </div>
     <script>
-     const quizData = [
-  {
-    question: "What is the purpose of the 'temp' variable in the swapping process?",
-    options: [
-      "It stores the sum of two numbers",
-      "It temporarily holds the value of one variable during the swap",
-      "It is used to multiply two numbers",
-      "It stores the final swapped value"
-    ],
-    correct: 1
-  },
-  {
-    question: "Which of the following is the correct sequence for swapping two numbers using a third variable?",
-    options: [
-      "a = temp; b = a; temp = b;",
-      "temp = a; a = b; b = temp;",
-      "a = b; b = temp; temp = a;",
-      "b = a; a = temp; temp = b;"
-    ],
-    correct: 1
-  },
-  {
-    question: "What will happen if we forget to use the 'temp' variable and directly assign `a = b` first?",
-    options: [
-      "The values of `a` and `b` will be swapped correctly",
-      "The value of `a` will be lost",
-      "It will result in a compilation error",
-      "It will create an infinite loop"
-    ],
-    correct: 1
-  },
-  {
-    question: "Which format specifier is used to print integer values in C?",
-    options: [
-      "%c",
-      "%f",
-      "%d",
-      "%s"
-    ],
-    correct: 2
-  },
-  {
-    question: "Which operator is used for assignment in C?",
-    options: [
-      "=",
-      "==",
-      "!=",
-      "<-"
-    ],
-    correct: 0
-  },
-  {
-    question: "What is the final value of `b` after swapping, if `a = 5` and `b = 10` initially?",
-    options: [
-      "10",
-      "5",
-      "0",
-      "15"
-    ],
-    correct: 1
-  },
-  {
-    question: "Why do we need a third variable to swap two numbers?",
-    options: [
-      "To prevent data loss during assignment",
-      "To store the final swapped value",
-      "To multiply both numbers",
-      "To store their sum"
-    ],
-    correct: 0
-  },
-  {
-    question: "What will happen if we swap two variables without using a third variable?",
-    options: [
-      "It is not possible to swap without a third variable",
-      "We can swap using arithmetic operations",
-      "It will cause a segmentation fault",
-      "The program will not compile"
-    ],
-    correct: 1
-  },
-  {
-    question: "Which C library function is used to display output on the screen?",
-    options: [
-      "scanf()",
-      "printf()",
-      "display()",
-      "print()"
-    ],
-    correct: 1
-  },
-  {
-    question: "Which data type is best suited for storing integer values like `a` and `b` in this program?",
-    options: [
-      "float",
-      "char",
-      "int",
-      "double"
-    ],
-    correct: 2
-  }
-];
+      const quizData = [
+        {
+          question:
+            "What is the purpose of the 'temp' variable in the swapping process?",
+          options: [
+            "It stores the sum of two numbers",
+            "It temporarily holds the value of one variable during the swap",
+            "It is used to multiply two numbers",
+            "It stores the final swapped value",
+          ],
+          correct: 1,
+        },
+        {
+          question:
+            "Which of the following is the correct sequence for swapping two numbers using a third variable?",
+          options: [
+            "a = temp; b = a; temp = b;",
+            "temp = a; a = b; b = temp;",
+            "a = b; b = temp; temp = a;",
+            "b = a; a = temp; temp = b;",
+          ],
+          correct: 1,
+        },
+        {
+          question:
+            "What will happen if we forget to use the 'temp' variable and directly assign `a = b` first?",
+          options: [
+            "The values of `a` and `b` will be swapped correctly",
+            "The value of `a` will be lost",
+            "It will result in a compilation error",
+            "It will create an infinite loop",
+          ],
+          correct: 1,
+        },
+        {
+          question:
+            "Which format specifier is used to print integer values in C?",
+          options: ["%c", "%f", "%d", "%s"],
+          correct: 2,
+        },
+        {
+          question: "Which operator is used for assignment in C?",
+          options: ["=", "==", "!=", "<-"],
+          correct: 0,
+        },
+        {
+          question:
+            "What is the final value of `b` after swapping, if `a = 5` and `b = 10` initially?",
+          options: ["10", "5", "0", "15"],
+          correct: 1,
+        },
+        {
+          question: "Why do we need a third variable to swap two numbers?",
+          options: [
+            "To prevent data loss during assignment",
+            "To store the final swapped value",
+            "To multiply both numbers",
+            "To store their sum",
+          ],
+          correct: 0,
+        },
+        {
+          question:
+            "What will happen if we swap two variables without using a third variable?",
+          options: [
+            "It is not possible to swap without a third variable",
+            "We can swap using arithmetic operations",
+            "It will cause a segmentation fault",
+            "The program will not compile",
+          ],
+          correct: 1,
+        },
+        {
+          question:
+            "Which C library function is used to display output on the screen?",
+          options: ["scanf()", "printf()", "display()", "print()"],
+          correct: 1,
+        },
+        {
+          question:
+            "Which data type is best suited for storing integer values like `a` and `b` in this program?",
+          options: ["float", "char", "int", "double"],
+          correct: 2,
+        },
+      ];
 
-
-      const selectedQuestions = quizData
-  .sort(() => Math.random() - 0.5) // Shuffle questions
-  .slice(0, 5); // Pick the first 5 after shuffling
-
-      let answeredQuestions = 0;
-      let correctAnswers = 0;
-
-      function loadQuiz() {
-        const quizContainer = document.getElementById("quiz-container");
-        quizContainer.innerHTML = "";
-
-        selectedQuestions.forEach((item, index) => {
-          const questionElem = document.createElement("div");
-          questionElem.classList.add("quiz-question");
-          questionElem.innerHTML = `<h3>${index + 1}. ${item.question}</h3>`;
-
-          item.options.forEach((option, optionIndex) => {
-            const optionElem = document.createElement("div");
-            optionElem.classList.add("quiz-option");
-            optionElem.innerHTML = `${option} <span class="icon"></span>`;
-
-            optionElem.addEventListener("click", () => {
-              handleOptionClick(optionElem, item.correct, optionIndex, item, index);
-            });
-            questionElem.appendChild(optionElem);
-          });
-          quizContainer.appendChild(questionElem);
-        });
-      }
-
-      function handleOptionClick(optionElem, correctIndex, selectedIndex, item, questionIndex) {
-        const options = optionElem.parentElement.querySelectorAll(".quiz-option");
-        options.forEach((option, index) => {
-          option.classList.remove("correct", "incorrect");
-          const icon = option.querySelector(".icon");
-          icon.innerHTML = "";
-        });
-
-        if (selectedIndex === correctIndex) {
-          optionElem.classList.add("correct");
-          optionElem.querySelector(".icon").innerHTML = "✔";
-          correctAnswers++;
-        } else {
-          optionElem.classList.add("incorrect");
-          optionElem.querySelector(".icon").innerHTML = "✘";
-          // Highlight the correct option
-          options[correctIndex].classList.add("correct");
-        }
-
-        answeredQuestions++;
-
-        // Disable further selection for the current question
-        options.forEach((option) => {
-          option.style.pointerEvents = "none";
-        });
-
-        if (answeredQuestions === selectedQuestions.length) {
-          showFeedback();
-        }
-      }
-
-      function showFeedback() {
-        const feedbackElem = document.getElementById("feedback");
-        const scorePercentage = (correctAnswers / selectedQuestions.length) * 100;
-        let feedbackMessage;
-
-        if (scorePercentage === 100) {
-          feedbackMessage = "Excellent! You got all answers correct!";
-        } else if (scorePercentage >= 75) {
-          feedbackMessage = "Great job! You have a strong understanding of Variables in C.";
-        } else if (scorePercentage >= 50) {
-          feedbackMessage = "Good effort! You might want to review some concepts.";
-        } else {
-          feedbackMessage = "Keep practicing! Variable concepts could be tricky at first.";
-        }
-
-        feedbackElem.innerHTML = `You scored ${correctAnswers} out of ${selectedQuestions.length}. ${feedbackMessage}`;
-      }
-
-      loadQuiz();
+      document.addEventListener("DOMContentLoaded", () => {
+        initializeQuiz(quizData);
+      });
     </script>
   </body>
 </html>

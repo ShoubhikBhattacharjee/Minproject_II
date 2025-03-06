@@ -1,50 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>C Variable Execution</title>
+    <link rel="stylesheet" href="../../CSS/Simulations.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { display: flex; font-family: Arial, sans-serif; background-color: #f9f9f9; height: 100vh; overflow: hidden; }
-        .sidebar { width: 250px; background-color: #1e293b; color: white; padding: 20px; height: 100vh; }
-        .sidebar h2 { color: #facc15; text-align: center; margin-bottom: 20px; }
-        .menu-item { background-color: #334155; padding: 15px; margin: 10px 0; text-align: center; border-radius: 8px; cursor: pointer; transition: 0.3s; }
-        .menu-item:hover { background-color: #facc15; color: black; }
-        .content-container { display: flex; flex-direction: column; flex: 1; overflow-y: auto; }
-        .header { background-color: #10b981; color: white; text-align: center; padding: 10px; font-size: 1.5rem; }
-        .main-content { display: flex; flex: 1; }
-        .code-container { flex: 1; background: #1e1e1e; color: #dcdcdc; padding: 20px; font-family: "Courier New", monospace; font-size: 14px; }
-        .highlight { background-color: rgba(76, 175, 80, 0.6); }
-        .visualization-container { flex: 1; padding: 20px; background-color: #f1f5f9; }
-        #memoryGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
-        .memory-cell { border: 2px solid #333; padding: 10px; text-align: center; font-size: 1rem; font-weight: bold; background-color: #e0e0e0; transition: 0.5s; }
-        .updated { background-color: yellow !important; }
-        #consoleOutput { border: 1px solid #ccc; padding: 10px; height: 150px; overflow-y: auto; background-color: #fff; font-family: "Courier New", monospace; font-weight: bold; }
-        .input-section { text-align: center; margin-top: 10px; }
-        input { padding: 8px; margin: 5px; border: 1px solid #ccc; border-radius: 5px; width: 100px; text-align: center; }
-        button { background-color: #10b981; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 1rem; cursor: pointer; margin: 5px; }
-        button:hover { background-color: #059669; }
+      .code-container {
+        flex: 1;
+        background: #1e1e1e;
+        color: #dcdcdc;
+        padding: 20px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+      }
+      .highlight {
+        background-color: rgba(76, 175, 80, 0.6);
+      }
+      .visualization-container {
+        flex: 1;
+        padding: 20px;
+        background-color: #f1f5f9;
+      }
+      #memoryGrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .memory-cell {
+        border: 2px solid #333;
+        padding: 10px;
+        text-align: center;
+        font-size: 1rem;
+        font-weight: bold;
+        background-color: #e0e0e0;
+        transition: 0.5s;
+      }
+      .updated {
+        background-color: yellow !important;
+      }
+      #consoleOutput {
+        border: 1px solid #ccc;
+        padding: 10px;
+        height: 150px;
+        overflow-y: auto;
+        background-color: #fff;
+        font-family: "Courier New", monospace;
+        font-weight: bold;
+      }
+      .input-section {
+        text-align: center;
+        margin-top: 10px;
+      }
+      input {
+        padding: 8px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100px;
+        text-align: center;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="sidebar">
-        <h2>Variable Concepts</h2>
-        <ul class="menu">
-            <li class="menu-item" onclick="location.href='../Theory/basic_var_theory.html'">Theory</li>
-            <li class="menu-item" onclick="location.href='../Algorithms/basics_of_variables.html'">Algorithm</li>
-            <li class="menu-item" onclick="location.href='../Flowcharts/basics_of_variables.html'">Flowchart</li>
-            <li class="menu-item" onclick="location.href='../Quiz/basics_var_quiz.html'">Quiz</li>
-          </ul>
+      <h2>Variable Concepts</h2>
+      <ul class="menu">
+        <li
+          class="menu-item"
+          onclick="location.href='../Theory/basic_var_theory.html'"
+        >
+          Theory
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Algorithms/basics_of_variables.html'"
+        >
+          Algorithm
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Flowcharts/basics_of_variables.html'"
+        >
+          Flowchart
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Quiz/basics_var_quiz.html'"
+        >
+          Quiz
+        </li>
+      </ul>
     </div>
 
     <div class="content-container">
-        <div class="header">C Variable Execution</div>
-        <div class="main-content">
-            
-            <div class="code-container">
-                <pre id="code">
+      <div class="header">C Variable Execution</div>
+      <div class="main-content">
+        <div class="code-container">
+          <pre id="code">
 <span id="line1">#include &lt;stdio.h&gt;</span>
 <span id="line2">int main() {</span>
 <span id="line3">    int a, b, sum;</span>
@@ -65,51 +119,101 @@
 <span id="line18">    return 0;</span>
 <span id="line19">}</span>
                 </pre>
-            </div>
-
-            <div class="visualization-container">
-                <h1>Simulation Steps</h1>
-                <div id="memoryGrid">
-                    <div class="memory-cell" id="cell-a">a = ?</div>
-                    <div class="memory-cell" id="cell-b">b = ?</div>
-                    <div class="memory-cell" id="cell-sum">sum = ?</div>
-                    <div class="memory-cell" id="cell-celsius">Celsius = ?</div>
-                    <div class="memory-cell" id="cell-fahrenheit">Fahrenheit = ?</div>
-                    <div class="memory-cell" id="cell-marks">Marks = ?</div>
-                    <div class="memory-cell" id="cell-percentage">Percentage = ?</div>
-                </div>
-
-                <div class="input-section">
-                    <input id="inputA" type="number" placeholder="Enter a">
-                    <input id="inputB" type="number" placeholder="Enter b">
-                    <input id="inputCelsius" type="number" placeholder="Enter Celsius">
-                    <input id="inputMarks" type="number" placeholder="Enter Marks">
-                    <button onclick="runSimulation()">Run Step</button>
-                </div>
-
-                <div id="consoleOutput"></div>
-            </div>
-
         </div>
+
+        <div class="visualization-container">
+          <h1>Simulation Steps</h1>
+          <div id="memoryGrid">
+            <div class="memory-cell" id="cell-a">a = ?</div>
+            <div class="memory-cell" id="cell-b">b = ?</div>
+            <div class="memory-cell" id="cell-sum">sum = ?</div>
+            <div class="memory-cell" id="cell-celsius">Celsius = ?</div>
+            <div class="memory-cell" id="cell-fahrenheit">Fahrenheit = ?</div>
+            <div class="memory-cell" id="cell-marks">Marks = ?</div>
+            <div class="memory-cell" id="cell-percentage">Percentage = ?</div>
+          </div>
+
+          <div class="input-section">
+            <input id="inputA" type="number" placeholder="Enter a" />
+            <input id="inputB" type="number" placeholder="Enter b" />
+            <input
+              id="inputCelsius"
+              type="number"
+              placeholder="Enter Celsius"
+            />
+            <input id="inputMarks" type="number" placeholder="Enter Marks" />
+            <button onclick="runSimulation()">Run Step</button>
+          </div>
+
+          <div id="consoleOutput"></div>
+        </div>
+      </div>
     </div>
 
     <script>
-        let step = 0;
-        const steps = [
-            () => { highlightCode(7); updateMemory("cell-a", getInput("inputA")); updateMemory("cell-b", getInput("inputB")); logToConsole("a and b initialized."); },
-            () => { highlightCode(8); updateMemory("cell-sum", Number(getInput("inputA")) + Number(getInput("inputB"))); logToConsole("Sum calculated."); },
-            () => { highlightCode(11); updateMemory("cell-celsius", getInput("inputCelsius")); logToConsole("Celsius input taken."); },
-            () => { highlightCode(12); updateMemory("cell-fahrenheit", (getInput("inputCelsius") * 9/5 + 32).toFixed(2)); logToConsole("Converted to Fahrenheit."); },
-            () => { highlightCode(15); updateMemory("cell-marks", getInput("inputMarks")); logToConsole("Marks input taken."); },
-            () => { highlightCode(16); updateMemory("cell-percentage", ((getInput("inputMarks") / 500) * 100).toFixed(2) + "%"); logToConsole("Percentage calculated."); }
-        ];
+      let step = 0;
+      const steps = [
+        () => {
+          highlightCode(7);
+          updateMemory("cell-a", getInput("inputA"));
+          updateMemory("cell-b", getInput("inputB"));
+          logToConsole("a and b initialized.");
+        },
+        () => {
+          highlightCode(8);
+          updateMemory(
+            "cell-sum",
+            Number(getInput("inputA")) + Number(getInput("inputB"))
+          );
+          logToConsole("Sum calculated.");
+        },
+        () => {
+          highlightCode(11);
+          updateMemory("cell-celsius", getInput("inputCelsius"));
+          logToConsole("Celsius input taken.");
+        },
+        () => {
+          highlightCode(12);
+          updateMemory(
+            "cell-fahrenheit",
+            ((getInput("inputCelsius") * 9) / 5 + 32).toFixed(2)
+          );
+          logToConsole("Converted to Fahrenheit.");
+        },
+        () => {
+          highlightCode(15);
+          updateMemory("cell-marks", getInput("inputMarks"));
+          logToConsole("Marks input taken.");
+        },
+        () => {
+          highlightCode(16);
+          updateMemory(
+            "cell-percentage",
+            ((getInput("inputMarks") / 500) * 100).toFixed(2) + "%"
+          );
+          logToConsole("Percentage calculated.");
+        },
+      ];
 
-        function getInput(id) { return document.getElementById(id).value || 0; }
-        function updateMemory(id, value) { document.getElementById(id).textContent = id.replace("cell-", "") + " = " + value; }
-        function logToConsole(msg) { document.getElementById("consoleOutput").innerHTML += msg + "<br>"; }
-        function highlightCode(line) { document.querySelectorAll("pre span").forEach(el => el.classList.remove("highlight")); document.getElementById("line" + line).classList.add("highlight"); }
-        function runSimulation() { if (step < steps.length) steps[step++](); }
+      function getInput(id) {
+        return document.getElementById(id).value || 0;
+      }
+      function updateMemory(id, value) {
+        document.getElementById(id).textContent =
+          id.replace("cell-", "") + " = " + value;
+      }
+      function logToConsole(msg) {
+        document.getElementById("consoleOutput").innerHTML += msg + "<br>";
+      }
+      function highlightCode(line) {
+        document
+          .querySelectorAll("pre span")
+          .forEach((el) => el.classList.remove("highlight"));
+        document.getElementById("line" + line).classList.add("highlight");
+      }
+      function runSimulation() {
+        if (step < steps.length) steps[step++]();
+      }
     </script>
-
-</body>
+  </body>
 </html>
