@@ -4,54 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Variable Scope Simulation</title>
+    <link rel="stylesheet" href="../../CSS/Simulations.css">
     <style>
-      /* Global Styles */
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        display: flex;
-        font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
-        height: 100vh;
-        overflow: hidden;
-      }
-
-      /* Sidebar */
-      .sidebar {
-        width: 220px;
-        background-color: #1e293b;
-        color: white;
-        padding: 20px;
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        flex-shrink: 0;
-        height: 100vh;
-        overflow: hidden;
-      }
-      .sidebar h2 {
-        color: #facc15;
-        text-align: center;
-        margin-bottom: 20px;
-      }
-      .menu {
-        list-style: none;
-      }
-      .menu-item {
-        background-color: #334155;
-        padding: 15px;
-        margin: 10px 0;
-        text-align: center;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-      .menu-item:hover {
-        background-color: #facc15;
-        color: black;
-      }
-
       /* Content Area */
       .content-container {
         display: flex;
@@ -134,19 +88,6 @@
         text-align: center;
         margin-top: 10px;
       }
-      button {
-        background-color: #10b981;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        font-size: 1rem;
-        cursor: pointer;
-        margin: 5px;
-      }
-      button:hover {
-        background-color: #059669;
-      }
     </style>
   </head>
   <body>
@@ -156,19 +97,19 @@
       <ul class="menu">
         <li
           class="menu-item"
-          onclick="location.href='Theory/scopevar_theory.html'"
+          onclick="location.href='../Theory/scopevar_theory.html'"
         >
           Theory
         </li>
-        <li class="menu-item" onclick="location.href='recur_theory.html'">
+        <li class="menu-item" onclick="location.href='../Algorithms/scope_of_variables.html'">
           Algorithm
         </li>
-        <li class="menu-item" onclick="location.href='recur_theory.html'">
+        <li class="menu-item" onclick="location.href='../Flowcharts/scope_of_variables.html'">
           Flowchart
         </li>
         <li
           class="menu-item"
-          onclick="location.href='Quiz/var_scope_quiz.html'"
+          onclick="location.href='../Quiz/var_scope_quiz.html'"
         >
           Quiz
         </li>
