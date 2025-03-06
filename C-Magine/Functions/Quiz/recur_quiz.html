@@ -4,156 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recursion Quiz</title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Arial", sans-serif;
-        background: linear-gradient(135deg, #e7eff6, #f8f9fa);
-        min-height: 100vh;
-        margin: 0;
-        display: flex;
-      }
-
-      .container {
-        background-color: rgba(255, 255, 255, 0.3);
-        backdrop-filter: blur(1.5px);
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 40px;
-        max-width: 1000px;
-        margin: 50px auto;
-        flex: 1;
-      }
-
-      h1 {
-        color: #4caf50;
-        font-size: 3rem;
-        margin-bottom: 20px;
-        text-align: center;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        transition: 0.3s ease-in-out;
-      }
-
-      .quiz-option {
-        background-color: #f0f0f0;
-        border: none;
-        border-radius: 8px;
-        padding: 15px;
-        cursor: pointer;
-        transition: background-color 0.3s, box-shadow 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .quiz-option:hover {
-        background-color: #d4d4d4;
-      }
-
-      .quiz-option.correct {
-        background-color: #4caf50 !important;
-        color: white;
-        position: relative;
-      }
-
-      .quiz-option.incorrect {
-        background-color: #f44336 !important;
-        color: white;
-        position: relative;
-      }
-
-      .icon {
-        font-size: 1.5rem;
-      }
-
-      .correct .icon {
-        color: white;
-      }
-
-      .incorrect .icon {
-        color: white;
-      }
-
-      /* Sidebar Styling */
-      .sidebar {
-        width: 220px;
-        background-color: #334155;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        left: 0;
-      }
-
-      h2 {
-        color: #facc15;
-        text-align: center;
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-      }
-
-      .menu {
-        list-style: none;
-        padding: 0;
-      }
-
-      .menu-item {
-        background-color: #4b5563;
-        padding: 15px;
-        margin: 10px 0;
-        text-align: center;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s, color 0.3s;
-      }
-
-      .menu-item:hover {
-        background-color: #facc15;
-        color: black;
-      }
-
-      /* Container alignment */
-      .content-section {
-        margin-left: 240px;
-        flex-grow: 1;
-      }
-
-      /* Small screen responsiveness */
-      @media (max-width: 768px) {
-        .sidebar {
-          width: 100%;
-          height: auto;
-          position: relative;
-        }
-        .content-section {
-          margin-left: 0;
-        }
-      }
-
-      .feedback {
-        font-size: 1.5rem;
-        text-align: center;
-        margin-top: 20px;
-      }
-    </style>
+    <link rel="stylesheet" href="../../CSS/Quiz.css" />
+    <link rel="stylesheet" href="../../CSS/Modal.css" />
+    <script src="../../JavaScript/Quiz.js"></script>
+    <script src="../../JavaScript/Modal.js" defer></script>
   </head>
   <body>
     <div class="sidebar">
       <h2>Recursion Concepts</h2>
       <ul class="menu">
-        <li class="menu-item" onclick="location.href='../Theory/recursion_theory.html'">
+        <li
+          class="menu-item"
+          onclick="location.href='../Theory/recursion_theory.html'"
+        >
           Theory
         </li>
         <li
@@ -183,6 +46,38 @@
         <div class="feedback" id="feedback"></div>
       </div>
     </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <h2>Program</h2>
+        <p>
+          #include &lt;stdio.h> <br />
+          <br />
+          int factorial(int n) { <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;if (n == 1) { <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 1;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;} else {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return n * factorial(n
+          - 1);<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+          }<br />
+          <br />
+          int main() {<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;int num;<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;printf("Enter a number: ");<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;scanf("%d", &num);<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;int result = factorial(num);<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;printf("Factorial of %d is %d", num,
+          result);<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;return 0;<br />
+          }<br />
+        </p>
+      </div>
+    </div>
+
     <script>
       const quizData = [
         {
@@ -192,15 +87,15 @@
             "if (n > 1)",
             "if (n == 0 || n == 1)",
             "if (n < 0)",
-            "if (n == n - 1)"
+            "if (n == n - 1)",
           ],
-          correct: 1
+          correct: 1,
         },
         {
           question:
-            "What will be the output of the program if the user inputs 4?",
+            'What will be the output of the <span id="popupTrigger" style="color: black; font-style: italic; cursor: pointer;">program</span> if the user inputs 4?',
           options: ["4", "12", "24", "16"],
-          correct: 2
+          correct: 2,
         },
         {
           question:
@@ -209,9 +104,9 @@
             "#include &lt;stdlib.h&gt;",
             "#include &lt;string.h&gt;",
             "#include &lt;math.h&gt;",
-            "#include &lt;stdio.h&gt;"
+            "#include &lt;stdio.h&gt;",
           ],
-          correct: 3
+          correct: 3,
         },
         {
           question:
@@ -220,88 +115,13 @@
             "Recursion is easier to read and implement for mathematical problems",
             "Iteration doesn't work in C",
             "Factorial calculation is impossible with loops",
-            "Recursion makes the program faster"
+            "Recursion makes the program faster",
           ],
-          correct: 0
-        }
+          correct: 0,
+        },
       ];
 
-      let answeredQuestions = 0;
-      let correctAnswers = 0;
-
-      function loadQuiz() {
-        const quizContainer = document.getElementById("quiz-container");
-        quizContainer.innerHTML = "";
-
-        quizData.forEach((item, index) => {
-          const questionElem = document.createElement("div");
-          questionElem.classList.add("quiz-question");
-          questionElem.innerHTML = `<h3>${index + 1}. ${item.question}</h3>`;
-
-          item.options.forEach((option, optionIndex) => {
-            const optionElem = document.createElement("div");
-            optionElem.classList.add("quiz-option");
-            optionElem.innerHTML = `${option} <span class="icon"></span>`;
-
-            optionElem.addEventListener("click", () => {
-              handleOptionClick(optionElem, item.correct, optionIndex, item, index);
-            });
-            questionElem.appendChild(optionElem);
-          });
-          quizContainer.appendChild(questionElem);
-        });
-      }
-
-      function handleOptionClick(optionElem, correctIndex, selectedIndex, item, questionIndex) {
-        const options = optionElem.parentElement.querySelectorAll(".quiz-option");
-        options.forEach((option, index) => {
-          option.classList.remove("correct", "incorrect");
-          const icon = option.querySelector(".icon");
-          icon.innerHTML = "";
-        });
-
-        if (selectedIndex === correctIndex) {
-          optionElem.classList.add("correct");
-          optionElem.querySelector(".icon").innerHTML = "✔";
-          correctAnswers++;
-        } else {
-          optionElem.classList.add("incorrect");
-          optionElem.querySelector(".icon").innerHTML = "✘";
-          // Highlight the correct option
-          options[correctIndex].classList.add("correct");
-        }
-
-        answeredQuestions++;
-
-        // Disable further selection for the current question
-        options.forEach((option) => {
-          option.style.pointerEvents = "none";
-        });
-
-        if (answeredQuestions === quizData.length) {
-          showFeedback();
-        }
-      }
-
-      function showFeedback() {
-        const feedbackElem = document.getElementById("feedback");
-        const scorePercentage = (correctAnswers / quizData.length) * 100;
-        let feedbackMessage;
-
-        if (scorePercentage === 100) {
-          feedbackMessage = "Excellent! You got all answers correct!";
-        } else if (scorePercentage >= 75) {
-          feedbackMessage = "Great job! You have a strong understanding of recursion.";
-        } else if (scorePercentage >= 50) {
-          feedbackMessage = "Good effort! You might want to review some concepts.";
-        } else {
-          feedbackMessage = "Keep practicing! Recursion can be tricky at first.";
-        }
-
-        feedbackElem.innerHTML = `You scored ${correctAnswers} out of ${quizData.length}. ${feedbackMessage}`;
-      }
-
-      loadQuiz();
+      document.addEventListener("DOMContentLoaded", initializeQuiz(quizData));
     </script>
   </body>
 </html>
