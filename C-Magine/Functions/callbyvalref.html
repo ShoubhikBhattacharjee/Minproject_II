@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Call by Value vs Call by Reference Visualization</title>
+  <style>
+    /* Global Styles & Layout */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #1e293b;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar h2 {
+      color: #facc15;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .menu {
+      list-style: none;
+    }
+
+    .menu-item {
+      background-color: #334155;
+      padding: 15px;
+      margin: 10px 0;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #facc15;
+      color: black;
+    }
+    body {
+      font-family: 'Courier New', monospace;
+      background-color: #1e272e;
+      color: #dcdde1;
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
+    }
+    .container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+    /* Left Panel: Code Section */
+    .code-container {
+      flex: 1;
+      background-color: #2f3640;
+      padding: 20px;
+      border-right: 4px solid #44bd32;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .highlight {
+      background-color: #44bd32;
+      color: #000;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    /* Right Panel: Visualization Section */
+    .visual-container {
+      flex: 1;
+      background-color: #273c75;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+      text-align: center;
+      width: 90%;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .input-group input {
+      width: 60%;
+      padding: 8px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+    }
+    button {
+      margin-top: 10px;
+      padding: 12px 25px;
+      background-color: #44bd32;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2ecc71;
+    }
+    /* Visualization Steps */
+    .step-container {
+      margin-top: 20px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .data-box {
+      background-color: #44bd32;
+      color: #000;
+      padding: 20px;
+      border-radius: 10px;
+      min-width: 250px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .data-box.show {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    .arrow {
+      font-size: 30px;
+      color: #2ecc71;
+      margin-top: 10px;
+    }
+    /* Slide-in Animation */
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .slide-in {
+      animation: slideIn 1s forwards;
+    }
+        .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Call By Value & Reference</h2>
+    <ul class="menu">
+      <li class="menu-item" onclick="location.href='Theory/callbyrefval_theory.html'">📖Theory</li>
+      <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">📜Algorithm</li>
+      <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+      </li>
+      <li class="menu-item" onclick="location.href='Quiz/callbyrefvalue_quiz.html'">🧠Quiz</li>
+      <li class="menu-item" onclick="location.href='../Code/newindex.html'">⚙️Code & Learn</li>
+    </ul>
+  </div>
+  <div class="container">
+    <!-- Left Panel: Code Section -->
+    <div class="code-container" id="code-container">
+#include <stdio.h>
+
+// Function using Call by Value
+int increment_by_value(int x) {
+    x = x + 1;       // (Call by value: x is local)
+    return x;        // Returns new value; original remains unchanged
+}
+
+// Function using Call by Reference
+void increment_by_reference(int *x) {
+    *x = *x + 1;     // (Call by reference: modifies original)
+}
+
+int main() {
+    int a = 5, b = 5;
+    int result1 = increment_by_value(a);
+    increment_by_reference(&b);
+    
+    printf("Call by Value: a = %d, result1 = %d\n", a, result1);
+    printf("Call by Reference: b = %d\n", b);
+    
+    return 0;
+}
+    </div>
+    <!-- Right Panel: Visualization Section -->
+    <div class="visual-container">
+      <h2>C Functions: Call by Value vs Reference</h2>
+      <div class="input-group">
+        <label for="number-input">Enter a number (e.g., 5):</label>
+        <input type="number" id="number-input" placeholder="5" />
+      </div>
+      <button onclick="startDemo()">Run Demo</button>
+      <div class="step-container" id="step-container">
+        <!-- Animated steps will appear here -->
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Save the code snippet lines for highlighting
+    let codeLines = document.getElementById("code-container").innerText.split("\n");
+
+    // Helper: Highlight a specific code line (1-indexed)
+    function highlightCodeLine(lineNumber) {
+      const codeContainer = document.getElementById("code-container");
+      codeContainer.innerHTML = codeLines
+        .map((line, index) => 
+          index === lineNumber - 1 ? `<span class="highlight">${line}</span>` : line
+        )
+        .join("\n");
+    }
+
+    // Helper: Delay function
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    // Main demo function with increased delays
+    async function startDemo() {
+      // Clear previous steps
+      const stepContainer = document.getElementById("step-container");
+      stepContainer.innerHTML = "";
+      // Reset code highlighting to original
+      document.getElementById("code-container").innerText = codeLines.join("\n");
+
+      let inputVal = parseInt(document.getElementById("number-input").value);
+      if (isNaN(inputVal)) {
+        alert("Please enter a valid number.");
+        return;
+      }
+      // For demo: let a = inputVal for call by value and b = inputVal for call by reference.
+      let a = inputVal;
+      let b = inputVal;
+
+      // Step 1: Display initial values in main()
+      let boxMain = document.createElement("div");
+      boxMain.className = "data-box slide-in show";
+      boxMain.innerText = `Initial in main: a = ${a}, b = ${b}`;
+      stepContainer.appendChild(boxMain);
+      highlightCodeLine(14); // Highlight: int a = 5, b = 5; (line 14 in our snippet)
+      await delay(3000);
+
+      // Step 2: Call by Value demonstration
+      let arrow1 = document.createElement("div");
+      arrow1.className = "arrow slide-in";
+      arrow1.innerText = "↓ Call by Value Function (increment_by_value)";
+      stepContainer.appendChild(arrow1);
+      highlightCodeLine(2); // Highlight function increment_by_value (line 2)
+      await delay(3000);
+
+      // In call by value, we call the function and store the return value.
+      let result1 = a + 1; // simulation: a is not changed by call-by-value
+      let boxValue = document.createElement("div");
+      boxValue.className = "data-box slide-in show";
+      boxValue.innerText = `Call by Value:\nFunction receives a = ${a}\nReturns ${result1}\n(main's a remains ${a})`;
+      stepContainer.appendChild(boxValue);
+      highlightCodeLine(3); // Highlight inside increment_by_value (line 3)
+      await delay(3000);
+
+      // Step 3: Call by Reference demonstration
+      let arrow2 = document.createElement("div");
+      arrow2.className = "arrow slide-in";
+      arrow2.innerText = "↓ Call by Reference Function (increment_by_reference)";
+      stepContainer.appendChild(arrow2);
+      highlightCodeLine(6); // Highlight function increment_by_reference (line 6)
+      await delay(3000);
+
+      // In call by reference, the function modifies the original variable.
+      b = b + 1; // simulation: *x = *x + 1 changes b
+      let boxRef = document.createElement("div");
+      boxRef.className = "data-box slide-in show";
+      boxRef.innerText = `Call by Reference:\nFunction receives address of b\nModifies b to ${b}`;
+      stepContainer.appendChild(boxRef);
+      highlightCodeLine(7); // Highlight inside increment_by_reference (line 7)
+      await delay(3000);
+
+      // Step 4: Final results in main()
+      let boxFinal = document.createElement("div");
+      boxFinal.className = "data-box slide-in show";
+      boxFinal.innerText = `Final in main:\nCall by Value: a = ${a}, result1 = ${result1}\nCall by Reference: b = ${b}`;
+      stepContainer.appendChild(boxFinal);
+      highlightCodeLine(10); // Highlight final printf line in main (line 10)
+      await delay(3000);
+
+      // Reset code highlighting after a short delay
+      setTimeout(() => {
+        document.getElementById("code-container").innerText = codeLines.join("\n");
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

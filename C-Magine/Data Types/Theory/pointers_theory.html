@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pointers in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        strong {
+            font-size: 1.1em;
+            color: #d9534f;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 1.1em;
+            border-left: 5px solid #007BFF;
+            white-space: pre-wrap;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Pointers in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../pointers.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../pointers.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/pointers_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Pointers in C</h2>
+        <p>A <strong>pointer</strong> is a variable that stores the memory address of another variable. Pointers allow us to manipulate memory directly, improving efficiency and flexibility.</p>
+
+        <h3>1. Declaring a Pointer</h3>
+        <p>Pointers are declared using the <strong>*</strong> operator:</p>
+        <div class="code-block">
+            <strong>int *ptr;</strong> // Declaring an integer pointer
+        </div>
+
+        <h3>2. Assigning Address to a Pointer</h3>
+        <p>Use the <strong>& (address-of)</strong> operator to assign a variable's address to a pointer:</p>
+        <div class="code-block">
+            <strong>int x = 10;</strong><br>
+            <strong>int *ptr = &x;</strong>
+        </div>
+
+        <h3>3. Accessing Value using a Pointer</h3>
+        <p>Use the <strong>* (dereference)</strong> operator to access the value stored at the memory address:</p>
+        <div class="code-block">
+            <strong>printf("%d", *ptr);</strong> // Output: 10
+        </div>
+
+        <h3>4. Example Program</h3>
+        <p>Below is a complete example demonstrating pointers in C:</p>
+        <div class="code-block">
+            <strong>#include &lt;stdio.h&gt;</strong><br><br>
+            <strong>int main()</strong> {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>int x = 20;</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>int *ptr = &x;</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Value of x: %d\n", x);</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Address of x: %p\n", &x);</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Pointer stores: %p\n", ptr);</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Value via pointer: %d\n", *ptr);</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>return 0;</strong><br>
+            }
+        </div>
+
+        <h3>5. Pointer Arithmetic</h3>
+        <p>Pointers support arithmetic operations like increment and decrement.</p>
+        <div class="code-block">
+            <strong>ptr++;</strong> // Moves to the next memory address
+        </div>
+
+        <h3>6. NULL Pointer</h3>
+        <p>A NULL pointer does not point to any valid memory location.</p>
+        <div class="code-block">
+            <strong>int *ptr = NULL;</strong>
+        </div>
+
+        <h3>7. Pointers to Pointers</h3>
+        <p>A pointer can store the address of another pointer.</p>
+        <div class="code-block">
+            <strong>int **ptr2 = &ptr;</strong>
+        </div>
+
+        <h3>8. Dynamic Memory Allocation</h3>
+        <p>Pointers are essential for dynamic memory allocation using <strong>malloc</strong>, <strong>calloc</strong>, and <strong>free</strong>.</p>
+        <div class="code-block">
+            <strong>int *ptr = (int*)malloc(sizeof(int));</strong>
+        </div>
+
+        <h3>9. Real-World Applications</h3>
+        <p>Pointers are widely used in:</p>
+        <ul>
+            <li><strong>Memory Management:</strong> Dynamic memory allocation.</li>
+            <li><strong>Data Structures:</strong> Used in linked lists, trees, etc.</li>
+            <li><strong>Function Pointers:</strong> Callbacks and event handling.</li>
+            <li><strong>System Programming:</strong> Direct hardware interaction.</li>
+        </ul>
+    </div>
+</body>
+</html>

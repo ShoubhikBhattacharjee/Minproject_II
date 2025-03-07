@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Array Initialization in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        code {
+            background-color: #eee;
+            padding: 5px;
+            font-family: monospace;
+            display: block;
+            white-space: pre-wrap;
+            border-left: 4px solid #007BFF;
+            margin: 10px 0;
+            padding-left: 10px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>2D Array Concepts</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../matrixcreate.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../matrixcreate.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/matrixcreate_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>2D Array Initialization in C</h2>
+        <p>In C, a <strong>2D array</strong> is an array of arrays that can be used to store tabular data. It is declared and initialized in various ways.</p>
+
+        <h3>1. Declaring a 2D Array</h3>
+        <p>A two-dimensional array is declared using the following syntax:</p>
+        <code>
+        data_type array_name[rows][columns];
+        </code>
+        <p>For example:</p>
+        <code>
+        int matrix[3][3];
+        </code>
+
+        <h3>2. Initializing a 2D Array</h3>
+        <p>2D arrays can be initialized at the time of declaration:</p>
+        <code>
+        int matrix[3][3] = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        </code>
+        <p>Alternatively, values can be assigned individually:</p>
+        <code>
+        matrix[0][0] = 1;
+        matrix[0][1] = 2;
+        matrix[0][2] = 3;
+        </code>
+
+        <h3>3. Accessing Elements</h3>
+        <p>Elements in a 2D array are accessed using row and column indices:</p>
+        <code>
+        printf("%d", matrix[1][2]); // Accesses element at row 1, column 2
+        </code>
+
+        <h3>4. Printing a 2D Array</h3>
+        <p>A nested loop is typically used to print the contents of a 2D array:</p>
+        <code>
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                printf("%d ", matrix[i][j]);
+            }
+            printf("\n");
+        }
+        </code>
+
+        <h3>5. Importance of 2D Arrays</h3>
+        <p>2D arrays are widely used in applications such as:</p>
+        <ul>
+            <li>Matrix operations</li>
+            <li>Graph representations</li>
+            <li>Game development (e.g., tic-tac-toe, chess)</li>
+            <li>Image processing</li>
+        </ul>
+    </div>
+</body>
+</html>

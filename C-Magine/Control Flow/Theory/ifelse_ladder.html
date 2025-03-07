@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>If-Else Ladder in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        strong {
+            font-size: 1.1em;
+            color: #d9534f;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 1.1em;
+            border-left: 5px solid #007BFF;
+            white-space: pre-wrap;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>If-Else Ladder in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../ifelse ladder.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../ifelse ladder.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/if-else-ladder.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>If-Else Ladder in C</h2>
+        <p>The <strong>if-else ladder</strong> in C is used when multiple conditions need to be checked one after another. It allows the program to evaluate multiple conditions and execute the corresponding block when a condition is met.</p>
+
+        <h3>1. Syntax of If-Else Ladder</h3>
+        <p>The general structure of an if-else ladder is:</p>
+
+        <div class="code-block">
+            <strong>if (condition1) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>// Code if condition1 is true</strong><br>
+            <strong>} else if (condition2) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>// Code if condition2 is true</strong><br>
+            <strong>} else if (condition3) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>// Code if condition3 is true</strong><br>
+            <strong>} else {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>// Code if no condition is true</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>2. Example: Grading System</h3>
+        <p>The following program assigns grades based on marks.</p>
+
+        <div class="code-block">
+            <strong>if (marks >= 90) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Grade: A");</strong><br>
+            <strong>} else if (marks >= 80) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Grade: B");</strong><br>
+            <strong>} else if (marks >= 70) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Grade: C");</strong><br>
+            <strong>} else if (marks >= 60) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Grade: D");</strong><br>
+            <strong>} else {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Grade: F (Fail)");</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <p>Here:</p>
+        <ul>
+            <li>If <strong>marks ≥ 90</strong>, the student gets an <strong>A</strong>.</li>
+            <li>If <strong>marks ≥ 80</strong>, they get a <strong>B</strong>.</li>
+            <li>If <strong>marks ≥ 70</strong>, they get a <strong>C</strong>.</li>
+            <li>If <strong>marks ≥ 60</strong>, they get a <strong>D</strong>.</li>
+            <li>Otherwise, they fail (<strong>F</strong>).</li>
+        </ul>
+
+        <h3>3. Difference Between If-Else and If-Else Ladder</h3>
+        <table border="1" cellpadding="10">
+            <tr>
+                <th>If-Else</th>
+                <th>If-Else Ladder</th>
+            </tr>
+            <tr>
+                <td>Used for simpler decision-making.</td>
+                <td>Used when multiple conditions must be checked sequentially.</td>
+            </tr>
+            <tr>
+                <td>Only one condition is checked.</td>
+                <td>Several conditions are checked one after another.</td>
+            </tr>
+            <tr>
+                <td>Example: Checking even or odd.</td>
+                <td>Example: Assigning grades based on marks.</td>
+            </tr>
+        </table>
+
+        <h3>4. Real-World Applications</h3>
+        <ul>
+            <li><strong>Grading Systems:</strong> Assigning grades based on marks.</li>
+            <li><strong>Tax Calculation:</strong> Applying different tax slabs based on income.</li>
+            <li><strong>Game Mechanics:</strong> Determining player rank based on scores.</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addition of Two Matrices in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Matrix Addition</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../matrix_adder.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../matrix_adder.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/addquiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Addition of Two Matrices in C</h2>
+        <p>Matrix addition is an operation where corresponding elements of two matrices are added together to form a new matrix. This operation is widely used in mathematics, computer graphics, and data analysis.</p>
+
+        <h3>1. Understanding Matrices</h3>
+        <p>A matrix is a two-dimensional arrangement of numbers in rows and columns. Each element in a matrix is accessed using two indices: one for the row and another for the column.</p>
+
+        <h3>2. Conditions for Matrix Addition</h3>
+        <p>For two matrices to be added, they must have the same number of rows and columns. If the dimensions of the matrices are different, addition is not possible.</p>
+
+        <h3>3. Process of Matrix Addition</h3>
+        <p>Matrix addition is performed by adding each corresponding element from the two matrices:</p>
+
+        <table>
+            <tr>
+                <th>Matrix A</th>
+                <th>Matrix B</th>
+                <th>Result (A + B)</th>
+            </tr>
+            <tr>
+                <td>
+                    | a₁₁ a₁₂ | <br>
+                    | a₂₁ a₂₂ |
+                </td>
+                <td>
+                    | b₁₁ b₁₂ | <br>
+                    | b₂₁ b₂₂ |
+                </td>
+                <td>
+                    | (a₁₁ + b₁₁) (a₁₂ + b₁₂) | <br>
+                    | (a₂₁ + b₂₁) (a₂₂ + b₂₂) |
+                </td>
+            </tr>
+        </table>
+
+        <h3>4. Implementing Matrix Addition in C</h3>
+        <p>Matrix addition in C is implemented using <strong>arrays</strong> and <strong>nested loops</strong>. The key steps are:</p>
+
+        <h4>Step 1: Declare Matrices</h4>
+        <p>We use <strong>2D arrays</strong> in C to store matrices. Three arrays are needed:</p>
+        <ul>
+            <li><strong>Matrix A</strong> - stores the first matrix.</li>
+            <li><strong>Matrix B</strong> - stores the second matrix.</li>
+            <li><strong>Matrix C</strong> - stores the result after addition.</li>
+        </ul>
+
+        <h4>Step 2: Input Values into Matrices</h4>
+        <p>We use a <strong>nested loop</strong> to take input for both matrices.</p>
+        <ul>
+            <li>The <strong>outer loop</strong> runs for rows.</li>
+            <li>The <strong>inner loop</strong> runs for columns.</li>
+            <li>Each element is stored using two indices: row and column.</li>
+        </ul>
+
+        <h4>Step 3: Perform Addition</h4>
+        <p>Another nested loop is used to compute the sum:</p>
+        <ul>
+            <li>For each <strong>row</strong> and <strong>column</strong>, add corresponding elements.</li>
+            <li>Store the result in <strong>Matrix C</strong>.</li>
+        </ul>
+
+        <h4>Step 4: Display the Result</h4>
+        <p>Finally, a loop is used to print <strong>Matrix C</strong>, which holds the sum.</p>
+    </div>
+</body>
+</html>

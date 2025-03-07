@@ -132,6 +132,11 @@
       text-align: center;
       margin: 5px;
     }
+        .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
   </style>
 </head>
 <body>
@@ -139,12 +144,14 @@
   <div class="sidebar">
     <h2>Pointer Concepts</h2>
     <ul class="menu">
-      <li class="menu-item" onclick="alert('Pointers let you work with memory addresses. We begin with single pointers before introducing double pointers.')">
-        Theory
+      <li class="menu-item" onclick="location.href='Theory/pointers_theory.html'">
+        📖Theory
       </li>
-      <li class="menu-item" onclick="alert('Interactive Demo')">Algorithm</li>
-      <li class="menu-item" onclick="alert('Interactive Demo')">Flowchart</li>
-      <li class="menu-item" onclick="alert('Practice Quiz')">Quiz</li>
+      <li class="menu-item" onclick="location.href='../Algorithm/leap_algo.html'">📜Algorithm</li>
+      <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+      </li>
+      <li class="menu-item" onclick="location.href='Quiz/pointers_quiz.html'">🧠Quiz</li>
+      <li class="menu-item" onclick="location.href='../Code/newindex.html'">⚙️Code & Learn</li>
     </ul>
   </div>
 

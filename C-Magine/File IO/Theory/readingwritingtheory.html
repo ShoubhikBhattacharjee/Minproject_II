@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Handling in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        code {
+            background-color: #eee;
+            padding: 5px;
+            font-family: monospace;
+            display: block;
+            white-space: pre-wrap;
+            border-left: 4px solid #007BFF;
+            margin: 10px 0;
+            padding-left: 10px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>File Handling Concepts</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../file_operations.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../file_operations.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/fileoperations_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>File Handling in C</h2>
+        <p><strong>File handling</strong> in C enables programmers to create, read, write, and modify files. It is essential for managing data storage efficiently and allows information to persist beyond program execution.</p>
+
+        <h3>1. File Operations in C</h3>
+        <p>File handling involves multiple operations, each with specific functions:</p>
+        <table>
+            <tr>
+                <th>Operation</th>
+                <th>Function</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><strong>Opening a File</strong></td>
+                <td><strong>fopen()</strong></td>
+                <td>Opens a file in a specified mode (read, write, append, etc.).</td>
+            </tr>
+            <tr>
+                <td><strong>Closing a File</strong></td>
+                <td><strong>fclose()</strong></td>
+                <td>Closes an open file to prevent data loss.</td>
+            </tr>
+            <tr>
+                <td><strong>Reading from a File</strong></td>
+                <td><strong>fscanf(), fgets(), fgetc()</strong></td>
+                <td>Reads data from a file using different methods.</td>
+            </tr>
+            <tr>
+                <td><strong>Writing to a File</strong></td>
+                <td><strong>fprintf(), fputs(), fputc()</strong></td>
+                <td>Writes data to a file in various formats.</td>
+            </tr>
+            <tr>
+                <td><strong>Moving the File Pointer</strong></td>
+                <td><strong>fseek(), rewind(), ftell()</strong></td>
+                <td>Changes or retrieves the current position of the file pointer.</td>
+            </tr>
+        </table>
+
+        <h3>2. File Opening Modes</h3>
+        <p>The <strong>fopen()</strong> function requires a mode to determine how the file is accessed:</p>
+        <ul>
+            <li><strong>"r"</strong> - Opens an existing file for reading.</li>
+            <li><strong>"w"</strong> - Creates a new file for writing (overwrites existing content).</li>
+            <li><strong>"a"</strong> - Opens a file for appending (adds data at the end).</li>
+            <li><strong>"r+"</strong> - Opens a file for both reading and writing.</li>
+            <li><strong>"w+"</strong> - Opens a file for reading and writing (erases existing content).</li>
+            <li><strong>"a+"</strong> - Opens a file for reading and appending.</li>
+        </ul>
+
+        <h3>3. Importance of File Handling</h3>
+        <p>Proper file handling is crucial for data persistence and resource management. By understanding how to open, modify, and close files efficiently, programmers can ensure data integrity and streamline storage operations.</p>
+    </div>
+</body>
+</html>

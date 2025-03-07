@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structures in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        strong {
+            font-size: 1.1em;
+            color: #d9534f;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 1.1em;
+            border-left: 5px solid #007BFF;
+            white-space: pre-wrap;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Structures in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../primitive_datatypes.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../primitive_datatypes.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/primitive_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Structures in C</h2>
+        <p>In C, a <strong>structure</strong> is a user-defined data type that allows grouping of variables of different types under a single name. It is used to represent complex data types like records.</p>
+
+        <h3>1. Declaring a Structure</h3>
+        <p>A structure is declared using the <strong>struct</strong> keyword:</p>
+        <div class="code-block">
+            <strong>struct</strong> Student {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>char</strong> name[50];<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>int</strong> age;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>float</strong> marks;<br>
+            };
+        </div>
+
+        <h3>2. Creating Structure Variables</h3>
+        <p>We can create structure variables in two ways:</p>
+        <ul>
+            <li>Inside the structure definition</li>
+            <li>Outside the structure definition</li>
+        </ul>
+        <div class="code-block">
+            <strong>struct Student s1;</strong> // Creating a structure variable
+        </div>
+
+        <h3>3. Accessing Structure Members</h3>
+        <p>Members of a structure are accessed using the <strong>dot (.) operator</strong>:</p>
+        <div class="code-block">
+            <strong>s1.age = 20;</strong><br>
+            <strong>s1.marks = 85.5;</strong>
+        </div>
+
+        <h3>4. Example Program</h3>
+        <p>Below is a complete example of using structures in C:</p>
+        <div class="code-block">
+            <strong>#include &lt;stdio.h&gt;</strong><br><br>
+            <strong>struct</strong> Student {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>char</strong> name[50];<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>int</strong> age;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>float</strong> marks;<br>
+            };<br><br>
+            <strong>int main()</strong> {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>struct Student s1 = {"Alice", 20, 88.5};</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Name: %s\n", s1.name);</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Age: %d\n", s1.age);</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Marks: %.2f\n", s1.marks);</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>return 0;</strong><br>
+            }
+        </div>
+
+        <h3>5. Structure Arrays</h3>
+        <p>We can use arrays of structures to store multiple records.</p>
+        <div class="code-block">
+            <strong>struct Student students[3];</strong>
+        </div>
+
+        <h3>6. Real-World Applications</h3>
+        <p>Structures are widely used in real-world applications:</p>
+        <ul>
+            <li><strong>Database Management:</strong> Storing records of employees, students, etc.</li>
+            <li><strong>Game Development:</strong> Storing player information, scores, etc.</li>
+            <li><strong>Networking:</strong> Storing packet headers and connection details.</li>
+            <li><strong>Operating Systems:</strong> Managing process control blocks.</li>
+        </ul>
+    </div>
+</body>
+</html>

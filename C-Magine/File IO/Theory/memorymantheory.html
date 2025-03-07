@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Management in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Memory Management</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../memory.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../memory.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/memory_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Memory Management in C</h2>
+        <p><strong>Memory management</strong> in C is crucial for efficient resource utilization, allowing programs to allocate and deallocate memory dynamically during execution.</p>
+
+        <h3>1. Dynamic Memory Allocation</h3>
+        <p>C provides functions to allocate memory at runtime, rather than using fixed memory sizes. These functions allow flexible memory usage, ensuring efficient space allocation.</p>
+
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><strong>malloc</strong></td>
+                <td>Allocates a specified amount of memory and returns a pointer to the allocated space.</td>
+            </tr>
+            <tr>
+                <td><strong>calloc</strong></td>
+                <td>Allocates memory for an array of elements and initializes them to zero.</td>
+            </tr>
+            <tr>
+                <td><strong>realloc</strong></td>
+                <td>Resizes an already allocated memory block.</td>
+            </tr>
+            <tr>
+                <td><strong>free</strong></td>
+                <td>Deallocates previously allocated memory, preventing memory leaks.</td>
+            </tr>
+        </table>
+
+        <h3>2. Understanding malloc</h3>
+        <p>The <strong>malloc</strong> function is used when a program needs to allocate memory dynamically. It returns a pointer to the allocated memory block. However, it does not initialize the memory, meaning it may contain garbage values.</p>
+
+        <p><strong>Example Use Case:</strong> Allocating memory for storing user input dynamically instead of using a fixed array.</p>
+
+        <h3>3. Understanding calloc</h3>
+        <p>The <strong>calloc</strong> function is similar to malloc but has two parameters: the number of elements and the size of each element. Unlike malloc, it initializes all allocated memory to zero.</p>
+
+        <p><strong>Example Use Case:</strong> Useful when creating an array where all elements must be initialized to zero, such as when managing student marks.</p>
+
+        <h3>4. Understanding realloc</h3>
+        <p>The <strong>realloc</strong> function allows changing the size of an already allocated memory block. It is helpful when the initially allocated memory is insufficient or needs adjustment based on runtime requirements.</p>
+
+        <p><strong>Example Use Case:</strong> Expanding the storage of a dynamically allocated list when more elements need to be added.</p>
+
+        <h3>5. Understanding free</h3>
+        <p>The <strong>free</strong> function is used to deallocate memory that was previously allocated using malloc, calloc, or realloc. This ensures efficient memory usage by preventing memory leaks.</p>
+
+        <p><strong>Example Use Case:</strong> After completing a computation that used dynamically allocated memory, calling free releases it for other operations.</p>
+
+        <h3>6. Importance of Proper Memory Management</h3>
+        <p>Failure to manage memory properly can result in issues such as memory leaks, segmentation faults, and inefficient resource utilization. By using these functions appropriately, programmers can optimize program performance and prevent crashes.</p>
+
+        <h3>7. Key Considerations</h3>
+        <ul>
+            <li>Always free dynamically allocated memory when it is no longer needed.</li>
+            <li>Ensure proper checks after memory allocation to avoid dereferencing NULL pointers.</li>
+            <li>Use realloc carefully to prevent losing existing data when resizing memory.</li>
+            <li>Consider initializing allocated memory when required, as malloc does not do so automatically.</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checking in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        strong {
+            font-size: 1.1em;
+            color: #d9534f;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 1.1em;
+            border-left: 5px solid #007BFF;
+            white-space: pre-wrap;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Palindrome in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../palindrome.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../Algorithm/._algo.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/palindrome_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Palindrome Checking in C</h2>
+        <p>A <strong>Palindrome</strong> is a word, phrase, number, or sequence that reads the same backward as forward. Examples include:</p>
+        <ul>
+            <li><strong>Strings:</strong> "madam", "racecar", "level"</li>
+            <li><strong>Numbers:</strong> 121, 1331, 12321</li>
+        </ul>
+
+        <h3>1. Checking if a String is a Palindrome</h3>
+        <p>To determine if a string is a palindrome, we compare it with its reversed version.</p>
+
+        <h4>🔹 Using Character Comparison</h4>
+        <p>One way to check is by iterating from both ends of the string and comparing characters.</p>
+
+        <div class="code-block">
+            <strong>for(int i = 0, j = strlen(str) - 1; i < j; i++, j--) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>if(str[i] != str[j]) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>// Not a palindrome</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>}</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <p>Here, we use two variables: <strong>i</strong> starts from the beginning, and <strong>j</strong> starts from the end. If any mismatch occurs, it's not a palindrome.</p>
+
+        <h3>2. Checking if a Number is a Palindrome</h3>
+        <p>A number is a palindrome if its reverse is equal to the original number.</p>
+
+        <h4>🔹 Reversing a Number</h4>
+        <p>To reverse a number, we extract its digits and reconstruct the number in reverse order.</p>
+
+        <div class="code-block">
+            <strong>while (num > 0) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>rem = num % 10;</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>rev = rev * 10 + rem;</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>num /= 10;</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <p>We extract the last digit using <strong>modulus (%)</strong>, then build the reversed number by multiplying the current reverse by 10 and adding the extracted digit.</p>
+
+        <h3>3. Using Built-in Functions</h3>
+        <p>Some C libraries provide functions like <strong>strrev()</strong> for reversing strings.</p>
+
+        <div class="code-block">
+            <strong>strcpy(rev, str);</strong><br>
+            <strong>strrev(rev);</strong><br>
+            <strong>if(strcmp(str, rev) == 0) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>// It's a palindrome</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <p>Here, we first copy the original string, reverse it, and use <strong>strcmp()</strong> to compare both.</p>
+
+        <h3>4. Real-World Applications</h3>
+        <ul>
+            <li><strong>Data Validation:</strong> Ensuring symmetric sequences.</li>
+            <li><strong>Genetics:</strong> Palindromic DNA sequences.</li>
+            <li><strong>Cryptography:</strong> Symmetric encryption techniques.</li>
+        </ul>
+    </div>
+</body>
+</html>

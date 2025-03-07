@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch Case in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        strong {
+            font-size: 1.1em;
+            color: #d9534f;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 1.1em;
+            border-left: 5px solid #007BFF;
+            white-space: pre-wrap;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Switch Case in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../switch_case.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../switch_case.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/switch_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Switch Case in C</h2>
+        <p>The <strong>switch case</strong> is a control statement used when we need to execute different code blocks based on a specific variable’s value. It is a better alternative to multiple <strong>if-else</strong> statements when handling many conditions.</p>
+
+        <h3>1. Syntax and Working</h3>
+        <p>The switch statement works by evaluating an expression and executing the <strong>matching case</strong>. If no case matches, the <strong>default case</strong> executes.</p>
+
+        <div class="code-block">
+            <strong>switch(expression) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>case value1:</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>// Code block</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>break;</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>case value2:</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>// Code block</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>break;</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>default:</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>// Default code block</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>2. Example: Days of the Week</h3>
+        <p>Let's consider an example where we take an integer input (1-7) and display the corresponding day of the week.</p>
+
+        <div class="code-block">
+            <strong>switch(day) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>case 1:</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Monday");</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>break;</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>case 2:</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Tuesday");</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>break;</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>case 7:</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Sunday");</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>break;</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>default:</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Invalid input");</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>3. Why Use Break?</h3>
+        <p>The <strong>break</strong> statement is necessary to exit the switch block after a case is executed. Without it, execution will continue into the next case, causing unintended behavior.</p>
+
+        <h3>4. Default Case</h3>
+        <p>The <strong>default</strong> case is optional but useful to handle invalid inputs.</p>
+
+        <h3>5. Limitations of Switch Case</h3>
+        <ul>
+            <li>Works only with <strong>integer and character values</strong>.</li>
+            <li>Cannot handle conditions like <strong>x > 5</strong> (unlike if-else).</li>
+            <li>Cannot use floating-point numbers or complex conditions.</li>
+        </ul>
+
+        <h3>6. Alternative Approach Using If-Else</h3>
+        <p>If conditions involve relational operators, <strong>if-else</strong> is a better choice:</p>
+
+        <div class="code-block">
+            <strong>if (day == 1) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Monday");</strong><br>
+            <strong>} else if (day == 2) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Tuesday");</strong><br>
+            <strong>} else {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Invalid input");</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>7. Real-World Applications</h3>
+        <ul>
+            <li>Menu-driven programs.</li>
+            <li>Processing user input in embedded systems.</li>
+            <li>Handling keypress events in applications.</li>
+        </ul>
+    </div>
+</body>
+</html>

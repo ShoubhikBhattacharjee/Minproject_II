@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do-While Loop in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        strong {
+            font-size: 1.1em;
+            color: #d9534f;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 1.1em;
+            border-left: 5px solid #007BFF;
+            white-space: pre-wrap;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Do-While Loop in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../dowhile.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../dowhile.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/dowhile_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Do-While Loop in C</h2>
+        <p>The <strong>do-while loop</strong> is a type of loop in C that ensures the loop body executes at least once before checking the condition.</p>
+
+        <h3>1. Syntax and Working</h3>
+        <p>In a `do-while` loop, the loop body executes first, and then the condition is checked. If the condition evaluates to `true`, the loop continues execution.</p>
+
+        <div class="code-block">
+            <strong>do {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>// Code to be executed</strong><br>
+            <strong>} while (condition);</strong>
+        </div>
+
+        <h3>2. Example: Printing Numbers from 1 to 5</h3>
+        <p>The following example prints numbers from 1 to 5 using a `do-while` loop.</p>
+
+        <div class="code-block">
+            <strong>int i = 1;</strong><br>
+            <strong>do {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("%d ", i);</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>i++;</strong><br>
+            <strong>} while (i <= 5);</strong>
+        </div>
+
+        <h3>3. Flow of Execution</h3>
+        <p>The `do-while` loop executes as follows:</p>
+        <ol>
+            <li>Execute the <strong>loop body</strong>.</li>
+            <li>Check the <strong>condition</strong>.</li>
+            <li>If the condition is `true`, repeat step 1.</li>
+            <li>If the condition is `false`, exit the loop.</li>
+        </ol>
+
+        <h3>4. Difference Between `while` and `do-while` Loop</h3>
+        <p>The key difference between `while` and `do-while` loops is:</p>
+
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>While Loop</th>
+                <th>Do-While Loop</th>
+            </tr>
+            <tr>
+                <td><strong>Execution Order</strong></td>
+                <td>Condition is checked first, then the loop executes.</td>
+                <td>Loop executes first, then the condition is checked.</td>
+            </tr>
+            <tr>
+                <td><strong>Guaranteed Execution</strong></td>
+                <td>If the condition is false at the start, the loop may never execute.</td>
+                <td>The loop will always execute at least once.</td>
+            </tr>
+            <tr>
+                <td><strong>Use Case</strong></td>
+                <td>Used when the number of iterations is not known beforehand.</td>
+                <td>Used when at least one iteration is required before checking the condition.</td>
+            </tr>
+        </table>
+
+        <h3>5. Example Where `do-while` is Useful</h3>
+        <p>The `do-while` loop is useful when taking user input, ensuring at least one input attempt.</p>
+
+        <div class="code-block">
+            <strong>int num;</strong><br>
+            <strong>do {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Enter a positive number: ");</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>scanf("%d", &num);</strong><br>
+            <strong>} while (num <= 0);</strong>
+        </div>
+
+        <h3>6. Real-World Applications</h3>
+        <ul>
+            <li>Ensuring user input is taken at least once.</li>
+            <li>Displaying menus in applications where an option must be selected.</li>
+            <li>Running a game loop at least once before checking for exit conditions.</li>
+            <li>Simulating repeated tasks such as ATM PIN entry.</li>
+        </ul>
+    </div>
+</body>
+</html>

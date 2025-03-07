@@ -1,134 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Functions in C</title>
-    <link rel="stylesheet" href="../../CSS/Theory.css" />
-  </head>
-  <body>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
     <div class="sidebar">
-      <h2>Functions in C</h2>
-      <ul class="menu">
-        <li
-          class="menu-item"
-          onclick="location.href='../Algorithms/functions_algo.html'"
-        >
-          Algorithm
-        </li>
-        <li
-          class="menu-item"
-          onclick="location.href='../Flowcharts/functions_flow.html'"
-        >
-          Flowchart
-        </li>
-        <li class="menu-item" onclick="location.href='../Simulations/functions.html'">
-          Simulation
-        </li>
-        <li class="menu-item" onclick="location.href='../Quiz/func_quiz.html'">
-          Quiz
-        </li>
-      </ul>
+        <h2>Functions in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../func.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../Algorithms/functions_algo.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/func_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
     </div>
 
     <div class="container">
-      <h2>Functions in C</h2>
+        <h2>Functions in C</h2>
+        
+        <h3>1. Introduction</h3>
+        <p>A function in C is a <b>block of reusable code</b> that performs a specific task. Functions improve <b>modularity, readability, and reusability</b> of code.</p>
 
-      <h3>1. Introduction</h3>
-      <p>
-        A function in C is a <b>block of reusable code</b> that performs a
-        specific task. Functions improve
-        <b>modularity, readability, and reusability</b> of code.
-      </p>
+        <h3>2. Why Do We Need Functions?</h3>
+        <ul>
+            <li>✔ Avoids repetition of code.</li>
+            <li>✔ Makes the program more organized.</li>
+            <li>✔ Easier to debug and maintain.</li>
+            <li>✔ Helps in modular programming.</li>
+        </ul>
 
-      <h3>2. Why Do We Need Functions?</h3>
-      <ul>
-        <li>✔ Avoids repetition of code.</li>
-        <li>✔ Makes the program more organized.</li>
-        <li>✔ Easier to debug and maintain.</li>
-        <li>✔ Helps in modular programming.</li>
-      </ul>
+        <h3>3. Types of Functions</h3>
+        <table>
+            <tr>
+                <th>Function Type</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><b>Library Functions</b></td>
+                <td>Predefined functions in C (e.g., <code>printf()</code>, <code>scanf()</code>, <code>sqrt()</code>).</td>
+            </tr>
+            <tr>
+                <td><b>User-Defined Functions</b></td>
+                <td>Functions created by the programmer.</td>
+            </tr>
+        </table>
 
-      <h3>3. Types of Functions</h3>
-      <table>
-        <tr>
-          <th>Function Type</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td><b>Library Functions</b></td>
-          <td>
-            Predefined functions in C (e.g., <code>printf()</code>,
-            <code>scanf()</code>, <code>sqrt()</code>).
-          </td>
-        </tr>
-        <tr>
-          <td><b>User-Defined Functions</b></td>
-          <td>Functions created by the programmer.</td>
-        </tr>
-      </table>
-
-      <h3>4. Function Syntax</h3>
-      <p>A function in C follows this structure:</p>
-      <pre>
+        <h3>4. Function Syntax</h3>
+        <p>A function in C follows this structure:</p>
+        <pre>
 return_type function_name(parameters) {
     // Function body
     return value;
 }
-        </pre
-      >
+        </pre>
 
-      <h3>5. Function Declaration (Prototype)</h3>
-      <p>
-        A function must be declared before use (if defined later in the file).
-        This is called a <b>function prototype</b>.
-      </p>
-      <pre>
+        <h3>5. Function Declaration (Prototype)</h3>
+        <p>A function must be declared before use (if defined later in the file). This is called a <b>function prototype</b>.</p>
+        <pre>
 int add(int, int); // Function declaration
-        </pre
-      >
+        </pre>
 
-      <h3>6. Function Definition</h3>
-      <p>The actual implementation of the function.</p>
-      <pre>
+        <h3>6. Function Definition</h3>
+        <p>The actual implementation of the function.</p>
+        <pre>
 int add(int a, int b) {
     return a + b;
 }
-        </pre
-      >
+        </pre>
 
-      <h3>7. Function Call</h3>
-      <p>A function is executed when called inside <code>main()</code>.</p>
-      <pre>
+        <h3>7. Function Call</h3>
+        <p>A function is executed when called inside <code>main()</code>.</p>
+        <pre>
 int sum = add(5, 3); // Calling the function
-        </pre
-      >
+        </pre>
 
-      <h3>8. Function Call Types</h3>
-      <table>
-        <tr>
-          <th>Call Type</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td><b>Call by Value</b></td>
-          <td>
-            Copies the actual value; changes inside the function
-            <b>do not affect</b> the original variable.
-          </td>
-        </tr>
-        <tr>
-          <td><b>Call by Reference</b></td>
-          <td>
-            Passes address; changes inside the function <b>reflect</b> in the
-            original variable.
-          </td>
-        </tr>
-      </table>
+        <h3>8. Function Call Types</h3>
+        <table>
+            <tr>
+                <th>Call Type</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><b>Call by Value</b></td>
+                <td>Copies the actual value; changes inside the function <b>do not affect</b> the original variable.</td>
+            </tr>
+            <tr>
+                <td><b>Call by Reference</b></td>
+                <td>Passes address; changes inside the function <b>reflect</b> in the original variable.</td>
+            </tr>
+        </table>
 
-      <h3>9. Example: Addition of Two Numbers</h3>
-      <p>The following program adds two numbers using functions:</p>
-      <pre>
+        <h3>9. Example: Addition of Two Numbers</h3>
+        <p>The following program adds two numbers using functions:</p>
+        <pre>
 #include &lt;stdio.h&gt;
 
 int add(int a, int b); // Function declaration
@@ -143,24 +206,18 @@ int main() {
 int add(int a, int b) { // Function definition
     return a + b;
 }
-        </pre
-      >
+        </pre>
 
-      <h3>10. Advantages of Functions</h3>
-      <ul>
-        <li>✔ Reduces code duplication.</li>
-        <li>✔ Makes debugging easier.</li>
-        <li>✔ Enhances readability.</li>
-        <li>✔ Promotes modular programming.</li>
-      </ul>
+        <h3>10. Advantages of Functions</h3>
+        <ul>
+            <li>✔ Reduces code duplication.</li>
+            <li>✔ Makes debugging easier.</li>
+            <li>✔ Enhances readability.</li>
+            <li>✔ Promotes modular programming.</li>
+        </ul>
 
-      <h3>11. Conclusion</h3>
-      <p>
-        Functions play a <b>key role</b> in C programming by breaking large
-        programs into smaller, manageable blocks. They enhance
-        <b>efficiency, readability, and reusability</b>, making programming more
-        structured.
-      </p>
+        <h3>11. Conclusion</h3>
+        <p>Functions play a <b>key role</b> in C programming by breaking large programs into smaller, manageable blocks. They enhance <b>efficiency, readability, and reusability</b>, making programming more structured.</p>
     </div>
-  </body>
+</body>
 </html>

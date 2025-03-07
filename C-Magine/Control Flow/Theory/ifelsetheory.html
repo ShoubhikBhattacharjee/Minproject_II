@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>If-Else Statement in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        strong {
+            font-size: 1.1em;
+            color: #d9534f;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 1.1em;
+            border-left: 5px solid #007BFF;
+            white-space: pre-wrap;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>If-Else in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../traffic if else.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../traffic if else.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/traffic_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>If-Else Statement in C</h2>
+        <p>The <strong>if-else</strong> statement in C is used to make decisions based on conditions. It allows the program to execute different blocks of code based on whether a condition is <strong>true</strong> or <strong>false</strong>.</p>
+
+        <h3>1. Basic If-Else Structure</h3>
+        <p>The general syntax of an if-else statement is:</p>
+
+        <div class="code-block">
+            <strong>if (condition) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>// Code to execute if condition is true</strong><br>
+            <strong>} else {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>// Code to execute if condition is false</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>2. Example: Checking Even or Odd</h3>
+        <p>We can use an <strong>if-else</strong> statement to check if a number is even or odd.</p>
+
+        <div class="code-block">
+            <strong>if (num % 2 == 0) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("The number is even");</strong><br>
+            <strong>} else {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("The number is odd");</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <p>Here, if the remainder when <strong>num</strong> is divided by 2 is zero, the number is even; otherwise, it's odd.</p>
+
+        <h3>3. Nested If-Else Statements</h3>
+        <p>If-else statements can be nested inside one another for more complex decision-making.</p>
+
+        <div class="code-block">
+            <strong>if (age >= 18) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>if (age >= 60) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("You are a senior citizen");</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>} else {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("You are an adult");</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>}</strong><br>
+            <strong>} else {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("You are a minor");</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <p>Here, we first check if the person is 18 or older. If they are, we check again if they are 60 or older to determine if they are a senior citizen.</p>
+
+        <h3>4. Using Logical Operators in If-Else</h3>
+        <p>Logical operators like <strong>&& (AND)</strong> and <strong>|| (OR)</strong> help combine multiple conditions.</p>
+
+        <div class="code-block">
+            <strong>if (temperature >= 30 && humidity >= 70) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("It's a hot and humid day!");</strong><br>
+            <strong>} else {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Weather is moderate.");</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <p>Here:</p>
+        <ul>
+            <li><strong>temperature >= 30</strong> checks if it's hot.</li>
+            <li><strong>humidity >= 70</strong> checks if it's humid.</li>
+            <li>Both must be true for it to print "Hot and humid day!"</li>
+        </ul>
+
+        <p>Similarly, using the <strong>|| (OR)</strong> operator:</p>
+
+        <div class="code-block">
+            <strong>if (age < 18 || hasStudentID) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Eligible for student discount!");</strong><br>
+            <strong>} else {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("No discount available.");</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <p>Here, if either the person is under 18 or they have a student ID, they get a discount.</p>
+
+        <h3>5. Real-World Applications</h3>
+        <ul>
+            <li><strong>Login Systems:</strong> Checking username and password match.</li>
+            <li><strong>Discount Offers:</strong> Applying offers based on conditions.</li>
+            <li><strong>Game Logic:</strong> Checking player health or game events.</li>
+        </ul>
+    </div>
+</body>
+</html>

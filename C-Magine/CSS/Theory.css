@@ -1,8 +1,8 @@
 body {
   display: flex;
   font-family: Arial, sans-serif;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   background-color: #f9f9f9;
 }
 .sidebar {
@@ -14,20 +14,17 @@ body {
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
-
 .sidebar h2 {
   color: #facc15;
   text-align: center;
   margin-bottom: 20px;
 }
-
 .menu {
   list-style: none;
   padding: 0;
   margin: 0;
   flex-grow: 1;
 }
-
 .menu-item {
   background-color: #334155;
   padding: 15px;
@@ -37,14 +34,11 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .menu-item:hover {
   background-color: #facc15;
   color: black;
 }
-
-h2,
-h3 {
+h2, h3 {
   color: #333;
 }
 code {
@@ -53,13 +47,15 @@ code {
   font-family: monospace;
   display: block;
   white-space: pre-wrap;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid #007BFF;
   margin: 10px 0;
   padding-left: 10px;
 }
 .container {
   background: white;
   padding: 20px;
+  width: 100%;
+  height: 100%;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -68,25 +64,22 @@ table {
   border-collapse: collapse;
   margin: 20px 0;
 }
-table,
-th,
-td {
+table, th, td {
   border: 1px solid #ddd;
 }
-th,
-td {
+th, td {
   padding: 10px;
   text-align: left;
 }
 th {
-  background-color: #007bff;
+  background-color: #007BFF;
   color: white;
 }
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 .emoji-size {
-  width: 1.2em; /* Same as an emoji */
-  height: 1.2em;
-  vertical-align: middle; /* Aligns with text */
+width: 1.2em;  /* Same as an emoji */
+height: 1.2em;
+vertical-align: middle;  /* Aligns with text */
 }

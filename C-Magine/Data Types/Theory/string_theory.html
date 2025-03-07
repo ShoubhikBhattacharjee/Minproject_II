@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strings in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        strong {
+            font-size: 1.1em;
+            color: #d9534f;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 1.1em;
+            border-left: 5px solid #007BFF;
+            white-space: pre-wrap;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Strings in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../string.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../string.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/string_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Strings in C</h2>
+        <p>A <strong>string</strong> in C is an array of characters terminated by a null character (<strong>'\0'</strong>). Unlike other languages, C does not have a built-in string data type, so we use character arrays or pointers.</p>
+
+        <h3>1. Declaring and Initializing Strings</h3>
+        <p>Strings can be initialized in two ways:</p>
+        <div class="code-block">
+            <strong>char str1[] = "Hello";</strong> // String using array<br>
+            <strong>char str2[] = {'H', 'e', 'l', 'l', 'o', '\0'};</strong> // Manual null-terminated string<br>
+            <strong>char *str3 = "Hello";</strong> // String as a pointer
+        </div>
+
+        <h3>2. Reading and Printing Strings</h3>
+        <p>Use <strong>scanf()</strong> and <strong>printf()</strong>:</p>
+        <div class="code-block">
+            <strong>char name[20];</strong><br>
+            <strong>scanf("%s", name);</strong> // Reads a word (no spaces)<br>
+            <strong>printf("Hello, %s", name);</strong> // Prints the string
+        </div>
+
+        <h3>3. Common String Functions (string.h)</h3>
+        <p>To manipulate strings, use the <strong>&lt;string.h&gt;</strong> library.</p>
+
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td><strong>strlen()</strong></td>
+                <td>Returns length of a string.</td>
+                <td><strong>strlen("Hello")</strong> → 5</td>
+            </tr>
+            <tr>
+                <td><strong>strcpy()</strong></td>
+                <td>Copies one string to another.</td>
+                <td><strong>strcpy(dest, src)</strong></td>
+            </tr>
+            <tr>
+                <td><strong>strcat()</strong></td>
+                <td>Concatenates (joins) two strings.</td>
+                <td><strong>strcat(str1, str2)</strong></td>
+            </tr>
+            <tr>
+                <td><strong>strcmp()</strong></td>
+                <td>Compares two strings.</td>
+                <td><strong>strcmp("abc", "xyz")</strong> → Negative</td>
+            </tr>
+            <tr>
+                <td><strong>strrev()</strong></td>
+                <td>Reverses a string.</td>
+                <td><strong>strrev("Hello")</strong> → "olleH"</td>
+            </tr>
+        </table>
+
+        <h3>4. Example Program</h3>
+        <p>This example demonstrates string functions:</p>
+        <div class="code-block">
+            <strong>#include &lt;stdio.h&gt;</strong><br>
+            <strong>#include &lt;string.h&gt;</strong><br><br>
+            <strong>int main() {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>char str1[20] = "Hello";</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>char str2[20] = " World";</strong><br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Length of str1: %lu\n", strlen(str1));</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>strcat(str1, str2);</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Concatenated: %s\n", str1);</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>return 0;</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>5. String Comparison</h3>
+        <p>Use <strong>strcmp()</strong>:</p>
+        <div class="code-block">
+            <strong>if (strcmp(str1, str2) == 0) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Strings are equal");</strong><br>
+            <strong>} else {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("Strings are different");</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>6. Real-World Applications</h3>
+        <ul>
+            <li><strong>Text Processing:</strong> Search, replace, formatting.</li>
+            <li><strong>Data Storage:</strong> Storing user inputs, logs, and file data.</li>
+            <li><strong>Cryptography:</strong> Encrypting and decrypting text.</li>
+        </ul>
+    </div>
+</body>
+</html>

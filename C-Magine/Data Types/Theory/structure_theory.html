@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structures in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Structures in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../struct.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../struct.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/structure_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Structures in C</h2>
+        <p>A <strong>structure</strong> in C is a user-defined data type that groups variables of different types under a single name.</p>
+
+        <h3>1. Why Use Structures?</h3>
+        <ul>
+            <li><strong>Grouping Related Data:</strong> Unlike arrays, structures store multiple data types together.</li>
+            <li><strong>Code Organization:</strong> Makes complex programs more readable and manageable.</li>
+            <li><strong>Memory Optimization:</strong> Helps in better memory utilization.</li>
+        </ul>
+
+        <h3>2. Structure Syntax</h3>
+        <pre>
+        struct Student {
+            char name[50];
+            int age;
+            float marks;
+        };
+        </pre>
+
+        <h3>3. Declaring and Initializing Structures</h3>
+        <pre>
+        struct Student s1;  // Declaration
+        struct Student s2 = {"John", 20, 85.5}; // Initialization
+        </pre>
+
+        <h3>4. Accessing Structure Members</h3>
+        <pre>
+        strcpy(s1.name, "Alice");
+        s1.age = 22;
+        s1.marks = 90.0;
+        </pre>
+
+        <h3>5. Example: Student Record</h3>
+        <pre>
+        #include &lt;stdio.h&gt;
+        #include &lt;string.h&gt;
+        struct Student {
+            char name[50];
+            int age;
+            float marks;
+        };
+        int main() {
+            struct Student s1;
+            strcpy(s1.name, "Alice");
+            s1.age = 22;
+            s1.marks = 90.5;
+            printf("Name: %s\nAge: %d\nMarks: %.2f\n", s1.name, s1.age, s1.marks);
+            return 0;
+        }
+        </pre>
+
+        <h3>6. Memory Allocation in Structures</h3>
+        <p>Each structure member takes space in memory according to its data type. For example:</p>
+        <pre>
+        struct Data {
+            char c;   // 1 byte
+            int x;    // 4 bytes
+            float y;  // 4 bytes
+        };
+        </pre>
+        <p>Total size depends on memory alignment.</p>
+
+        <h3>7. Nested Structures</h3>
+        <p>A structure inside another structure is called a nested structure.</p>
+        <pre>
+        struct Address {
+            char city[20];
+            int pin;
+        };
+        struct Employee {
+            char name[50];
+            struct Address addr;
+        };
+        </pre>
+
+        <h3>8. Structures with Pointers</h3>
+        <p>We can use pointers with structures.</p>
+        <pre>
+        struct Student s1, *ptr;
+        ptr = &s1;
+        ptr->age = 21; // Using arrow operator
+        </pre>
+
+        <h3>9. Difference Between Structure and Union</h3>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Feature</th>
+                <th>Structure</th>
+                <th>Union</th>
+            </tr>
+            <tr>
+                <td>Memory Allocation</td>
+                <td>Each member gets separate memory</td>
+                <td>All members share the same memory</td>
+            </tr>
+            <tr>
+                <td>Size</td>
+                <td>Sum of all members’ sizes</td>
+                <td>Size of the largest member</td>
+            </tr>
+            <tr>
+                <td>Usage</td>
+                <td>Used for storing related data</td>
+                <td>Used for memory-efficient programs</td>
+            </tr>
+        </table>
+
+        <h3>10. Real-World Applications</h3>
+        <ul>
+            <li><strong>Databases:</strong> Storing employee, student, or customer details.</li>
+            <li><strong>Game Development:</strong> Managing player statistics.</li>
+            <li><strong>Operating Systems:</strong> Handling process control blocks.</li>
+            <li><strong>Banking System:</strong> Maintaining account records.</li>
+        </ul>
+
+        <h3>11. Dynamic Memory Allocation in Structures</h3>
+        <pre>
+        struct Student *s1;
+        s1 = (struct Student*) malloc(sizeof(struct Student));
+        strcpy(s1->name, "John");
+        s1->age = 20;
+        printf("Name: %s, Age: %d", s1->name, s1->age);
+        free(s1); // Free memory
+        </pre>
+    </div>
+</body>
+</html>

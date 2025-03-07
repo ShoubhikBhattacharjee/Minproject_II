@@ -30,6 +30,11 @@
     #consoleOutput { height: 200px; overflow-y: auto; padding: 10px; border: 1px solid #ccc; background: white; }
     button { padding: 10px 20px; margin: 5px; background: #10b981; color: white; border: none; cursor: pointer; }
     button:hover { background: #059669; }
+        .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
   </style>
 </head>
 <body>
@@ -37,10 +42,12 @@
 <div class="sidebar">
   <h2>Memory Management</h2>
   <ul>
-    <li class="menu-item" onclick="location.href='../memory.html'">Theory</li>
-    <li class="menu-item" onclick="location.href='../memory.html'">Algorithm</li>
-    <li class="menu-item" onclick="location.href='../memory.html'">Flowchart</li>
-    <li class="menu-item" onclick="location.href='Quiz/memory_quiz.html'">Quiz</li>
+    <li class="menu-item" onclick="location.href='Theory/memorymantheory.html'">📖Theory</li>
+    <li class="menu-item" onclick="location.href='../memory.html'">📜Algorithm</li>
+    <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+    </li>
+    <li class="menu-item" onclick="location.href='Quiz/memory_quiz.html'">🧠Quiz</li>
+    <li class="menu-item" onclick="location.href='../Code/newindex.html'">⚙️Code & Learn</li>
   </ul>
 </div>
 

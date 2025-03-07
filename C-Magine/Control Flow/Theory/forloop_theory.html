@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Loop in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        strong {
+            font-size: 1.1em;
+            color: #d9534f;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 1.1em;
+            border-left: 5px solid #007BFF;
+            white-space: pre-wrap;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>For Loop in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../forloop.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../forloop.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/forloop_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>For Loop in C</h2>
+        <p>The <strong>for loop</strong> is one of the most commonly used loop structures in C. It is useful when the number of iterations is known beforehand. It provides a compact way to iterate over a range of values.</p>
+
+        <h3>1. Syntax and Working</h3>
+        <p>The for loop consists of three parts:</p>
+        <ul>
+            <li><strong>Initialization:</strong> Sets the starting value of a loop control variable.</li>
+            <li><strong>Condition:</strong> Checks if the loop should continue executing.</li>
+            <li><strong>Update:</strong> Modifies the loop control variable after each iteration.</li>
+        </ul>
+
+        <div class="code-block">
+            <strong>for(initialization; condition; update) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>// Code block</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>2. Example: Printing Numbers from 1 to 5</h3>
+        <p>Consider a simple example where we print numbers from 1 to 5 using a for loop.</p>
+
+        <div class="code-block">
+            <strong>for(int i = 1; i <= 5; i++) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("%d ", i);</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>3. Flow of Execution</h3>
+        <p>The for loop executes in the following order:</p>
+        <ol>
+            <li>Execute the <strong>initialization</strong> statement.</li>
+            <li>Check the <strong>condition</strong>. If true, proceed to step 3; otherwise, exit the loop.</li>
+            <li>Execute the loop <strong>body</strong> (code inside the loop).</li>
+            <li>Execute the <strong>update</strong> statement.</li>
+            <li>Repeat steps 2-4 until the condition is false.</li>
+        </ol>
+
+        <h3>4. Nested For Loops</h3>
+        <p>For loops can be nested inside each other. This is useful for working with matrices or patterns.</p>
+
+        <div class="code-block">
+            <strong>for(int i = 1; i <= 3; i++) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>for(int j = 1; j <= 3; j++) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("* ");</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>}</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("\n");</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>5. Decrementing For Loop</h3>
+        <p>The loop can also count down instead of up by decrementing the loop control variable.</p>
+
+        <div class="code-block">
+            <strong>for(int i = 5; i >= 1; i--) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("%d ", i);</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>6. Skipping Iterations with continue</h3>
+        <p>Sometimes, you may want to skip specific iterations of the loop using the <strong>continue</strong> statement.</p>
+
+        <p>For example, printing numbers from 1 to 5, but skipping 3:</p>
+
+        <div class="code-block">
+            <strong>for(int i = 1; i <= 5; i++) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>if(i == 3) { continue; }</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("%d ", i);</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>7. Real-World Applications</h3>
+        <ul>
+            <li>Processing arrays and lists.</li>
+            <li>Repeating tasks like summing numbers.</li>
+            <li>Building patterns and tables.</li>
+            <li>Skipping specific conditions in a loop.</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>While Loop in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        strong {
+            font-size: 1.1em;
+            color: #d9534f;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 1.1em;
+            border-left: 5px solid #007BFF;
+            white-space: pre-wrap;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>While Loop in C</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../while.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../while.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/whileloop_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>While Loop in C</h2>
+        <p>The <strong>while loop</strong> is a fundamental looping structure in C that allows repeated execution of a block of code as long as a specified condition remains true.</p>
+
+        <h3>1. Syntax and Working</h3>
+        <p>The `while` loop checks a condition before executing the loop body. If the condition evaluates to `true`, the loop body runs. This process continues until the condition becomes `false`.</p>
+
+        <div class="code-block">
+            <strong>while (condition) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>// Code to be executed</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>2. Example: Printing Numbers from 1 to 5</h3>
+        <p>The following example prints numbers from 1 to 5 using a `while` loop.</p>
+
+        <div class="code-block">
+            <strong>int i = 1;</strong><br>
+            <strong>while (i <= 5) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("%d ", i);</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>i++;</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>3. Flow of Execution</h3>
+        <p>The `while` loop executes as follows:</p>
+        <ol>
+            <li>Check the <strong>condition</strong>.</li>
+            <li>If the condition is `true`, execute the loop body.</li>
+            <li>Update the loop control variable.</li>
+            <li>Repeat steps 1-3 until the condition is `false`.</li>
+        </ol>
+
+        <h3>4. Infinite While Loop</h3>
+        <p>A `while` loop can run infinitely if the condition never becomes `false`. This happens when the loop control variable is not updated properly.</p>
+
+        <div class="code-block">
+            <strong>while (1) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("This loop will run forever!");</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>5. Breaking a While Loop</h3>
+        <p>The `break` statement can be used to exit a `while` loop before the condition becomes `false`.</p>
+
+        <div class="code-block">
+            <strong>int i = 1;</strong><br>
+            <strong>while (i <= 10) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>if (i == 5) { break; }</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("%d ", i);</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>i++;</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>6. Skipping Iterations with Continue</h3>
+        <p>The `continue` statement is used to skip specific iterations of the loop without exiting completely.</p>
+
+        <p>Example: Print numbers from 1 to 5 but skip 3.</p>
+
+        <div class="code-block">
+            <strong>int i = 1;</strong><br>
+            <strong>while (i <= 5) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>if (i == 3) { i++; continue; }</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("%d ", i);</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>i++;</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>7. Real-World Applications</h3>
+        <ul>
+            <li>Taking user input until they enter a valid value.</li>
+            <li>Reading a file until the end is reached.</li>
+            <li>Simulating game loops where conditions keep changing dynamically.</li>
+            <li>Performing repetitive calculations like computing factorial.</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swap Two Numbers Visualization</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .sidebar1 {
+      width: 250px;
+      background-color: #1e293b;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar1 h2 {
+      color: #facc15;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .menu {
+      list-style: none;
+    }
+
+    .menu-item {
+      background-color: #334155;
+      padding: 15px;
+      margin: 10px 0;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #facc15;
+      color: black;
+    }
+
+    body {
+      background-color: #2e3b4e;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+    }
+
+    .sidebar {
+      width: 50%;
+      background-color: #2f3640;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .code-container {
+      background-color: #1e1e1e;
+      padding: 20px;
+      max-height: 100%;
+      overflow-y: auto;
+    }
+
+    pre {
+      margin: 0;
+      font-size: 16px;
+      color: #dcdcdc;
+    }
+
+    .highlight {
+      background-color: rgba(255, 235, 59, 0.6);
+    }
+
+    .visualization-section {
+      width: 50%;
+      padding: 20px;
+      background-color: #273c75;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .variables {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px;
+      width: 100%;
+    }
+
+    .variable {
+      background-color: #03a9f4;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 20px;
+      width: 120px;
+      text-align: center;
+      transition: all 0.5s ease;
+    }
+
+    .tracker {
+      font-size: 20px;
+      margin: 10px 0;
+      color: #ffcc00;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #e64a19;
+    }
+        .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar1">
+    <h2>Swap Numbers Basic</h2>
+    <ul class="menu">
+      <li class="menu-item" onclick="location.href='Theory/swap_num_theory.html'">📖Theory</li>
+      <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">📜Algorithm</li>
+      <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+      </li>
+      <li class="menu-item" onclick="location.href='Quiz/swap_num_quiz.html'">🧠Quiz</li>
+      <li class="menu-item" onclick="location.href='../Code/newindex.html'">⚙️Code & Learn</li>
+    </ul>
+  </div>
+  <div class="container">
+    <!-- Left Section: Code Display -->
+    <div class="sidebar">
+      <div class="code-container">
+        <pre id="code">
+#include &lt;stdio.h&gt;
+int main() {
+    int a = 5, b = 10, temp;
+
+    // Before swapping
+    printf("Before Swap: a = %d, b = %d\\n", a, b);
+
+    // Swap logic
+    temp = a;       // Step 1
+    a = b;          // Step 2
+    b = temp;       // Step 3
+
+    // After swapping
+    printf("After Swap: a = %d, b = %d\\n", a, b);
+
+    return 0;
+}
+        </pre>
+      </div>
+    </div>
+
+    <!-- Right Section: Visualization -->
+    <div class="visualization-section">
+      <h1>Swapping Two Numbers Visualization</h1>
+      <div class="tracker" id="tracker">Press "Start Visualization" to see the swap process!</div>
+      <div class="variables">
+        <div class="variable" id="varA">a = 5</div>
+        <div class="variable" id="varB">b = 10</div>
+      </div>
+      <button onclick="startVisualization()">Start Visualization</button>
+    </div>
+  </div>
+
+  <script>
+    const codeLines = document.getElementById("code").innerText.split("\n");
+    const trackerElement = document.getElementById("tracker");
+    let varA = document.getElementById("varA");
+    let varB = document.getElementById("varB");
+
+    function highlightCodeLine(lineNumber) {
+      const codeContainer = document.getElementById("code");
+      codeContainer.innerHTML = codeLines
+        .map((line, index) =>
+          index === lineNumber
+            ? `<span class="highlight">${line}</span>`
+            : line
+        )
+        .join("\n");
+    }
+
+    async function startVisualization() {
+      varA.textContent = "a = 5";
+      varB.textContent = "b = 10";
+      trackerElement.textContent = "Initial values: a = 5, b = 10";
+
+      await step(3, "Assign temp = a; temp now holds the value 5.");
+      let temp = 5;
+
+      await step(4, "Assign a = b; a now holds the value of b (10).");
+      varA.textContent = "a = 10";
+      varA.style.transform = "translateX(20px)";
+      await delay(1000);
+
+      await step(5, "Assign b = temp; b now holds the original value of a (5).");
+      varB.textContent = "b = 5";
+      varB.style.transform = "translateX(-20px)";
+      await delay(1000);
+
+      trackerElement.textContent = "Swapping complete! Final values: a = 10, b = 5";
+      highlightCodeLine(7);
+    }
+
+    function step(lineNumber, message) {
+      highlightCodeLine(lineNumber);
+      trackerElement.textContent = message;
+      return delay(1500);
+    }
+
+    function delay(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+  </script>
+</body>
+</html>

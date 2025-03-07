@@ -1,6 +1,7 @@
 #include <stdio.h>
 int main() {
-    printf("Hello, World!\nDamn it you little punks!");
+    int x = 12;
+    printf("%d", --x);
     return 0;
 }
     

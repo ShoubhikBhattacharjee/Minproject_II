@@ -4,25 +4,78 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Factorial Recursion Visualization</title>
-    <link rel="stylesheet" href="../../CSS/Simulations.css" />
+
     <style>
-      html,
-      body {
-        height: 100%;
+      * {
+        box-sizing: border-box;
         margin: 0;
+        padding: 0;
       }
 
-      .content-container {
-        overflow: hidden;
-        min-height: 0; /* Allow children to shrink */
+      body {
+        display: flex;
+        font-family: "Arial", sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        height: 100vh;
+        overflow:hidden;
       }
 
-      .main-content {
-        min-height: 0; /* Allow children to shrink */
+      /* Sidebar */
+      .sidebar {
+        width: 250px;
+        background-color: #1e293b;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .sidebar h2 {
+        color: #facc15;
+        text-align: center;
+        margin-bottom: 20px;
       }
 
       .menu {
         list-style: none;
+      }
+
+      .menu-item {
+        background-color: #334155;
+        padding: 15px;
+        margin: 10px 0;
+        text-align: center;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .menu-item:hover {
+        background-color: #facc15;
+        color: black;
+      }
+
+      /* Page Content */
+      .content-container {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+      }
+
+      .header {
+        background-color: #10b981;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 1.5rem;
+      }
+
+      /* Code Section and Visualization */
+      .main-content {
+        display: flex;
+        flex: 1;
       }
 
       /* Code Section on the Left */
@@ -31,6 +84,7 @@
         background: #1e1e1e;
         color: #dcdcdc;
         padding: 20px;
+        overflow-y: auto;
         display: flex;
         flex-direction: column;
       }
@@ -53,8 +107,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        overflow-y: auto; /* Enable scrolling */
-        min-height: 0;
+        overflow-y: auto;
       }
 
       h1 {
@@ -95,6 +148,21 @@
         text-align: center;
       }
 
+      button {
+        background-color: #10b981;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background-color: #059669;
+      }
+
       input[type="number"] {
         padding: 10px;
         font-size: 1rem;
@@ -116,33 +184,32 @@
         font-size: 1.2rem;
         margin-top: 10px;
       }
+        .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
     </style>
   </head>
   <body>
     <div class="sidebar">
       <h2>Recursion Concepts</h2>
       <ul class="menu">
-        <li
-          class="menu-item"
-          onclick="location.href='../Theory/recursion_theory.html'"
-        >
-          Theory
+        <li class="menu-item" onclick="location.href='../Theory/recursion_theory.html'">
+          📖Theory
         </li>
         <li
           class="menu-item"
           onclick="location.href='../Algorithms/recur_algo.html'"
         >
-          Algorithm
+        📜Algorithm
         </li>
-        <li
-          class="menu-item"
-          onclick="location.href='../Flowcharts/recur_flow.html'"
-        >
-          Flowchart
+        <li class="menu-item" onclick="location.href='../Flowchart/recur_flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
         </li>
         <li class="menu-item" onclick="location.href='../Quiz/recur_quiz.html'">
-          Quiz
+          🧠Quiz
         </li>
+        <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
       </ul>
     </div>
 

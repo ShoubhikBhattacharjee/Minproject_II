@@ -1,178 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basics of Variables in C</title>
-    <link rel="stylesheet" href="../../CSS/Theory.css" />
-  </head>
-  <body>
-    <div class="sidebar">
-      <h2>Variable Concepts</h2>
-      <ul class="menu">
-        <li
-          class="menu-item"
-          onclick="location.href='../Algorithms/basics_of_variables.html'"
-        >
-          Algorithm
-        </li>
-        <li
-          class="menu-item"
-          onclick="location.href='../Flowcharts/basics_of_variables.html'"
-        >
-          Flowchart
-        </li>
-        <li
-          class="menu-item"
-          onclick="location.href='../Simulations/basics_of_var.html'"
-        >
-          Simulation
-        </li>
-        <li
-          class="menu-item"
-          onclick="location.href='../Quiz/basics_var_quiz.html'"
-        >
-          Quiz
-        </li>
-      </ul>
-    </div>
-
-    <div class="container">
-      <h2>Basics of Variables in C</h2>
-      <p>
-        In C, a <strong>variable</strong> is a named memory location used to
-        store data. It acts as a container that holds values which can change
-        during the execution of a program.
-      </p>
-
-      <h3>1. Declaring and Initializing Variables</h3>
-      <p>
-        To use a variable in C, we need to <strong>declare</strong> it with a
-        specific data type.
-      </p>
-      <code>
-        #include &lt;stdio.h&gt; <br>
-        int main() <br>
-        { <br>
-          int age; // Declaration age = 25;
-        // Initialization printf("Age: %d\n", age); return 0; }
-      </code>
-
-      <h3>2. Data Types in C</h3>
-      <p>C provides different data types to store different kinds of values:</p>
-      <table>
-        <tr>
-          <th>Data Type</th>
-          <th>Size (bytes)</th>
-          <th>Example</th>
-        </tr>
-        <tr>
-          <td><strong>int</strong></td>
-          <td>4</td>
-          <td>10, -5, 100</td>
-        </tr>
-        <tr>
-          <td><strong>float</strong></td>
-          <td>4</td>
-          <td>3.14, -0.99</td>
-        </tr>
-        <tr>
-          <td><strong>char</strong></td>
-          <td>1</td>
-          <td>'A', 'b'</td>
-        </tr>
-        <tr>
-          <td><strong>double</strong></td>
-          <td>8</td>
-          <td>3.1415926535</td>
-        </tr>
-      </table>
-
-      <h3>3. Variable Initialization</h3>
-      <p>Variables can be initialized at the time of declaration:</p>
-      <code>
-        #include &lt;stdio.h&gt; <br />
-        int main() <br />
-        { <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;int a = 10; // Integer variable <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;float pi = 3.14; // Floating point variable
-        <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;char grade = 'A'; // Character variable <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;printf("a = %d, pi = %f, grade = %c\n", a, pi,
-        grade); <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;return 0; <br />
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0px;
+            padding: 0px;
+            background-color: #f9f9f9;
         }
-      </code>
+        .sidebar {
+      width: 250px;
+      background-color: #1e293b;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
 
-      <h3>4. Basic Operations with Variables</h3>
-      <p>Variables are used to perform various operations:</p>
+    .sidebar h2 {
+      color: #facc15;
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-      <h4>4.1 Arithmetic Operations</h4>
-      <code>
-        #include &lt;stdio.h&gt; int main() { int x = 10, y = 5; printf("Sum:
-        %d\n", x + y); printf("Difference: %d\n", x - y); printf("Product:
-        %d\n", x * y); printf("Quotient: %d\n", x / y); return 0; }
-      </code>
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex-grow: 1;
+    }
 
-      <h4>4.2 Swapping Two Variables</h4>
-      <code>
-        #include &lt;stdio.h&gt; int main() { int a = 5, b = 10, temp;
-        printf("Before Swap: a = %d, b = %d\n", a, b); temp = a; a = b; b =
-        temp; printf("After Swap: a = %d, b = %d\n", a, b); return 0; }
-      </code>
+    .menu-item {
+      background-color: #334155;
+      padding: 15px;
+      margin: 10px 0;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-      <h3>5. Real-World Example: Celsius to Fahrenheit Conversion</h3>
-      <code>
-        #include &lt;stdio.h&gt; int main() { float celsius, fahrenheit;
-        printf("Enter temperature in Celsius: "); scanf("%f", &celsius);
-        fahrenheit = (celsius * 9/5) + 32; printf("Temperature in Fahrenheit:
-        %.2f\n", fahrenheit); return 0; }
-      </code>
+    .menu-item:hover {
+      background-color: #facc15;
+      color: black;
+    }
+    
+        h2, h3 {
+            color: #333;
+        }
+        code {
+            background-color: #eee;
+            padding: 5px;
+            font-family: monospace;
+            display: block;
+            white-space: pre-wrap;
+            border-left: 4px solid #007BFF;
+            margin: 10px 0;
+            padding-left: 10px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
 
-      <h3>6. Summary Table</h3>
-      <table>
+    <div class="sidebar">
+        <h2>Variable Concepts</h2>
+        <ul class="menu">
+          <li class="menu-item" onclick="location.href='../basics_of_var.html'">🖥️Simulation</li>
+          <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">📜Algorithm</li>
+          <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+          </li>
+          <li class="menu-item" onclick="location.href='../Quiz/basics_var_quiz.html'">🧠Quiz</li>
+          <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+      </div>
+
+<div class="container">
+    <h2>Basics of Variables in C</h2>
+    <p>In C, a <strong>variable</strong> is a named memory location used to store data. It acts as a container that holds values which can change during the execution of a program.</p>
+
+    <h3>1. Declaring and Initializing Variables</h3>
+    <p>To use a variable in C, we need to <strong>declare</strong> it with a specific data type.</p>
+    <code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int age;        // Declaration
+    age = 25;       // Initialization
+    printf("Age: %d\n", age);
+    return 0;
+}
+    </code>
+
+    <h3>2. Data Types in C</h3>
+    <p>C provides different data types to store different kinds of values:</p>
+    <table>
         <tr>
-          <th>Concept</th>
-          <th>Description</th>
-          <th>Example</th>
+            <th>Data Type</th>
+            <th>Size (bytes)</th>
+            <th>Example</th>
         </tr>
         <tr>
-          <td><strong>Variable Declaration</strong></td>
-          <td>Defines a variable and its type</td>
-          <td><code>int age;</code></td>
+            <td><strong>int</strong></td>
+            <td>4</td>
+            <td>10, -5, 100</td>
         </tr>
         <tr>
-          <td><strong>Variable Initialization</strong></td>
-          <td>Assigns an initial value</td>
-          <td><code>int age = 25;</code></td>
+            <td><strong>float</strong></td>
+            <td>4</td>
+            <td>3.14, -0.99</td>
         </tr>
         <tr>
-          <td><strong>Arithmetic Operations</strong></td>
-          <td>Perform basic calculations</td>
-          <td><code>x + y, x - y</code></td>
+            <td><strong>char</strong></td>
+            <td>1</td>
+            <td>'A', 'b'</td>
         </tr>
         <tr>
-          <td><strong>Data Types</strong></td>
-          <td>Define the kind of data a variable holds</td>
-          <td><code>int, float, char, double</code></td>
+            <td><strong>double</strong></td>
+            <td>8</td>
+            <td>3.1415926535</td>
         </tr>
-        <tr>
-          <td><strong>Real-World Example</strong></td>
-          <td>Temperature conversion using variables</td>
-          <td><code>fahrenheit = (celsius * 9/5) + 32;</code></td>
-        </tr>
-      </table>
+    </table>
 
-      <h3>7. Conclusion</h3>
-      <p>
-        Understanding variables is essential as they are the foundation of any
-        program. Proper variable usage helps in:
-      </p>
-      <ul>
+    <h3>3. Variable Initialization</h3>
+    <p>Variables can be initialized at the time of declaration:</p>
+    <code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 10;          // Integer variable
+    float pi = 3.14;     // Floating point variable
+    char grade = 'A';    // Character variable
+
+    printf("a = %d, pi = %f, grade = %c\n", a, pi, grade);
+    return 0;
+}
+    </code>
+
+    <h3>4. Basic Operations with Variables</h3>
+    <p>Variables are used to perform various operations:</p>
+    
+    <h4>4.1 Arithmetic Operations</h4>
+    <code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int x = 10, y = 5;
+    printf("Sum: %d\n", x + y);
+    printf("Difference: %d\n", x - y);
+    printf("Product: %d\n", x * y);
+    printf("Quotient: %d\n", x / y);
+    return 0;
+}
+    </code>
+
+    <h4>4.2 Swapping Two Variables</h4>
+    <code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 5, b = 10, temp;
+    
+    printf("Before Swap: a = %d, b = %d\n", a, b);
+    temp = a;
+    a = b;
+    b = temp;
+    
+    printf("After Swap: a = %d, b = %d\n", a, b);
+    return 0;
+}
+    </code>
+
+    <h3>5. Real-World Example: Celsius to Fahrenheit Conversion</h3>
+    <code>
+#include &lt;stdio.h&gt;
+
+int main() {
+    float celsius, fahrenheit;
+    
+    printf("Enter temperature in Celsius: ");
+    scanf("%f", &celsius);
+
+    fahrenheit = (celsius * 9/5) + 32;
+    
+    printf("Temperature in Fahrenheit: %.2f\n", fahrenheit);
+    return 0;
+}
+    </code>
+
+    <h3>6. Summary Table</h3>
+    <table>
+        <tr>
+            <th>Concept</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td><strong>Variable Declaration</strong></td>
+            <td>Defines a variable and its type</td>
+            <td><code>int age;</code></td>
+        </tr>
+        <tr>
+            <td><strong>Variable Initialization</strong></td>
+            <td>Assigns an initial value</td>
+            <td><code>int age = 25;</code></td>
+        </tr>
+        <tr>
+            <td><strong>Arithmetic Operations</strong></td>
+            <td>Perform basic calculations</td>
+            <td><code>x + y, x - y</code></td>
+        </tr>
+        <tr>
+            <td><strong>Data Types</strong></td>
+            <td>Define the kind of data a variable holds</td>
+            <td><code>int, float, char, double</code></td>
+        </tr>
+        <tr>
+            <td><strong>Real-World Example</strong></td>
+            <td>Temperature conversion using variables</td>
+            <td><code>fahrenheit = (celsius * 9/5) + 32;</code></td>
+        </tr>
+    </table>
+
+    <h3>7. Conclusion</h3>
+    <p>Understanding variables is essential as they are the foundation of any program. Proper variable usage helps in:</p>
+    <ul>
         <li>Storing and manipulating data effectively.</li>
         <li>Performing mathematical operations.</li>
         <li>Making programs dynamic and interactive.</li>
-      </ul>
-    </div>
-  </body>
+    </ul>
+</div>
+
+</body>
 </html>

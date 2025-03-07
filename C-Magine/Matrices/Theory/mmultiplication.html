@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication of Two Matrices in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Matrix Multiplication</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../matrix_multiplier.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../matrix_multiplier.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/multi_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Multiplication of Two Matrices in C</h2>
+        <p>Matrix multiplication is an operation where the rows of one matrix are multiplied with the columns of another matrix, and the sum of the products forms the elements of the result matrix.</p>
+
+        <h3>1. Understanding Matrices</h3>
+        <p>A matrix is a two-dimensional array of numbers arranged in rows and columns. Each element is accessed using row and column indices.</p>
+
+        <h3>2. Conditions for Matrix Multiplication</h3>
+        <p>For two matrices to be multiplied, the number of columns in the first matrix must be equal to the number of rows in the second matrix.</p>
+
+        <h3>3. Process of Matrix Multiplication</h3>
+        <p>Each element in the result matrix is obtained by multiplying corresponding row elements of the first matrix with column elements of the second matrix and summing them.</p>
+
+        <table>
+            <tr>
+                <th>Matrix A</th>
+                <th>Matrix B</th>
+                <th>Result (A × B)</th>
+            </tr>
+            <tr>
+                <td>
+                    | a₁₁ a₁₂ | <br>
+                    | a₂₁ a₂₂ |
+                </td>
+                <td>
+                    | b₁₁ b₁₂ | <br>
+                    | b₂₁ b₂₂ |
+                </td>
+                <td>
+                    | (a₁₁×b₁₁ + a₁₂×b₂₁) (a₁₁×b₁₂ + a₁₂×b₂₂) | <br>
+                    | (a₂₁×b₁₁ + a₂₂×b₂₁) (a₂₁×b₁₂ + a₂₂×b₂₂) |
+                </td>
+            </tr>
+        </table>
+
+        <h3>4. Step-by-Step Approach in C</h3>
+        <p>Matrix multiplication in C can be implemented using loops:</p>
+        <ul>
+            <li><strong>Step 1:</strong> Define two matrices with appropriate dimensions.</li>
+            <li><strong>Step 2:</strong> Check if the number of columns in the first matrix matches the number of rows in the second.</li>
+            <li><strong>Step 3:</strong> Create a result matrix initialized with zeros.</li>
+            <li><strong>Step 4:</strong> Use three nested loops:</li>
+            <ul>
+                <li>Outer loop iterates over rows of the first matrix.</li>
+                <li>Middle loop iterates over columns of the second matrix.</li>
+                <li>Inner loop computes the sum of products for each element in the result matrix.</li>
+            </ul>
+            <li><strong>Step 5:</strong> Store the computed values in the result matrix.</li>
+            <li><strong>Step 6:</strong> Display the resulting matrix.</li>
+        </ul>
+
+        <h3>5. Real-World Applications</h3>
+        <p>Matrix multiplication is commonly used in:</p>
+        <ul>
+            <li><strong>Computer Graphics:</strong> Transformations and 3D rendering.</li>
+            <li><strong>Physics:</strong> Solving linear equations.</li>
+            <li><strong>Artificial Intelligence:</strong> Neural network computations.</li>
+            <li><strong>Engineering:</strong> Signal processing and control systems.</li>
+        </ul>
+    </div>
+</body>
+</html>

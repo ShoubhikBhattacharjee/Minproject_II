@@ -90,3 +90,9 @@ h2 {
 img {
   max-width: 100%;
 }
+
+.emoji-size {
+  width: 1.2em;  /* Same as an emoji */
+  height: 1.2em;
+  vertical-align: middle;  /* Aligns with text */
+  }

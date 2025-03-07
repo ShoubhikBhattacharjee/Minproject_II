@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inverted Pyramid Pattern in C</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            color: #facc15;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .menu-item {
+            background-color: #334155;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #facc15;
+            color: black;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+        }
+        strong {
+            font-size: 1.1em;
+            color: #d9534f;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 1.1em;
+            border-left: 5px solid #007BFF;
+            white-space: pre-wrap;
+        }
+    .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Pattern Printing</h2>
+        <ul class="menu">
+            <li class="menu-item" onclick="location.href='../inverted_pyramid.html'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../inverted_pyramid.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/inverted_pyramid_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Inverted Right-Triangular Pyramid Pattern in C</h2>
+        <p>An <strong>inverted right-triangular pyramid</strong> consists of stars (<strong>*</strong>) arranged in a reversed triangular shape. The number of stars decreases with each row.</p>
+
+        <h3>1. Understanding the Pattern</h3>
+        <p>The pattern looks like this for <strong>n = 5</strong>:</p>
+        <div class="code-block">
+            *****<br>
+            ****<br>
+            ***<br>
+            **<br>
+            *<br>
+        </div>
+
+        <h3>2. Logic Behind the Pattern</h3>
+        <p>To print this pattern, we use:</p>
+        <ul>
+            <li>A <strong>nested loop</strong>: The outer loop controls the rows, while the inner loop prints stars.</li>
+            <li>The number of stars in each row starts from <strong>n</strong> and decreases.</li>
+        </ul>
+
+        <h3>3. Code Logic</h3>
+        <p>The logic can be implemented using a nested <strong>for loop</strong>:</p>
+        <div class="code-block">
+            <strong>for (int i = n; i >= 1; i--) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>for (int j = 1; j <= i; j++) {</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("*");</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>}</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>printf("\n");</strong><br>
+            <strong>}</strong>
+        </div>
+
+        <h3>4. Explanation of Code</h3>
+        <p>The outer loop runs from <strong>n to 1</strong> (number of rows), and for each row:</p>
+        <ul>
+            <li>The inner loop runs from <strong>1 to i</strong>, printing <strong>i</strong> stars.</li>
+            <li>A newline character <strong>\n</strong> is used to move to the next line.</li>
+        </ul>
+
+        <h3>5. Applications of Patterns</h3>
+        <ul>
+            <li>Used in <strong>game development</strong> for graphical representations.</li>
+            <li>Helps in understanding <strong>loops and nested loops</strong>.</li>
+            <li>Useful in <strong>designing UI components</strong> like loading indicators.</li>
+        </ul>
+    </div>
+</body>
+</html>

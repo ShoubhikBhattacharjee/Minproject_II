@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C Functions Visualization: Add Two Numbers</title>
+  <style>
+    /* Global Reset & Layout */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #1e293b;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar h2 {
+      color: #facc15;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .menu {
+      list-style: none;
+    }
+
+    .menu-item {
+      background-color: #334155;
+      padding: 15px;
+      margin: 10px 0;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #facc15;
+      color: black;
+    }
+    body {
+      font-family: 'Courier New', monospace;
+      background-color: #1e272e;
+      color: #dcdde1;
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
+    }
+    .container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+    /* Left Panel: Code Section */
+    .code-container {
+      flex: 1;
+      background-color: #2f3640;
+      padding: 20px;
+      border-right: 4px solid #44bd32;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .highlight {
+      background-color: #44bd32;
+      color: #000;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    /* Right Panel: Visualization Section */
+    .visual-container {
+      flex: 1;
+      background-color: #273c75;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+      text-align: center;
+      width: 90%;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .input-group input {
+      width: 60%;
+      padding: 8px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+    }
+    button {
+      margin-top: 10px;
+      padding: 12px 25px;
+      background-color: #44bd32;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2ecc71;
+    }
+    /* Visualization Areas */
+    .step-container {
+      margin-top: 20px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .data-box {
+      background-color: #44bd32;
+      color: #000;
+      padding: 20px;
+      border-radius: 10px;
+      min-width: 250px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .data-box.show {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    .arrow {
+      font-size: 30px;
+      color: #2ecc71;
+    }
+    /* Simple slide-in animations */
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .slide-in {
+      animation: slideIn 1s forwards;
+    }
+        .emoji-size {
+      width: 1.2em;  /* Same as an emoji */
+      height: 1.2em;
+      vertical-align: middle;  /* Aligns with text */
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Functions in C</h2>
+    <ul class="menu">
+      <li class="menu-item" onclick="location.href='Theory/functions_theory.html'">📖Theory</li>
+      <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">📜Algorithm</li>
+      <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+      </li>
+      <li class="menu-item" onclick="location.href='Quiz/func_quiz.html'">🧠Quiz</li>
+      <li class="menu-item" onclick="location.href='../Code/newindex.html'">⚙️Code & Learn</li>
+    </ul>
+  </div>
+  <div class="container">
+    <!-- Left Panel: C Code -->
+    <div class="code-container" id="code-container">
+#include <stdio.h>
+  
+// Function to add two numbers
+int add(int a, int b) {
+    int sum = a + b;       // Compute sum
+    return sum;            // Return result
+}
+
+int main() {
+    int x, y, result;
+    printf("Enter two numbers: ");
+    scanf("%d %d", &x, &y);  // Read input values
+  
+    result = add(x, y);      // Call function add
+    printf("The sum is: %d\n", result);
+  
+    return 0;
+}
+    </div>
+    <!-- Right Panel: Visualization -->
+    <div class="visual-container">
+      <h2>C Functions: Add Two Numbers</h2>
+      <div class="input-group">
+        <label for="num1-input">Enter first number:</label>
+        <input type="number" id="num1-input" placeholder="e.g., 10" />
+      </div>
+      <div class="input-group">
+        <label for="num2-input">Enter second number:</label>
+        <input type="number" id="num2-input" placeholder="e.g., 20" />
+      </div>
+      <button onclick="startFunctionDemo()">Run Function Demo</button>
+      <div class="step-container" id="step-container">
+        <!-- Dynamic animation steps will appear here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get code snippet lines for highlighting
+    let codeLines = document.getElementById("code-container").innerText.split("\n");
+
+    // Function to highlight a specific line (1-indexed)
+    function highlightCodeLine(lineNumber) {
+      const codeContainer = document.getElementById("code-container");
+      codeContainer.innerHTML = codeLines
+        .map((line, index) => 
+          index === lineNumber - 1 ? `<span class="highlight">${line}</span>` : line
+        )
+        .join("\n");
+    }
+
+    // Helper delay function
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    // Main simulation function for function call visualization
+    async function startFunctionDemo() {
+      // Clear previous animations
+      const stepContainer = document.getElementById("step-container");
+      stepContainer.innerHTML = "";
+      // Reset code highlighting
+      document.getElementById("code-container").innerText = codeLines.join("\n");
+
+      // Get user input values
+      let num1 = parseInt(document.getElementById("num1-input").value);
+      let num2 = parseInt(document.getElementById("num2-input").value);
+      if (isNaN(num1) || isNaN(num2)) {
+        alert("Please enter valid numbers.");
+        return;
+      }
+      let result = num1 + num2;  // Our function 'add' computes this
+      
+      // Step 1: Show main() reading input values
+      let boxMain = document.createElement("div");
+      boxMain.className = "data-box slide-in";
+      boxMain.innerText = `Main: x = ${num1}, y = ${num2}`;
+      stepContainer.appendChild(boxMain);
+      highlightCodeLine(7); // Highlight scanf line in main (line 7)
+      boxMain.classList.add("show");
+      await delay(1500);
+      
+      // Step 2: Show function call: main calls add(x, y)
+      let arrow1 = document.createElement("div");
+      arrow1.className = "arrow slide-in";
+      arrow1.innerText = "↓ Function Call ↓";
+      stepContainer.appendChild(arrow1);
+      highlightCodeLine(9); // Highlight function call line in main (line 9)
+      await delay(1500);
+      
+      // Step 3: Show function execution (inside add)
+      let boxFunc = document.createElement("div");
+      boxFunc.className = "data-box slide-in";
+      boxFunc.innerText = `Function add:\nParameters: a = ${num1}, b = ${num2}`;
+      stepContainer.appendChild(boxFunc);
+      highlightCodeLine(2); // Highlight function definition start (line 2)
+      boxFunc.classList.add("show");
+      await delay(1500);
+      
+      // Step 4: Show calculation inside function
+      let boxCalc = document.createElement("div");
+      boxCalc.className = "data-box slide-in";
+      boxCalc.innerText = `Computing: ${num1} + ${num2} = ${result}`;
+      stepContainer.appendChild(boxCalc);
+      highlightCodeLine(3); // Highlight sum calculation (line 3)
+      boxCalc.classList.add("show");
+      await delay(1500);
+      
+      // Step 5: Show return from function
+      let arrow2 = document.createElement("div");
+      arrow2.className = "arrow slide-in";
+      arrow2.innerText = "↑ Return Value ↑";
+      stepContainer.appendChild(arrow2);
+      highlightCodeLine(4); // Highlight return statement (line 4)
+      await delay(1500);
+      
+      // Step 6: Show final result in main
+      let boxResult = document.createElement("div");
+      boxResult.className = "data-box slide-in";
+      boxResult.innerText = `Main receives result: ${result}`;
+      stepContainer.appendChild(boxResult);
+      highlightCodeLine(10); // Highlight final printf in main (line 10)
+      boxResult.classList.add("show");
+      await delay(1500);
+      
+      // Optionally, reset code highlighting
+      setTimeout(() => {
+        document.getElementById("code-container").innerText = codeLines.join("\n");
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
