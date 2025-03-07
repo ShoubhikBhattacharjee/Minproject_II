@@ -70,8 +70,8 @@ h1 {
 
 /* Sidebar Styling */
 .sidebar {
-  width: 220px;
-  background-color: #334155;
+  width: 200px;
+  background-color: #1e293b;
   color: white;
   display: flex;
   flex-direction: column;
@@ -80,6 +80,7 @@ h1 {
   position: fixed;
   top: 0;
   left: 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -132,8 +133,8 @@ h2 {
   text-align: center;
   margin-top: 20px;
 }
-  .emoji-size {
-width: 1.2em;  /* Same as an emoji */
-height: 1.2em;
-vertical-align: middle;  /* Aligns with text */
+.emoji-size {
+  width: 1.2em; /* Same as an emoji */
+  height: 1.2em;
+  vertical-align: middle; /* Aligns with text */
 }

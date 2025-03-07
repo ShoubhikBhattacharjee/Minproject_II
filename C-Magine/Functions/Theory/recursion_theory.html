@@ -1,131 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recursion in C</title>
-    <style>
-        body {
-            display: flex;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            height: 100vh;
-        }
-
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #1e293b;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .sidebar h2 {
-            color: #facc15;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex-grow: 1;
-        }
-
-        .menu-item {
-            background-color: #334155;
-            padding: 15px;
-            margin: 10px 0;
-            text-align: center;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .menu-item:hover {
-            background-color: #facc15;
-            color: black;
-        }
-
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-
-        h2, h3 {
-            color: #333;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #007BFF;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .emoji-size {
-      width: 1.2em;  /* Same as an emoji */
-      height: 1.2em;
-      vertical-align: middle;  /* Aligns with text */
-    }
-    </style>
-</head>
-<body>
+    <link rel="stylesheet" href="../../CSS/Theory.css" />
+  </head>
+  <body>
     <div class="sidebar">
-        <h2>Recursion in C</h2>
-        <ul class="menu">
-            <li class="menu-item" onclick="location.href='../Simulations/recursion.html'">🖥️Simulation</li>
-            <li class="menu-item" onclick="location.href='../Algorithms/recursion_algo.html'">📜Algorithm</li>
-            <li class="menu-item" onclick="location.href='../Flowcharts/recur_flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
-            </li>
-            <li class="menu-item" onclick="location.href='../Quiz/recur_quiz.html'">🧠Quiz</li>
-            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
-        </ul>
+      <h2>Recursion in C</h2>
+      <ul class="menu">
+        <li
+          class="menu-item"
+          onclick="location.href='../Simulations/recursion.html'"
+        >
+          🖥️Simulation
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Algorithms/recur_algo.html'"
+        >
+          📜Algorithm
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Flowcharts/recur_flow.html'"
+        >
+          <img
+            src="../../Images/flow.jpeg"
+            class="emoji-size"
+            alt="Flowchart"
+          />
+          Flowchart
+        </li>
+        <li class="menu-item" onclick="location.href='../Quiz/recur_quiz.html'">
+          🧠Quiz
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../../Code/newindex.html'"
+        >
+          ⚙️Code & Learn
+        </li>
+      </ul>
     </div>
 
     <div class="container">
-        <h2>Recursion in C</h2>
-        
-        <h3>1. Introduction</h3>
-        <p>Recursion is a <strong>programming technique</strong> where a function calls itself to solve smaller instances of a problem until a base condition is met.</p>
+      <h2>Recursion in C</h2>
 
-        <h3>2. How Recursion Works?</h3>
-        <p>When a function calls itself, a <strong>new execution context</strong> is created for each function call. These calls <strong>stack up</strong> in memory and are resolved in reverse order once the base condition is met.</p>
+      <h3>1. Introduction</h3>
+      <p>
+        Recursion is a <strong>programming technique</strong> where a function
+        calls itself to solve smaller instances of a problem until a base
+        condition is met.
+      </p>
 
-        <h3>3. Structure of a Recursive Function</h3>
-        <p>A recursive function typically follows this structure:</p>
-        <pre>
+      <h3>2. How Recursion Works?</h3>
+      <p>
+        When a function calls itself, a
+        <strong>new execution context</strong> is created for each function
+        call. These calls <strong>stack up</strong> in memory and are resolved
+        in reverse order once the base condition is met.
+      </p>
+
+      <h3>3. Structure of a Recursive Function</h3>
+      <p>A recursive function typically follows this structure:</p>
+      <pre>
 return_type function_name(parameters) {
     if (base_condition) {
         return result;
@@ -133,91 +73,127 @@ return_type function_name(parameters) {
         return function_name(modified_parameters);
     }
 }
-        </pre>
-        <p>Here:</p>
-        <ul>
-            <li><strong>Base Condition:</strong> The terminating condition to stop recursion.</li>
-            <li><strong>Recursive Case:</strong> The function calls itself with a modified argument.</li>
-        </ul>
+        </pre
+      >
+      <p>Here:</p>
+      <ul>
+        <li>
+          <strong>Base Condition:</strong> The terminating condition to stop
+          recursion.
+        </li>
+        <li>
+          <strong>Recursive Case:</strong> The function calls itself with a
+          modified argument.
+        </li>
+      </ul>
 
-        <h3>4. Example: Factorial Using Recursion</h3>
-        <p>The factorial of a number <strong>n</strong> (denoted as <strong>n!</strong>) is calculated as:</p>
-        <pre>
+      <h3>4. Example: Factorial Using Recursion</h3>
+      <p>
+        The factorial of a number <strong>n</strong> (denoted as
+        <strong>n!</strong>) is calculated as:
+      </p>
+      <pre>
 n! = n × (n-1) × (n-2) × ... × 1
-        </pre>
-        <p>Using recursion, factorial can be defined as:</p>
-        <pre>
+        </pre
+      >
+      <p>Using recursion, factorial can be defined as:</p>
+      <pre>
 factorial(n) = n × factorial(n-1)  (if n > 1)
 factorial(1) = 1  (Base Case)
-        </pre>
+        </pre
+      >
 
-        <h3>5. Recursive Function Execution (Step-by-Step)</h3>
-        <p>For <strong>factorial(4)</strong>, the function calls occur in this order:</p>
-        <pre>
+      <h3>5. Recursive Function Execution (Step-by-Step)</h3>
+      <p>
+        For <strong>factorial(4)</strong>, the function calls occur in this
+        order:
+      </p>
+      <pre>
 factorial(4) → 4 × factorial(3)
 factorial(3) → 3 × factorial(2)
 factorial(2) → 2 × factorial(1)
 factorial(1) → 1  (Base Case Reached)
-        </pre>
-        <p>Then, the functions start resolving <strong>in reverse order</strong>:</p>
-        <pre>
+        </pre
+      >
+      <p>
+        Then, the functions start resolving <strong>in reverse order</strong>:
+      </p>
+      <pre>
 factorial(2) = 2 × 1 = 2
 factorial(3) = 3 × 2 = 6
 factorial(4) = 4 × 6 = 24
-        </pre>
+        </pre
+      >
 
-        <h3>6. Types of Recursion</h3>
-        <table>
-            <tr>
-                <th>Type</th>
-                <th>Description</th>
-            </tr>
-            <tr>
-                <td><strong>Direct Recursion</strong></td>
-                <td>Function calls itself directly.</td>
-            </tr>
-            <tr>
-                <td><strong>Indirect Recursion</strong></td>
-                <td>Function A calls Function B, which calls Function A.</td>
-            </tr>
-            <tr>
-                <td><strong>Tail Recursion</strong></td>
-                <td>Recursive call is the last statement in the function.</td>
-            </tr>
-            <tr>
-                <td><strong>Head Recursion</strong></td>
-                <td>Recursive call happens first before other operations.</td>
-            </tr>
-        </table>
+      <h3>6. Types of Recursion</h3>
+      <table>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><strong>Direct Recursion</strong></td>
+          <td>Function calls itself directly.</td>
+        </tr>
+        <tr>
+          <td><strong>Indirect Recursion</strong></td>
+          <td>Function A calls Function B, which calls Function A.</td>
+        </tr>
+        <tr>
+          <td><strong>Tail Recursion</strong></td>
+          <td>Recursive call is the last statement in the function.</td>
+        </tr>
+        <tr>
+          <td><strong>Head Recursion</strong></td>
+          <td>Recursive call happens first before other operations.</td>
+        </tr>
+      </table>
 
-        <h3>7. Recursive vs. Iterative Approach</h3>
-        <table>
-            <tr>
-                <th>Approach</th>
-                <th>Advantages</th>
-                <th>Disadvantages</th>
-            </tr>
-            <tr>
-                <td><strong>Recursion</strong></td>
-                <td>✔ Simpler and elegant solution.</td>
-                <td>✘ Uses more memory (function calls stored in stack).</td>
-            </tr>
-            <tr>
-                <td><strong>Iteration (Loops)</strong></td>
-                <td>✔ Efficient in memory usage.</td>
-                <td>✘ Sometimes harder to implement.</td>
-            </tr>
-        </table>
+      <h3>7. Recursive vs. Iterative Approach</h3>
+      <table>
+        <tr>
+          <th>Approach</th>
+          <th>Advantages</th>
+          <th>Disadvantages</th>
+        </tr>
+        <tr>
+          <td><strong>Recursion</strong></td>
+          <td>✔ Simpler and elegant solution.</td>
+          <td>✘ Uses more memory (function calls stored in stack).</td>
+        </tr>
+        <tr>
+          <td><strong>Iteration (Loops)</strong></td>
+          <td>✔ Efficient in memory usage.</td>
+          <td>✘ Sometimes harder to implement.</td>
+        </tr>
+      </table>
 
-        <h3>8. Key Points About Recursion</h3>
-        <ul>
-            <li>✔ Recursion is useful for problems like <strong>factorial, Fibonacci series, tree traversal, and backtracking algorithms</strong>.</li>
-            <li>✔ Every recursive function <strong>must have a base condition</strong> to avoid infinite loops.</li>
-            <li>✔ Recursive functions consume more <strong>stack memory</strong>, so deep recursion can cause <strong>stack overflow</strong>.</li>
-        </ul>
+      <h3>8. Key Points About Recursion</h3>
+      <ul>
+        <li>
+          ✔ Recursion is useful for problems like
+          <strong
+            >factorial, Fibonacci series, tree traversal, and backtracking
+            algorithms</strong
+          >.
+        </li>
+        <li>
+          ✔ Every recursive function
+          <strong>must have a base condition</strong> to avoid infinite loops.
+        </li>
+        <li>
+          ✔ Recursive functions consume more <strong>stack memory</strong>, so
+          deep recursion can cause <strong>stack overflow</strong>.
+        </li>
+      </ul>
 
-        <h3>9. Conclusion</h3>
-        <p>Recursion is a <strong>powerful tool</strong> in C programming that simplifies problems by breaking them into smaller instances. However, it should be used <strong>carefully</strong> to avoid excessive memory usage.</p>
+      <h3>9. Conclusion</h3>
+      <p>
+        Recursion is a <strong>powerful tool</strong> in C programming that
+        simplifies problems by breaking them into smaller instances. However, it
+        should be used <strong>carefully</strong> to avoid excessive memory
+        usage.
+      </p>
     </div>
-</body>
+  </body>
 </html>

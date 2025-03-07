@@ -14,8 +14,10 @@ body {
   width: 200px;
   background-color: #1e293b;
   color: white;
+  display: flex;
+  flex-direction: column;
   padding: 20px;
-  height: 100vh;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 .sidebar h2 {
   color: #facc15;
@@ -64,4 +66,9 @@ button {
 }
 button:hover {
   background-color: #059669;
+}
+.emoji-size {
+  width: 1.2em; /* Same as an emoji */
+  height: 1.2em;
+  vertical-align: middle; /* Aligns with text */
 }
