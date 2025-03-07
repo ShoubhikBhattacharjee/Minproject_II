@@ -30,13 +30,16 @@ h1 {
 
 /* Sidebar Styling */
 .sidebar {
-  width: 200px;
-  background-color: #1e293b;
+  width: 220px;
+  background-color: #334155;
   color: white;
   display: flex;
   flex-direction: column;
   padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 h2 {

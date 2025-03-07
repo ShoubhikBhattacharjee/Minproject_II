@@ -4,54 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Call by Value vs Call by Reference Visualization</title>
+  <link rel="stylesheet" href="../../CSS/Simulations.css">
   <style>
-    /* Global Styles & Layout */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    .sidebar {
-      width: 250px;
-      background-color: #1e293b;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .sidebar h2 {
-      color: #facc15;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
     .menu {
       list-style: none;
-    }
-
-    .menu-item {
-      background-color: #334155;
-      padding: 15px;
-      margin: 10px 0;
-      text-align: center;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .menu-item:hover {
-      background-color: #facc15;
-      color: black;
-    }
-    body {
-      font-family: 'Courier New', monospace;
-      background-color: #1e272e;
-      color: #dcdde1;
-      height: 100vh;
-      display: flex;
-      overflow: hidden;
     }
     .container {
       display: flex;
@@ -68,6 +24,7 @@
       white-space: pre-wrap;
       font-size: 16px;
       line-height: 1.5;
+      color: azure;
     }
     .highlight {
       background-color: #44bd32;
@@ -104,19 +61,6 @@
       border: none;
       border-radius: 5px;
       text-align: center;
-    }
-    button {
-      margin-top: 10px;
-      padding: 12px 25px;
-      background-color: #44bd32;
-      border: none;
-      color: white;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #2ecc71;
     }
     /* Visualization Steps */
     .step-container {
@@ -160,18 +104,26 @@
 </head>
 <body>
   <div class="sidebar">
+    <br>
     <h2>Call By Value & Reference</h2>
     <ul class="menu">
-      <li class="menu-item" onclick="location.href='Theory/callbyrefval_theory.html'">Theory</li>
-      <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">Algorithm</li>
-      <li class="menu-item" onclick="location.href='../Flowcharts/recur_flow.html'">Flowchart</li>
-      <li class="menu-item" onclick="location.href='Quiz/callbyrefvalue_quiz.html'">Quiz</li>
+      <li
+          class="menu-item"
+          onclick="location.href='../Theory/callbyrefval_theory.html'"
+        >
+          📖Theory
+        </li>
+      <li class="menu-item" onclick="location.href='../Algorithms/CBVR.html'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowcharts/CBVR.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            </li>
+            <li class="menu-item" onclick="location.href='../Quiz/callbyrefvalue_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
     </ul>
   </div>
   <div class="container">
     <!-- Left Panel: Code Section -->
     <div class="code-container" id="code-container">
-#include <stdio.h>
+#include &lt;stdio.h>
 
 // Function using Call by Value
 int increment_by_value(int x) {

@@ -68,7 +68,7 @@ function showFeedback() {
   if (scorePercentage === 100) {
     feedbackMessage = "Excellent! You got all answers correct!";
   } else if (scorePercentage >= 75) {
-    feedbackMessage = "Great job! You have a strong understanding of " + concept + " in C.";
+    feedbackMessage = "Great job! You have a strong understanding of " + concept + " concepts in C.";
   } else if (scorePercentage >= 50) {
     feedbackMessage = "Good effort! You might want to review some concepts.";
   } else {
