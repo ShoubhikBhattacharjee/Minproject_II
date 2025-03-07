@@ -2,8 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="../../CSS/Quiz.css" />
-    <script src="../../JavaScript/Quiz.js">
-    </script>
+    <script src="../../JavaScript/Quiz.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Finding Sum of Diagonals of Matrix in C Quiz</title>
@@ -20,24 +19,38 @@
     <div class="sidebar">
       <h2>Finding Sum of Diagonals of Matrix in C Concepts</h2>
       <ul class="menu">
-        <li class="menu-item" onclick="location.href='../Theory/tracematrixtheory.html'">
+        <li
+          class="menu-item"
+          onclick="location.href='../Theory/tracematrixtheory.html'"
+        >
           📖Theory
         </li>
         <li
           class="menu-item"
           onclick="location.href='../Algorithms/leap_algo.html'"
         >
-        📜Algorithm
-        </li>
-        <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+          📜Algorithm
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../diagonalsum.html'"
+          onclick="location.href='../Flowchart/._flow.html'"
         >
-        🖥️Simulation
+          <img
+            src="../../Images/flow.jpeg"
+            class="emoji-size"
+            alt="Flowchart"
+          />
+          Flowchart
         </li>
-        <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
+        <li class="menu-item" onclick="location.href='../diagonalsum.html'">
+          🖥️Simulation
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../../Code/newindex.html'"
+        >
+          ⚙️Code & Learn
+        </li>
       </ul>
     </div>
     <div class="content-section">
@@ -49,97 +62,115 @@
     </div>
     <script>
       const quizData = [
-      {
-      question: "What is the correct way to declare a 2D array for storing an NxN matrix in C?",
-      options: ["int matrix[N];", "int matrix[][];", "int matrix[N][N];", "int matrix;"],
-      correct: 2
-    },
-    {
-      question: "How can you access the main diagonal elements of a matrix in C?",
-      options: ["matrix[i][0]", "matrix[0][j]", "matrix[i][j] where i + j == N", "matrix[i][j] where i == j"],
-      correct: 3
-    },
-    {
-      question: "What is the correct loop structure for calculating the trace of an NxN matrix?",
-      options: [
-        `for (int i = 0; i < N; i++) {<br>
+        {
+          question:
+            "What is the correct way to declare a 2D array for storing an NxN matrix in C?",
+          options: [
+            "int matrix[N];",
+            "int matrix[][];",
+            "int matrix[N][N];",
+            "int matrix;",
+          ],
+          correct: 2,
+        },
+        {
+          question:
+            "How can you access the main diagonal elements of a matrix in C?",
+          options: [
+            "matrix[i][0]",
+            "matrix[0][j]",
+            "matrix[i][j] where i + j == N",
+            "matrix[i][j] where i == j",
+          ],
+          correct: 3,
+        },
+        {
+          question:
+            "What is the correct loop structure for calculating the trace of an NxN matrix?",
+          options: [
+            `for (int i = 0; i < N; i++) {<br>
          sum += matrix[i][i];<br>
-        }`, 
-        `for (int i = 0; i < N; i++) {<br>
+        }`,
+            `for (int i = 0; i < N; i++) {<br>
          sum += matrix[i][N - 1];<br>
-        }`, 
-        `for (int i = 0; i < N; i++) {<br>
+        }`,
+            `for (int i = 0; i < N; i++) {<br>
          sum += matrix[N - 1][i];<br>
-        }`, 
-        `for (int i = 0; i < N; i++) {<br>
+        }`,
+            `for (int i = 0; i < N; i++) {<br>
          sum += matrix[N - 1][N - 1];<br>
         }`,
-    ],
-      correct: 0
-    },
-    {
-      question: "Which condition must a matrix satisfy to compute sum of diagonal elements?",
-      options: ["It must be a diagonal matrix", "It must be a square matrix (NxN)", "It must be an identity matrix", 
-      "It must contain only positive numbers"],
-      correct: 1
-    },
-    {
-      question: "How do you access an element at row i and column j in a 2D array?",
-      options: ["arr(i, j)", "arr[j][i]", "arr[i][j]", "arr[i,j]"],
-      correct: 2
-    },
-    {
-      question: "Which function is best suited for printing a 2D array?",
-      options: ["printf()", "putchar()", "puts()", "All of the above"],
-      correct: 0
-    },
-    {
-    question: `What is the output of the following code?<br><br>
-    int matrix[3][3] = {<br>
-    &nbsp;&nbsp;{1, 2, 3},<br>
-    &nbsp;&nbsp;{4, 5, 6},<br>
-    &nbsp;&nbsp;{7, 8, 9}<br>
-    };<br><br>
-    int sum = 0;<br><br>
-    for (int i = 0; i < 3; i++) {<br>
-    &nbsp;&nbsp;sum += matrix[i][i];<br>
-    }<br><br>
-    printf("%d", sum);`,
-    options: ["30", "6", "45", "15"],
-    correct: 3
-  },
-    {
-      question: "What should happen if you try to compute the sum of diagonals of a non-square matrix?",
-      options: [
-        "The program crashes",
-        "The program generates incorrect output",
-        "Program generates exception (Not a square matrix)",
-        "Stack Overflow"
-      ],
-      correct: 2
-    },
-    {
-      question: "What is the time complexity of computing the sum of diagonal elements of an NxN matrix?",
-      options: [
-        "O(1)",
-        "O(N^2)",
-        "O(NlogN)",
-        "O(N)"
-      ],
-      correct: 3
-    },
-    {
-      question: "What is the sum of diagonal elements generally known as?",
-      options: [
-        "Trace of a matrix",
-        "Determinant of a matrix",
-        "Sum of a matrix",
-        "No unique term"
-      ],
-      correct: 0
-    }
+          ],
+          correct: 0,
+        },
+        {
+          question:
+            "Which condition must a matrix satisfy to compute sum of diagonal elements?",
+          options: [
+            "It must be a diagonal matrix",
+            "It must be a square matrix (NxN)",
+            "It must be an identity matrix",
+            "It must contain only positive numbers",
+          ],
+          correct: 1,
+        },
+        {
+          question:
+            "How do you access an element at row i and column j in a 2D array?",
+          options: ["arr(i, j)", "arr[j][i]", "arr[i][j]", "arr[i,j]"],
+          correct: 2,
+        },
+        {
+          question: "Which function is best suited for printing a 2D array?",
+          options: ["printf()", "putchar()", "puts()", "All of the above"],
+          correct: 0,
+        },
+        {
+          question: `What is the output of the following code?<br>
+      <span style="font-size: 15px;">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int matrix[3][3] = {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{1, 2, 3},<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{4, 5, 6},<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{7, 8, 9}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int sum = 0;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int i = 0; i < 3; i++) {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum += matrix[i][i];<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("%d", sum);
+      </span>`,
+          options: ["30", "6", "45", "15"],
+          correct: 3,
+        },
+        {
+          question:
+            "What should happen if you try to compute the sum of diagonals of a non-square matrix?",
+          options: [
+            "The program crashes",
+            "The program generates incorrect output",
+            "Program generates exception (Not a square matrix)",
+            "Stack Overflow",
+          ],
+          correct: 2,
+        },
+        {
+          question:
+            "What is the time complexity of computing the sum of diagonal elements of an NxN matrix?",
+          options: ["O(1)", "O(N^2)", "O(NlogN)", "O(N)"],
+          correct: 3,
+        },
+        {
+          question: "What is the sum of diagonal elements generally known as?",
+          options: [
+            "Trace of a matrix",
+            "Determinant of a matrix",
+            "Sum of a matrix",
+            "No unique term",
+          ],
+          correct: 0,
+        },
       ];
-    document.addEventListener("DOMContentLoaded", initializeQuiz(quizData));
+      document.addEventListener("DOMContentLoaded", initializeQuiz(quizData));
     </script>
   </body>
 </html>
