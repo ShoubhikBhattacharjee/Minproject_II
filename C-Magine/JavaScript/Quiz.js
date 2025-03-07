@@ -1,10 +1,12 @@
 let selectedQuestions = [];
 let answeredQuestions = 0;
 let correctAnswers = 0;
+let concept = '';
 
-function initializeQuiz(quizData) {
+function initializeQuiz(quizData, concepts) {
   selectedQuestions = quizData.sort(() => Math.random() - 0.5).slice(0, 5);
   loadQuiz();
+  concept = concepts;
 }
 
 function loadQuiz() {
@@ -66,11 +68,11 @@ function showFeedback() {
   if (scorePercentage === 100) {
     feedbackMessage = "Excellent! You got all answers correct!";
   } else if (scorePercentage >= 75) {
-    feedbackMessage = "Great job! You have a strong understanding of Variables in C.";
+    feedbackMessage = "Great job! You have a strong understanding of " + concept + " in C.";
   } else if (scorePercentage >= 50) {
     feedbackMessage = "Good effort! You might want to review some concepts.";
   } else {
-    feedbackMessage = "Keep practicing! Variable concepts could be tricky at first.";
+    feedbackMessage = "Keep practicing! " + concept + " concepts could be tricky at first.";
   }
 
   feedbackElem.innerHTML = `You scored ${correctAnswers} out of ${selectedQuestions.length}. ${feedbackMessage}`;

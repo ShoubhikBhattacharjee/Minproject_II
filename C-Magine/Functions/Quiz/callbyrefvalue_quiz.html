@@ -12,171 +12,45 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <style>
-      body {
-        font-family: "Arial", sans-serif;
-        background: linear-gradient(135deg, #e7eff6, #f8f9fa);
-        min-height: 100vh;
-        margin: 0;
-        display: flex;
-      }
-
-      .container {
-        background-color: rgba(255, 255, 255, 0.3);
-        backdrop-filter: blur(1.5px);
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 40px;
-        max-width: 1000px;
-        margin: 50px auto;
-        flex: 1;
-      }
-
-      h1 {
-        color: #4caf50;
-        font-size: 3rem;
-        margin-bottom: 20px;
-        text-align: center;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        transition: 0.3s ease-in-out;
-      }
-
-      .quiz-option {
-        background-color: #f0f0f0;
-        border: none;
-        border-radius: 8px;
-        padding: 15px;
-        cursor: pointer;
-        transition: background-color 0.3s, box-shadow 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .quiz-option:hover {
-        background-color: #d4d4d4;
-      }
-
-      .quiz-option.correct {
-        background-color: #4caf50 !important;
-        color: white;
-        position: relative;
-      }
-
-      .quiz-option.incorrect {
-        background-color: #f44336 !important;
-        color: white;
-        position: relative;
-      }
-
-      .icon {
-        font-size: 1.5rem;
-      }
-
-      .correct .icon {
-        color: white;
-      }
-
-      .incorrect .icon {
-        color: white;
-      }
-
-      /* Sidebar Styling */
-      .sidebar {
-        width: 220px;
-        background-color: #334155;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        left: 0;
-      }
-
-      h2 {
-        color: #facc15;
-        text-align: center;
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-      }
-
-      .menu {
-        list-style: none;
-        padding: 0;
-      }
-
-      .menu-item {
-        background-color: #4b5563;
-        padding: 15px;
-        margin: 10px 0;
-        text-align: center;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s, color 0.3s;
-      }
-
-      .menu-item:hover {
-        background-color: #facc15;
-        color: black;
-      }
-
-      /* Container alignment */
-      .content-section {
-        margin-left: 240px;
-        flex-grow: 1;
-      }
-
-      /* Small screen responsiveness */
-      @media (max-width: 768px) {
-        .sidebar {
-          width: 100%;
-          height: auto;
-          position: relative;
-        }
-        .content-section {
-          margin-left: 0;
-        }
-      }
-
-      .feedback {
-        font-size: 1.5rem;
-        text-align: center;
-        margin-top: 20px;
-      }
-        .emoji-size {
-      width: 1.2em;  /* Same as an emoji */
-      height: 1.2em;
-      vertical-align: middle;  /* Aligns with text */
-    }
-    </style>
+    <link rel="stylesheet" href="../../CSS/Quiz.css" />
+    <script src="../../JavaScript/Quiz.js"></script>
   </head>
   <body>
     <div class="sidebar">
       <h2>Call by Value and Call by Reference Concept</h2>
       <ul class="menu">
-        <li class="menu-item" onclick="location.href='../Theory/callbyrefval_theory.html'">
+        <li
+          class="menu-item"
+          onclick="location.href='../Theory/callbyrefval_theory.html'"
+        >
           📖Theory
         </li>
         <li
           class="menu-item"
           onclick="location.href='../Algorithms/leap_algo.html'"
         >
-        📜Algorithm
-        </li>
-        <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+          📜Algorithm
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../callbyvalref.html'"
+          onclick="location.href='../Flowchart/._flow.html'"
         >
-        🖥️Simulation
+          <img
+            src="../../Images/flow.jpeg"
+            class="emoji-size"
+            alt="Flowchart"
+          />
+          Flowchart
         </li>
-        <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
-      </li>
+        <li class="menu-item" onclick="location.href='../callbyvalref.html'">
+          🖥️Simulation
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../../Code/newindex.html'"
+        >
+          ⚙️Code & Learn
+        </li>
       </ul>
     </div>
     <div class="content-section">
@@ -188,189 +62,112 @@
     </div>
     <script>
       const quizData = [
-  {
-    question: "What is the main difference between Call by Value and Call by Reference?",
-    options: [
-      "Call by Value passes a copy of the argument, Call by Reference passes the actual address",
-      "Call by Value is slower, Call by Reference is faster",
-      "Call by Value uses pointers, Call by Reference does not",
-      "Call by Value can modify the original variable, Call by Reference cannot"
-    ],
-    correct: 0
-  },
-  {
-    question: "In Call by Value, what happens when a function modifies a parameter?",
-    options: [
-      "The original variable is modified",
-      "The original variable remains unchanged",
-      "The function will not compile",
-      "The function will generate a runtime error"
-    ],
-    correct: 1
-  },
-  {
-    question: "How is Call by Reference implemented in C?",
-    options: [
-      "Using pointers",
-      "Using & operator",
-      "Using -> operator",
-      "C does not support Call by Reference"
-    ],
-    correct: 0
-  },
-  {
-    question: "Which of the following function prototypes demonstrates Call by Value?",
-    options: [
-      "void swap(int *a, int *b);",
-      "void swap(int &a, int &b);",
-      "void swap(int a, int b);",
-      "void swap(int *a, b);"
-    ],
-    correct: 2
-  },
-  {
-    question: "What will happen if a function modifies a variable passed by reference?",
-    options: [
-      "The original variable will remain unchanged",
-      "The original variable will be modified",
-      "The function will create a copy of the variable",
-      "The compiler will throw an error"
-    ],
-    correct: 1
-  },
-  {
-    question: "What is the output of the following code?\n\n#include <stdio.h>\nvoid change(int *x) {\n    *x = 10;\n}\nint main() {\n    int a = 5;\n    change(&a);\n    printf(\"%d\", a);\n    return 0;\n}",
-    options: [
-      "5",
-      "10",
-      "Compilation error",
-      "Garbage value"
-    ],
-    correct: 1
-  },
-  {
-    question: "Which of the following statements is true for Call by Value?",
-    options: [
-      "The function works with a copy of the original variable",
-      "The function works with the original variable directly",
-      "The function modifies the actual memory location",
-      "Call by Value cannot be used in C"
-    ],
-    correct: 0
-  },
-  {
-    question: "Why is Call by Reference used in C?",
-    options: [
-      "To avoid unnecessary copying of large data structures",
-      "To ensure functions always work with copies",
-      "Because Call by Value is not supported in C",
-      "To prevent functions from modifying variables"
-    ],
-    correct: 0
-  },
-  {
-    question: "How do you modify a variable using Call by Reference in C?",
-    options: [
-      "By passing the variable directly",
-      "By passing the address of the variable",
-      "By using the & operator in function definition",
-      "By declaring the variable as const"
-    ],
-    correct: 1
-  },
-  {
-    question: "What will happen if a function using Call by Reference tries to modify a const variable?",
-    options: [
-      "The program will execute normally",
-      "The compiler will throw an error",
-      "The variable will be modified successfully",
-      "The function will ignore the const keyword"
-    ],
-    correct: 1
-  }
-];
-
-
-      const selectedQuestions = quizData
-  .sort(() => Math.random() - 0.5) // Shuffle questions
-  .slice(0, 5); // Pick the first 5 after shuffling
-
-      let answeredQuestions = 0;
-      let correctAnswers = 0;
-
-      function loadQuiz() {
-        const quizContainer = document.getElementById("quiz-container");
-        quizContainer.innerHTML = "";
-
-        selectedQuestions.forEach((item, index) => {
-          const questionElem = document.createElement("div");
-          questionElem.classList.add("quiz-question");
-          questionElem.innerHTML = `<h3>${index + 1}. ${item.question}</h3>`;
-
-          item.options.forEach((option, optionIndex) => {
-            const optionElem = document.createElement("div");
-            optionElem.classList.add("quiz-option");
-            optionElem.innerHTML = `${option} <span class="icon"></span>`;
-
-            optionElem.addEventListener("click", () => {
-              handleOptionClick(optionElem, item.correct, optionIndex, item, index);
-            });
-            questionElem.appendChild(optionElem);
-          });
-          quizContainer.appendChild(questionElem);
-        });
-      }
-
-      function handleOptionClick(optionElem, correctIndex, selectedIndex, item, questionIndex) {
-        const options = optionElem.parentElement.querySelectorAll(".quiz-option");
-        options.forEach((option, index) => {
-          option.classList.remove("correct", "incorrect");
-          const icon = option.querySelector(".icon");
-          icon.innerHTML = "";
-        });
-
-        if (selectedIndex === correctIndex) {
-          optionElem.classList.add("correct");
-          optionElem.querySelector(".icon").innerHTML = "✔";
-          correctAnswers++;
-        } else {
-          optionElem.classList.add("incorrect");
-          optionElem.querySelector(".icon").innerHTML = "✘";
-          // Highlight the correct option
-          options[correctIndex].classList.add("correct");
+        {
+          question:
+            "What is the main difference between Call by Value and Call by Reference?",
+          options: [
+            "Call by Value passes a copy of the argument, Call by Reference passes the actual address",
+            "Call by Value is slower, Call by Reference is faster",
+            "Call by Value uses pointers, Call by Reference does not",
+            "Call by Value can modify the original variable, Call by Reference cannot",
+          ],
+          correct: 0,
+        },
+        {
+          question:
+            "In Call by Value, what happens when a function modifies a parameter?",
+          options: [
+            "The original variable is modified",
+            "The original variable remains unchanged",
+            "The function will not compile",
+            "The function will generate a runtime error",
+          ],
+          correct: 1,
+        },
+        {
+          question: "How is Call by Reference implemented in C?",
+          options: [
+            "Using pointers",
+            "Using & operator",
+            "Using -> operator",
+            "C does not support Call by Reference",
+          ],
+          correct: 0,
+        },
+        {
+          question:
+            "Which of the following function prototypes demonstrates Call by Value?",
+          options: [
+            "void swap(int *a, int *b);",
+            "void swap(int &a, int &b);",
+            "void swap(int a, int b);",
+            "void swap(int *a, b);",
+          ],
+          correct: 2,
+        },
+        {
+          question:
+            "What will happen if a function modifies a variable passed by reference?",
+          options: [
+            "The original variable will remain unchanged",
+            "The original variable will be modified",
+            "The function will create a copy of the variable",
+            "The compiler will throw an error",
+          ],
+          correct: 1,
+        },
+        {
+          question:
+            'What is the output of the following code?\n\n#include <stdio.h>\nvoid change(int *x) {\n    *x = 10;\n}\nint main() {\n    int a = 5;\n    change(&a);\n    printf("%d", a);\n    return 0;\n}',
+          options: ["5", "10", "Compilation error", "Garbage value"],
+          correct: 1,
+        },
+        {
+          question:
+            "Which of the following statements is true for Call by Value?",
+          options: [
+            "The function works with a copy of the original variable",
+            "The function works with the original variable directly",
+            "The function modifies the actual memory location",
+            "Call by Value cannot be used in C",
+          ],
+          correct: 0,
+        },
+        {
+          question: "Why is Call by Reference used in C?",
+          options: [
+            "To avoid unnecessary copying of large data structures",
+            "To ensure functions always work with copies",
+            "Because Call by Value is not supported in C",
+            "To prevent functions from modifying variables",
+          ],
+          correct: 0,
+        },
+        {
+          question:
+            "How do you modify a variable using Call by Reference in C?",
+          options: [
+            "By passing the variable directly",
+            "By passing the address of the variable",
+            "By using the & operator in function definition",
+            "By declaring the variable as const",
+          ],
+          correct: 1,
+        },
+        {
+          question:
+            "What will happen if a function using Call by Reference tries to modify a const variable?",
+          options: [
+            "The program will execute normally",
+            "The compiler will throw an error",
+            "The variable will be modified successfully",
+            "The function will ignore the const keyword",
+          ],
+          correct: 1,
         }
+      ];
 
-        answeredQuestions++;
-
-        // Disable further selection for the current question
-        options.forEach((option) => {
-          option.style.pointerEvents = "none";
-        });
-
-        if (answeredQuestions === selectedQuestions.length) {
-          showFeedback();
-        }
-      }
-
-      function showFeedback() {
-        const feedbackElem = document.getElementById("feedback");
-        const scorePercentage = (correctAnswers / selectedQuestions.length) * 100;
-        let feedbackMessage;
-
-        if (scorePercentage === 100) {
-          feedbackMessage = "Excellent! You got all answers correct!";
-        } else if (scorePercentage >= 75) {
-          feedbackMessage = "Great job! You have a strong understanding of Functions.";
-        } else if (scorePercentage >= 50) {
-          feedbackMessage = "Good effort! You might want to review some concepts.";
-        } else {
-          feedbackMessage = "Keep practicing! Functions program can be tricky at first.";
-        }
-
-        feedbackElem.innerHTML = `You scored ${correctAnswers} out of ${selectedQuestions.length}. ${feedbackMessage}`;
-      }
-
-      loadQuiz();
+      document.addEventListener("DOMContentLoaded", initializeQuiz(quizData, "Call by Value & Call by Reference"));
     </script>
   </body>
 </html>
