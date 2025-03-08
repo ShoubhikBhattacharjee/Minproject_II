@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../LOGIN/login.html"); // Redirect to login if no session
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -131,19 +140,19 @@
       <ul class="menu">
         <li
           class="menu-item"
-          onclick="location.href='../Theory/linear_search_theory.html'"
+          onclick="location.href='../Theory/linear_search_theory.php'"
         >
           📖Theory
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../Algorithms/linear_search.html'"
+          onclick="location.href='../Algorithms/linear_search.php'"
         >
           📜Algorithm
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../Flowcharts/linear_search.html'"
+          onclick="location.href='../Flowcharts/linear_search.php'"
         >
           <img
             src="../../Images/flow.jpeg"
@@ -154,7 +163,7 @@
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../Quiz/linear_quiz.html'"
+          onclick="location.href='../Quiz/linear_quiz.php'"
         >
           🧠Quiz
         </li>

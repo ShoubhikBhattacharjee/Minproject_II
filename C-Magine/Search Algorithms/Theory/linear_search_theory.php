@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../LOGIN/login.html"); // Redirect to login if no session
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +20,11 @@
         <h2>Linear Search Concept</h2>
         <ul class="menu">
             
-            <li class="menu-item" onclick="location.href='../Algorithms/linear_search.html'">📜Algorithm</li>
-            <li class="menu-item" onclick="location.href='../Flowcharts/linear_search.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            <li class="menu-item" onclick="location.href='../Algorithms/linear_search.php'">📜Algorithm</li>
+            <li class="menu-item" onclick="location.href='../Flowcharts/linear_search.php'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
             </li>
-            <li class="menu-item" onclick="location.href='../Simulations/linear_search.html'">🖥️Simulation</li>
-            <li class="menu-item" onclick="location.href='../Quiz/linear_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../Simulations/linear_search.php'">🖥️Simulation</li>
+            <li class="menu-item" onclick="location.href='../Quiz/linear_quiz.php'">🧠Quiz</li>
             <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
         </ul>
     </div>

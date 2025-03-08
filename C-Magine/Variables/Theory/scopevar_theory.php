@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: LOGIN/login.html"); // Redirect to login if no session
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +23,7 @@
           <li class="menu-item" onclick="location.href='../Algorithms/scope_of_variables.html'">📜Algorithm</li>
           <li class="menu-item" onclick="location.href='../Flowcharts/scope_of_variables.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
           </li>
-          <li class="menu-item" onclick="location.href='../Simulations/scopeofvar.html'">🖥️Simulation</li>
+          <li class="menu-item" onclick="location.href='../Simulations/scopeofvar.php'">🖥️Simulation</li>
           <li class="menu-item" onclick="location.href='../Quiz/var_scope_quiz.html'">🧠Quiz</li>
           <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
         </ul>

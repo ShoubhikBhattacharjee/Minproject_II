@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: LOGIN/login.html"); // Redirect to login if no session
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -69,7 +78,7 @@
       <ul class="menu">
         <li
           class="menu-item"
-          onclick="location.href='../Theory/basic_var_theory.html'"
+          onclick="location.href='../Theory/basic_var_theory.php'"
         >
           Theory
         </li>

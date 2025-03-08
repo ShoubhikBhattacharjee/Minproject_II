@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../LOGIN/login.html"); // Redirect to login if no session
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +22,7 @@
 
     <div class="container">
         <!-- Clickable cards linking to different HTML files -->
-        <a href="Theory/linear_search_theory.html" target="_blank" class="card">
+        <a href="Theory/linear_search_theory.php" target="_blank" class="card">
             <span class="icon"> 🔍</span>
             <p>Linear Search</p>
         </a>

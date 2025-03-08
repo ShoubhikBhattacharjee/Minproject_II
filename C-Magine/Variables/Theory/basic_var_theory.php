@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: LOGIN/login.html"); // Redirect to login if no session
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,7 +36,7 @@
           />
           Flowchart
         </li>
-        <li class="menu-item" onclick="location.href='../basics_of_var.html'">
+        <li class="menu-item" onclick="location.href='../basics_of_var.php'">
           🖥️Simulation
         </li>
         <li

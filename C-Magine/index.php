@@ -152,10 +152,10 @@ if (!isset($_SESSION['user_id'])) {
               <a class="nav-link active" href="Login/logout.php">Logout</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="About.php" onclick="alert('Error 5495!\nSevere Corrpution!\nMascon Virus Detected.')">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="Contact.php" onclick="alert('Error 5495!\nSevere Corrpution!\nMascon Virus Detected.')">Contact</a>
             </li>
           </ul>
           <img src="Images/Somaiya Trust Logo.jpg" alt="Somaiya Logo" style="height: 40px" />
@@ -196,7 +196,7 @@ if (!isset($_SESSION['user_id'])) {
           </div>
         </div>
         <div class="col-md-4">
-          <div class="card h-100 text-center shadow-sm" onclick="window.open('Search Algorithms/search_algorithms.html', '_blank')">
+          <div class="card h-100 text-center shadow-sm" onclick="window.open('Search Algorithms/search_algorithms.php', '_blank')">
             <div class="card-body">
               <i class="fas fa-search"></i>
               <h5 class="card-title">Search Algorithms</h5>
