@@ -27,7 +27,7 @@ if (!isset($_SESSION['user_id'])) {
             <p>Linear Search</p>
         </a>
 
-        <a href="Theory/binary_search_theory.html" target="_blank" class="card">
+        <a href="Theory/binary_search_theory.php" target="_blank" class="card">
             <span class="icon">🕵️‍♂️</span>
             <p>Binary Search</p>
         </a>

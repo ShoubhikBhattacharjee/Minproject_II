@@ -1,0 +1,211 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../LOGIN/login.html"); // Redirect to login if no session
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binary Search in C</title>
+    <link rel="stylesheet" href="../../CSS/Theory.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Binary Search Concept</h2>
+      <ul class="menu">
+        <li
+          class="menu-item"
+          onclick="location.href='../Algorithms/binary_search.php'"
+        >
+          📜Algorithm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Flowcharts/binary_search.php'"
+        >
+          <img
+            src="../../Images/flow.jpeg"
+            class="emoji-size"
+            alt="Flowchart"
+          />
+          Flowchart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Simulations/binary_search.php'"
+        >
+          🖥️Simulation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Quiz/binary_quiz.php'"
+        >
+          🧠Quiz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../../Code/newindex.html'"
+        >
+          ⚙️Code & Learn
+        </li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <h2>Binary Search in C</h2>
+      <p>
+        <strong>Binary Search</strong> is an efficient searching technique used
+        to find an element in a <strong>sorted array</strong>. Instead of
+        checking elements one by one (like Linear Search), it
+        <strong>divides</strong> the search space into two halves and eliminates
+        half of the elements at each step.
+      </p>
+
+      <h3>1. How Binary Search Works?</h3>
+      <p>Binary Search follows these steps:</p>
+      <ul>
+        <li>Find the <strong>middle element</strong> of the array.</li>
+        <li>
+          Compare it with the target value:
+          <ul>
+            <li>
+              If the middle element <strong>matches</strong> the target, return
+              the index.
+            </li>
+            <li>
+              If the middle element is <strong>less</strong> than the target,
+              search in the <strong>right half</strong>.
+            </li>
+            <li>
+              If the middle element is <strong>greater</strong> than the target,
+              search in the <strong>left half</strong>.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Repeat the process until the element is found or the search space is
+          empty.
+        </li>
+      </ul>
+
+      <h3>2. Example: Searching for 85 in a Sorted Array</h3>
+      <p>Consider the sorted array below:</p>
+
+      <table>
+        <tr>
+          <th>Index</th>
+          <td>0</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+          <td>7</td>
+          <td>8</td>
+          <td>9</td>
+        </tr>
+        <tr>
+          <th>Element</th>
+          <td>10</td>
+          <td>20</td>
+          <td>35</td>
+          <td>47</td>
+          <td>59</td>
+          <td>68</td>
+          <td>75</td>
+          <td>85</td>
+          <td>92</td>
+          <td>100</td>
+        </tr>
+      </table>
+
+      <p>We need to search for <strong>85</strong> in this array.</p>
+
+      <h3>3. Step-by-Step Execution</h3>
+      <table>
+        <tr>
+          <th>Step</th>
+          <th>Low Index (<code>low</code>)</th>
+          <th>High Index (<code>high</code>)</th>
+          <th>Middle Index (<code>mid</code>)</th>
+          <th>Middle Element</th>
+          <th>Comparison</th>
+          <th>Next Step</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>0</td>
+          <td>9</td>
+          <td>(0+9)/2 = <strong>4</strong></td>
+          <td><strong>59</strong></td>
+          <td>85 > 59</td>
+          <td>Search in right half (<code>low = 5</code>)</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>5</td>
+          <td>9</td>
+          <td>(5+9)/2 = <strong>7</strong></td>
+          <td><strong>85</strong></td>
+          <td>85 == 85</td>
+          <td>Element found ✅</td>
+        </tr>
+      </table>
+
+      <h3>4. Key Observations</h3>
+      <ul>
+        <li>
+          Binary Search significantly
+          <strong>reduces the number of comparisons</strong>.
+        </li>
+        <li>
+          Instead of checking all 10 elements, we only needed
+          <strong>2 comparisons</strong> to find the target.
+        </li>
+        <li>
+          This efficiency makes Binary Search suitable for large datasets.
+        </li>
+      </ul>
+
+      <h3>5. Complexity Analysis</h3>
+      <ul>
+        <li>
+          In the worst case, the number of comparisons needed is
+          <strong>log₂(n)</strong>.
+        </li>
+        <li>
+          For an array of size <strong>n</strong>, the time complexity is
+          <strong>O(log n)</strong>.
+        </li>
+        <li>
+          Binary Search is much faster than Linear Search, which has a
+          complexity of <strong>O(n)</strong>.
+        </li>
+      </ul>
+
+      <h3>6. When to Use Binary Search?</h3>
+      <p>Binary Search is useful when:</p>
+      <ul>
+        <li>The array is <strong>sorted</strong>.</li>
+        <li>
+          Quick searches are required (e.g., phone directories, databases).
+        </li>
+        <li>Large datasets need to be searched efficiently.</li>
+      </ul>
+
+      <h3>7. Conclusion</h3>
+      <p>
+        Binary Search is a highly efficient searching algorithm that operates by
+        repeatedly dividing the search space in half. It is widely used in
+        programming problems that involve searching through sorted data.
+      </p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,317 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../LOGIN/login.html"); // Redirect to login if no session
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binary Search Visualization with Code Highlighting</title>
+    <link rel="stylesheet" href="../../CSS/Simulations.css" />
+    <style>
+      .menu {
+        list-style: none;
+      }
+      .code-container {
+        flex: 1;
+        background: #1e1e1e;
+        color: #dcdcdc;
+        padding: 20px;
+        overflow-y: auto;
+      }
+      pre {
+        margin: 0;
+        font-size: 14px;
+      }
+      .highlight {
+        background-color: rgba(255, 235, 59, 0.6);
+        display: inline-block;
+        width: 100%;
+      }
+      .visualization-container {
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        overflow-y: auto;
+      }
+      h1 {
+        color: #333;
+      }
+      .input-section {
+        margin: 20px 0;
+      }
+      .input-section input,
+      .input-section button {
+        margin: 5px;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .array-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+      .array-box {
+        width: 60px;
+        height: 60px;
+        margin: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        font-weight: bold;
+        border: 2px solid #ccc;
+        background-color: #e0e0e0;
+        transition: all 0.3s ease;
+      }
+      .array-box.active {
+        background-color: #ffe082;
+        border-color: #fbc02d;
+      }
+      .array-box.found {
+        background-color: #8bc34a;
+        border-color: #558b2f;
+      }
+      .message {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #555;
+      }
+      .emoji-size {
+        width: 1.2em; /* Same as an emoji */
+        height: 1.2em;
+        vertical-align: middle; /* Aligns with text */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Binary Search</h2>
+      <ul class="menu">
+        <li
+          class="menu-item"
+          onclick="location.href='../Theory/binary_search_theory.php'"
+        >
+          📖Theory
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Algorithms/binary_search.php'"
+        >
+          📜Algorithm
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Flowcharts/binary_search.php'"
+        >
+          <img
+            src="../../Images/flow.jpeg"
+            class="emoji-size"
+            alt="Flowchart"
+          />
+          Flowchart
+        </li>
+        <li
+          class="menu-item"
+          onclick="location.href='../Quiz/binary_quiz.php'"
+        >
+          🧠Quiz
+        </li>
+        <li class="menu-item" onclick="location.href='../Code/newindex.html'">
+          ⚙️Code & Learn
+        </li>
+      </ul>
+    </div>
+    <!-- Code Section -->
+    <div class="code-container">
+      <pre id="code">
+#include &lt;stdio.h>
+
+int binarySearch(int array[], int left, int right, int searchValue) {
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (array[mid] == searchValue) {
+            return mid;
+        }
+        if (array[mid] < searchValue) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int array[100];
+    int size, searchValue;
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &size);
+
+    printf("Enter %d elements in sorted order:\n", size);
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &array[i]);
+    }
+
+    printf("Enter the number to search: ");
+    scanf("%d", &searchValue);
+
+    int result = binarySearch(array, 0, size - 1, searchValue);
+    
+    if (result != -1) {
+        printf("Element found at index %d\n", result);
+    } else {
+        printf("Element not found\n");
+    }
+
+    return 0;
+}
+    </pre
+      >
+    </div>
+
+    <!-- Visualization Section -->
+    <div class="visualization-container">
+      <h1>Binary Search Visualization</h1>
+
+      <!-- Input Section -->
+      <div class="input-section">
+        <input
+          type="number"
+          id="arraySizeInput"
+          placeholder="Enter array size"
+        />
+        <button onclick="initializeArray()">Create Array</button>
+        <br />
+        <input
+          type="number"
+          id="arrayElementInput"
+          placeholder="Enter sorted element"
+        />
+        <button onclick="addElement()">Add Element</button>
+        <br />
+        <input
+          type="number"
+          id="searchInput"
+          placeholder="Enter number to search"
+        />
+        <button onclick="startSearch()">Search</button>
+      </div>
+
+      <!-- Array Visualization -->
+      <div class="array-container" id="arrayContainer"></div>
+
+      <!-- Result Section -->
+      <div class="message" id="message"></div>
+    </div>
+
+    <script>
+      let array = [];
+      let arraySize = 0;
+
+      function initializeArray() {
+        const sizeInput = document.getElementById("arraySizeInput");
+        arraySize = parseInt(sizeInput.value);
+        if (isNaN(arraySize) || arraySize <= 0) return;
+        array = [];
+        renderArray();
+        document.getElementById("message").textContent =
+          "Array created. Add elements in sorted order.";
+        sizeInput.value = "";
+      }
+
+      function addElement() {
+        if (array.length >= arraySize) return;
+        const elementInput = document.getElementById("arrayElementInput");
+        const value = parseInt(elementInput.value);
+        if (!isNaN(value)) {
+          array.push(value);
+          array.sort((a, b) => a - b); // Ensure array remains sorted
+          renderArray();
+          elementInput.value = "";
+        }
+      }
+
+      function renderArray() {
+        const container = document.getElementById("arrayContainer");
+        container.innerHTML = "";
+        array.forEach((num, index) => {
+          const box = document.createElement("div");
+          box.className = "array-box";
+          box.textContent = num;
+          box.id = `box-${index}`;
+          container.appendChild(box);
+        });
+      }
+
+      function highlightCodeLine(lineNumber) {
+        const codeBlock = document.getElementById("code");
+        const lines = codeBlock.innerText.split("\n");
+        codeBlock.innerHTML = lines
+          .map((line, index) =>
+            index === lineNumber
+              ? `<span class='highlight'>${line}</span>`
+              : line
+          )
+          .join("\n");
+      }
+
+      async function startSearch() {
+        const searchValue = parseInt(
+          document.getElementById("searchInput").value
+        );
+        if (isNaN(searchValue) || array.length === 0) return;
+
+        let left = 0;
+        let right = array.length - 1;
+        const message = document.getElementById("message");
+        message.textContent = "Searching...";
+
+        while (left <= right) {
+          highlightCodeLine(3); // Highlight while loop
+
+          const mid = Math.floor(left + (right - left) / 2);
+          const midBox = document.getElementById(`box-${mid}`);
+
+          midBox.classList.add("active");
+          await new Promise((resolve) => setTimeout(resolve, 800)); // Wait 800ms
+
+          highlightCodeLine(4); // Highlight mid calculation
+
+          if (array[mid] === searchValue) {
+            midBox.classList.remove("active");
+            midBox.classList.add("found");
+            message.textContent = `Number found at index ${mid}!`;
+            highlightCodeLine(5); // Highlight success
+            return;
+          }
+
+          if (array[mid] < searchValue) {
+            highlightCodeLine(8); // Highlight left shift
+            left = mid + 1;
+          } else {
+            highlightCodeLine(10); // Highlight right shift
+            right = mid - 1;
+          }
+
+          midBox.classList.remove("active");
+        }
+
+        highlightCodeLine(12); // Highlight not found
+        message.textContent = "Number not found!";
+      }
+    </script>
+  </body>
+</html>

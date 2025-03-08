@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id'])) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scope of Variables Algorithm</title>
+    <title>Linear Search Algorithm</title>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
       rel="stylesheet"
@@ -21,7 +21,7 @@ if (!isset($_SESSION['user_id'])) {
   </head>
   <body>
     <div class="sidebar">
-      <h2>Variables Concept</h2>
+      <h2>Linear Search Concept</h2>
       <ul class="menu">
         <li
           class="menu-item"
@@ -59,7 +59,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
     <div class="content-section">
       <div class="container">
-        <h1>Swapping 2 Numbers Algorithm</h1>
+        <h1>Linear Search Algorithm</h1>
         <dl>
           <dt>Step 1:</dt>
           <dd>
