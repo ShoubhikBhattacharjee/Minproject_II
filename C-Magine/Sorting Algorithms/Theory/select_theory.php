@@ -1,125 +1,41 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../../LOGIN/login.html"); // Redirect to login if no session
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insertion Sort in C</title>
-    <style>
-        body {
-            display: flex;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            height: 100vh;
-        }
-
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #1e293b;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .sidebar h2 {
-            color: #facc15;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            flex-grow: 1;
-        }
-
-        .menu-item {
-            background-color: #334155;
-            padding: 15px;
-            margin: 10px 0;
-            text-align: center;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .menu-item:hover {
-            background-color: #facc15;
-            color: black;
-        }
-
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-
-        h2, h3 {
-            color: #333;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #007BFF;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-      .emoji-size {
-      width: 1.2em;  /* Same as an emoji */
-      height: 1.2em;
-      vertical-align: middle;  /* Aligns with text */
-    }
-    </style>
+    <link rel="stylesheet" href="../../CSS/Theory.css">
 </head>
+
 <body>
     <div class="sidebar">
         <h2>Insertion Sort in C</h2>
         <ul class="menu">
-            <li class="menu-item" onclick="location.href='../selection_sort.html'">🖥️Simulation</li>
-            <li class="menu-item" onclick="location.href='../Algorithms/functions_algo.html'">📜Algorithm</li>
-            <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+            <li class="menu-item" onclick="location.href='../Algorithms/selection_sort.php'">📜Algorithm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            <li class="menu-item" onclick="location.href='../Flowcharts/selection_sort.php'"><img src="../../Images/flow.jpeg" class="emoji-size" alt="Flowchart"> Flowchart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </li>
-            <li class="menu-item" onclick="location.href='../Quiz/insert_quiz.html'">🧠Quiz</li>
+            <li class="menu-item" onclick="location.href='../Simulations/selection_sort.php'">🖥️Simulation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            <li class="menu-item" onclick="location.href='../Quiz/select_quiz.php'">🧠Quiz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
             <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
         </ul>
     </div>
 
     <div class="container">
         <h2>Selection Sort in C</h2>
-    
+
         <h3>1. Introduction</h3>
         <p>Selection Sort is a <b>simple and intuitive</b> sorting algorithm that repeatedly selects the smallest (or largest) element from the unsorted portion of an array and swaps it with the first unsorted element. It has a time complexity of <code>O(n²)</code> but performs fewer swaps than other <code>O(n²)</code> algorithms like Bubble Sort.</p>
-    
+
         <h3>2. How Does Selection Sort Work?</h3>
         <p>Selection Sort follows these steps:</p>
         <ul>
@@ -128,7 +44,7 @@
             <li>✔ Move the boundary of the sorted part one step forward.</li>
             <li>✔ Repeat until the entire array is sorted.</li>
         </ul>
-    
+
         <h3>3. Visual Representation</h3>
         <p>Consider sorting the array <code>[7, 3, 5, 2]</code> using Selection Sort:</p>
         <table>
@@ -158,7 +74,7 @@
                 <td>5 remains (already in correct position)</td>
             </tr>
         </table>
-    
+
         <h3>4. Selection Sort Logic</h3>
         <p>The algorithm repeatedly selects the smallest element and moves it to its correct position:</p>
         <pre>
@@ -179,7 +95,7 @@
     }
         </pre>
         <p>Each pass ensures that the smallest element is placed in its correct position.</p>
-    
+
         <h3>5. Characteristics of Selection Sort</h3>
         <ul>
             <li><b>Simple and Easy to Implement:</b> No extra space required.</li>
@@ -192,7 +108,7 @@
                 </ul>
             </li>
         </ul>
-    
+
         <h3>6. Example: Sorting an Array</h3>
         <p>The following snippet sorts an array using Selection Sort:</p>
         <pre>
@@ -223,16 +139,17 @@
         return 0;
     }
         </pre>
-    
+
         <h3>7. When to Use Selection Sort?</h3>
         <ul>
             <li>✔ Best for small datasets where swap operations are costly.</li>
             <li>✔ Useful when memory is limited (in-place sorting).</li>
             <li>✔ Not ideal for large datasets due to <code>O(n²)</code> time complexity.</li>
         </ul>
-    
+
         <h3>8. Conclusion</h3>
         <p>Selection Sort is an <b>easy-to-understand sorting algorithm</b> that is suitable for small datasets. It minimizes swap operations, making it useful when write operations are expensive. However, its <code>O(n²)</code> complexity makes it inefficient for large datasets. Despite its simplicity, it is less commonly used in real-world applications where more efficient algorithms like Merge Sort or Quick Sort are preferred.</p>
-    </div>            
+    </div>
 </body>
+
 </html>

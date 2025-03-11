@@ -208,7 +208,7 @@ if (!isset($_SESSION['user_id'])) {
       <!-- Additional Cards -->
       <div class="row g-4 mt-4">
         <div class="col-md-4">
-          <div class="card h-100 text-center shadow-sm" onclick="window.open('Sorting Algorithms/sorting_algorithms.html', '_blank')">
+          <div class="card h-100 text-center shadow-sm" onclick="window.open('Sorting Algorithms/sorting_algorithms.php', '_blank')">
             <div class="card-body">
               <i class="fas fa-sort-amount-up"></i>
               <h5 class="card-title">Sorting Algorithms</h5>

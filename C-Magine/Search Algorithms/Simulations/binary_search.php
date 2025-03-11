@@ -258,7 +258,7 @@ int main() {
 
       function highlightCodeLine(lineNumber) {
         const codeBlock = document.getElementById("code");
-        const lines = codeBlock.innerText.split("\n");
+        const lines = codeBlock.innerHTML.split("\n");
         codeBlock.innerHTML = lines
           .map((line, index) =>
             index === lineNumber
