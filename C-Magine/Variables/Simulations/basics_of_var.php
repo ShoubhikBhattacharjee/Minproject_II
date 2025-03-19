@@ -80,26 +80,35 @@ if (!isset($_SESSION['user_id'])) {
           class="menu-item"
           onclick="location.href='../Theory/basic_var_theory.php'"
         >
-          Theory
+        📖Theory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../Algorithms/basics_of_variables.html'"
+          onclick="location.href='../Algorithms/basics_of_variables.php'"
         >
-          Algorithm
+        📜Algorithm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../Flowcharts/basics_of_variables.html'"
+          onclick="location.href='../Flowcharts/basics_of_variables.php'"
         >
-          Flowchart
+        <img
+          src="../../Images/flow.jpeg"
+          class="emoji-size"
+          alt="Flowchart" />
+        Flowchart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../Quiz/basics_var_quiz.html'"
+          onclick="location.href='../Quiz/basics_var_quiz.php'"
         >
-          Quiz
+        🧠Quiz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
+        <li
+        class="menu-item"
+        onclick="window.open('../../Code/newindex.html', '_blank')">
+        ⚙️Code & Learn
+      </li>
       </ul>
     </div>
 
@@ -108,23 +117,23 @@ if (!isset($_SESSION['user_id'])) {
       <div class="main-content">
         <div class="code-container">
           <pre id="code">
-<span id="line1">#include &lt;stdio.h&gt;</span>
+<span id="line1">#include &lt;stdio.h&gt;</span><br>
 <span id="line2">int main() {</span>
 <span id="line3">    int a, b, sum;</span>
 <span id="line4">    float celsius, fahrenheit;</span>
-<span id="line5">    float marks, percentage;</span>
+<span id="line5">    float marks, percentage;</span><br>
 <span id="line6">    printf("Enter two numbers: ");</span>
-<span id="line7">    scanf("%d %d", &a, &b);</span>
-<span id="line8">    sum = a + b;</span>
-<span id="line9">    printf("Sum: %d", sum);</span>
+<span id="line7">    scanf("%d %d", &a, &b);</span><br>
+<span id="line8">    sum = a + b;</span><br>
+<span id="line9">    printf("Sum: %d", sum);</span><br>
 <span id="line10">    printf("Enter Celsius: ");</span>
-<span id="line11">    scanf("%f", &celsius);</span>
-<span id="line12">    fahrenheit = (celsius * 9/5) + 32;</span>
-<span id="line13">    printf("Fahrenheit: %.2f", fahrenheit);</span>
+<span id="line11">    scanf("%f", &celsius);</span><br>
+<span id="line12">    fahrenheit = (celsius * 9/5) + 32;</span><br>
+<span id="line13">    printf("Fahrenheit: %.2f", fahrenheit);</span><br>
 <span id="line14">    printf("Enter marks (out of 500): ");</span>
-<span id="line15">    scanf("%f", &marks);</span>
-<span id="line16">    percentage = (marks / 500) * 100;</span>
-<span id="line17">    printf("Percentage: %.2f%%", percentage);</span>
+<span id="line15">    scanf("%f", &marks);</span><br>
+<span id="line16">    percentage = (marks / 500) * 100;</span><br>
+<span id="line17">    printf("Percentage: %.2f%%", percentage);</span><br>
 <span id="line18">    return 0;</span>
 <span id="line19">}</span>
                 </pre>

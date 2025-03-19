@@ -1,55 +1,22 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+  header("Location: ../../LOGIN/login.html"); // Redirect to login if no session
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bubble Sort Visualization with Code Highlighting</title>
+  <link rel="stylesheet" href="../../CSS/Simulations.css">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-    .sidebar {
-      width: 250px;
-      background-color: #1e293b;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .sidebar h2 {
-      color: #facc15;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
     .menu {
       list-style: none;
-    }
-
-    .menu-item {
-      background-color: #334155;
-      padding: 15px;
-      margin: 10px 0;
-      text-align: center;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .menu-item:hover {
-      background-color: #facc15;
-      color: black;
-    }
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f9f9f9;
-      display: flex;
-      flex-direction: row;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
     }
     .code-container {
       flex: 1;
@@ -136,11 +103,11 @@
   <div class="sidebar">
     <h2>Bubble Sort Algorithm</h2>
     <ul class="menu">
-      <li class="menu-item" onclick="location.href='Theory/bubblesort_theory.html'">📖Theory</li>
-      <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">📜Algorithm</li>
-      <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+      <li class="menu-item" onclick="location.href='Theory/bubblesort_theory.php'">📖Theory</li>
+      <li class="menu-item" onclick="location.href='../Algorithms/bubble_sort.php'">📜Algorithm</li>
+      <li class="menu-item" onclick="location.href='../Flowcharts/bubble_sort.php'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
       </li>
-      <li class="menu-item" onclick="location.href='Quiz/bubble_quiz.html'">🧠Quiz</li>
+      <li class="menu-item" onclick="location.href='../Quiz/bubble_quiz.php'">🧠Quiz</li>
       <li class="menu-item" onclick="location.href='../Code/newindex.html'">⚙️Code & Learn</li>
     </ul>
   </div>
@@ -247,7 +214,7 @@ int main() {
 
     function highlightCodeLine(lineNumber) {
       const codeBlock = document.getElementById("code");
-      const lines = codeBlock.innerText.split("\n");
+      const lines = codeBlock.innerText.replace("<", "&lt;").split("\n");
       codeBlock.innerHTML = lines
         .map((line, index) =>
           index === lineNumber ? `<span class='highlight'>${line}</span>` : line

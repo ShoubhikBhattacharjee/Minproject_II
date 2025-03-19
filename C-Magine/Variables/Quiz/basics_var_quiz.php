@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: LOGIN/login.html"); // Redirect to login if no session
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,22 +28,22 @@
     <div class="sidebar">
       <h2>Variables Concept</h2>
       <ul class="menu">
-        <li class="menu-item" onclick="location.href='../Theory/basic_var_theory.html'">
-          📖Theory
+        <li class="menu-item" onclick="location.href='../Theory/basic_var_theory.php'">
+          📖Theory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../Algorithms/leap_algo.html'"
+          onclick="location.href='../Algorithms/basics_of_variables.php'"
         >
-        📜Algorithm
+        📜Algorithm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
-        <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+        <li class="menu-item" onclick="location.href='../Flowcharts/basics_of_variables.php'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../basics_of_var.html'"
+          onclick="location.href='../Flowcharts/basics_of_variables.php'"
         >
-        🖥️Simulation
+        🖥️Simulation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
         <li class="menu-item" onclick="location.href='../../Code/newindex.html'">⚙️Code & Learn</li>
       </ul>

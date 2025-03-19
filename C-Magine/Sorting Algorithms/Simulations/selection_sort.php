@@ -122,7 +122,7 @@ if (!isset($_SESSION['user_id'])) {
       <li class="menu-item" onclick="location.href='../Flowcharts/selection_sort.php'"><img src="../../Images/flow.jpeg" class="emoji-size" alt="Flowchart"> Flowchart
       </li>
       <li class="menu-item" onclick="location.href='../Quiz/select_quiz.php'">🧠Quiz</li>
-      <li class="menu-item" onclick="location.href='../Code/newindex.html'">⚙️Code & Learn</li>
+      <li class="menu-item" onclick="window.open('../../Code/newindex.html', '_blank')">⚙️Code & Learn</li>
     </ul>
   </div>
   <div class="code-container">

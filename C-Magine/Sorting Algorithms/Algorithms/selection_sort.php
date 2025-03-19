@@ -48,7 +48,7 @@ if (!isset($_SESSION['user_id'])) {
       </li>
       <li
         class="menu-item"
-        onclick="location.href='../../Code/newindex.html'">
+        onclick="window.open('../../Code/newindex.html', '_blank')">
         ⚙️Code & Learn
       </li>
     </ul>

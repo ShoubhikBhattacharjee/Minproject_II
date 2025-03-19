@@ -22,17 +22,17 @@ if (!isset($_SESSION['user_id'])) {
 
     <div class="container">
         <!-- Clickable cards linking to different HTML files -->
-        <a href="Theory/basic_var_theory.html" target="_blank" class="card">
+        <a href="Theory/basic_var_theory.php" target="_blank" class="card">
           <span class="icon">🔄</span>
           <p>Basics of Variables</p>
         </a>
 
-      <a href="Theory/swap_num_theory.html" target="_blank" class="card">
+      <a href="Theory/swap_num_theory.php" target="_blank" class="card">
         <span class="icon">🔄</span>
         <p>Swap Two  Numbers</p>
       </a>
 
-      <a href="Theory/scopevar_theory.html" target="_blank" class="card">
+      <a href="Theory/scopevar_theory.php" target="_blank" class="card">
         <span class="icon">🔄</span>
         <p>Scope of Variables</p>
       </a>

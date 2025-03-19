@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id'])) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Selection Sort Flowchart</title>
+    <title>Bubble Sort Flowchart</title>
     <link rel="stylesheet" href="../../CSS/Flowcharts.css" />
   </head>
   <body>
@@ -25,12 +25,12 @@ if (!isset($_SESSION['user_id'])) {
         >
           📖Theory
         </li>
-        <li class="menu-item" onclick="location.href='../Algorithms/selection_sort.php'">
+        <li class="menu-item" onclick="location.href='../Algorithms/bubble_sort.php'">
           📜Algorithm
         </li>
         <li
           class="menu-item"
-          onclick="location.href='../Simulations/selection_sort.php'"
+          onclick="location.href='../Simulations/bubble_sort.php'"
         >
           🖥️Simulation
         </li>
@@ -50,8 +50,8 @@ if (!isset($_SESSION['user_id'])) {
     </div>
     <div class="content-section">
       <div class="container">
-        <h1>Selection Sort Flowchart</h1>
-        <img src="../../Images/Selection Sort.png" alt="Flowchart" />
+        <h1>Bubble Sort Flowchart</h1>
+        <img src="../../Images/Bubble Sort.png" alt="Flowchart" />
       </div>
     </div>
   </body>

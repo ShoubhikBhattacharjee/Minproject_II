@@ -2,148 +2,145 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: LOGIN/login.html"); // Redirect to login if no session
-    exit();
+  header("Location: LOGIN/login.html"); // Redirect to login if no session
+  exit();
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>C-Magine</title>
 
-    <!-- Font Awesome & Bootstrap CSS -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C-Magine</title>
 
-    <style>
-      /* General Body Styling */
-      body {
-        font-family: 'Arial', sans-serif;
-        background: #f4f4f4;
-        overflow-x: hidden;
-      }
+  <!-- Font Awesome & Bootstrap CSS -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    rel="stylesheet" />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
+    rel="stylesheet" />
 
-      /* Navbar Styling */
-      .navbar {
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
+  <style>
+    /* General Body Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f4f4f4;
+      overflow-x: hidden;
+    }
 
-      /* Heading Image Styling */
-      .heading-image {
-        background: none;
-        padding: 30px 0;
-        text-align: center;
-      }
+    /* Navbar Styling */
+    .navbar {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-      .heading-image img {
-        max-width: 50%;
-        height: auto;
-        background: none;
-      }
+    /* Heading Image Styling */
+    .heading-image {
+      background: none;
+      padding: 30px 0;
+      text-align: center;
+    }
 
-      /* Theory Section */
-      .theory-section {
-        background-color: white;
-        padding: 40px;
-        border-radius: 15px;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        max-width: 100%;
-        margin: 0 auto 30px;
-        position: relative;
-        top: -20px;
-      }
+    .heading-image img {
+      max-width: 50%;
+      height: auto;
+      background: none;
+    }
 
-      .theory-text {
-        font-size: 1.3rem;
-        font-weight: bold;
-        color: black;
-        text-align: justify;
-      }
+    /* Theory Section */
+    .theory-section {
+      background-color: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      max-width: 100%;
+      margin: 0 auto 30px;
+      position: relative;
+      top: -20px;
+    }
 
-      .cmagine {
-        color: #c70039;
-      }
+    .theory-text {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: black;
+      text-align: justify;
+    }
 
-      /* Category Card Section */
-      .card {
-        background-color: white;
-        border: none;
-        border-radius: 15px;
-        color: #900c3f;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
+    .cmagine {
+      color: #c70039;
+    }
 
-      .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-      }
+    /* Category Card Section */
+    .card {
+      background-color: white;
+      border: none;
+      border-radius: 15px;
+      color: #900c3f;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-      .card-title {
-        color: #c70039;
-        font-size: 1.4rem;
-        font-weight: bold;
-      }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    }
 
-      .card i {
-        color: #c70039;
-        font-size: 3rem;
-        margin-bottom: 10px;
-      }
+    .card-title {
+      color: #c70039;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
 
-      /* Footer Padding */
-      .footer-spacing {
-        margin-bottom: 60px;
-      }
+    .card i {
+      color: #c70039;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
 
-      /* Full-screen Vanta Background */
-      #vanta-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-      }
-    </style>
-  </head>
+    /* Footer Padding */
+    .footer-spacing {
+      margin-bottom: 60px;
+    }
 
-  <body>
-    <!-- Vanta Background Container -->
-    <script>
-      addEventListener("click")
-    </script>
+    /* Full-screen Vanta Background */
+    #vanta-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+  </style>
+</head>
 
-    <!-- Vanta Animated Background Container -->
-    <div id="vanta-bg"></div>
+<body>
+  <!-- Vanta Background Container -->
+  <script>
+    addEventListener("click")
+  </script>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          
+  <!-- Vanta Animated Background Container -->
+  <div id="vanta-bg"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+
         <!-- Replace the src below with the correct path to the Somaiya Vidyavihar logo -->
         <a class="navbar-brand" href="https://kjsit.somaiya.edu.in/en" target="_blank">
           <img
             src="Images/somaiya_logo.jpg"
             alt="Somaiya Vidyavihar Logo"
-            style="height: 40px"
-          />
+            style="height: 40px" />
         </a>
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
+          data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -160,153 +157,154 @@ if (!isset($_SESSION['user_id'])) {
           </ul>
           <img src="Images/Somaiya Trust Logo.jpg" alt="Somaiya Logo" style="height: 40px" />
         </div>
-      </div>
-    </nav>
+    </div>
+  </nav>
 
-    <!-- Heading Image Section -->
-    <div class="heading-image">
-      <img src="Images/image.png" alt="C-Magine Heading" />
+  <!-- Heading Image Section -->
+  <div class="heading-image">
+    <img src="Images/image.png" alt="C-Magine Heading" />
+  </div>
+
+  <!-- Main Content -->
+  <div class="container-fluid">
+    <!-- Theory Section -->
+    <div class="theory-section mx-auto">
+      <p class="theory-text">
+        Welcome to <span class="cmagine">C-Magine</span>! This interactive platform makes learning C programming fun and engaging. By visualizing key concepts like variables, functions, algorithms, and data structures, you'll gain a deeper understanding of how your code works. Whether you're just starting out or looking to sharpen your skills, C-Magine offers a dynamic and hands-on approach to mastering C. Dive in and watch your programming skills grow with each interactive category!
+      </p>
     </div>
 
-    <!-- Main Content -->
-    <div class="container-fluid">
-      <!-- Theory Section -->
-      <div class="theory-section mx-auto">
-        <p class="theory-text">
-          Welcome to <span class="cmagine">C-Magine</span>! This interactive platform makes learning C programming fun and engaging. By visualizing key concepts like variables, functions, algorithms, and data structures, you'll gain a deeper understanding of how your code works. Whether you're just starting out or looking to sharpen your skills, C-Magine offers a dynamic and hands-on approach to mastering C. Dive in and watch your programming skills grow with each interactive category!
-        </p>
-      </div>
-
-      <!-- Category Cards -->
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100 text-center shadow-sm" onclick="window.open('Variables/variables.html', '_blank')">
-            <div class="card-body">
-              <i class="fas fa-code"></i>
-              <h5 class="card-title">Variables</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 text-center shadow-sm" onclick="window.open('Functions/functions.html', '_blank')">
-            <div class="card-body">
-              <i class="fas fa-cogs"></i>
-              <h5 class="card-title">Functions</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 text-center shadow-sm" onclick="window.open('Search Algorithms/search_algorithms.php', '_blank')">
-            <div class="card-body">
-              <i class="fas fa-search"></i>
-              <h5 class="card-title">Search Algorithms</h5>
-            </div>
+    <!-- Category Cards -->
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm" onclick="window.open('Variables/variables.php', '_blank')">
+          <div class="card-body">
+            <i class="fas fa-code"></i>
+            <h5 class="card-title">Variables</h5>
           </div>
         </div>
       </div>
-
-      <!-- Additional Cards -->
-      <div class="row g-4 mt-4">
-        <div class="col-md-4">
-          <div class="card h-100 text-center shadow-sm" onclick="window.open('Sorting Algorithms/sorting_algorithms.php', '_blank')">
-            <div class="card-body">
-              <i class="fas fa-sort-amount-up"></i>
-              <h5 class="card-title">Sorting Algorithms</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 text-center shadow-sm" onclick="window.open('Control Flow/control_flow.html', '_blank')">
-            <div class="card-body">
-              <i class="fas fa-project-diagram"></i>
-              <h5 class="card-title">Control Flow</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 text-center shadow-sm" onclick="window.open('Patterns/patterns.html', '_blank')">
-            <div class="card-body">
-              <i class="fas fa-th"></i>
-              <h5 class="card-title">Patterns</h5>
-            </div>
+      <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm" onclick="window.open('Data Types/datatypes.html', '_blank')">
+          <div class="card-body">
+            <i class="fas fa-database"></i>
+            <h5 class="card-title">Data Types</h5>
           </div>
         </div>
       </div>
-
-      <!-- Additional Cards -->
-      <div class="row g-4 mt-4">
-        <div class="col-md-4">
-          <div class="card h-100 text-center shadow-sm" onclick="window.open('Data Types/datatypes.html', '_blank')">
-            <div class="card-body">
-              <i class="fas fa-database"></i>
-              <h5 class="card-title">Data Types</h5>
-            </div>
-          </div>
-        </div>
-      
-        <div class="col-md-4">
-          <div class="card h-100 text-center shadow-sm" onclick="window.open('Data Structures/data_structures.html', '_blank')">
-            <div class="card-body">
-              <i class="fas fa-network-wired"></i>
-              <h5 class="card-title">Data Structures</h5>
-            </div>
-          </div>
-        </div>
-      
-        <div class="col-md-4">
-          <div class="card h-100 text-center shadow-sm" onclick="window.open('Matrices/matrices.html', '_blank')">
-            <div class="card-body">
-              <svg xmlns="http://www.w3.org/2000/svg" width="60" height="80">
-                <!-- Left Bracket -->
-                <line x1="5" y1="15" x2="5" y2="65" stroke="darkred" stroke-width="2.5" />
-                <line x1="5" y1="15" x2="10" y2="15" stroke="darkred" stroke-width="2.5" />
-                <line x1="5" y1="65" x2="10" y2="65" stroke="darkred" stroke-width="2.5" />
-        
-                <!-- Right Bracket -->
-                <line x1="55" y1="15" x2="55" y2="65" stroke="darkred" stroke-width="2.5" />
-                <line x1="50" y1="15" x2="55" y2="15" stroke="darkred" stroke-width="2.5" />
-                <line x1="50" y1="65" x2="55" y2="65" stroke="darkred" stroke-width="2.5" />
-        
-                <!-- Matrix Elements -->
-                <text x="9" y="30" font-size="20" font-family="sans-serif" font-weight="bold" fill="darkred">1</text>
-                <text x="40" y="30" font-size="20" font-family="sans-serif" font-weight="bold" fill="darkred">0</text>
-                <text x="9" y="60" font-size="20" font-family="sans-serif" font-weight="bold" fill="darkred">0</text>
-                <text x="40" y="60" font-size="20" font-family="sans-serif" font-weight="bold" fill="darkred">1</text>
-              </svg>
-              <h5 class="card-title">Matrices</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Last Row -->
-      <div class="row g-4 mt-4 justify-content-center footer-spacing">
-        <div class="col-md-4">
-          <div class="card h-100 text-center shadow-sm" onclick="window.open('File IO/file_io.html', '_blank')">
-            <div class="card-body">
-              <i class="fas fa-file-alt"></i>
-              <h5 class="card-title">File I/O</h5>
-            </div>
+      <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm" onclick="window.open('Search Algorithms/search_algorithms.php', '_blank')">
+          <div class="card-body">
+            <i class="fas fa-search"></i>
+            <h5 class="card-title">Search Algorithms</h5>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Vanta.js Script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
-    <script>
-      VANTA.WAVES({
-        el: "#vanta-bg",
-        color: 0xc70039,
-        shininess: 30,
-        waveHeight: 20,
-        waveSpeed: 0.75,
-        zoom: 1,
-      });
-    </script>
+    <!-- Additional Cards -->
+    <div class="row g-4 mt-4">
+      <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm" onclick="window.open('Sorting Algorithms/sorting_algorithms.php', '_blank')">
+          <div class="card-body">
+            <i class="fas fa-sort-amount-up"></i>
+            <h5 class="card-title">Sorting Algorithms</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm" onclick="window.open('Control Flow/control_flow.html', '_blank')">
+          <div class="card-body">
+            <i class="fas fa-project-diagram"></i>
+            <h5 class="card-title">Control Flow</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm" onclick="window.open('Patterns/patterns.html', '_blank')">
+          <div class="card-body">
+            <i class="fas fa-th"></i>
+            <h5 class="card-title">Patterns</h5>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-  </body>
+    <!-- Additional Cards -->
+    <div class="row g-4 mt-4">
+      <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm" onclick="window.open('Functions/functions.html', '_blank')">
+          <div class="card-body">
+            <i class="fas fa-cogs"></i>
+            <h5 class="card-title">Functions</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm" onclick="window.open('Data Structures/data_structures.html', '_blank')">
+          <div class="card-body">
+            <i class="fas fa-network-wired"></i>
+            <h5 class="card-title">Data Structures</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm" onclick="window.open('Matrices/matrices.html', '_blank')">
+          <div class="card-body">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="80">
+              <!-- Left Bracket -->
+              <line x1="5" y1="15" x2="5" y2="65" stroke="darkred" stroke-width="2.5" />
+              <line x1="5" y1="15" x2="10" y2="15" stroke="darkred" stroke-width="2.5" />
+              <line x1="5" y1="65" x2="10" y2="65" stroke="darkred" stroke-width="2.5" />
+
+              <!-- Right Bracket -->
+              <line x1="55" y1="15" x2="55" y2="65" stroke="darkred" stroke-width="2.5" />
+              <line x1="50" y1="15" x2="55" y2="15" stroke="darkred" stroke-width="2.5" />
+              <line x1="50" y1="65" x2="55" y2="65" stroke="darkred" stroke-width="2.5" />
+
+              <!-- Matrix Elements -->
+              <text x="9" y="30" font-size="20" font-family="sans-serif" font-weight="bold" fill="darkred">1</text>
+              <text x="40" y="30" font-size="20" font-family="sans-serif" font-weight="bold" fill="darkred">0</text>
+              <text x="9" y="60" font-size="20" font-family="sans-serif" font-weight="bold" fill="darkred">0</text>
+              <text x="40" y="60" font-size="20" font-family="sans-serif" font-weight="bold" fill="darkred">1</text>
+            </svg>
+            <h5 class="card-title">Matrices</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Last Row -->
+    <div class="row g-4 mt-4 justify-content-center footer-spacing">
+      <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm" onclick="window.open('File IO/file_io.html', '_blank')">
+          <div class="card-body">
+            <i class="fas fa-file-alt"></i>
+            <h5 class="card-title">File I/O</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vanta.js Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+  <script>
+    VANTA.WAVES({
+      el: "#vanta-bg",
+      color: 0xc70039,
+      shininess: 30,
+      waveHeight: 20,
+      waveSpeed: 0.75,
+      zoom: 1,
+    });
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>

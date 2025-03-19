@@ -1,0 +1,115 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+  header("Location: LOGIN/login.html"); // Redirect to login if no session
+  exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basics Of Variables Quiz</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../../CSS/Algorithms.css">
+</head>
+
+<body>
+  <div class="sidebar">
+    <h2>Variables Concept</h2>
+    <ul class="menu">
+      <li
+        class="menu-item"
+        onclick="location.href='../Theory/basic_var_theory.php'">
+        📖Theory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </li>
+      <li
+        class="menu-item"
+        onclick="location.href='../Flowcharts/basics_of_variables.php'">
+        <img
+          src="../../Images/flow.jpeg"
+          class="emoji-size"
+          alt="Flowchart" />
+        Flowchart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </li>
+      <li
+        class="menu-item"
+        onclick="location.href='../Simulations/basics_of_var.php'">
+        🖥️Simulation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </li>
+      <li
+        class="menu-item"
+        onclick="location.href='../Quiz/basics_var_quiz.php'">
+        🧠Quiz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </li>
+      <li
+        class="menu-item"
+        onclick="window.open('../../Code/newindex.html', '_blank')">
+        ⚙️Code & Learn
+      </li>
+    </ul>
+  </div>
+  <div class="content-section">
+    <div class="container">
+      <h1>Basics of Variables Algorithm</h1>
+      <dl>
+        <dt>Step 1:</dt>
+        <dd>
+          Start the program, including necessary header files and the 'main'
+          function.
+        </dd>
+        <dt>Step 2:</dt>
+        <dd>
+          Declare the variables - <br />int a, b, sum; <br />float celsius,
+          fahrenheit, marks, percentage;
+        </dd>
+        <dt>Step 3:</dt>
+        <dd>Take inputs for variables 'a' and 'b'.</dd>
+        <dt>Step 4:</dt>
+        <dd>Calculate sum of 'a' and 'b' and store it in 'sum'.</dd>
+        <dt>Step 5:</dt>
+        <dd>Display 'sum'.</dd>
+        <dt>Step 6:</dt>
+        <dd>Take input for variable 'celsius'.</dd>
+        <dt>Step 7:</dt>
+        <dd>
+          Calculate - (celsius X
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mfrac>
+              <mn>9</mn>
+              <mn>5</mn>
+            </mfrac>
+          </math>
+          ) + 32 and store it in 'fahrenheit'.
+        </dd>
+        <dt>Step 8:</dt>
+        <dd>Display 'fahrenheit'.</dd>
+        <dt>Step 9:</dt>
+        <dd>Take input for variable 'marks'.</dd>
+        <dt>Step 10:</dt>
+        <dd>
+          Calculate -
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mfrac>
+              <mn>marks</mn>
+              <mn>500</mn>
+            </mfrac>
+          </math>
+          X 100 and store it in 'percentage'.
+        </dd>
+        <dt>Step 11:</dt>
+        <dd>Display 'percentage'.</dd>
+        <dt>Step 12:</dt>
+        <dd>End the program.</dd>
+      </dl>
+    </div>
+  </div>
+</body>
+
+</html>

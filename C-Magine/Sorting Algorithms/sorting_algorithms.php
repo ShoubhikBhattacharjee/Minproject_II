@@ -27,7 +27,7 @@ if (!isset($_SESSION['user_id'])) {
         <p>Selection Sort</p>
       </a>
 
-      <a href="bubble_sort.html" target="_blank" class="card">
+      <a href="Theory/bubblesort_theory.php" target="_blank" class="card">
         <span class="icon">🧮</span>
         <p>Bubble sort</p>
       </a>
