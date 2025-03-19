@@ -32,17 +32,17 @@ if (!isset($_SESSION['user_id'])) {
         <p>Bubble sort</p>
       </a>
 
-      <a href="insertion_sort.html" target="_blank" class="card">
+      <a href="Theory/insert_theory.php" target="_blank" class="card">
         <span class="icon">📶</span>
         <p>Insertion Sort</p>
       </a>
 
-      <a href="merge_sort.html" target="_blank" class="card">
+      <a href="Theory/merge_theory.html" target="_blank" class="card">
         <span class="icon">🗂️</span>
         <p>Merge Sort</p>
       </a>
 
-      <a href="quick_sort.html" target="_blank" class="card">
+      <a href="Theory/quicksort_theory.html" target="_blank" class="card">
         <span class="icon">📊</span>
         <p>Quick Sort</p>
       </a>

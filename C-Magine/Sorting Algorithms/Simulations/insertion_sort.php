@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+  header("Location: ../../LOGIN/login.html"); // Redirect to login if no session
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,50 +16,10 @@
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../CSS/Simulations.css">
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f9f9f9;
-      display: flex;
-      flex-direction: row;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-    }
-
-    .sidebar {
-      width: 250px;
-      background-color: #1e293b;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .sidebar h2 {
-      color: #facc15;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
     .menu {
       list-style: none;
-    }
-
-    .menu-item {
-      background-color: #334155;
-      padding: 15px;
-      margin: 10px 0;
-      text-align: center;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .menu-item:hover {
-      background-color: #facc15;
-      color: black;
     }
 
     .code-container {
@@ -146,27 +115,24 @@
       font-weight: bold;
       color: #555;
     }
-      .emoji-size {
-      width: 1.2em;  /* Same as an emoji */
-      height: 1.2em;
-      vertical-align: middle;  /* Aligns with text */
-    }
   </style>
 </head>
 <body>
   <div class="sidebar">
     <h2>Insertion Sort Algorithm</h2>
     <ul class="menu">
-      <li class="menu-item" onclick="location.href='Theory/insert_theory.html'">📖Theory</li>
-      <li class="menu-item" onclick="location.href='../Algorithms/recur_algo.html'">📜Algorithm</li>
-      <li class="menu-item" onclick="location.href='../Flowchart/._flow.html'"><img src="../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
+      <li class="menu-item" onclick="location.href='../Theory/insert_theory.php'">📖Theory</li>
+      <li class="menu-item" onclick="location.href='../Algorithms/insertion_sort.php'">📜Algorithm</li>
+      <li class="menu-item" onclick="location.href='../Flowcharts/insertion_sort.php'"><img src="../../Images/flow.jpeg" class="emoji-size" alt = "Flowchart"> Flowchart
       </li>
-      <li class="menu-item" onclick="location.href='Quiz/insert_quiz.html'">🧠Quiz</li>
+      <li class="menu-item" onclick="location.href='../Quiz/insert_quiz.php'">🧠Quiz</li>
       <li class="menu-item" onclick="location.href='../Code/newindex.html'">⚙️Code & Learn</li>
     </ul>
   </div>
   <div class="code-container">
     <pre id="code">
+#include &lt;stdio.h>
+
 void insertionSort(int arr[], int n) {
     int key, j;
     for (int i = 1; i < n; i++) {
@@ -184,7 +150,11 @@ void insertionSort(int arr[], int n) {
 }
 
 int main() {
-    int n;
+    int arr[100], n;
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
     printf("Enter the elements : ");
     for (int i = 0; i < n; i++) {
         scan("%d", &arr[i]);
@@ -254,7 +224,7 @@ int main() {
 
     function resetVisualization() {
       const codeBlock = document.getElementById("code");
-      codeBlock.innerHTML = codeBlock.innerText;
+      codeBlock.innerHTML = codeBlock.innerText.replace("<", "&lt;");
       document.getElementById("arrayContainer").innerHTML = "";
       document.getElementById("message").textContent = "";
     }
@@ -278,7 +248,7 @@ int main() {
 
     function highlightCodeLine(lineNumber, colorClass) {
       const codeBlock = document.getElementById("code");
-      const lines = codeBlock.innerText.split("\n");
+      const lines = codeBlock.innerText.replace("<", "&lt;").split("\n");
       codeBlock.innerHTML = lines
         .map((line, index) =>
           index === lineNumber

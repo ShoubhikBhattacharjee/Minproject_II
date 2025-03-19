@@ -87,57 +87,48 @@ if (!isset($_SESSION['user_id'])) {
         <dd>Set i = 0.</dd>
         <dt>Step 11:</dt>
         <dd>If i < n - 1, proceed to step 12. <br>
-            Else, go to step 28.
+            Else, go to step 25.
         </dd>
         <dt>Step 12:</dt>
-        <dd>Return to step 9.</dd>
+        <dd>Set minIndex = i.</dd>
         <dt>Step 13:</dt>
-        <dd>Set value of ‘found’ as ‘i’.</dd>
+        <dd>Set j = i + 1.</dd>
         <dt>Step 14:</dt>
         <dd>
-          If found != -1, go to step 15. <br />
-          Else, go to step 17.
+          If j < n, proceed to step 15. <br>
+            Else, go to step 19.
         </dd>
         <dt>Step 15:</dt>
-        <dd>Set minIndex = i.</dd>
+        <dd>
+          If arr[j] < arr[minIndex], proceed to step 16. <br>
+            Else, go to step 17.
+        </dd>
         <dt>Step 16:</dt>
-        <dd>Set j = i + 1.</dd>
-        <dt>Step 17:</dt>
-        <dd>
-          If j < n, proceed to step 18. <br>
-            Else, go to step 22.
-        </dd>
-        <dt>Step 18:</dt>
-        <dd>
-          If arr[j] < arr[minIndex], proceed to step 19. <br>
-            Else, go to step 20.
-        </dd>
-        <dt>Step 19:</dt>
         <dd>Set minIndex = j.</dd>
-        <dt>Step 20:</dt>
+        <dt>Step 17:</dt>
         <dd>Increment ‘j’ by 1.</dd>
-        <dt>Step 21:</dt>
-        <dd>Go to step 17.</dd>
-        <dt>Step 22:</dt>
+        <dt>Step 18:</dt>
+        <dd>Go to step 14.</dd>
+        <dt>Step 19:</dt>
         <dd>
-          If minIndex != i, proceed to step 23. <br>
-          Else, go to step 26.
+          If minIndex != i, proceed to step 20. <br>
+          Else, go to step 23.
         </dd>
-        <dt>Step 23:</dt>
+        <dt>Step 20:</dt>
         <dd>Set temp = arr[i].</dd>
-        <dt>Step 24:</dt>
+        <dt>Step 21:</dt>
         <dd>Set arr[i] = arr[minIndex].</dd>
-        <dt>Step 25:</dt>
+        <dt>Step 22:</dt>
         <dd>Set arr[minIndex] = temp.</dd>
-        <dt>Step 26:</dt>
+        <dt>Step 23:</dt>
         <dd>Increment ‘i’ by 1.</dd>
-        <dt>Step 27:</dt>
+        <dt>Step 24:</dt>
         <dd>Go to step 11.</dd>
-        <dt>Step 28:</dt>
+        <dt>Step 25:</dt>
         <dd>Return to ‘main’ function.</dd>
-        <dt>Step 29:</dt>
+        <dt>Step 26:</dt>
         <dd>Display the sorted array. </dd>
-        <dt>Step 30:</dt>
+        <dt>Step 27:</dt>
         <dd>End the program.</dd>
       </dl>
     </div>
